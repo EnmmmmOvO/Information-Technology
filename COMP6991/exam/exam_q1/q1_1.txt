@@ -1,0 +1,24 @@
+1. Using Result<String, &'a str> is a preferable choice. If the outcome is successful, it should return Ok(args[index].clone()). In the case of an error, it directly returns the error content. This approach eliminates the need for a boolean part, allowing for direct matching on the result's return value.
+
+   ```rust
+   fn get_argument(index: usize) -> Result<String, &'static str> {
+       let args: Vec<String> = std::env::args().collect();
+   
+       if index >= args.len() {
+           return Err("Could not find argument");
+       }
+       return Ok(args[index].clone());
+   }
+   
+   fn main() {
+       match get_argument(1) { 
+           Ok(text) => println!("Argument: {}", text),
+           Err(_) => println!("No argument found"),
+       }
+   }
+   ```
+
+2. The Result<T, E> type explicitly separates successful outcomes from error states, enhancing the readability and clarity of the code, and facilitating the easy extension of error types. 
+
+   Furthermore, it is not necessary for the types of successful and error values to be consistent. For error returns, it can directly use &str, which reduces memory allocation.
+

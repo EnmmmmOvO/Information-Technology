@@ -1,0 +1,8 @@
+1. &str
+
+2. The blocks are expressions.
+
+3. In this Rust code, the language allows the last expression without a semicolon to be the return value. For the condition if number == 4, both the correct and incorrect cases return a &str, and this value is also the last in the answer block, thus being passed as the return value to answer. 
+
+   The block calculates whether number = 4 and then evaluates it as "random number" or "non-random number", assigning this value to the variable answer.
+

@@ -1,0 +1,7 @@
+1. Result<T, E>, Option<T>
+
+2. When the value satisfies Result::Ok(T) or Option::Some(T), the ? operator unpacks the value T from the variable and returns it. This allows the function to continue using the unpacked value, functioning similarly to unwrap().
+
+3. When used with Result::Err(E), the ? operator unpacks E and checks if it needs to be converted to the error type of the current function. It then immediately returns Err(E) from the function in which it is used, and the subsequent code will not be executed.
+
+   For Option::None, using the ? operator similarly results in the function immediately returning None, and subsequent code will not continue.

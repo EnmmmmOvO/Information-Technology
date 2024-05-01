@@ -1,0 +1,43 @@
+1. Rust's type system is both static and strongly typed, requiring that the type of each variable be determined at compile time and remain unchanged throughout the execution of the program. When `cond` is true, it returns an `i32`, and when false, it returns a `&str`. This means the entire if expression attempts to return two different types based on the condition. As a result, the Rust compiler cannot determine whether the specific type of the `item` variable should be `i32` or `bool`, leading to a compilation error.
+
+2. If the condition must support two possible types, a better choice would be to use an enum. By implementing the `Display` trait for this enum, the return type becomes an enum type, allowing the program to operate correctly. This approach provides a structured way to handle multiple types within a single variable, enhancing the flexibility and maintainability of the code.
+
+   ```rust
+   enum Result {
+       Int(i32),
+       Text(&'static str),
+   }
+   
+   impl Display for Result {
+       fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+           match self {
+               Result::Int(i) => write!(f, "{}", i),
+               Result::Text(s) => write!(f, "{}", s),
+           }
+       }
+   }
+   
+   fn print_something(cond: bool) {
+       let item = if cond {
+           Result::Int(42)
+       } else {
+           Result::Text("foo")
+       };
+   
+       print_in_stars(item);
+   }
+   ```
+
+   Alternatively, we could also convert the value `42` to "42", it also can solve the issues.
+
+   ```rust
+   fn print_something(cond: bool) {
+       let item = if cond {
+           "42"
+       } else {
+           "foo"
+       };
+   
+       print_in_stars(item);
+   }
+   ```

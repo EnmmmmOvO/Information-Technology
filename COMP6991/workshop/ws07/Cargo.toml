@@ -1,0 +1,22 @@
+[package]
+name = "ws07"
+version = "0.1.0"
+edition = "2021"
+default-run = "scheduler"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.5"
+
+[[bin]]
+name = "scheduler"
+path = "src/main.rs"
+
+[[bin]]
+name = "program_runner"
+path = "example_programs/program_runner.rs"
+
+[[bin]]
+name = "print_randoms"
+path = "example_programs/print_randoms.rs"

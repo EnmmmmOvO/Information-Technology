@@ -1,0 +1,5 @@
+macro_rules! cvar {
+    ($(($t:ty) $name:ident = $value:expr;)*) => {
+        $(let $name: $t = $value;)*
+    }
+}

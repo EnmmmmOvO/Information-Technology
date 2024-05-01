@@ -1,0 +1,23 @@
+1. - The program uses `unsafe` code during cloning by accessing the address of the `count` field in the `Rc` structure using `addr_of_mut` and then increments the value at that address using `unsafe`.
+
+   - In the `Deref` implementation, `unsafe` code is used to obtain the address of the data stored in the `Rc` and returns a mutable reference to that address.
+
+   - In the `Drop` implementation, a large `unsafe` block wraps all the drop-related code. Firstly, it obtains the address of the `count` field using `addr_of_mut`, reads the value at that address, and decrements it. Then, it checks if the count is zero. If it is, it destroys the structure in memory; otherwise, it writes the new count value back into memory.
+
+2. In the `impl Drop` section, there's a large-scoped `unsafe` block being utilized, which doesn't quite adhere to the principle of using `unsafe` only when absolutely necessary. This approach not only compromises the security aspects of the code within the `unsafe` block but also loses the guarantee of static checks on the security-related portions.
+
+3. ```rust
+   impl<T> Drop for Rc<T> {
+       fn drop(&mut self) {
+               let count_addr = unsafe {addr_of_mut!((*self.ptr).count)};
+               let count = unsafe{ptr::read(count_addr)};
+               let new_count = count - 1;
+   
+               if new_count > 0 {
+                   unsafe { ptr::write(count_addr, new_count) };
+               } else {
+                   unsafe { drop(Box::from_raw(self.ptr)) }
+               }
+           }
+   }
+   ```

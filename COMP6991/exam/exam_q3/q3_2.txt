@@ -1,0 +1,5 @@
+1. - The first method initial implementation defines a method called add within the impl block for the Point struct, it can only be invoked using the specific a.add(b) syntax. 
+
+   - The improved method involves overloading the addition operator (impl std::ops::Add for Point), enabling the code to support the expression a + b, which is more intuitive. Additionally, if needed, the a.add(b) method can still be used for invocation. 
+
+2. Use + operator. With first method, it cannot use the + operator between two Point instances; we must use the add method explicitly. The last method achieve the trait add, thus allows for this operation seamlessly.

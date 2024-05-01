@@ -1,0 +1,8 @@
+1. - In Rust, every value has exactly one owner at any given time, which means that accidental data sharing does not automatically occur in concurrent environments. 
+   - Rust allows values to be borrowed through references but prohibits having both mutable and immutable references simultaneously. At any given moment, there can either be one mutable reference or multiple immutable references. These rules are enforced at compile time, effectively preventing data races. 
+   - Lifetimes ensure that references do not outlive the data they refer to, which is crucial in concurrent programming to ensure that threads do not access memory that has been destroyed or is no longer valid. This approach helps maintain safe handling of data across different threads.
+
+2. Indeed, Rust does include an unsafe block that allows code to bypass some of the borrow checker's restrictions. Within these unsafe blocks, it is possible to perform operations that could lead to data races, such as directly manipulating memory or handling concurrency incorrectly. This means that even in Rust, safe concurrency practices are not guaranteed unless the code strictly adheres to safe Rust principles.
+
+   Under the constraints of safe Rust, as the borrowing mechanism and the prohibition of using references across threads, the likelihood of data races is significantly reduced, ensuring data safety and consistency. 
+
