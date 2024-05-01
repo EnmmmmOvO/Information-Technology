@@ -5,17 +5,17 @@
 - [ass2](https://github.com/EnmmmmOvO/rsheets)
 
 ## Exam
-- [prac](/last-exam/prac/)
-- [22T3](/last-exam/22T3/)
-- [23T1](/last-exam/23T1/)
-- [23T3](/last-exam/23T3/)
-- [24T1](/exam/)
+- [prac](./last-exam/prac/)
+- [22T3](./last-exam/22T3/)
+- [23T1](./last-exam/23T1/)
+- [23T3](./last-exam/23T3/)
+- [24T1](./exam/)
 
 ## Lab
 - [01](./lab/lab01/) [02](./lab/lab02/) [03](./lab/lab03/) [04](./lab/lab04/) [05](./lab/lab05/) [07](./lab/lab07/) [08](./lab/lab08/) [09](./lab/lab09/)
 
 ## WorkShop 
-- [01](/workshop/ws01) [02](/workshop/ws02) [03](/workshop/ws03) [04](/workshop/ws04) [05](/workshop/ws05) [07](/workshop/ws07) [08](/workshop/ws08) [09](/workshop/ws09) [10](/workshop/ws10)
+- [01](./workshop/ws01) [02](./workshop/ws02) [03](./workshop/ws03) [04](./workshop/ws04) [05](./workshop/ws05) [07](./workshop/ws07) [08](./workshop/ws08) [09](./workshop/ws09) [10](./workshop/ws10)
 
 
 ## Week01
