@@ -1,0 +1,1074 @@
+
+<!-- saved from url=(0066)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 01 Thursday Lecture</title>
+<link href="./lec02_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec02_files/latest.js" async=""></script>
+<script src="./lec02_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec02_files/MathJax.js"></script>
+<link href="./lec02_files/css" rel="stylesheet">
+<link href="./lec02_files/prism.css" rel="stylesheet">
+<script src="./lec02_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 01 Thursday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s2">Database Engine Operations</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s3">Relational Algebra</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s4">Exercise: Relational Algebra (i)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s5">Exercise: Relational Algebra (ii)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s6">DBMS Query Evaluation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s7">A Relational Algebra Engine</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s8">PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s9">PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s10">User View of PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s11">PostgreSQL Functionality</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s17">Catalogs</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s18">Database Objects</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s19">Catalogs</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s25">Representing Databases</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s27">Representing Tables</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s29">Exercise: Table Statistics</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s30">Exercise: Extracting a Schema</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s31">Exercise: Enumerated Types</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s32">PostgreSQL Architecture</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s33">PostgreSQL Architecture</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s36">Exercise: PostgreSQL Data Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s37">PostgreSQL Source Code</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s41">Life-cycle of a PostgreSQL query</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s43">PostgreSQL server</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s45">PostgreSQL Data Types</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s46">PostgreSQL Query Evaluation</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [0/53]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><ul>
+<li> Enrolments: MyUNSW → downloads → Webcms3 and SMS
+</li><li> Polls: C experience, DBMS experience
+</li><li> Prac Exercise 01: who has a PostgreSQL server on &nbsp;<large><code>vxdb</code></large>?
+</li><li> Installing from source on Windows ... Chapter 18 of PG Docs
+</li><li> Learn to use VLab/Linux ... needed for the Exam
+<ul>
+<li> if you use a Mac, Terminal ≅ xTerm in VLab
+</li><li> if you use Windows, you have my deepest sympathy
+</li></ul>
+</li><li> YouTube videos will appear next morning; Echo360 overnight
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [1/53]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Database Engine Operations</div></td><td align="right"></td></tr></tbody></table>
+<p>
+DB engine = "relational algebra virtual machine".
+</p><p>
+Common operators of <font color="#0000BB">relational algebra</font> (RA):
+</p><p>
+</p><div class="center">
+<table border="0" cellpadding="4">
+<tbody><tr valign="top">
+<td><nobr> selection (<i><span style="font-size:150%">σ</span></i> ) </nobr></td>
+<td></td><td> projection (<i><span style="font-size:150%">π</span></i> ) </td>
+<td></td><td> join (<i>⋈</i> ) </td>
+</tr>
+<tr valign="top">
+<td><nobr> union (<i>∪</i>) </nobr></td>
+<td></td><td> intersection (<i>∩</i>) </td>
+<td></td><td> difference (<i>-</i>) </td>
+</tr>
+<tr valign="top">
+<td><nobr> sort </nobr></td>
+<td></td><td> group </td>
+<td></td><td> aggregate </td>
+</tr>
+</tbody></table>
+</div>
+<p>
+For each of these operations:
+</p><ul>
+<li> various data structures and algorithms are available
+</li><li> DBMSs may provide only one, or may provide a choice
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [2/53]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relational Algebra</div></td><td align="right"></td></tr></tbody></table>
+<p>
+All RA operators return a result of type <font color="#0000BB">relation</font>.
+</p><p>
+For convenience, we can name a result and use it later.
+</p><p>
+E.g. database &nbsp; <i>R1(x,y)</i>, &nbsp; <i>R2(y,z)</i>, &nbsp;
+</p><p></p><pre><small>
+Tmp1(x,y)   = Sel[x&gt;5]R1
+Tmp2(y,z)   = Sel[z=3]R2
+Tmp3(x,y,z) = Tmp1 Join Tmp2
+Res(x,z)    = Proj[x,z] Tmp3
+<span class="comment">-- which is equivalent to</span>
+Tmp1(x,y,z) = R1 Join R2
+Tmp2(x,y,z) = Sel[x&gt;5 &amp; z=3] Tmp1
+Res(x,z)    = Proj[x,z]Tmp2
+</small></pre><p>
+<small>
+Each "intermediate result" has a well-defined schema.
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [3/53]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Relational Algebra (i)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Assume a schema: R(a,b,c), S(x,y)
+</p><p>
+Translate each of the following SQL statements to RA
+</p><ul>
+<li> select * from R
+</li><li> select a,b from R
+</li><li> select * from R where a &gt; 5
+</li><li> select * from R join S on R.a = S.y
+</li></ul>
+Indicate: the fields and # tuples in the result
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [4/53]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Relational Algebra (ii)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Using the following student/course/enrolment schema:
+</p><p></p><pre>Students(sid, name, degree, ...)
+Courses(cid, code, term, title, ...)
+Enrolments(sid, cid, mark, grade)
+</pre><p>
+write relational algebra expressions to solve the problem
+</p><ul>
+<li> find all students who passed COMP9315 in 18s2
+</li><li> for each student, give (student ID, name, mark)
+</li></ul>
+Express it as a sequence of steps, where each step uses one RA operation.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [5/53]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ DBMS Query Evaluation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Path of a query through a typical DBMS:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/qryeval1.png]" src="./lec02_files/qryeval1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [6/53]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ A Relational Algebra Engine</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/dbmsarch1.png]" src="./lec02_files/dbmsarch1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [7/53]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [8/53]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">PostgreSQL</font> is a full-featured open-source (O)RDBMS.
+</p><ul>
+<li> provides a relational engine with:
+<ul>
+<li> efficient implementation of relational operations
+</li><li> transaction processing <small>(concurrent access)</small>
+</li><li> backup/recovery <small>(from application/system failure)</small>
+</li><li> novel query optimisation <small>(genetic algorithm-based)</small>
+</li><li> replication, JSON, extensible indexing, etc. etc.
+</li></ul>
+</li><li> already supports several non-standard data types
+</li><li> allows users to define their own data types
+</li><li> supports most of the SQL3 standard
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [9/53]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ User View of PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Users interact via SQL in a <font color="#0000BB">client</font> process, e.g.
+</p><p></p><pre><small>
+$ <b><font color="#0000EE">psql webcms</font></b>
+psql (15.6)
+Type "help" for help.
+webcms2=# <b><font color="blue">select * from calendar;</font></b>
+ id | course |   evdate   |      event
+----+--------+------------+---------------------------
+  1 |      4 | 2001-08-09 | Project Proposals due
+ 10 |      3 | 2001-08-01 | Tute/Lab Enrolments Close
+ 12 |      3 | 2001-09-07 | Assignment #1 Due (10pm)
+ ...
+</small></pre><p>
+or
+</p><p></p><pre><small>
+$dbconn = pg_connect("dbname=webcms");
+$result = pg_query($dbconn,"<b><font color="blue">select * from calendar</font></b>");
+while ($tuple = pg_fetch_array($result))
+   { ... $tuple["event"] ... }
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [10/53]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Functionality</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL systems deal with various kinds of objects:
+</p><ul>
+<li> <font color="#0000BB">users</font> ... who can access the system
+</li><li> <font color="#0000BB">groups</font> ... groups of users, for role-based privileges
+</li><li> <font color="#0000BB">databases</font> ... collections of schemas/tables/views/...
+</li><li> <font color="#0000BB">namespaces</font> ... to uniquely identify objects <small>(schema.table.attr)</small>
+</li><li> <font color="#0000BB">tables</font> ... collection of tuples <small>(standard relational notion)</small>
+</li><li> <font color="#0000BB">views</font> ... "virtual" tables <small>(can be made updatable)</small>
+</li><li> <font color="#0000BB">functions</font> ... operations on values from/in tables
+</li><li> <font color="#0000BB">triggers</font> ... operations invoked in response to events
+</li><li> <font color="#0000BB">operators</font> ... functions with infix syntax
+</li><li> <font color="#0000BB">aggregates</font> ... operations over whole table columns
+</li><li> <font color="#0000BB">types</font> ... user-defined data types <small>(with own operations)</small>
+</li><li> <font color="#0000BB">rules</font> ... for query rewriting <small>(used e.g. to implement views)</small>
+</li><li> <font color="#0000BB">access methods</font> ... efficient access to tuples in tables
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [11/53]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Functionality <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL's dialect of SQL is mostly standard
+	<small>(but with extensions)</small>.
+</p><ul>
+<li> attributes containing arrays of atomic values
+<p></p><pre>create table R ( id integer, a integer[] );
+insert into R values ( 123, '{5,4,3,2,1}' );
+</pre><p>
+</p></li><li> table type inheritance
+<p></p><pre>create table S ( x float, y float );
+create table T inherits ( R, S );    T(id,a,x,y)
+</pre><p>
+</p></li><li> table-valued functions
+<p></p><pre>create function f(integer) returns setof R;
+</pre><p>
+</p></li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [12/53]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Functionality <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL stored procedures differ from SQL standard:
+</p><ul>
+<li> only provides functions, not procedures <br>
+	<small>(but functions can return <large><code>void</code></large>, effectively a procedure)</small>
+</li><li> allows function overloading <br>
+	<small>(same function name, different argument types)</small>
+</li><li> defined at different "lexical level" to SQL
+</li><li> provides own PL/SQL-like language for functions
+</li></ul>
+<p></p><pre><font color="#008800">create function (</font> <i>ArgTypes</i> <font color="#008800">) returns</font> <i>ResultType</i>
+<font color="#008800">as</font> <font color="#0000EE">$$</font>
+<i><font color="#999999">... body of function definition ...</font></i>
+<font color="#0000EE">$$</font> <font color="#008800">language</font> <i>FunctionBodyLanguage</i>;
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [13/53]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Functionality <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example:
+</p><p></p><pre>create or replace function
+    barsIn(suburb text) returns setof Bars
+as $$
+<font color="#0000EE">declare
+    r record;
+begin
+    for r in
+        select * from Bars where location = suburb
+    loop
+       return next r;
+    end loop;
+end;</font>
+$$ language plpgsql;
+<span class="comment">used as e.g.</span>
+select * from barsIn('Randwick');
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [14/53]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Functionality <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Uses <font color="#0000BB">multi-version concurrency control</font> (MVCC)
+</p><ul>
+<li> multiple "versions" of the database exist together
+</li><li> a transaction sees the version that was valid at its start-time
+</li><li> readers don't block writers; writers don't block readers
+</li><li> this significantly reduces the need for locking
+</li></ul>
+Disadvantages of this approach:
+<ul>
+<li> need to check "existence" of each tuple in transaction
+</li><li> extra storage for old versions of tuples &nbsp; (<large><code>vacuum</code></large> fixes this)
+</li></ul>
+<br>
+PostgreSQL also provides locking to enforce critical concurrency.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [15/53]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Functionality <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL has a well-defined and open extensibility model:
+</p><ul>
+<li> stored procedures are held in database as strings
+<ul>
+<li> allows a variety of languages to be used
+</li><li> language interpreters can be integrated into engine
+</li></ul>
+</li><li> can add new data types, operators, aggregates, indexes
+<ul>
+<li> typically requires code written in C, following defined API
+</li><li> for new data types, need to write input/output functions, ...
+</li><li> for new indexes, need to implement file structures
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [16/53]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Catalogs</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [17/53]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Database Objects</div></td><td align="right"></td></tr></tbody></table>
+<p>
+RDBMSs manage different kinds of objects
+</p><ul>
+<li> databases, schemas, tablespaces
+</li><li> relations/tables, attributes, tuples/records
+</li><li> constraints, assertions
+</li><li> views, stored procedures, triggers, rules
+</li></ul>
+Many objects have names <small>(and, in PostgreSQL, all can have OIDs)</small>.
+<p>
+How are the different types of objects represented?
+</p><p>
+How do we go from a name (or OID) to bytes stored on disk?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [18/53]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Catalogs</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider what information the RDBMS needs about relations:
+</p><ul>
+<li> name, owner, primary key of each relation
+</li><li> name, data type, constraints for each attribute
+</li><li> authorisation for operations on each relation
+</li></ul>
+Similarly for other DBMS objects
+    <small>(e.g. views, functions, triggers, ...)</small>
+<p>
+This information is stored in the <font color="#0000BB">system catalog</font> tables
+</p><p>
+Standard for catalogs in SQL:2003: <large><code>INFORMATION_SCHEMA</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [19/53]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Catalogs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The catalog is affected by several types of SQL operations:
+</p><ul>
+<li> <large><code>create</code></large> <i>Object</i> <large><code>as</code></large> <i>Definition</i>
+</li><li> <large><code>drop</code></large> <i>Object</i> ...
+</li><li> <large><code>alter</code></large> <i>Object</i> &nbsp; <i>Changes</i>
+</li><li> <large><code>grant</code></large> <i>Privilege</i> <large><code>on</code></large> <i>Object</i>
+</li></ul>
+where <i>Object</i> is one of table, view, function, trigger, schema, ...
+<p>
+E.g. <large><code>drop table Groups;</code></large> produces something like
+</p><p></p><pre>delete from Tables
+where  schema = 'public' and name = 'groups';
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [20/53]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Catalogs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+In PostgreSQL, the system catalog is available to users via:
+</p><ul>
+<li> special commands in the <large><code>psql</code></large> shell (e.g. <large><code>\d</code></large>)
+</li><li> SQL standard <large><code>information_schema</code></large> <br><br>
+   e.g. <large><code>select * from information_schema.tables;</code></large>
+</li></ul>
+<br>
+The low-level representation is available to sysadmins via:
+<ul>
+<li> a global schema called <large><code>pg_catalog</code></large>
+</li><li> a set of tables/views in that schema (e.g. <large><code>pg_tables</code></large>) 
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [21/53]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Catalogs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+You can explore the PostgreSQl catalog via <large><code>psql</code></large> commands
+</p><ul>
+<li> <large><font color="#008800"><b><code>\d</code></b></font></large> gives a list of all tables and views
+</li><li> <large><font color="#008800"><b><code>\d <i>Table</i></code></b></font></large> gives a schema for <large><code><i>Table</i></code></large>
+</li><li> <large><font color="#008800"><b><code>\df</code></b></font></large> gives a list of user-defined functions
+</li><li> <large><font color="#008800"><b><code>\df+ <i>Function</i></code></b></font></large> gives details of <large><code><i>Function</i></code></large>
+</li><li> <large><font color="#008800"><b><code>\ef <i>Function</i></code></b></font></large> allows you to edit <large><code><i>Function</i></code></large>
+</li><li> <large><font color="#008800"><b><code>\dv</code></b></font></large> gives a list of user-defined views
+</li><li> <large><font color="#008800"><b><code>\d+ <i>View</i></code></b></font></large> gives definition of <large><code><i>View</i></code></large>
+</li></ul>
+You can also explore via SQL on the catalog tables
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [22/53]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Catalogs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+A PostgreSQL installation (cluster) typically has many DBs
+</p><p>
+Some catalog information is global, e.g.
+</p><ul>
+<li> catalog tables defining: databases, users, ...
+<small>
+</small></li><li><small> one copy of each such table for the whole PostgreSQL installation
+</small></li><li><small> shared by all databases in the cluster
+   (in <large><code>PGDATA/pg_global</code></large>)
+</small>
+</li></ul>
+Other catalog information is local to each database, e.g
+<ul>
+<li> schemas, tables, attributes, functions, types, ...
+<small>
+</small></li><li><small> separate copy of each "local" table in each database
+</small></li><li><small> a copy of many "global" tables is made on database creation
+</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [23/53]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Catalogs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Side-note: &nbsp; PostgreSQL tuples contain
+</p><ul>
+<li> owner-specified attributes (from <large><code>create table</code></large>)
+</li><li> system-defined attributes
+<p><table border="0" cellpadding="6">
+<tbody><tr valign="top">
+<td><nobr><large><code>oid</code></large></nobr></td>
+<td></td><td><small>
+unique identifying number for tuple (optional)
+</small></td>
+</tr>
+<tr valign="top">
+<td><nobr><large><code>tableoid</code></large></nobr></td>
+<td></td><td><small>
+which table this tuple belongs to
+</small></td>
+</tr>
+<tr valign="top">
+<td><nobr><large><code>xmin/xmax</code></large></nobr></td>
+<td></td><td><small>
+which transaction created/deleted tuple <small>(for MVCC)</small>
+</small></td>
+</tr>
+</tbody></table></p><p>
+</p></li></ul>
+OIDs are used as primary keys in many of the catalog tables.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [24/53]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Representing Databases</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Above the level of individual DB schemata, we have:
+</p><ul>
+<li> <font color="#0000BB">databases</font> ... represented by <large><code>pg_database</code></large>
+</li><li> <font color="#0000BB">schemas</font> ... represented by <large><code>pg_namespace</code></large>
+</li><li> <font color="#0000BB">table spaces</font> ... represented by <large><code>pg_tablespace</code></large>
+</li></ul>
+These tables are global to each PostgreSQL cluster.
+<p>
+Keys are names (strings) and must be unique within cluster.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [25/53]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Representing Databases <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>pg_database</code></b></font></large> contains information about databases:
+</p><ul>
+<li> <large><code>oid, datname, datdba, datacl[], encoding, ...</code></large>
+</li></ul>
+<large><font color="#008800"><b><code>pg_namespace</code></b></font></large> contains information about schemata:
+<ul>
+<li> <large><code>oid, nspname, nspowner, nspacl[]</code></large>
+</li></ul>
+<large><font color="#008800"><b><code>pg_tablespace</code></b></font></large> contains information about tablespaces:
+<ul>
+<li> <large><code>oid, spcname, spcowner, spcacl[]</code></large>
+</li></ul>
+PostgreSQL represents access via array of access items:
+<p></p><pre><i>Role</i>=<i>Privileges</i>/<i>Grantor</i>
+</pre><p>
+where <i>Privileges</i> is a string enumerating privileges, e.g.
+</p><p></p><pre>jas=arwdRxt/jas,fred=r/jas,joe=rwad/jas
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [26/53]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Representing Tables</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Representing one table needs tuples in several catalog tables.
+</p><p>
+Due to O-O heritage, base table for tables is called <large><code>pg_class</code></large>.
+</p><p>
+The <large><code>pg_class</code></large> table also handles other "table-like" objects:
+</p><ul>
+<li> views ... represents attributes/domains of view
+</li><li> composite (tuple) types ... from <large><code>CREATE TYPE AS</code></large>
+</li><li> sequences, indexes <small>(top-level defn)</small>, other "special" objects
+</li></ul>
+All tuples in <large><code>pg_class</code></large> have an OID, used as primary key.
+<p>
+Some fields from the <large><code>pg_class</code></large> table:
+</p><ul>
+<li> <large><code>oid, relname, relnamespace, reltype, relowner</code></large>
+</li><li> <large><code>relkind, reltuples, relnatts, relhaspkey, relacl, ...</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [27/53]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Representing Tables <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Details of catalog tables representing database tables
+</p><p>
+<large><font color="#008800"><b><code>pg_class</code></b></font></large> holds core information about tables
+</p><ul>
+<li> <large><code>relname, relnamespace, reltype, relowner, ...</code></large>
+</li><li> <large><code>relkind, relnatts, relhaspkey, relacl[], ...</code></large>
+</li></ul>
+<large><font color="#008800"><b><code>pg_attribute</code></b></font></large> contains information about attributes
+<ul>
+<li> <large><code>attrelid, attname, atttypid, attnum, ...</code></large>
+</li></ul>
+<large><font color="#008800"><b><code>pg_type</code></b></font></large> contains information about types
+<ul>
+<li> <large><code>typname, typnamespace, typowner, typlen, ...</code></large>
+</li><li> <large><code>typtype, typrelid, typinput, typoutput, ...</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [28/53]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Table Statistics</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Using the PostgreSQL catalog, write a PLpgSQL function 
+</p><ul>
+<li> to return table name and #tuples in table
+</li><li> for all tables in the <large><code>public</code></large> schema
+</li></ul>
+<p></p><pre>create type TableInfo as (table text, ntuples int);
+create function pop() returns setof TableInfo ...
+</pre><p>
+Hints:
+</p><ul>
+<li> <large><code>table</code></large> is a reserved word
+</li><li> you will need to use dynamically-generated queries.
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [29/53]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Extracting a Schema</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Write a PLpgSQL function:
+</p><ul>
+<li> <large><code>function schema() returns setof text</code></large>
+</li><li> giving a list of table schemas in the  <large><code>public</code></large> schema
+</li></ul>
+<p>
+It should behave as follows:
+</p><p></p><pre>db=# select * from schema();
+            tables
+---------------------------
+ table1(x, y, z)
+ table2(a, b)
+ table3(id, name, address)
+...
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [30/53]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Enumerated Types</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL allows you to define enumerated types, e.g.
+</p><p></p><pre>create type Mood as enum ('sad', 'happy');
+</pre><p>
+Creates a type with two ordered values <large><code>'sad' &lt; 'happy'</code></large>
+</p><p>
+What is created in the catalog for the above definition?
+</p><p>
+Hint:
+</p><p></p><pre>pg_type(oid, typname, typelen, typetype, ...)
+pg_enum(oid, enumtypid, enumlabel)
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [31/53]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Architecture</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [32/53]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Architecture</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Client/server architecture:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/proc-arch.png]" src="./lec02_files/proc-arch.png">
+</div><p>
+<br>
+<small>
+The listener process is sometimes called <large><code>postmaster</code></large>
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [33/53]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Architecture <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Memory/storage architecture:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/mem-arch.png]" src="./lec02_files/mem-arch.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [34/53]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Architecture <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+File-system architecture:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/file-arch.png]" src="./lec02_files/file-arch.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [35/53]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: PostgreSQL Data Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL uses OIDs as
+</p><ul>
+<li> the name of the directory for each database
+</li><li> the name of the files for each table
+</li></ul>
+Using the <large><code>pg_catalog</code></large> tables, find ..
+<ul>
+<li> the directory for the <large><code>beer</code></large> database
+</li><li> the data files for the <large><code>Beers</code></large>  and <large><code>Breweries</code></large> tables
+</li></ul>
+Relevant catalog info ...
+<p></p><pre>pg_database(oid,datname,...)
+pg_class(oid,relname,...)
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [36/53]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Source Code</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Top-level of PostgreSQL distribution contains:
+</p><p>
+</p><ul>
+<li> <font color="#0000BB">README,INSTALL</font>: &nbsp; overview and installation instructions
+</li><li> <font color="#0000BB">config*</font>: &nbsp; scripts to build localised Makefiles
+</li><li> <font color="#0000BB">Makefile</font>: &nbsp; top-level script to control system build
+</li><li> <font color="#0000BB">src</font>: &nbsp; sub-directories containing system source code
+</li><li> <font color="#0000BB">doc</font>: &nbsp; FAQs and documentation
+</li><li> <font color="#0000BB">contrib</font>: &nbsp; source code for contributed extensions
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [37/53]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Source Code <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The source code directory (<font color="#0000BB">src</font>) contains:
+</p><ul>
+<li> <font color="#0000BB">include</font>: &nbsp; <b>*.h</b> files with global definitions <small>(constants, types, ...)</small>
+</li><li> <font color="#0000BB">backend</font>: &nbsp; code for PostgreSQL database engine
+</li><li> <font color="#0000BB">bin</font>: &nbsp; code for clients (e.g. psql, pg_ctl, pg_dump, ...)
+</li><li> <font color="#0000BB">pl</font>: &nbsp; stored procedure language interpreters (e.g. plpgsql)
+</li><li> <font color="#0000BB">interfaces</font> &nbsp; code for low-level C interfaces (e.g. libpq)
+</li></ul>
+<small>
+along with Makefiles to build system and other directories ...
+</small>
+<p>
+Code for backend (DBMS engine)
+</p><ul>
+<li> ~2200 files (~1200.c, ~1000.h, <small>9.y, 11.l</small>), &nbsp;~10<sup>6</sup> lines of code
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [38/53]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Source Code <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+How to get started understanding the workings of PostgreSQL:
+</p><ul>
+<li> become familiar with the user-level interface
+<ul>
+<li> psql, pg_dump, pg_ctl
+</li></ul>
+</li><li> start with the <b>*.h</b> files, then move to <b>*.c</b> files
+<ul>
+<li> <b>*.c</b> files live under src/backend/*
+</li><li> <b>*.h</b> files live under src/include)
+</li></ul>
+</li><li> start globally, then work one subsystem-at-a-time
+</li></ul>
+Some helpful information is available via:
+<ul>
+<li> <font color="#0000EE">PostgreSQL Doco</font> link on web site
+</li><li> <font color="#0000EE">Readings</font> link on web site
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [39/53]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Source Code <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL documentation has detailed description of internals:
+</p><ul>
+<li> Section VII, Chapters 52 - 76
+</li><li> Ch.52 is an overview; a good place to start
+</li><li> other chapters discuss specific components
+</li></ul>
+See also "How PostgreSQL Processes a Query"
+<ul>
+<li> <large><code>src/tools/backend/index.html</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [40/53]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Life-cycle of a PostgreSQL query</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How a PostgreSQL query is executed:
+</p><ul>
+<li> SQL query string is produced in client
+</li><li> client establishes connection to PostgreSQL
+</li><li> dedicated server process attached to client
+</li><li> SQL query string sent to server process
+</li><li> <font color="#0000BB">server parses/plans/optimises query</font>
+</li><li> server executes query to produce result tuples
+</li><li> tuples are transmitted back to client
+</li><li> client disconnects from server
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [41/53]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Life-cycle of a PostgreSQL query <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data flow to get to execute a query:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/pg-processes.png]" src="./lec02_files/pg-processes.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [42/53]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL server</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>PostgresMain(int argc, char *argv[], ...)</code></b></font></large>
+</p><ul>
+<li> defined in <large><code>src/backend/tcop/postgres.c</code></large>
+</li><li> PostgreSQL server (<large><code>postgres</code></large>) main loop
+</li><li> performs much setting up/initialisation
+</li><li> reads and executes requests from client
+</li><li> using the frontend/backend protocol (Ch.46)
+</li><li> on <large><code>Q</code></large> request, evaluates supplied query
+</li><li> on <large><code>X</code></large> request, exits the server process
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [43/53]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL server <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+As well as handling SQL queries, <large><code>PostgresqlMain</code></large> also
+</p><ul>
+<li> handles "utility" commands e.g. <large><code>CREATE TABLE</code></large>
+<ul>
+<li> most utility commands modify catalog &nbsp; <small>(e.g. <large><code>CREATE</code></large> <i>X</i>)</small>
+</li><li> other commands affect server &nbsp; <small>(e.g. <large><code>vacuum</code></large>)</small>
+</li></ul>
+</li><li> handles <large><code>COPY</code></large> command
+<ul>
+<li> special <large><code>COPY</code></large> mode; context is one table
+</li><li> reads line-by-line, treats each line as tuple
+</li><li> inserts tuples into table; at end, checks constraints
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [44/53]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Data Types</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data types defined in <large><code>*.h</code></large> files under <large><code>src/include/</code></large>
+</p><p>
+Two important data types: <large><font color="#008800"><b><code>Node</code></b></font></large> and <large><font color="#008800"><b><code>List</code></b></font></large>
+</p><ul>
+<li> <large><code>Node</code></large> provides generic structure for nodes
+<ul>
+<li> defined in <large><code>src/include/nodes/nodes.h</code></large>
+</li><li> specific node types defined in <large><code>src/include/nodes/*.h</code></large>
+</li><li> functions on nodes defined in <large><code>src/backend/nodes/*.c</code></large>
+</li><li> <large><code>Node</code></large> types: parse trees, plan trees, execution trees, ...
+</li></ul>
+</li><li> <large><code>List</code></large> provides generic singly-linked list
+<ul>
+<li> defined in <large><code>src/include/nodes/pg_list.h</code></large>
+</li><li> functions on lists defined in <large><code>src/backend/nodes/list.c</code></large>
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [45/53]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Evaluation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>exec_simple_query(const char *query_string)</code></b></font></large>
+</p><ul>
+<li> defined in <large><code>src/backend/tcop/postgres.c</code></large>
+</li><li> entry point for evaluating SQL queries
+</li><li> assumes <large><code>query_string</code></large> is one or more SQL statements
+</li><li> performs much setting up/initialisation
+</li><li> parses the SQL string <small>(into one or more parse trees)</small>
+</li><li> for each parsed query ...
+<ul>
+<li> perform any rule-based rewriting
+</li><li> produces an evaluation plan <small>(optimisation)</small>
+</li><li> execute the plan, sending tuples to client
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [46/53]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Evaluation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>pg_parse_query(char *sqlStatements)</code></b></font></large>
+</p><ul>
+<li> defined in <large><code>src/backend/tcop/postgres.c</code></large>
+</li><li> returns list of parse trees, one for each SQL statement
+</li></ul>
+<large><font color="#008800"><b><code>pg_analyze_and_rewrite(Node *parsetree, ...)</code></b></font></large>
+<ul>
+<li> defined in <large><code>src/backend/tcop/postgres.c</code></large>
+</li><li> converts parsed queries into form suitable for planning
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [47/53]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Evaluation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Each query is represented by a <large><font color="#008800"><b><code>Query</code></b></font></large> structure
+</p><ul>
+<li> defined in <large><code>src/include/nodes/parsenodes.h</code></large>
+</li><li> holds all components of the SQL query, including
+<ul>
+<li> required columns as list of <large><code>TargetEntry</code></large>s
+</li><li> referenced tables as list of <large><code>RangeTblEntry</code></large>s
+</li><li> <large><code>where</code></large> clause as node in <large><code>FromExpr</code></large> struct
+</li><li> sorting requirements as list of <large><code>SortGroupClause</code></large>s
+</li></ul>
+</li><li> queries may be nested, so forms a tree structure
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [48/53]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Evaluation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>pg_plan_queries(querytree_list, ...)</code></b></font></large>
+</p><ul>
+<li> defined in <large><code>src/backend/tcop/postgres.c</code></large>
+</li><li> converts analyzed queries into executable "statements"
+</li><li> uses <large><code>pg_plan_query()</code></large> to plan each <large><code>Query</code></large>
+<ul>
+<li> defined in <large><code>src/backend/tcop/postgres.c</code></large>
+</li></ul>
+</li><li> uses <large><code>planner()</code></large> to actually do the planning
+<ul>
+<li> defined in <large><code>optimizer/plan/planner.c</code></large>
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [49/53]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Evaluation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Each executable query is represented by a <large><font color="#008800"><b><code>PlannedStmt</code></b></font></large> node
+</p><ul>
+<li> defined in <large><code>src/include/nodes/plannodes.h</code></large>
+</li><li> contains information for execution of query, e.g.
+<ul>
+<li> which relations are involved, output tuple struecture, etc.
+</li></ul>
+</li><li> most important component is a tree of <large><font color="#008800"><b><code>Plan</code></b></font></large> nodes
+</li></ul>
+Each <large><code>Plan</code></large> node represents one relational operation
+<ul>
+<li> types: <large><code>SeqScan</code></large>, <large><code>IndexScan</code></large>, <large><code>HashJoin</code></large>, <large><code>Sort</code></large>, ...
+</li><li> each <large><code>Plan</code></large> node also contains cost estimates for operation
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [50/53]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s52"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Evaluation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>PlannedStmt *planner(Query *parse, ...)</code></b></font></large>
+</p><ul>
+<li> defined in <large><code>optimizer/plan/planner.c</code></large>
+</li><li> <large><code>subquery_planner()</code></large> performs standard transformations
+<ul>
+<li> e.g. push selection and projection down the tree
+</li></ul>
+</li><li> then invokes a cost-based optimiser:
+<ul>
+<li> choose possible plan (execution order for operations)
+</li><li> choose physical operations for this plan
+</li><li> estimate cost of this plan <small>(using DB statistics)</small>
+</li><li> do this for <i>sufficient</i> cases and pick cheapest
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [51/53]</div> <div class="slideCl1    " id="s52">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s51"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s53"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Evaluation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Queries run in a <large><font color="#008800"><b><code>Portal</code></b></font></large> environment containing
+</p><ul>
+<li> the planned statement(s) <small>(trees of <large><code>Plan</code></large> nodes)</small>
+</li><li> run-time versions of <large><code>Plan</code></large> nodes (under <large><code>QueryDesc</code></large>)
+</li><li> description of result tuples (under <large><code>TupleDesc</code></large>)
+</li><li> overall state of scan through result tuples <small>(e.g. <large><code>atStart</code></large>)</small>
+</li><li> other context information (transaction, memory, ...)
+</li></ul>
+<large><code>Portal</code></large> defined in <large><code>src/include/utils/portal.h</code></large>
+<p>
+<large><code>PortalRun()</code></large> function also requires
+</p><ul>
+<li> destination for query results <small>(e.g. connection to client)</small>
+</li><li> scan direction <small>(forward or backward)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [52/53]</div> <div class="slideCl1    " id="s53">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s52"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w01t/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Evaluation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+How query evaluation happens in <large><code>exec_simple_query()</code></large>:
+</p><ul>
+<li> parse, rewrite and plan ⇒ <large><code>PlannedStmt</code></large>s
+</li><li> for each <large><code>PlannedStmt</code></large> ...
+</li><li> create <large><code>Portal</code></large> structure
+</li><li> then insert <large><code>PlannedStmt</code></large> into <large><code>portal</code></large>
+</li><li> then set up <large><code>CommandDest</code></large> to receive results
+</li><li> then invoke <large><code>PortalRun(portal,...,dest,...)</code></large>
+</li><li> <large><code>PortalRun...()</code></large> invokes <large><code>ProcessQuery(plan,...)</code></large>
+</li><li> <large><code>ProcessQuery()</code></large> makes <large><code>QueryDesc</code></large> from <large><code>plan</code></large>
+</li><li> then invoke <large><code>ExecutorRun(qdesc,...)</code></large>
+</li><li> <large><code>ExecutorRun()</code></large> invokes <large><code>ExecutePlan()</code></large> to generate result
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Thursday Lecture ♢ [53/53]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 16 Feb 2024</span>
+ <script src="./lec02_files/prism.js"></script>   
+ <script src="./lec02_files/sg.js"></script>   
+
+
+</p></body></html>

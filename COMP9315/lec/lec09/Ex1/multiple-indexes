@@ -1,0 +1,114 @@
+r=100,000, B=4096
+
+create table Students (
+    id       integer primary key,
+    name     char(10), -- simplified
+    gender   char(1),  -- 'm','f','?'
+    birthday char(5)   -- 'MM-DD'
+);
+
+select * from Students
+where  name='John' and birthday = '04-01'
+
+describe the selectivity of each attribute
+estimate the cost of answering using one index
+estimate the cost of answering using both indices
+
+Size of tuples (bytes):
+sizeof(id)     = 4 bytes
+sizeof(name)   = 10 bytes
+sizeof(gender) = 1 byte
+sizeof(b'day)  = 5 bytes
+tuple size     = 20 bytes
+
+Note: no padding needed.
+
+Size of data file:
+R = 20
+c = floor((B-96)/R) = floor(4000/20) = 200
+b = ceil(r/c) =  ceil(100K/200) = 500
+
+Reminder: 96 bytes of header/page
+
+
+Size of index entries:
+
+index entry = sizeof(Key) + tid = x + 4
+indexEntry(id)     = 4 bytes + 4 bytes = 8 bytes
+indexEntry(name)   = 10 bytes + 2 bytes padding + 4 bytes = 16 bytes
+indexEntry(gender) = 1 byte + 3 bytes padding + 4 bytes = 8 bytes
+indexEntry(b'day)  = 5 bytes + 3 bytes padding + 4 bytes = 12 bytes
+
+Note: all index entries have a size which is a multiple of 4
+
+Size of index:
+
+Assume that:
+* B-tree has load factor 0.7
+* all space (4096) in index pages is available for index entries
+* since dense index, there is one index entry on the leaf level
+
+Total size of B-tree index
+* # leaf pages (level 0)
+* # parent pages (level 1), determined from branching factor = c_i 
+* # grandparent pages (level 2), determined from branching factor
+* ...
+* root page
+
+c_i(id)     = 0.7 * floor(4096/8) = 358
+b_i(id)     = #leaves + #parents + ... + root (for D levels)
+            = ceil(100K/358) leaves + ceil(#leaves/c_i) + ...
+            = 280 leaves + ceil(280/358) = 280 + 1
+            = 281 pages  (depth = 2)
+c_i(name)   = 0.7 * floor(4096/16) = 180
+b_i(name)   = ceil(100K/180) leaves + ceil(#leaves/c_i) + ...
+            = 556 leaves + ceil(556/180) parents + ceil(#parents/180)
+            = 556 + 3 + 1
+            = 560 pages  (depth = 3)
+c_i(gender) = 0.7 * floor(4096/8) = 358
+b_i(gender) = as for b_id (index entries are same size)
+            = 281 pages  (depth = 2)
+c_i(b'day)  = 0.7 * floor(4096/12) = 239
+b_i(b'day)  = ceil(100K/238) leaves + ceil(#leaves/c_i) + ...
+            = 419 leaves + ceil(419/239) parents + ceil(#parents/c_i)
+            = 419 + 2 + 1
+            = 422 pages  (depth = 3)
+
+
+Selectivity:
+
+These are only estimates ...
+
+id = unique = 1/100K
+name = likely to be some duplicates, but maybe 1/1000
+gender = many duplicates ... close to 0.5 for 'm'/'f', close to zero for '?'
+birthday = 1/365 = 0.002  (assuming birthdays uniformly distributed)
+
+
+Query:
+select * from Students
+where  name='John' and birthday = '04-01'
+
+Cost using one index ...
+estimate (from selectivity) 100 students called 'John'
+To find them:
+* scan B-tree index on name from root to leaves = 3 page reads
+* possibly nead to look at 2 leaf pages to find all 'John" entries
+* in the worst case, each 'John' is on a separate page
+So ... # pages read = 3 + 2 + 100 = 105
+
+
+Query:
+select * from Students
+where  name='John' and birthday = '04-01'
+
+Cost using indexes on name and birthday ...
+estimate (from selectivity) 1 student called 'John' with birthday on '04-01'
+other estimates: 100 'John's, 274 people with birthday '04-01'
+To find them:
+* scan B-tree index on name from root to leaves = 3 page reads
+* scan (up to) 2 leaf pages to pick up tids of all 'John's
+* scan B-tree index on birthday from root to leaves = 3 page reads
+* scan (up to) 2 leaf pages to pick up tids of all '04-01's
+* in memory, do an intersection of these tid-sets and read 1 data page
+So ... # pages read = 3 + 2 + 3 + 2 + 1 = 11

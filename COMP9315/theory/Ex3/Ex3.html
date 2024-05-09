@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 03</title>
+<link href="./Ex3_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex3_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 03</span><br>
+  <span class="subheading">Pages and Tuples</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php?view=all">[Show with all answers]</a></p></div>
+
+<ol>
+
+<br><li>
+<p>
+Assume that a data file is composed of 4KB pages, where each page
+is structured as follows:
+</p>
+<center><img src="./Ex3_files/slots+tuples.png"></center>
+<p>
+The start of the page contains a tuple directory which is a sequence
+of three-byte values, where the first 12 bits contain the offset
+into the page of the tuple and the second 12 bits contain the
+tuple length.
+</p>
+<p>
+Write a C function that takes three parameters: an open file descriptor,
+a page number and a record number and reads the data for the corresponding
+record. Do <em>not</em> read the whole page; read just enough of the data
+to solve the problem. Dynamically allocate a memory buffer large enough to
+hold the tuple data when read in. The function should return a pointer to
+the start of the tuple memory buffer.
+</p>
+<p>
+The function should do appropriate error-checking and return <tt>NULL</tt>
+in the case that any operation cannot be completed.
+Use the following function template:
+</p>
+<pre>char *getTuple(int inFile, int pageNumber, int recNumber) { ... }
+</pre>
+<p>
+Hint: when a directory value is read into memory, the high-order bits contain
+the offset and the low-order bits contain the length.
+</p>
+<p>
+Use only the low-level i/o operators (system calls)
+such as <tt>open()</tt>, <tt>read()</tt>, <tt>write()</tt>,
+<tt>lseek()</tt>, etc.
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<p>
+We assume that all of the relevant <tt>.h</tt> files have been included.
+</p>
+<pre>#define PAGE_SIZE 4096
+
+char *getTuple(int inFile, int pageNumber, int recNumber)
+{
+	// position file at start of page
+
+	off_t pageAddr = pageNumber * PAGE_SIZE;
+	if (lseek(inFile, pageAddr, SEEK_SET) &lt; 0)
+		return NULL;
+
+	// re-position the file to the start of the tuple directory entry
+
+	off_t dirOffset = recNumber * 3; // 3 bytes per directory entry
+	if (lseek(inFile, dirOffset, SEEK_CUR) &lt; 0)
+		return NULL;
+
+	// read 3-byte directory entry for this tuple
+
+	unsigned int dirEntry;
+	if (read(inFile, &amp;dirEntry, 3) != 3)
+		return NULL;
+
+	// extract tuple offset and length from directory entry
+
+	unsigned int tupOffset, tupLength;
+	unsigned int lengthMask = 0x00000fff; // low-order 12 bits
+	unsigned int offsetMask = 0x00fff000; // high-order 12 bits
+
+	tupOffset = (dirEntry &amp; offsetMask) &gt;&gt; 12;
+	tupLength = dirEntry &amp; lengthMask;
+
+	// allocate memory buffer to hold tuple data
+
+	char *tupBuf;
+	if ((tupBuf = malloc(tupLength)) == NULL)
+		return NULL;
+
+	// position file at tuple location
+
+	off_t tupAddr = pageAddr + tupOffset;
+	if (lseek(inFile, tupAddr, SEEK_SET) &lt; 0)
+		return NULL;
+
+	// read tuple data into buffer
+
+	if (read(inFile, tupBuf, tupLength) != tupLength)
+		return NULL;
+
+	return tupBuf;
+}
+<p></p>
+</pre></div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider a data file containing tuples with a page structure similar
+to that in the previous question.
+Pages are 4KB in size, and each page contains a tuple directory
+with 100 entries in it, where each entry is 3-bytes long.
+Assuming that the (minimum,average,maximum) tuple lengths are (32,64,256) bytes
+and that the file has 100 pages, determine the following:
+</p>
+<ol type="a">
+<li><p>The minimum number of tuples that the file can hold</p>
+</li><li><p>The maximum number of tuples that the file can hold</p>
+</li></ol>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<ol type="a">
+<li><p> The minimum number of tuples is zero (trick question)</p>
+</li><li><p>
+Maximum occurs when all tuples are minimum size (or close to it).
+Each page uses 300 bytes for the tuple directory, leaving 4096-300=3796 bytes
+of space for tuples. In theory, this amount of space could hold floor(3796/32)
+= 118 tuples; however, the page directory only has space for 100 tuples,
+so 100 tuples is the maximum number of tuples per page.
+Since we have 100 pages, the file can hold 100*100=10000 tuples.
+</p>
+</li></ol></div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider a variation on the above scenario. Rather than pages having a fixed size
+tuple directory, the tuple directory can grow and shrink depending on the number
+of tuples in the page. For this to work, the tuple directory starts at the bottom
+of the page (address 0) and grows up, while tuples are added from the top of the
+page (address 4095) and grow down.
+If all other factors are the same (total 100 pages, (min,avg,max) tuple lengths
+(32,64,128)), what is the maximum number of tuples that the file can hold?
+You may assume that tuples can begin at any address (i.e. they do not have to
+start at a 4-byte address).
+</p>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<p>
+The maximum number of tuples still occurs when all tuples are minimum size.
+However, in this case we need to balance the tuple space against the directory
+space. For example, if we have 100 tuples, then the top 3200 bytes of the
+page are occupied by tuple data, leaving 896 (4096-3200) bytes for the slot
+directory. We can clearly add more tuples, since we have space for them and
+space to hold their directory entries. Eventually, though, there will be
+enough tuples that there is no more room to add directory entries for them
+and the page is full. Since each tuple requires space for its data (32 bytes)
+plus 3 bytes for a directory entry, we can compute the maximum tuples that
+will fit in a page by finding the maximum N such that (3*N + 32*N) &lt; 4096.
+In this case, N=117 and so this the file can hold at most 11700 tuples.
+</p>
+<p>
+This scenario is not totally implausible since some common tables have
+fixed-size tuples (consider a "link" table with just two foreign keys).
+Of course, in such a case, we wouldn't need the tuple directory either,
+since we could simply compute the tuple offset based on its number in the
+page.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+<small>[Based on Garcia-Molina/Ullman/Widom 13.7.1]</small> <br>
+Consider the following relational table:
+</p><pre>create table Patient (
+   id       integer primary key,
+   ssn      char(20), 
+   name     varchar(30),
+   addr     varchar(60),
+   history  varchar(200),
+   born     date
+);
+</pre>
+Consider how records of this type might be represented when stored
+in disk blocks.
+If a pointer within a record requires 4 bytes and the record length
+is also stored as a 4-byte quantity, how many bytes would be needed
+for each <tt>Patient</tt> record, excluding of the space required to
+store the variable-length fields?
+<p>
+For variable-length records (<tt>varchar</tt>), assume that we don't
+need a terminating char (e.g. <tt>'\0'</tt>) but we do need to allocate
+a multiple of 4 bytes to the field to ensure alignment of possible
+following integer fields.
+(These additional bytes would not be necessary if the fixed-length fields
+were all stored at the front of the record.)
+</p>
+<p>
+How many bytes would be required for the following instances of
+<tt>Patient</tt> records:
+</p>
+<pre>insert into Patient values (
+   12345678, '222-444-555-7777',
+   'John Smith', <small><font color="green">(10)</font></small>
+   '50 Smith  St, Smithton, 2345', <small><font color="green">(28)</font></small>
+   'Previously diagnosed with URTI, also weak ankles', <small><font color="green">(48)</font></small>
+   '1966-12-2'
+);
+insert into Patient values (
+   87654321, '123-456-654-4321',
+   'Jane Brown', <small><font color="green">(10)</font></small>
+   '15 Brown  St, Brownsville, 2427', <small><font color="green">(31)</font></small>
+   'Prior history of urinary tract infections', <small><font color="green">(41)</font></small>
+   '1966-12-2'
+);
+</pre>
+<p>
+(Note that the <font color="green">(string lengths)</font> given after
+each string are not part of the <tt>insert</tt> statement).
+</p>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<p>
+Assume that the record has the following structure:
+</p><center><img src="./Ex3_files/pat-record.png"></center>
+The fixed storage cost includes:
+<p></p>
+<ul>
+<li> the record length (4 bytes)
+</li><li> offsets for each of the fields (4 bytes times 6)
+</li><li> fixed-length fields <tt>id</tt> (4 bytes), <tt>ssn</tt> (20 bytes), <tt>born</tt> (4 bytes for <tt>date</tt>)
+</li></ul>
+<p>
+This gives a total fixed storage cost of 4+24+4+20+4 = 56 bytes
+</p>
+<p>
+For the John Smith record, add additional bytes for
+</p>
+<ul>
+<li> <tt>name</tt> (12 bytes ... 10 bytes rounded up for alignment)
+</li><li> <tt>addr</tt> (28 bytes ... no rounding up needed)
+</li><li> <tt>name</tt> (48 bytes ... no rounding up needed)
+</li></ul>
+<p>
+giving a total of 56+12+28+48 = 144 bytes
+</p>
+<p>
+For the Jane Brown record, add additional bytes for
+</p>
+<ul>
+<li> <tt>name</tt> (12 bytes ... 10 bytes, rounded up for alignment)
+</li><li> <tt>addr</tt> (32 bytes ... 31 bytes, rounded up)
+</li><li> <tt>name</tt> (44 bytes ... 41 bytes, rounded up)
+</li></ul>
+giving a total of 56+12+32+44 = 144 bytes
+<p>
+It is a coincidence that both records come out with the same length.
+</p></div></li>
+<p></p>
+
+
+<br><li>
+<p>
+PostgreSQL tuples have an array of flags to indicate where NULL values
+occur in tuples. Two of the critical functions for manipulating tuples
+in PostgreSQL (<tt>heap_form_tuple()</tt> and <tt>heap_modify_tuple()</tt>)
+accept a parameter which is an an array of flags for NULLs, as well as
+accepting an array of <tt>Datum</tt> values.
+This array contains only the non-NULL attribute values.
+</p><p>
+</p><p>
+For example, a tuple like <i>R(42,null,'abc',-5)</i> would be
+represented by the two arrays: flags=(0,1,0,0) and values=(42,'abc',-5).
+</p><p>
+Why doesn't PostgreSQL simply include the NULL values in the array
+of <tt>Datum</tt> values?
+</p>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<p>
+Every possible collection of bits/bytes represents a valid
+<tt>Datum</tt> value (e.g. you can't simply user zero to represent
+NULL, because zero is a perfectly useful integer value).
+Since there is no way to represent NULL as a <tt>Datum</tt>, we
+clearly can't include NULL values in the <tt>Datum</tt> array.
+This means that we need a separate representation for NULLs; it
+makes sense to simply use a bit-string, with one bit for each
+attribute, where a value of 1 means "this attribute is NULL", and
+a value of 0 means "this attribute has a value; look for it in the
+<tt>Datum</tt> array".
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider a <tt>Students</tt> relation defined as:
+</p>
+<pre>CREATE TABLE Students (
+   id#    integer,      name  varchar(30),
+   gender varchar(1),   birth date,
+   degree varchar(10),  score real
+);
+</pre>
+<p>
+Assume that:
+</p>
+<ul>
+<li> There are 20,000 student records
+</li><li> The relation is stored in one file
+</li><li> The file is composed of 1024-byte blocks
+</li><li> Average block-fetch time (<i>T<sub>r</sub></i>) is 10ms
+</li><li> A <tt>date</tt> is represented by an 8-byte <tt>long</tt> value
+</li><li> All numeric values must be stored on 4-byte address boundaries
+</li><li> Average length of <tt>name</tt> value is 15 chars
+</li><li> Average length of <tt>degree</tt> value is 5 chars
+</li></ul>
+<p>
+Consider two possible storage structures:
+</p>
+<ol type="i">
+<li> fixed-length records with a presence bit-vector
+</li><li> variable-length records with a fixed-size directory
+	containing one-byte offset values
+</li></ol>
+<p>
+For each of these structures:
+</p>
+<ol type="a">
+<p></p><li> Show the internal record structure and compute the (average)
+	size of a record
+<p></p></li><li> Compute how many blocks are needed to store the whole relation
+<p></p></li><li> Compute how long it takes to answer a query on <tt>id#</tt> if
+	the file is sorted on this field (worst case value)
+</li></ol>
+<p></p>
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex03/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<ol type="i">
+<li>
+<p> fixed-length records with a presence bit-vector ... </p>
+<ol type="a">
+<li>
+<p>
+Show the internal record structure and compute the (average)
+size of a record ...
+</p>
+<p>
+Each record has something like the following structure, where fields
+are arranged to ensure that no numeric field begins on a non-aligned
+address boundary.
+</p><p></p><center><img src="./Ex3_files/fixed-rec-struct.png"></center><p>
+While character fields don't need to be aligned on 4-byte addresses,
+they do need to be as large as the maximum number of characters that
+might be stored in them (e.g. <tt>varchar(10)</tt> always occupies
+10-bytes, regardless of the actual size of the string).
+</p><p>
+The size of each record is thus:
+</p><ul>
+<li> 4 bytes for the <tt>id#</tt> field
+</li><li> 8 bytes for the <tt>birth</tt> field
+</li><li> 8 bytes for the <tt>score</tt> field
+</li><li> 1 bytes for the <tt>gender</tt> field
+</li><li> 30 bytes for the <tt>name</tt> field
+</li><li> 10 bytes for the <tt>degree</tt> field
+</li></ul>
+<p>
+giving a total of 4 + 8 + 8 + 1 + 30 + 10 = 61 bytes.
+</p>
+<p>
+This will need to be padded to 64 bytes to ensure that the next record
+in the page also begins on a 4-byte address.
+</p>
+<p>
+<b>Solution:</b> <i>R = 64</i>
+</p>
+</li><li>
+<p> Compute how many blocks are needed to store the whole relation </p>
+<p>
+If each record is 52 bytes long, and there are 1024 bytes in a block,
+then we could potentially store <i>N<sub>r</sub> = floor(1024/64) = 16</i>
+records in a block.
+However, we also need to store the presence vector to indicate which
+record slots are actually filled.
+This requires at last <i>N<sub>r</sub></i> bits, thus reducing the
+effective number of records per block to 15.
+The block contains 15*64-byte records along with a 15-bit (= 2-byte)
+presence vector.
+This "wastes" 62 bytes in each block, which is unfortunate but unavoidable.
+Thus, <i>N<sub>r</sub> = 15</i>
+</p><p>
+If there are 15 records in each block, then we need 
+<i>b = ceil(20,000/15) = 1334</i> blocks to store all of the records.  
+</p><p>
+<b>Solution:</b> <i>b = 1334</i>
+</p>
+</li><li>
+<p> Compute how long it takes to answer a query on <tt>id#</tt> if
+	the file is sorted on this field (worst case value) </p>
+<p>
+Performing a binary search requires us to examine at most
+<i>ceil(log<sub>2</sub>b) = ceil(log<sub>2</sub>1334) = 11</i> blocks.
+Since the cost of reading each block is <i>T<sub>r</sub>=10ms</i>,
+then the total i/o cost is <i>110 ms</i>
+</p><p>
+<b>Solution:</b> <i>T<sub>BinarySearch</sub> = 110ms</i>
+</p></li></ol>
+</li>
+<li>
+<p> Variable-length records with a fixed-size directory ... </p>
+<ol type="a">
+<li <p=""> Show the internal record structure and compute the (average)
+	size of a record <p></p>
+<p>
+Each record has something like the following structure, where fields
+are arranged to ensure that no numeric field begins on a non-aligned
+address boundary.
+</p>
+<p></p><center><img src="./Ex3_files/flex-rec-struct.png"></center><p>
+</p><p>
+In this case, one byte of storage is required for each field to hold
+the offset of the field. Since there are 6 fields, this will require
+6 bytes, which then needs to be padded to 8 bytes to ensure that the
+first numeric field starts on a 4-byte address boundary.
+</p>
+<p>
+The offset block will be followed by four fixed-size fields:
+</p><ul>
+<li> 4 bytes for the <tt>id#</tt> field
+</li><li> 8 bytes for the <tt>birth</tt> field
+</li><li> 8 bytes for the <tt>score</tt> field
+</li><li> 1 bytes for the <tt>gender</tt> field
+</li></ul> 
+These will be followed by the variable-length fields:
+<ul>
+<li> <tt>name</tt>, with an average of 15 characters (15 bytes)
+</li><li> <tt>degree</tt>, with an average of 5 characters (5 bytes)
+</li></ul>
+On average, this gives a total record size of
+8 + 4 + 8 + 8 + 1 + 15 + 5 = 49 bytes.
+This will need to be padded to a multiple of 4 bytes, and so we
+would expect an effective average record size of 52 bytes.
+<p>
+<b>Solution:</b> <i>R = 52</i>
+</p>
+</li><li>
+<p> Compute how many blocks are needed to store the whole relation </p>
+<p>
+If each record is 64 bytes long, and there are 1024 bytes in a block,
+then we could potentially store <i>N<sub>r</sub> = floor(1024/52) = 19</i>
+records in a block.
+However, we also need to store a directory to indicate where each
+record is located.
+This requires at least <i>N<sub>r</sub></i> bytes.
+If the block contains 19*52-byte records, then the amount of space
+available for dictionary is 1024-19*52 = 36 bytes, so there is room
+for both the dictionary and all <i>N<sub>r</sub></i> records.
+presence vector.
+This "wastes" 17 bytes in each block (on average), which is unfortunate
+but unavoidable.
+Thus, <i>N<sub>r</sub> = 19</i>
+</p>
+<p>
+If there are 19 records in each block, then we need
+<i>b = ceil(20,000/19) = 1053</i> blocks to store all of the records.
+</p>
+<p>
+<b>Solution:</b> <i>b = 1053</i>
+</p>
+</li><li>
+<p> Compute how long it takes to answer a query on <tt>id#</tt> if
+the file is sorted on this field (worst case value) </p>
+<p>
+Performing a binary search requires us to examine at most
+<i>ceil(log<sub>2</sub>b) = ceil(log<sub>2</sub>1053) = 11</i> blocks.
+Since the cost of reading each block is <i>T<sub>r</sub>=10ms</i>,
+then the total i/o cost is <i>110 ms</i>
+</p>
+<p>
+<b>Solution:</b> <i>T<sub>BinarySearch</sub> = 110ms</i>
+</p></li></ol>
+</li>
+</ol>
+</div><p></p>
+</li>
+
+
+
+</ol></body></html>

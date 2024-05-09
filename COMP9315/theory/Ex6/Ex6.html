@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 06</title>
+<link href="./Ex6_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex6_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 06</span><br>
+  <span class="subheading">Implementing Selection on Multiple Attributes (N-d)</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php?view=all">[Show with all answers]</a></p></div>
+
+<ol>
+
+<br><li>
+<p>
+Consider a file of <i>n=50000</i> tuples allocated across <i>b=1024</i> pages
+using a multi-attribute hash function giving <i>d=10</i> hash bits.
+The tuples in this file have four fields <i>R(w,x,y,z)</i>
+and a choice vector that allocates hash bits to fields as follows:
+<i>d<sub>w</sub>=5, d<sub>x</sub>=2, d<sub>y</sub>=3, d<sub>z</sub>=0</i>.
+Assuming that there are no overflow pages, compute how many pages each
+of the following queries would need to access:
+</p>
+<ol type="a">
+<br><li> <tt>select * from R where w=5432 and x=3</tt>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<p>
+The specified attributes (<i>w,x</i>) contribute 5+2 known bits, leaving
+3 bits unknown. We need to generate all possible values for these 3 bits,
+which means we need to examine <b>8 pages</b> for possible matches.
+</p>
+</div><p></p>
+<br></li><li> <tt>select * from R where w=4523 and x=9 and y=12</tt>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<p>
+The specified attributes (<i>w,x,y</i>) contribute 10 known bits, so the
+hash value for the query is fully known.
+This leads us to a <b>single page</b> which will contain any tuples that
+look like <i>(4523,9,12,?)</i>.
+</p>
+</div><p></p>
+<br></li><li> <tt>select * from R where x=3</tt>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<p>
+The specified attribute (<i>x</i>) contributes 2 known bits, leaving 8 bits
+unknown. We need to examine <i>2<sup>8</sup></i> = <b>256 pages</b> for
+possible matches.
+</p>
+</div><p></p>
+<br></li><li> <tt>select * from R where z=3</tt>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<p>
+Since the only specified attribute (<i>z</i>) contributes 0 bits to the
+hash, we have 10 unknown bits and thus need to examine the entire file.
+</p>
+</div><p></p>
+<br></li><li> <tt>select * from R where w=9876 and x&gt;5</tt>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<p>
+The query term <tt>x&gt;5</tt> is not useful for hashing, since hashing requires
+an exact value (equality predicate). Thus, the only attribute with a specified
+value useful for hashing is <i>w</i>,
+which contributes 5 known bits. This leaves 5 unknown bits and so we need
+to examine <i>2<sup>5</sup></i> = <b>32 pages</b> which may contain
+matching tuples.
+</p>
+<p>
+If we happened to know more about the domain of the <i>x</i> attribute,
+we could potentially improve the search. For example, if we knew that
+<i>x</i> only had values in the range <i>0..7</i>, then we could treat
+the query as:
+</p>
+<pre>select * from R where w=9876 and (x=6 or x=7)
+<span class="comment">...which could be rewritten as ...</span>
+(select * from R where w=9876 and x=6)
+union
+(select * from R where w=9876 and x=7)
+</pre>
+<p>
+Each of these queries only has 3 unknown bits, and so we would need
+to read only 8 pages for each query, giving a total of <b>16 pages</b>.
+Of course, if there were more than four possible values for the <i>x</i>
+attribute, it would be more efficient to simply ignore <i>x</i> and
+use our original approach.
+</p>
+</div><p></p>
+</li></ol>
+
+<br></li><li>
+<p>
+Consider a file of <i>r=819,200</i> <tt>Part</tt> records (<i>C=100</i>):
+</p>
+<pre>CREATE TABLE Parts (
+       id#     number(10) primary key,
+       name    varchar(10),
+       colour  varchar(5) check value in ('red','blue','green'),
+       onhand  integer
+);
+</pre>
+<p>
+Used only via the following kinds of <i>pmr</i> queries:
+</p>
+<p>
+</p><center>
+<table cellpadding="5">
+<tbody><tr><th>Query Type</th> <th><i>p<sub>Q</sub></i></th>
+</tr><tr> <td><code>&lt; id#, ?, ?, ? &gt;</code></td> <td>0.25</td> </tr>
+<tr> <td><code>&lt; ?, name, colour, ? &gt;</code></td> <td>0.50</td> </tr>
+<tr> <td><code>&lt; ?, ?, colour, ? &gt;</code></td> <td>0.25</td> </tr>
+</tbody></table>
+</center>
+<p>
+Give and justify values for <i>d</i> and the <i>d<sub>i</sub></i>s and
+suggest a suitable choice vector.
+</p>
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<p>
+The value <i>d</i> is the <em>depth</em> of the file i.e. the number
+of bits required in the hash value to address all pages in the file.
+For example, a file with 8 pages can be addressed with a 3-bit hash
+value (i.e. the possible hash values are
+<tt>000, 001, 010, 011, 100, 101, 110, 111</tt>).
+Thus, the first step in determining the value for <i>d</i> is to
+work out how many pages are in the file.
+</p>
+<p>
+The number of pages <i>b</i> is determined as follows:
+</p>
+<p>
+</p><center><i>
+  b = ceil(r/C) = ceil(819,200/100) = ceil(8192) = 8192
+</i></center>
+<p></p>
+<p>
+What size of hash value does it take to address 8192 pages?
+If the file has <i>2<sup>n</sup></i> pages, then it requires
+an <i>n</i>-bit hash value.
+For this example:
+</p>
+<p>
+</p><center><i>
+  d = ceil(log<sub>2</sub>b) = ceil(log<sub>2</sub>8192) = ceil(13) = 13
+</i></center>
+<p></p>
+<p>
+Thus we have a 13-bit hash value for each record that is produced
+via an interleaving of bits from the four attributes
+<tt>id#</tt>, <tt>name</tt>, <tt>colour</tt>, <tt>onhand</tt>.
+The next step is to determine how many bits <i>d<sub>i</sub></i>
+each attribute <i>A<sub>i</sub></i> contributes to this record
+hash value.
+</p>
+<p>
+We use the following kinds of information to decide this:
+</p>
+<ul>
+<p></p><li> <i> the likelihood of an attribute being used in a query </i><br>
+	Recall that the more bits that an attribute contributes,
+	then the more pages we need to search when the attribute
+	is <em>not</em> used in a query (i.e. we have more unknown
+	<tt>*</tt> bits).
+	Thus, in order to minimise query costs, we should allocate
+	more bits to attributes that are more likely to be used in
+	queries and less bits to attributes that are more likely to
+	be missing from queries.
+
+<p></p></li><li> <i> the number of distinct values in the attribute domain </i><br>
+	If a domain has <i>n</i> distinct values, then a perfect
+	hash function can distinguish these values using
+	<i>log<sub>2</sub>n</i> bits.
+	If we allocate more bits to this attribute, they will
+	not be assisting with the primary function of hashing,
+	which is to partition distinct values into different
+	pages.
+
+<p></p></li><li> <i> the discriminatory power of the attribute </i><br>
+	The <em>discriminatory power</em> of an attribute measures
+	the likely number of pages needed to be accessed in answering
+	a query involving that attribute.
+	For example, a query involving a primary key has a solution
+	set that consists of exactly one record, located on one page
+	of the data file; in the best case (e.g. hashing solely on
+	the primary key, we would access exactly one page of the
+	data file in answering such a query).
+	We would tend to allocate more bits to very discriminating
+	attributes because this reduces the number of pages that
+	need to be accessed in finding the small answer set in
+	queries involving such attributes.
+</li></ul>
+<p>
+Let us consider each attribute in turn in terms of these characteristics:
+</p>
+<ul>
+<p></p><li> <tt>id# number(10) primary key</tt> <p>
+	</p><ul>
+	<p></p><li> This attribute is used in only one query, which occurs
+		25% of the time, so its overall likelihood of use is 0.25.
+		This suggests that we should not allocate too many bits to it.
+	<p></p></li><li> Since each <tt>id#</tt> is a 10-digit number, there are
+		<i>10<sup>10</sup></i> possible part id's.
+		This is a very large domain, with around <i>2<sup>34</sup></i>
+		distinct values.
+		Thus, the domain size puts no restriction on the number
+		of bits that we might allocate to this attribute.
+	<p></p></li><li> This attribute is very discriminatory. In fact, if it is used
+		in a query, then we know that there will be either 0 or 1
+		matching records. This suggests that we should allocate it
+		many bits, so as to avoid searching many unnecessary pages
+		when this attribute is used in a query.
+	</li></ul>
+<p></p></li><li> <tt>name   varchar(10)</tt> <p>
+	</p><ul>
+	<p></p><li> This attribute is used in only one query, which occurs
+		50% of the time. Its overall likelihood of use is thus 0.5.
+		This suggests that we should allocate a reasonable number
+		of hash bits to this attribute.
+	<p></p></li><li> The <tt>name</tt> attribute is an arbitrary string giving
+		a descriptive name for each part. Given the semantics of
+		the problem, there will be names such as "nut", "washer",
+		"bolt", "joint", and so on. There could quite conceivably
+		be up to 10000 different part names. In this case, 13 bits
+		(<i>2<sup>13</sup>=8192</i>)
+		of information would be sufficient to give a different
+		hash value for each of these names. Thus, it would not be
+		worth allocating more than 10 bits to this attribute.
+	<p></p></li><li> If we assume that there are around 8000 part names, and
+		we know that there are 819,200 parts, then, assuming a
+		uniform distribution of part names, each name would occur
+		around 1000 times in the database. In other words, a
+		query based solely on the <tt>name</tt> attribute would
+		select around 1000 tuples. This attribute is moderately
+		discriminating, which suggests that we should not allocate
+		too many bits to it.
+	</li></ul>
+<p></p></li><li> <tt>colour varchar(5) in ('red','blue','green')</tt> <p>
+	</p><ul>
+	<p></p><li> This attribute is used in two queries, whose likelihoods
+		are 50% and 25% respectively. Overall, this attribute is
+		75% likely to occur in a query.
+		This suggests that we should allocate most bits to it.
+	<p></p></li><li> There are only three possible values for the <tt>colour</tt>
+		attribute. These values can be distinguished using only
+		2 bits of information, therefore there is no point in
+		allocating more than 2 bits to this attribute.
+	<p></p></li><li> If there are 3 colours and 819,200 records, then, assuming
+		a uniform distribution of colours, each colour value will
+		occur in around 27,000 different records. Thus, <tt>colour</tt>
+		is not a discriminating attribute and we are not required,
+		on the basis of this characteristic, to allocate it many bits.
+	</li></ul>
+<p></p></li><li> <tt>onhand integer</tt> <p>
+	</p><ul>
+	<p></p><li> This attribute is not used in any queries, and so there is
+		no point allocating it any bits. If we do, these bits will
+		<em>always</em> be unknown, and we a guaranteeing a fixed
+		unnecessary overhead in every query.
+	<p></p></li><li> There are a large number of possible values for this numeric
+		attribute, and so there is no upper bound on the number
+		of bits to allocate. Of course, the non-usage of this
+		attribute in queries suggests that we don't allocate it
+		any bits, so an upper-bound is not an issue.
+	<p></p></li><li> It is difficult to estimate the discriminatory power of
+		this attribute. For a given <tt>onhand</tt> quantity,
+		there may be a large number of parts with this quantity,
+		or there may be none.
+	</li></ul>
+</li></ul>
+<p>
+The usage of an attribute is the most important property in determining
+how many bits to allocate to it. This should be modified by any upper
+bound suggested by the domain size. Finally, discriminatory power may
+suggest extra bits to be allocated to an attribute, but it more likely
+an indication that some other indexing scheme (than multi-attribute
+hashing) should be used. For example, if the most common kind of query
+was a selection based on the <tt>id#</tt>, then it would be sensible to
+use a primary key indexing scheme such as a B-tree in preference to
+multi-attribute hashing.
+</p>
+<p>
+The frequency of usage suggests that we allocate most bits to <tt>colour</tt>,
+less bits to <tt>name</tt>, less bits to <tt>id#</tt>, and no bits to
+<tt>onhand</tt>.
+However, the domain size of <tt>colour</tt> indicates that it should
+not be allocated more than 2 bits.
+This fixes the bit allocations for two attributes:
+<i>d<sub>colour</sub> = 2</i> and <i>d<sub>onhand</sub> = 0</i>.
+This leaves 11 more bits from the original <i>d = 13</i> to allocate.
+Usage frequency suggests that we allocate more to <tt>name</tt>,
+but discriminatory power suggests that we allocate as many bits as
+possible to <tt>id#</tt>.
+</p>
+<p>
+According to the optimisation criteria mentioned in lectures,
+the lowest average cost would likely be obtained if <i>d<sub>name</sub></i>
+is the larger, so we could set <i>d<sub>name</sub> = 6</i> and
+<i>d<sub>id#</sub> = 5</i>.
+These allocations give the following average query cost:
+</p>
+<pre>Cost = p<sub>q1</sub>Cost<sub>q1</sub> + p<sub>q2</sub>Cost<sub>q2</sub> + p<sub>q3</sub>Cost<sub>q3</sub>
+     = 0.25 * 2<sup>8</sup> + 0.5 * 2<sup>5</sup> + 0.25 * 2<sup>11</sup>
+     = 592 page accesses
+</pre>
+<p>
+where there are
+5 known bits (6+2=8 unknown bits) for query type <tt>q1</tt>,
+6+2=8 known bits (5 unknown bits) for query type <tt>q2</tt>,
+and
+2 known bits (5+6=11 unknown bits) for query type <tt>q3</tt>.
+</p>
+<p>
+However, it turns out that an alternative bit-allocation has even better cost:
+<i>d<sub>name</sub> = 5</i> and <i>d<sub>id#</sub> = 6</i>.
+</p>
+<pre>Cost = p<sub>q1</sub>Cost<sub>q1</sub> + p<sub>q2</sub>Cost<sub>q2</sub> + p<sub>q3</sub>Cost<sub>q3</sub>
+     = 0.25 * 2<sup>7</sup> + 0.5 * 2<sup>6</sup> + 0.25 * 2<sup>11</sup>
+     = 576 page accesses
+</pre>
+<p>
+As far as the choice vector is concerned, there is no particular reason
+not to simply interleave the hash bits from each of attributes in forming
+the hash value for each record, thus giving:
+</p>
+<p>
+<i>
+d = 13                 &nbsp;&nbsp;
+d<sub>id#</sub> = 6    &nbsp;&nbsp;
+d<sub>name</sub> = 5   &nbsp;&nbsp;
+d<sub>colour</sub> = 2 &nbsp;&nbsp;
+d<sub>onhand</sub> = 0
+</i>
+</p>
+<p>
+<i>
+cv<sub>0</sub> = bit<sub>id#,0</sub>      &nbsp;
+cv<sub>1</sub> = bit<sub>name,0</sub>     &nbsp;
+cv<sub>2</sub> = bit<sub>colour#,0</sub>  &nbsp;
+cv<sub>3</sub> = bit<sub>id#,1</sub>      &nbsp;
+cv<sub>4</sub> = bit<sub>name,1</sub>     &nbsp;
+cv<sub>5</sub> = bit<sub>colour,1</sub>   &nbsp;
+cv<sub>6</sub> = bit<sub>id#,2</sub>      &nbsp;
+etc.
+</i>
+</p><p>
+where <i>bit<sub>A,n</sub></i> refers to the <i>n<sup>th</sup></i> bit
+of the hash value <i>h(A)</i> for attribute <i>A</i>.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p> Consider the student relation: </p>
+<pre>Student(id:integer, name:string, address:string,
+        age:integer, course:string, gpa:real);
+</pre>
+<p>
+with the following characteristics:
+<i>r = 40,000, &nbsp; B = 1024, &nbsp; C = 20</i>
+</p>
+<p>
+If the relation is accessed via a superimposed codeword
+signature file with false match probability
+<i>p<sub>F</sub>=10<sup>-4</sup></i>,
+compute the costs of answering the query:
+</p>
+<pre>select * from Student where course='BSc' and age=20;
+</pre>
+<p>
+for the following file organisations:
+</p>
+<ol type="a">
+<li> record signatures
+</li><li> block signatures
+</li><li> bit-sliced block signatures
+</li></ol>
+<p>
+Use the following to compute signature properties:
+</p>
+<center>
+<img src="./Ex6_files/eqn1.png" alt="k = \frac{1}{\log_e2} . \log_e \left( \frac{1}{p_F} \right)">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="./Ex6_files/eqn2.png" alt="m = \left( \frac{1}{\log_e 2} \right)^2 . n . \log_e \left( \frac{1}{p_F} \right)">
+</center>
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<p>
+Before we can answer the question we need to work out the
+characteristics of the signatures. This comes from the following:
+</p>
+<ul>
+<li> <i>n</i> = 6 attributes
+</li><li> <i>r</i> = 40,000 records
+</li><li> <i>B</i> = 1024 bytes/block
+</li><li> <i>C</i> = 20 recs/block
+</li><li> <i>p<sub>F</sub></i> = 10<sup>-4</sup>
+</li></ul>
+<p>
+For record signatures, we use the formulae:
+</p>
+<ul>
+<li> <i> k = log<sub>e</sub>(1/p<sub>F</sub>) / (log<sub>e</sub>2) </i>
+</li><li> <i> m = n * log<sub>e</sub>(1/p<sub>F</sub>) / ((log<sub>e</sub>2)<sup>2</sup>) </i>
+</li></ul>
+<p>
+Putting the above values into these formulae gives:
+<i>k</i> = 13  (rounded) and <i>m</i> = 116.
+</p>
+<p>
+Now, 116 bits is 14 bytes, which doesn't divide nicely into the
+block size (1024 bytes), and neither is it a multiple of 4-bytes,
+so we may have to worry about alignment problems (<tt>int</tt>s
+not aligned on 4-byte address boundaries).
+In this case, it's better to simply increase the size of each
+signature to 16 bytes (i.e. set <i>m</i> = 128)
+</p>
+<p>
+For block (page) signatures, we use the formulae:
+</p>
+<ul>
+<li> <i> k = log<sub>e</sub>(1/p<sub>F</sub>) / (log<sub>e</sub>2) </i>
+</li><li> <i> m = n * C * log<sub>e</sub>(1/p<sub>F</sub>) / ((log<sub>e</sub>2)<sup>2</sup>) </i>
+</li></ul>
+<p>
+Putting the above values into these formulae gives:
+<i>k</i> = 13 and <i>m</i> = 2301.
+</p>
+<p>
+Now, 2301 bits is 288 bytes, which doesn't fit at all nicely into
+1024-byte pages. We could have only 3 signatures per page, with a
+lots of unused space. In such as case it might be better to reduce
+the size of block signatures to 256 bytes, so that 4 signatures
+fit nicely into a page.
+This effectively makes <i>m</i> = 2048.
+The effect of this is to increase the false match probability
+<i>p<sub>F</sub></i> from 1*10<sup>-4</sup> to 3*10<sup>-4</sup>.
+For the convenience of the signature size, this seems an
+acceptable trade-off (this is still a very small chance of
+getting a false match).
+</p>
+<ol type="a">
+<p>
+</p><li> Record signatures
+<p>
+The file structure for a record-based signature file with
+<i>m</i>=128 looks as follows:
+</p><p></p><center><img src="./Ex6_files/file1.gif"></center><p>
+In the data file,
+there are 40,000 records in <i>b</i> = 40,000/20 = 2000 pages
+In the signature file,
+there are 40,000 * 128-bit (16-byte) signatures.
+We can fit 64 * 16-byte signatures in a 1024-byte page,
+so this means there are 625 pages of signatures.
+</p><p>
+To answer the select query we need to do the following:
+</p><ul>
+<li> for a 16-byte query descriptor
+</li><li> read all of the record signatures, comparing against the query descriptor
+</li><li> read blocks containing candidate records
+</li></ul>
+Note that some of the candidates will be false matches.
+We can work out how many simply by noting that there are
+40,000 records and the likelihood of any one being a false match
+is 10<sup>-4</sup>.
+This leads to around 4 false matches per query.
+Let us assume that there are <i>M</i> genuine matching records,
+and make the worst-case assumption that every candidate record
+will come from a different block.
+The overall cost will thus be:
+<p></p><center><i>
+Cost<sub>select</sub>  =  625 + M + 4  page reads
+</i></center><p>
+</p><p>
+</p></li><li> Block signatures
+<p>
+The file structure for a block-based signature file with
+<i>m</i>=2048 looks as follows:
+</p><p></p><center><img src="./Ex6_files/file2.gif"></center><p>
+The data file is as before.
+In the signature file,
+there are 2000 * 2048-bit (256-byte) block signatures.
+We can 4 signatures in 1 1024-byte page, so this means we
+need 500 pages of signatures.
+</p><p>
+To answer the select query we need to do the following:
+</p><ul>
+<li> form a 256-byte query descriptor
+</li><li> read all of the block signatures, comparing against the query descriptor
+</li><li> read candidate blocks suggested by the signatures
+</li></ul>
+As above, some of these will be false matches.
+In this case <i>p<sub>F</sub></i> = 3*10<sup>-4</sup>
+and there are 2000 signatures, so we'd expect only
+1 false match.
+As before, let us assume that there are <i>M</i> genuine matching
+blocks.
+The overall cost will thus be:
+<p></p><center><i>
+Cost<sub>select</sub>  =  500 + M + 1  page reads
+</i></center><p>
+</p><p>
+</p></li><li> Bit-sliced block signatures
+<p>
+For the  bit-sliced signature file, we take the 2000 * 2048-bit
+block signatures from the previous file organisation and "tip them
+on their side", giving us 2048 * 2000-bit signature slices.
+Now, dealing with a 2000-bit quantity is inconvenient; once again,
+it doesn't fit nicely into 1024-byte blocks and so a suitable
+modification would be to make the slices 2048-bits long.
+This means simply that we can handle more data pages should the
+need arise; it doesn't change the false match probabilities.
+This gives a file structure that looks like:
+</p><p></p><center><img src="./Ex6_files/file3.gif"></center><p>
+The data file is unchanged from the previous two cases.
+</p><p>
+To answer the select query we need to do the following:
+</p><ul>
+<li> form a 256-byte query descriptor
+</li><li> iterate through the query descriptor, bit-by-bit
+</li><li> for each 1 bit that we find, read the corresponding bit-slice
+</li><li> iterate through the result slice, fetching candidate pages
+</li></ul>
+<p>
+The primary cost determinant in this case is how many slices
+we need to read.
+This will be determined by how many 1-bits are set in the query descriptor.
+Since each attribute sets <i>k</i>=13 bits, and we have two attributes
+contributing to the query descriptor, we can have at most 26 bits set
+in the query descriptor.
+This means we will need to read 26 descriptor slices to answer the query.
+As well as descriptors, we need to read <i>M</i> candidate blocks
+containing genuine matching records, along with
+1 false match candidate block.
+</p>
+<p>
+The overall cost will thus be:
+</p><p></p><center><i>
+Cost<sub>select</sub>  =  26 + M + 1  page reads
+</i></center><p>
+</p></li></ol>
+<p></p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider a multi-attribute hashed relation with the following properties:
+</p>
+<ul>
+<li> schema <tt>R(a,b,c)</tt>, where all attributes are integers
+</li><li> a file with pages <i>b=2</i>, depth <i>d=1</i>, split pointer <i>sp=0</i>,
+	records/page <i>C=2</i>
+</li><li> a split occurs after every 3 insertions
+</li><li> an initially empty overflow file
+</li><li> choice vector = &lt; (1,0), (2,0), (3,0), (1,1), (1,2), (2,1), (2,2), (3,1), ... &gt;
+</li><li> the hash value for each attribute is simply the binary version of the value <br>
+	(e.g. hash(0) = ...0000, hash(1) = ...0001, hash(4) = ...0100, hash(11) = ...1011, etc.)
+</li></ul>
+<p>
+Show the state of the data and overflow files after the insertion of the
+following tuples (in the order given):
+</p>
+<pre>(3,4,5)   (2,4,6)   (2,3,4)   (3,5,6)   (4,3,2)   (2,6,5)   (4,5,6)   (1,2,3)
+</pre>
+<p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex06/index.php##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+<p>
+Start by computing some (partial) hash values (bottom 8 bits is (more than) enough):
+</p>
+<!--
+<pre>
+    <b>Tuple</b>       <b>MA-hash Value</b>
+    (1,2,3)     ...11000101
+    (1,2,4)     ...00100001
+    (1,3,5)     ...01000111
+    (2,3,4)     ...00101010
+    (2,4,6)     ...11001000
+    (2,6,5)     ...01101100
+    (3,4,5)     ...01001101
+    (3,5,6)     ...11001011
+    (4,3,2)     ...10110010
+    (4,5,6)     ...11010010
+</pre>
+-->
+<pre>    <b>Tuple</b>       <b>MA-hash Value</b>
+    (3,4,5)     ...01001101
+    (2,4,6)     ...11001000
+    (2,3,4)     ...00101010
+    (3,5,6)     ...11001011
+    (4,3,2)     ...10110010
+    (2,6,5)     ...01101100
+    (4,5,6)     ...11010010
+    (1,2,3)     ...10100101
+</pre>
+<p>
+Insert <tt>(3,4,5)</tt> ...
+use least-significant bit = 1 to select page; insert into page 1
+</p>
+<pre>Page[0]: empty  &lt;- SP
+Page[1]: (3,4,5)
+</pre>
+<p>
+Insert <tt>(2,4,6)</tt> ...
+use least-sig bit = 0 to select page; insert into page 0
+</p>
+<pre>Page[0]: (2,4,6)  &lt;- SP
+Page[1]: (3,4,5)
+</pre>
+<p>
+Insert <tt>(2,3,4)</tt> ...
+use least-sig bit = 0 to select page; insert into page 0
+</p>
+<pre>Page[0]: (2,4,6) (2,3,4)  &lt;- SP
+Page[1]: (3,4,5)
+</pre>
+<p>
+Insert <tt>(3,5,6)</tt> ...
+3 insertions since last split =&gt; split page 0 between pages 0 and 2
+</p>
+<pre>Page[0]: (2,4,6)
+Page[1]: (3,4,5)  &lt;- SP
+Page[2]: (2,3,4)
+</pre>
+<p>
+then use least-sig bit = 1 to select page; insert into page 1
+</p>
+<pre>Page[0]: (2,4,6)
+Page[1]: (3,4,5) (3,5,6)  &lt;- SP
+Page[2]: (2,3,4)
+</pre>
+<p>
+Insert <tt>(4,3,2)</tt> ...
+use least sig-bit = 0, but &lt;SP, so take 2 bits = 10 to select page
+</p>
+<pre>Page[0]: (2,4,6)
+Page[1]: (3,4,5) (3,5,6)  &lt;- SP
+Page[2]: (2,3,4) (4,3,2)
+</pre>
+<p>
+Insert <tt>(2,6,5)</tt> ...
+use least sig-bit = 0, but &lt;SP, so take 2 bits = 00 to select page
+</p>
+<pre>Page[0]: (2,4,6) (2,6,5)
+Page[1]: (3,4,5) (3,5,6)  &lt;- SP
+Page[2]: (2,3,4) (4,3,2)
+</pre>
+<p>
+This make 3 insertions since the last split =&gt; split again <br>
+Add new page [3] and partition tuples between pages 1 and 3 <br>
+Also, after splitting, the file size is a power of 2 ... <br>
+So we reset SP to 0 and increase depth to <i>d=2</i>
+</p>
+<pre>Page[0]: (2,4,6) (2,6,5)  &lt;- SP
+Page[1]: (3,4,5)
+Page[2]: (2,3,4) (4,3,2)
+Page[3]: (3,5,6)
+</pre>
+<p>
+Insert <tt>(4,5,6)</tt> ...
+use 2 bits = 10 to select page <br>
+but page 2 already full =&gt; add overflow page
+</p>
+<pre>Page[0]: (2,4,6) (2,6,5)  &lt;- SP
+Page[1]: (3,4,5)
+Page[2]: (2,3,4) (4,3,2)  -&gt; Ov[0]: (4,5,6)
+Page[3]: (3,5,6)
+</pre>
+<p>
+Insert <tt>(1,2,3)</tt> ...
+use 2 bits = 01 to select page 1 
+</p>
+<pre>Page[0]: (2,4,6) (2,6,5)  &lt;- SP
+Page[1]: (3,4,5) (1,2,3)
+Page[2]: (2,3,4) (4,3,2)  -&gt; Ov[0]: (4,5,6)
+Page[3]: (3,5,6)
+</pre>
+</div><p></p>
+</li>
+
+</ol>
+
+
+</body></html>

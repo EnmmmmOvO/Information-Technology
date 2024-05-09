@@ -1,0 +1,16 @@
+n=4, b=5, MRU
+
+       [0] [1] [2] [3]   MRU
+        -   -   -   -     -
+req 0   0   -   -   -     0
+req 1
+req 2
+req 3
+req 4
+req 5
+req 0
+req 1
+req 2
+req 3
+req 4
+req 5

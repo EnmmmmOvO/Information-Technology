@@ -1,0 +1,804 @@
+
+<!-- saved from url=(0078)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 05 Monday Lecture</title>
+<link href="./lec09_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec09_files/latest.js" async=""></script>
+<script src="./lec09_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec09_files/MathJax.js"></script>
+<link href="./lec09_files/css" rel="stylesheet">
+<link href="./lec09_files/prism.css" rel="stylesheet">
+<script src="./lec09_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 05 Monday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s2">N-dimensional Selection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s3">N-dimensional Queries</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s4">Operations for Nd Select</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s5">N-d Selection via Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s6">N-d Selection via Multiple Indexes</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s7">N-d Queries and Indexes</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s11">Exercise: One vs Multiple Indices</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s13">Bitmap Indexes</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s16">Exercise: Bitmap Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s17">Bitmap Indexes</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s18">Hashing for N-d Selection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s19">Hashing and <i>pmr</i></a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s21">MA.Hashing Example</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s24">MA.Hashing Hash Functions</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s26">Exercise: Multi-attribute Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s27">Queries with MA.Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s29">Exercise: Partial hash values in MAH</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s30">MA.Hashing Query Algorithm</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s32">Exercise: Representing Stars</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s33">Exercise: MA.Hashing Query Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s34">Query Cost for MA.Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s36">Optimising MA.Hashing Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s37">Exercise:  MA.Hashing Design</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [0/37]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><ul>
+<li> Assignment 1
+<ul>
+<li> due midnight Friday 15 March (this Friday)
+</li><li> before asking on Forum ... (a) search, (b) FAQ
+</li></ul>
+</li><li> Assignment 2
+<ul>
+<li> released end week 6 ... due end week 9
+</li></ul>
+</li><li> Quiz 3
+<ul>
+<li> released Monday week 6 ... due Friday week 6
+</li></ul>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [1/37]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ N-dimensional Selection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [2/37]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ N-dimensional Queries</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Have looked at one-dimensional queries, e.g.
+</p><p></p><pre>select * from R where a = K
+select * from R where a between Lo and Hi
+</pre><p>
+and <font color="#0000BB">heaps</font>, <font color="#0000BB">hashing</font>, <font color="#0000BB">indexing</font> as ways of efficient implementation.
+</p><p>
+Now consider techniques for efficient <font color="#0000BB">multi-dimensional</font> queries.
+</p><p>
+Compared to 1-d queries, multi-dimensional queries
+</p><ul>
+<li> typically produce fewer results
+</li><li> require us to consider more information
+</li><li> require more effort to produce results
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [3/37]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Operations for Nd Select</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<i>N</i>-dimensional select queries = condition on <i>≥1</i> attributes.
+</p><ul>
+<br>
+<li> <i>pmr</i> = partial-match retrieval <small>(equality tests)</small>, e.g.
+<p></p><pre>select * from Employees
+where  job = 'Manager' and gender = 'M';
+</pre><p>
+<br>
+</p></li><li> <i>space</i> = tuple-space queries <small>(range tests)</small>, e.g.
+<p></p><pre>select * from Employees
+where 20 ≤ age ≤ 50 and 40K ≤ salary ≤ 60K
+</pre><p>
+</p></li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [4/37]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ N-d Selection via Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Heap files can handle <i>pmr</i> or <i>space</i> using standard method:
+</p><p></p><pre><span class="comment">// select * from R where C</span>
+r = openRelation("R",READ);
+for (p = 0; p &lt; nPages(r); p++) {
+    buf = getPage(file(r), p);
+    for (i = 0; i &lt; nTuples(buf); i++) {
+        t = getTuple(buf,i);
+        if (<font color="#0000EE">matches</font>(t,<font color="#0000EE">C</font>))
+            add t to result set
+    }
+}
+</pre><p>
+<i>Cost<sub>pmr</sub> &nbsp;=&nbsp; Cost<sub>space</sub> &nbsp;=&nbsp; b</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [5/37]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ N-d Selection via Multiple Indexes</div></td><td align="right"></td></tr></tbody></table>
+<p>
+DBMSs already support building multiple indexes on a table.
+</p><p>
+Which indexes to build depends on which queries are asked.
+</p><p></p><pre>create table R (a int, b int, c int);
+create index Rax on R (a);
+create index Rbx on R (b);
+create index Rcx on R (c);
+create index Rabx on R (a,b);
+create index Racx on R (a,c);
+create index Rbcx on R (b,c);
+create index Rallx on R (a,b,c);
+</pre><p>
+But more indexes <i>⇒</i> space + update overheads.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [6/37]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ N-d Queries and Indexes</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Generalised view of <i>pmr</i> and <i>space</i> queries:
+</p><p></p><pre>select * from R
+where  <i>a<sub>1</sub> op<sub>1</sub> C<sub>1</sub></i> and ... and <i>a<sub>n</sub> op<sub>n</sub> C<sub>n</sub></i> 
+</pre><p>
+<i>pmr</i> : all <i>op<sub>i</sub></i> are equality tests.
+	&nbsp;&nbsp;&nbsp; <i>space</i> : some <i>op<sub>i</sub></i> are range tests.
+</p><p>
+Possible approaches to handling such queries ...
+</p><ol>
+<li> use index on one <i>a<sub>i</sub></i> to reduce tuple tests
+</li><li> use indexes on all <i>a<sub>i</sub></i>, and intersect answer sets
+</li></ol>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [7/37]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ N-d Queries and Indexes <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+If using just <font color="#0000BB">one</font> of several indexes, <i>which one</i> to use?
+</p><p></p><pre>select * from R
+where  <i>a<sub>1</sub> op<sub>1</sub> C<sub>1</sub></i> <font color="#000099">and</font> ... <font color="#000099">and</font> <i>a<sub>n</sub> op<sub>n</sub> C<sub>n</sub></i> 
+</pre><p>
+</p><p>
+The one with best <font color="#0000BB">selectivity</font> for <i>a<sub>i</sub> op<sub>i</sub> C<sub>i</sub></i>
+	&nbsp; <small>(i.e. fewest matches)</small>
+</p><p>
+Factors determining selectivity of <i>a<sub>i</sub> op<sub>i</sub> C<sub>i</sub></i>
+</p><ul>
+<li> assume uniform distribution of values in <i>dom(a<sub>i</sub>)</i>
+</li><li> equality test on primary key gives at most one match
+</li><li> equality test on larger <i>dom(a<sub>i</sub>)</i> ⇒ less matches
+</li><li> range test over large part of <i>dom(a<sub>i</sub>)</i> ⇒ many matches
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [8/37]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ N-d Queries and Indexes <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Implementing selection using <font color="#0000BB">one of several</font> indices:
+</p><p></p><pre><span class="comment">// Query: select * from R where <i>a<sub>1</sub>op<sub>1</sub>C<sub>1</sub></i> <font color="#996600">and</font> ... <font color="#996600">and</font> <i>a<sub>n</sub>op<sub>n</sub>C<sub>n</sub></i></span>
+<span class="comment">// choose a<sub>i</sub> with <font color="#996600">best selectivity</font></span>
+TupleIDs = IndexLookup(R,a<sub>i</sub>,op<sub>i</sub>,C<sub>i</sub>)
+<span class="comment">// gives { <i>tid<sub>1</sub></i>, <i>tid<sub>2</sub></i>, ...} for tuples satisfying <i>a<sub>i</sub>op<sub>i</sub>C<sub>i</sub></i></span>
+PageIDs = { }
+foreach tid in TupleIDs
+   { PageIDs = PageIDs ∪ {pageOf(tid)} }
+
+<span class="comment">// PageIDs = a set of b<sub>q<sub>ix</sub></sub> page numbers</span>
+...
+</pre><p>
+Cost = <i>Cost<sub>index</sub> + b<sub>q<sub>ix</sub></sub></i> &nbsp;&nbsp; <small>(some pages do not contain answers, <i>b<sub>q<sub>ix</sub></sub> &gt; b<sub>q</sub>)</i></small>
+</p><p>
+<small>DBMSs typically maintain statistics to assist with determining selectivity</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [9/37]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ N-d Queries and Indexes <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Implementing selection using <font color="#0000BB">multiple</font> indices:
+</p><p></p><pre><span class="comment">// Query: select * from R where <i>a<sub>1</sub>op<sub>1</sub>C<sub>1</sub></i> and ... and <i>a<sub>n</sub>op<sub>n</sub>C<sub>n</sub></i></span>
+<span class="comment">// assumes an index on at least a<sub>i</sub></span>
+TupleIDs = IndexLookup(R,a<sub>1</sub>,op<sub>1</sub>,C<sub>1</sub>)
+foreach attribute a<sub>i</sub> with an index {
+   tids = IndexLookup(R,a<sub>i</sub>,op<sub>i</sub>,C<sub>i</sub>)
+   TupleIDs = TupleIDs ∩ tids
+}
+PageIDs = { }
+foreach tid in TupleIDs
+   { PageIDs = PageIDs ∪ {pageOf(tid)} }
+<span class="comment">// PageIDs = a set of b<sub>q</sub> page numbers</span>
+...
+</pre><p>
+Cost = <i>k.Cost<sub>index</sub> + b<sub>q</sub></i> &nbsp;&nbsp;&nbsp;
+	<small>(assuming indexes on <i>k</i> of <i>n</i> attrs)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [10/37]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: One vs Multiple Indices</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a relation with <i>r</i> = 100,000, <i>B</i> = 4096, defined as:
+</p><p></p><pre>create table Students (
+    id       integer primary key,
+    name     char(10), <span class="comment">-- simplified</span>
+    gender   char(1),  <span class="comment">-- 'm','f','?'</span>
+    birthday char(5)   <span class="comment">-- 'MM-DD'</span>
+);
+</pre><p>
+Assumptions:
+</p><ul>
+<li> data file is not ordered on any attribute
+</li><li> has a dense B-tree index on each attribute
+</li><li> 96 bytes of header in each data/index page
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [11/37]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: One vs Multiple Indices <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <large><code>Students(id,name,gender,birthday)</code></large> ...
+</p><ul>
+<li> calculate the size of the data file and each index
+</li><li> describe the selectivity of each attribute
+</li></ul>
+Now consider a query on this relation:
+<p></p><pre>select * from Students
+where  name='John' and birthday='04-01'
+</pre><p>
+</p><ul>
+<li> estimate the cost of answering using <large><code>name</code></large> index
+</li><li> estimate the cost of answering using <large><code>birthday</code></large> index
+</li><li> estimate the cost of answering using both indices
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [12/37]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Bitmap Indexes</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Alternative index structure, focussing on sets of tuples:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/bitmap-index.png]" src="./lec09_files/bitmap-index.png">
+</div><p>
+</p><p>
+Index contains bit-strings of <i>r</i> bits, one for each value/range
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [13/37]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Bitmap Indexes <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Also useful to have a file of <large><code>tid</code></large>s, giving file structures:
+</p><p><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/bitmap-files.png]" src="./lec09_files/bitmap-files.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [14/37]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Bitmap Indexes <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Answering queries using bitmap index:
+</p><p></p><pre><small>
+Matches = AllOnes(r)
+foreach attribute A with index {
+   <span class="comment">// select i<sup>th</sup> bit-string for attribute A</span>
+   <span class="comment">// based on value associated with A in WHERE</span>
+   Matches = Matches &amp; Bitmaps[A][i]
+}
+<span class="comment">// Matches contains 1-bit for each matching tuple</span>
+foreach i in 0..r-1 {
+   if (Matches[i] == 0) continue;
+   Pages = Pages ∪ {pageOf(Tids[i])}
+}
+foreach pid in Pages {
+   P = getPage(pid)
+   extract matching tuples from P
+}
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [15/37]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Bitmap Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Using the following file structure:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/bitmap-index.png]" src="./lec09_files/bitmap-index.png">
+</div><p>
+</p><p>
+Show how the following queries would be answered:
+</p><p></p><pre>select * from Parts
+where colour='red' and price &lt; 4.00
+
+select * from Parts
+where colour='green' or colour ='blue'
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [16/37]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Bitmap Indexes</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Storage costs for bitmap indexes:
+</p><ul>
+<li> one bitmap for each value/range for each indexed attribute
+</li><li> each bitmap has length <i>ceil(r/8)</i> bytes
+</li><li> e.g. with 50K records and 8KB pages, bitmap fits in one page
+</li></ul>
+Query execution costs for bitmap indexes:
+<ul>
+<li> read one bitmap for each indexed attribute in query
+</li><li> perform bitwise AND on bitmaps <small>(in memory)</small>
+</li><li> read pages containing matching tuples
+</li></ul>
+Note: bitmaps could index pages rather than tuples <small>(shorter bitmaps)</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [17/37]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashing for N-d Selection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [18/37]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashing and <i>pmr</i></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For a <i>pmr</i> query like
+</p><p></p><pre>select * from R where <i>a<sub>1</sub> = C<sub>1</sub></i> and ... and <i>a<sub>n</sub> = C<sub>n</sub></i>
+</pre><p>
+</p><ul>
+<li> if one a<sub>i</sub> is the hash key, query is very efficient
+</li><li> if no a<sub>i</sub> is the hash key, need to use linear scan
+</li></ul>
+Can be alleviated using <i>multi-attribute hashing</i> (<i>mah</i>)
+<ul>
+<li> form a composite hash value involving all attributes
+</li><li> at query time, some components of composite hash are known <br>
+	<small>(allows us to limit the number of data pages which need to be checked)</small>
+</li></ul>
+MA.hashing works in conjunction with any dynamic hash scheme.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [19/37]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashing and <i>pmr</i> <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Multi-attribute hashing parameters:
+</p><ul>
+<li> file size = <i>b</i> = <i>2<sup>d</sup></i> pages
+	&nbsp; <i>⇒</i> &nbsp; use <i>d</i>-bit hash values
+</li><li> relation has <i>n</i> attributes: &nbsp;
+	<i>a<sub>1</sub>, a<sub>2</sub>, ...a<sub>n</sub></i>
+</li><li> attribute <i>a<sub>i</sub></i> &nbsp;has hash function <i>h<sub>i</sub></i>
+</li><li> attribute <i>a<sub>i</sub></i> &nbsp;contributes <i>d<sub>i</sub></i> &nbsp;bits
+	<small>(to the combined hash value)</small>
+</li><li> total bits <i>d</i> = <i>∑<sub>i=1</sub><sup>n</sup> d<sub>i</sub></i>
+</li><li> a <font color="#0000BB">choice vector</font> (<i>cv</i>) specifies for all <i>k</i> ... <br>
+	bit <i>j</i> &nbsp;from <i>h<sub>i</sub>(a<sub>i</sub>)</i> &nbsp;contributes
+	bit <i>k</i> &nbsp;in combined hash value
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [20/37]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ MA.Hashing Example</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider relation <large><code>Deposit(branch,acctNo,name,amount)</code></large>
+</p><p>
+Assume a small data file with 8 main data pages (plus overflows).
+</p><p>
+Hash parameters: &nbsp;&nbsp;
+<i>d=3 &nbsp;&nbsp;&nbsp; d<sub>1</sub>=1 &nbsp;&nbsp; d<sub>2</sub>=1 &nbsp;&nbsp; d<sub>3</sub>=1 &nbsp;&nbsp; d<sub>4</sub>=0</i>
+</p><p>
+Note that we ignore the <large><code>amount</code></large> attribute (<i>d<sub>4</sub>=0</i>)
+</p><p>
+Assumes that nobody will want to ask queries like
+</p><p></p><pre>select * from Deposit where amount=533
+</pre><p>
+Choice vector is designed taking expected queries into account.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [21/37]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ MA.Hashing Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Choice vector:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/choice-vector.png]" src="./lec09_files/choice-vector.png">
+</div><p>
+</p><p>
+This choice vector tells us:
+</p><ul>
+<li> bit 0 in hash comes from bit 0 of <i>hash<sub>1</sub>(a<sub>1</sub>)</i>
+	&nbsp; <small>( <i>b<sub>1,0</sub></i> )</small>
+</li><li> bit 1 in hash comes from bit 0 of <i>hash<sub>2</sub>(a<sub>2</sub>)</i>
+	&nbsp; <small>( <i>b<sub>2,0</sub></i> )</small>
+</li><li> bit 2 in hash comes from bit 0 of <i>hash<sub>3</sub>(a<sub>3</sub>)</i>
+	&nbsp; <small>( <i>b<sub>3,0</sub></i> )</small>
+</li><li> bit 3 in hash comes from bit 1 of <i>hash<sub>1</sub>(a<sub>1</sub>)</i>
+	&nbsp; <small>( <i>b<sub>1,1</sub></i> )</small>
+</li><li> etc. etc. etc. &nbsp; <small>(up to as many bits of hashing as required, e.g. 32)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [22/37]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ MA.Hashing Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the tuple:
+</p><p><table border="1" cellpadding="2">
+<tbody><tr align="center">
+<td> <b>branch</b> </td>
+<td> <b>acctNo</b> </td>
+<td> <b>name</b> </td>
+<td> <b>amount</b> </td>
+</tr>
+<tr align="center">
+<td> Downtown </td>
+<td> 101 </td>
+<td> Johnston </td>
+<td> 512 </td>
+</tr>
+</tbody></table></p><p>
+Hash value (page address) is computed by:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/mahins2.png]" src="./lec09_files/mahins2.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [23/37]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ MA.Hashing Hash Functions</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Auxiliary definitions:
+</p><p></p><pre>#define MaxHashSize 32
+typedef unsigned int HashVal;
+
+<span class="comment">// extracts i'th bit from hash value h</span>
+#define bit(i,h) (((h) &amp; (1 &lt;&lt; (i))) &gt;&gt; (i))
+
+<span class="comment">// choice vector elems</span>
+typedef struct { int attr, int bit } CVelem;
+typedef CVelem ChoiceVec[MaxHashSize];
+
+<span class="comment">// hash function for individual attributes</span>
+HashVal hash_any(char *val) { ... }
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [24/37]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ MA.Hashing Hash Functions <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Produce combined <i>d</i>-bit hash value for tuple <i>t</i> :
+</p><p></p><pre><small>
+HashVal hash(Tuple t, ChoiceVec cv, int d)
+{
+    HashVal h[nAttr(t)+1];  <span class="comment">// hash for each attr</span>
+    HashVal res = 0, oneBit;
+    int     i, a, b;
+    for (i = 1; i &lt;= nAttr(t); i++)
+        h[i] = hash_any(attrVal(t,i));
+    for (i = 0; i &lt; d; i++) {
+        a = cv[i].attr;
+        b = cv[i].bit;
+        oneBit = bit(b, h[a]);
+        res = res | (oneBit &lt;&lt; i);
+    }
+    return res;
+}
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [25/37]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Multi-attribute Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Compute the hash value for the tuple
+</p><p></p><pre>('John Smith','BSc(CompSci)',1990,99.5)
+</pre><p>
+where <i>d=6, &nbsp; d<sub>1</sub>=3, &nbsp; d<sub>2</sub>=2, &nbsp; d<sub>3</sub>=1</i>, and
+</p><ul>
+<li> <i>cv = &lt;(1,0), (1,1), (2,0), (3,0), (1,2), (2,1), (3,1), (1,3), ...&gt;</i>
+</li><li> <i>hash<sub>1</sub></i>(<large><code>'John Smith'</code></large>) = <large><code>...0101010110110100</code></large>
+</li><li> <i>hash<sub>2</sub></i>(<large><code>'BSc(CompSci)'</code></large>) = <large><code>...1011111101101111</code></large>
+</li><li> <i>hash<sub>3</sub></i>(<large><code>1990</code></large>) = <large><code>...0001001011000000</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [26/37]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Queries with MA.Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+In a partial match query:
+</p><ul>
+<li> values of some attributes are known
+</li><li> values of other attributes are unknown
+</li></ul>
+E.g.
+<p></p><pre>select amount
+from   Deposit
+where  branch = 'Brighton' and name = 'Green'
+</pre><p>
+for which we use the shorthand &nbsp; <large><code>(Brighton, ?, Green, ?)</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [27/37]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Queries with MA.Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider query: <font color="#0000BB">select amount from Deposit where name='Green'</font>
+</p><p><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/mahquery2.png]" src="./lec09_files/mahquery2.png">
+</div><p>
+<br>
+Matching tuples must be in pages: <large><code>1<font color="#0000EE">00</font></code></large>, <large><code>1<font color="#0000EE">01</font></code></large>, <large><code>1<font color="#0000EE">10</font></code></large>, <large><code>1<font color="#0000EE">11</font></code></large>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [28/37]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Partial hash values in MAH</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Given the following:
+</p><ul>
+<li> d=6, &nbsp;  b=2<sup>6</sup>, &nbsp; CV = &lt;(1,0),(1,1),(2,0),(3,0),(2,1),(1,2), ...&gt;
+</li><li> hash (a) = ...00101101001101
+</li><li> hash (b) = ...00101101001101
+</li><li> hash (c) = ...00101101001101
+</li></ul>
+What are the query hashes for each of the following:
+<ul>
+<li> (a,b,c), &nbsp;&nbsp; (?,b,c), &nbsp;&nbsp; (a,?,?), &nbsp;&nbsp; (?,?,?)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [29/37]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ MA.Hashing Query Algorithm</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre><span class="comment">// Builds the partial hash value (e.g. 10*0*1)</span>
+<span class="comment">// Treats query like tuple with some attr values missing</span>
+nstars = 0;
+for each attribute i in query Q {
+    if (hasValue(Q,i)) {
+        set d[i] bits in composite hash
+            using choice vector and hash(Q,i)
+    } else {
+        set d[i] *'s in composite hash
+            using choice vector
+        nstars += d[i]
+    }
+}
+...
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [30/37]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ MA.Hashing Query Algorithm <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre>...
+// Use the partial hash to find candidate pages
+
+r = openRelation("R",READ);
+for (i = 0; i &lt; 2<sup><tiny>nstars</tiny></sup>; i++) {
+    pid = composite hash
+    replace *'s in pid
+        using i and choice vector
+    Buf = readPage(file(r), pid);
+    for each tuple T in Buf {
+        if (T satisfies pmr query)
+            add T to results
+    }
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [31/37]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Representing Stars</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Our hash values are bit-strings (e.g. <large><code>100101110101</code></large>)
+</p><p>
+MA.Hashing introduces a third value (<large><code>*</code></large> = unknown)
+</p><p>
+How could we represent "bit"-strings like <large><code>1011*1*0**010</code></large>?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [32/37]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: MA.Hashing Query Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider <large><code>R(x,y,z)</code></large> using multi-attribute hashing where
+</p><p>
+d = 9 &nbsp;&nbsp;&nbsp; d<sub>x</sub> = 5 &nbsp;&nbsp;&nbsp; d<sub>y</sub> = 3 &nbsp;&nbsp;&nbsp; d<sub>z</sub> = 1
+</p><p>
+How many buckets are accessed in answering each query?
+</p><ol>
+<li> <large><code>select * from R where x = 4 and y = 2 and z = 1</code></large>
+</li><li> <large><code>select * from R where x = 5 and y = 3</code></large>
+</li><li> <large><code>select * from R where y = 99</code></large>
+</li><li> <large><code>select * from R where z = 23</code></large>
+</li><li> <large><code>select * from R where x &gt; 5</code></large>
+</li></ol>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [33/37]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Cost for MA.Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Multi-attribute hashing handles a range of query types, e.g.
+</p><p></p><pre>select * from R where a=1
+select * from R where d=2
+select * from R where b=3 and c=4
+select * from R where a=5 and b=6 and c=7
+</pre><p>
+A relation with <i>n</i> &nbsp;attributes has <i>2<sup>n</sup></i> different query types.
+</p><p>
+Different query types have different costs
+	&nbsp; <small>(different no. of <large><code>*</code></large>'s)</small>
+</p><p>
+<i>Cost(Q)</i> = <i>2<sup>s</sup></i> &nbsp; where <i>s</i> = <i>∑<sub>i ∉ Q</sub> d<sub>i</sub></i> &nbsp;&nbsp;&nbsp; <small>(alternatively <i>Cost(Q)</i> = <i>∏<sub>i ∉ Q</sub> 2<sup>d<sub>i</sub></sup></i>)</small>
+</p><p>
+<font color="#0000BB">Query distribution</font>
+gives probability <i>p<sub>Q</sub></i> of asking each query type <i>Q</i>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [34/37]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Cost for MA.Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Min query cost occurs when all attributes are used in query
+</p><p>
+<i>Min&nbsp;Cost<sub>pmr</sub> &nbsp;=&nbsp; 1</i>
+</p><p>
+Max query cost occurs when no attributes are specified
+</p><p>
+<i>Max&nbsp;Cost<sub>pmr</sub> &nbsp;=&nbsp; 2<sup>d</sup> &nbsp;=&nbsp; b</i>
+</p><p>
+Average cost is given by weighted sum over all query types:
+</p><p>
+<i>Avg&nbsp;Cost<sub>pmr</sub> &nbsp;=&nbsp; ∑<sub>Q</sub> p<sub>Q</sub> ∏<sub>i ∉ Q</sub> 2<sup>d<sub>i</sub></sup></i>
+</p><p>
+<br>
+Aim to minimise the weighted average query cost over possible query types
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [35/37]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimising MA.Hashing Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For a given application, useful to minimise <i>Cost<sub>pmr</sub></i>.
+</p><p>
+Can be achieved by choosing appropriate values for <i>d<sub>i</sub></i>
+&nbsp; (<i>cv</i>)
+</p><p>
+Heuristics:
+</p><ul>
+<li> distribution of query types
+<small>(more bits to frequently used attributes)</small>
+</li><li> size of attribute domain
+<small>(<i>≤</i> #bits to represent all values in domain)</small>
+</li><li> discriminatory power
+<small>(more bits to highly discriminating attributes)</small>
+</li></ul>
+Trade-off: making <i>Q<sub>j</sub></i> more efficient makes
+<i>Q<sub>k</sub></i> less efficient.
+<p>
+This is a combinatorial optimisation problem <br>
+<small>(solve via standard optimisation techniques e.g. simulated annealing)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [36/37]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise:  MA.Hashing Design</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider relation <large><code>Person(name,gender,age)</code></large> ...
+</p><div class="center">
+<table cellpadding="10">
+<tbody><tr>
+<td><i>p<sub>Q</sub></i></td>
+<td>Query Type <i>Q</i></td>
+</tr>
+<tr>
+<td>0.5</td>
+<td><large><code>select name from Person</code></large><br><large><code>where gender=X and age=Y</code></large></td>
+</tr>
+<tr>
+<td>0.25</td>
+<td><large><code>select age from Person</code></large><br><large><code>where name=X</code></large></td>
+</tr>
+<tr>
+<td>0.25</td>
+<td><large><code>select name from Person</code></large><br><large><code>where gender=X</code></large></td>
+</tr>
+</tbody></table>
+</div>
+<p>
+Assume that all other query types have <i>p<sub>Q</sub>=0</i>.
+</p><p>
+Design a choice vector to minimise average selection cost.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Monday Lecture ♢ [37/37]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 11 Mar 2024</span>
+ <script src="./lec09_files/prism.js"></script>   
+ <script src="./lec09_files/sg.js"></script>   
+
+
+</p></body></html>

@@ -1,0 +1,999 @@
+
+<!-- saved from url=(0066)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 02 Thursday Lecture</title>
+<link href="./lec04_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec04_files/latest.js" async=""></script>
+<script src="./lec04_files/jquery.min.js"></script>
+<link href="./lec04_files/css" rel="stylesheet">
+<link href="./lec04_files/prism.css" rel="stylesheet">
+<script src="./lec04_files/sg.js"></script><script type="text/javascript" async="" src="./lec04_files/MathJax.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 02 Thursday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s1">Things to Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s2">Buffer Pool</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s3">Buffer Pool</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s13">Page Replacement Policies</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s15">Exercise: </a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s16">Effect of Buffer Management </a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s18">Exercise: Buffer Cost Benefit (i)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s19">Exercise: Buffer Cost Benefit (ii)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s20">PostgreSQL Buffer Manager</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s25">Pages</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s26">Page/Tuple Management</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s27">Some terminology</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s28">Reminder: Views of Data</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s29">Page Formats</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s30">Exercise: get_record(rel,rid)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s32">Exercise: Fixed-length Records (i)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s34">Exercise: Fixed-length Records (ii)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s35">Page Formats</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s41">Exercise: Inserting Variable-length Records</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s42">Storage Utilisation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s43">Exercise: Space Utilisation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s44">Overflows</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s48">PostgreSQL Page Representation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s54">TOAST Files</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [0/54]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things to Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Help Session ... Friday <small>(tomorrow)</small> 11.30am - 4.00pm ... K17-410
+</p><ul>
+<li> fix your PostgreSQL servers so you can do the assignment
+</li></ul>
+<p>
+Scheduled power outage in K17 ... Fri 8pm - Sat 10 pm
+</p><ul>
+<li> all CSE servers down for the duration <small>(incl. Webcms, vxdb, vlab)</small>
+</li><li> K17 is locked down for the duration
+</li></ul>
+Quiz 1 is due by Fri 8pm (7.30 to be safe) &nbsp;&nbsp; <span class="comment"><small>(Beware Q1)</small></span>
+<p>
+Assignment 1 discussion in Monday lecture
+</p><ul>
+<li> make sure you look at the assignment before then
+</li></ul>
+Separate links to Monday and Thursday lectures in Moodle (sigh)
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [1/54]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [2/54]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Aim of buffer pool:
+</p><ul>
+<li> hold pages read from database files, for possible re-use
+</li></ul>
+Used by:
+<ul>
+<li> <font color="#0000BB">access methods</font> which read/write data pages
+</li><li> e.g. sequential scan, indexed retrieval, hashing
+</li></ul>
+Uses:
+<ul>
+<li> file manager functions to access data files
+</li></ul>
+<br>
+Note: we use the terms <font color="#0000BB">page</font> and <font color="#0000BB">block</font> interchangably
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [3/54]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/pool.png]" src="./lec04_files/pool.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [4/54]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Buffer pool operations: &nbsp; <small>(both take single <large><code>PageID</code></large> argument)</small>
+</p><ul>
+<li> <large><code>request_page(pid)</code></large>, &nbsp; <large><code>release_page(pid)</code></large>, ...
+</li></ul>
+To some extent ...
+<ul>
+<li> <large><code>request_page()</code></large> replaces <large><code>getBlock()</code></large>
+</li><li> <large><code>release_page()</code></large> replaces <large><code>putBlock()</code></large>
+</li></ul>
+<p>
+Buffer pool data structures:
+</p><ul>
+<li> <large><code>Page <font color="#000099">frames</font>[NBUFS]</code></large>
+</li><li> <large><code>FrameData <font color="#000099">directory</font>[NBUFS]</code></large>
+</li><li> <large><code>Page</code></large> is <large><code>byte[BUFSIZE]</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [5/54]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/buffer-pool.png]" src="./lec04_files/buffer-pool.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [6/54]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For each frame, we need to know: &nbsp; <small>(<large><code>FrameData</code></large>)</small>
+</p><ul>
+<li> which Page it contains, or whether empty/free
+</li><li> whether it has been modified since loading (<font color="#0000BB">dirty bit</font>)
+</li><li> how many transactions are currently using it (<font color="#0000BB">pin count</font>)
+</li><li> time-stamp for most recent access <small>(assists with replacement)</small>
+</li></ul>
+<br>
+Pages are referenced by PageID ...
+<ul>
+<li> PageID = BufferTag = (rnode, forkNum, blockNum)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [7/54]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+How scans are performed without Buffer Pool:
+</p><p></p><pre>Buffer buf;
+int N = numberOfBlocks(Rel);
+for (i = 0; i &lt; N; i++) {
+   pageID = makePageID(db,Rel,i);
+   <font color="#996600">getBlock</font>(pageID, buf);
+   for (j = 0; j &lt; nTuples(buf); j++)
+      process(buf, j)
+}
+</pre><p>
+Requires <large><code>N</code></large> page reads.
+</p><p>
+If we read it again, <large><code>N</code></large> page reads.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [8/54]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+How scans are performed with Buffer Pool:
+</p><p></p><pre>Buffer buf;
+int N = numberOfBlocks(Rel);
+for (i = 0; i &lt; N; i++) {
+   pageID = makePageID(db,Rel,i);
+   bufID = <font color="#996600">request_page</font>(pageID);
+   buf = frames[bufID]
+   for (j = 0; j &lt; nTuples(buf); j++)
+      process(buf, j)
+   <font color="#996600">release_page</font>(pageID);
+}
+</pre><p>
+Requires <large><code>N</code></large> page reads on the first pass.
+</p><p>
+If we read it again, 0 ≤ page reads ≤ <large><code>N</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [9/54]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Implementation of <large><code>request_page()</code></large>
+</p><p></p><pre>int request_page(PageID pid)
+{
+   if (pid in Pool)
+      bufID = index for pid in Pool
+   else {
+      if (no free frames in Pool)
+         <font color="#CC0000">evict</font> a page <span class="comment">// free a frame</span>
+      bufID = allocate free frame
+      directory[bufID].page = pid
+      directory[bufID].pin_count = 0
+      directory[bufID].dirty_bit = 0
+   }
+   directory[bufID].pin_count++
+   return bufID
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [10/54]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The <large><code>release_page(pid)</code></large> operation:
+</p><ul>
+<li> Decrement pin count for specified page
+</li></ul>
+<small>Note: no effect on disk or buffer contents until replacement required</small>
+<p>
+The <large><code>mark_page(pid)</code> operation:
+</large></p><ul>
+<li> Set dirty bit on for specified page
+</li></ul>
+<small>Note: doesn't actually write to disk; just indicates that page changed</small>
+<p>
+The <large><code>flush_page(pid)</code></large> operation:
+</p><ul>
+<li> Write the specified page to disk (using <large><code>write_page</code></large>)
+</li></ul>
+<small>Note: not generally used by higher levels of DBMS</small>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [11/54]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Evicting a page ...
+</p><ul>
+<li> find frame(s) preferably satisfying
+<ul>
+<li> pin count = 0 &nbsp; <small>(i.e. nobody using it)</small>
+</li><li> dirty bit = 0 &nbsp; <small>(not modified)</small>
+</li></ul>
+</li><li> if selected frame was modified, flush frame to disk
+</li><li> flag directory entry as "frame empty"
+</li></ul>
+If multiple frames can potentially be released
+<ul>
+<li> need a policy to decide which is best choice
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [12/54]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Replacement Policies</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Several schemes are commonly in use:
+</p><ul>
+<li> Least Recently Used (LRU)
+</li><li> Most Recently Used (MRU)
+</li><li> First in First Out (FIFO)
+</li><li> Random
+</li></ul>
+LRU / MRU require knowledge of when pages were last accessed
+<ul>
+<li> how to keep track of "last access" time?
+</li><li> base on request/release operations or on <i>real</i> page usage?
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [13/54]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Replacement Policies <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Cost benefit from buffer pool (with <i>n</i> frames) is determined by:
+</p><ul>
+<li> number of available frames (more <i>⇒</i> better)
+</li><li> replacement strategy <small>vs</small> page access pattern
+</li></ul>
+<b>Example (a):</b> sequential scan, LRU or MRU, <i>n ≥ b</i>
+<p>
+First scan costs <i>b</i> &nbsp;reads; subsequent scans are "free".
+</p><p>
+<b>Example (b):</b> sequential scan, MRU, <i>n &lt; b</i>
+</p><p>
+First scan costs <i>b</i> &nbsp;reads; subsequent scans cost <i>b - n</i> &nbsp;reads.
+</p><p>
+<b>Example (c):</b> sequential scan, LRU, <i>n &lt; b</i>
+</p><p>
+All scans cost <i>b</i> &nbsp;reads; known as <font color="#0000BB">sequential flooding</font>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [14/54]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: </div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Consider the following scenarios:
+</p><ul>
+<li> initially empty buffer pool with n=4 frames
+</li><li> file with b=3 pages
+</li><li> file with b=5 pages
+</li><li> LRU page replacement strategy
+</li><li> MRU page replacement strategy
+</li></ul>
+Show state of buffer pool during two sequential scans of file.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [15/54]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Effect of Buffer Management </div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a query to find customers who are also employees:
+</p><p></p><pre>select c.name
+from   Customer c, Employee e
+where  c.ssn = e.ssn;
+</pre><p>
+This might be implemented inside the DBMS via nested loops:
+</p><p></p><pre>for each tuple t1 in Customer {
+    for each tuple t2 in Employee {
+        if (t1.ssn == t2.ssn)
+            append (t1.name) to result set
+    }
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [16/54]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Effect of Buffer Management  <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+In terms of page-level operations, the algorithm looks like:
+</p><p></p><pre>Rel rC = openRelation("Customer");
+Rel rE = openRelation("Employee");
+for (int i = 0; i &lt; nPages(rC); i++) {
+    PageID pid1 = makePageID(db,rC,i);
+    Page p1 = <font color="#996600">request_page</font>(pid1);
+    for (int j = 0; j &lt; nPages(rE); j++) {
+        PageID pid2 = makePageID(db,rE,j);
+        Page p2 = <font color="#996600">request_page</font>(pid2);
+        <span class="comment">// compare all pairs of tuples from p1,p2</span>
+        <span class="comment">// construct solution set from matching pairs</span>
+        <font color="#996600">release_page</font>(pid2);
+    }
+    <font color="#996600">release_page</font>(pid1);
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [17/54]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Buffer Cost Benefit (i)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Assume that:
+</p><ul>
+<li> the <large><code>Customer</code></large> relation has <i>b<sub>C</sub></i> pages (e.g. 10)
+</li><li> the <large><code>Employee</code></large> relation has <i>b<sub>E</sub></i> pages (e.g. 4)
+</li></ul>
+Compute how many page reads occur ...
+<ul>
+<li> if we have only 2 buffers (i.e. effectively no buffer pool)
+</li><li> if we have 20 buffers
+</li><li> when a buffer pool with MRU replacement strategy is used 
+</li><li> when a buffer pool with LRU replacement strategy is used
+</li></ul>
+For the last two, buffer pool has <i>n=3</i> slots <small>(<i>n &lt; b<sub>C</sub></i> and <i>n &lt; b<sub>E</sub></i>)</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [18/54]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Buffer Cost Benefit (ii)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+If the tables were larger, the above analysis would be tedious.
+</p><p>
+Write a C program to simulate buffer pool usage
+</p><ul>
+<li> assuming a nested loop join as above
+</li><li> <large><code>argv[1]</code></large> gives number of pages in "outer" table
+</li><li> <large><code>argv[2]</code></large> gives number of pages in "inner" table
+</li><li> <large><code>argv[3]</code></large> gives number of slots in buffer pool
+</li><li> <large><code>argv[4]</code></large> gives replacement strategy (LRU,MRU,FIFO-Q)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [19/54]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Buffer Manager</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL buffer manager:
+</p><ul>
+<li> provides a shared pool of memory buffers for all backends
+</li><li> all access methods get data from disk via buffer manager
+</li></ul>
+Buffers are located in a large region of shared memory.
+<p>
+Definitions: &nbsp;<large><font color="#008800"><b><code>src/include/storage/buf*.h</code></b></font></large>
+</p><p>
+Functions: &nbsp;<large><font color="#008800"><b><code>src/backend/storage/buffer/*.c</code></b></font></large>
+</p><p><br></p><p>
+<small>Buffer code is also used by backends who want a private buffer pool</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [20/54]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Buffer Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Buffer pool consists of:
+</p><p>
+<large><font color="#008800"><b><code>BufferDescriptors</code></b></font></large>
+</p><ul>
+<li> shared fixed array (size <large><code>NBuffers</code></large>) of <large><font color="#008800"><b><code>BufferDesc</code></b></font></large>
+</li></ul>
+<large><font color="#008800"><b><code>BufferBlocks</code></b></font></large>
+<ul>
+<li> shared fixed array (size <large><code>NBuffers</code></large>) of 8KB frames
+</li></ul>
+<large><font color="#008800"><b><code>Buffer</code></b></font></large> = index values in above arrays
+<ul>
+<li> indexes: global buffers <large><code>1..NBuffers</code></large>; local buffers negative
+</li></ul>
+Size of buffer pool is set in <font color="#0000BB">postgresql.conf</font>, e.g.
+<p></p><pre>shared_buffers = 16MB   <span class="comment"># min 128KB, 16*8KB buffers</span>
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [21/54]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Buffer Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL buffer descriptors:
+</p><p></p><pre style="font-size:90%">typedef struct BufferDesc
+{
+   BufferTag  tag;           <span class="comment">/* ID of page contained in buffer */</span>
+   int        buf_id;        <span class="comment">/* buffer's index number (from 0) */</span>
+
+   <span class="comment">/* state of the tag, containing:
+               flags, refcount and usagecount */</span>
+   pg_atomic_uint32 state;
+
+   int         wait_backend_pgprocno;   <span class="comment">/* pin-count waiter */</span>
+   int         freeNext;      <span class="comment">/* link in freelist chain */</span>
+   LWLock      content_lock;  <span class="comment">/* to lock access to buffer contents */</span>
+} BufferDesc;
+<p></p><pre></pre></pre></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [22/54]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Buffer Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/buffer-memory.png]" src="./lec04_files/buffer-memory.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [23/54]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Buffer Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>include/storage/buf.h</code></b></font></large>
+</p><ul>
+<li> basic buffer manager data types (e.g. <large><font color="#008800"><b><code>Buffer</code></b></font></large>)
+</li></ul>
+<large><font color="#008800"><b><code>include/storage/bufmgr.h</code></b></font></large>
+<ul>
+<li> definitions for buffer manager function interface <br>
+	<small>(i.e. functions that other parts of the system call to use buffer manager)</small>
+</li></ul>
+<large><font color="#008800"><b><code>include/storage/buf_internals.h</code></b></font></large>
+<ul>
+<li> definitions for buffer manager internals (e.g. <large><font color="#008800"><b><code>BufferDesc</code></b></font></large>)
+</li></ul>
+Code: <large><font color="#008800"><b><code>backend/storage/buffer/*.c</code></b></font></large>
+<p>
+Commentary: <large><font color="#008800"><b><code>backend/storage/buffer/README</code></b></font></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [24/54]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Pages</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [25/54]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page/Tuple Management</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/dbmsarch1.png]" src="./lec04_files/dbmsarch1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [26/54]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Some terminology</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Terminology used in these slides ...
+</p><ul>
+<li><large><code>Record</code></large> = sequence of bytes stored on disk <small>(data for one tuple)</small>
+</li><li><large><code>Tuple</code></large> = "interpretable" version of a <large><code>Record</code></large> in memory
+</li><li><large><code>Page</code></large> = copy of page from file on disk
+</li><li><large><code>PageId</code></large> = index of Page within file = <large><font color="#008800"><b><code>pid</code></b></font></large>
+</li><li><large><code>pageOffsetInFile</code></large> = <large><code>pid * PAGESIZE</code></large>
+</li><li><large><code>TupleId</code></large> = index of record within page = <large><font color="#008800"><b><code>tid</code></b></font></large>
+</li><li><large><code>RecordId</code></large> = (<large><code>PageId</code></large>, <large><code>TupleId</code></large>) = <large><font color="#008800"><b><code>rid</code></b></font></large>
+</li><li><large><code>recOffsetInPage</code></large> = <large><code>page.directory[tid].offset</code></large>
+</li><li><large><code>Relation</code></large> = descriptor for open relation
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [27/54]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Reminder: Views of Data</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/views-of-data.png]" src="./lec04_files/views-of-data.png">
+</div><p>
+<br>
+Each <i>tuple</i> is represented by a <i>record</i> in some <i>page</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [28/54]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Formats</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A <large><code>Page</code></large> is simply an array of bytes (<large><code>byte[]</code></large>).
+</p><p>
+Want to interpret/manipulate it as a collection of <large><code>Record</code></large>s.
+</p><p>
+Typical operations on pages and records:
+</p><ul>
+<li> <large><code>buf = request_page(rel,pid)</code></large> ... <small>get page via its <large><code>PageId</code></large></small>
+</li><li> <large><code>rec = get_record(buf,tid)</code></large> ... <small>get record from buffer</small>
+</li><li> <large><code>rid = insert_record(rel,pid,rec)</code></large> ... <small>add new record</small>
+</li><li> <large><code>update_record(rel,rid,rec)</code></large> ... <small>update value of record</small>
+</li><li> <large><code>delete_record(rel,rid)</code></large> ... <small>remove record</small>
+</li></ul>
+<br>
+<small>Note: &nbsp;<large><code>rid</code></large> = <large><code>(PageId,TupleId)</code></large>, &nbsp;<large><code>rel</code></large> = open relation</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [29/54]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: get_record(rel,rid)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Give an implementation of a function
+</p><p></p><pre>Record get_record(Relation rel, RecordId rid)
+</pre><p>
+
+which takes two parameters
+</p><ul>
+<li> an open relation descriptor (<large><code>rel</code></large>)
+</li><li> a record id (<large><code>rid</code></large>)
+</li></ul>
+and returns the record corresponding to that <large><code>rid</code></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [30/54]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: get_record(rel,rid) <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Factors affecting <large><code>Page</code></large> formats:
+</p><ul>
+<li> determined by record size flexibility &nbsp; <small>(fixed, variable)</small>
+</li><li> how free space within <large><code>Page</code></large> is managed
+</li><li> whether some data is stored outside <large><code>Page</code></large>
+<ul>
+<li> does <large><code>Page</code></large> have an associated overflow chain?
+</li><li> are large data values stored elsewhere? <small>(e.g. TOAST)</small>
+</li><li> can one tuple span multiple <large><code>Page</code></large>s?
+</li></ul>
+</li></ul>
+Implementation of <large><code>Page</code></large> operations critically depends on format.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [31/54]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Fixed-length Records (i)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How records are managed in Pages ...
+</p><ul>
+<li> depends on whether records are fixed-length or variable-length
+</li></ul>
+Give examples of table definitions
+<ul>
+<li> which result in fixed-length records
+</li><li> which result in variable-length records
+</li></ul>
+<p></p><pre>create table R (...);
+</pre><p>
+<br>
+What are the common features of each type of table?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [32/54]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Fixed-length Records (i) <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For fixed-length records, use <font color="#0000BB">record slots</font>.
+</p><ul>
+<li> <font color="#0000BB">insert</font>: place new record in first available slot
+</li><li> <font color="#0000BB">delete</font>: mark slot as free, or set <i>xmax</i>
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/fixed-length-slots.png]" src="./lec04_files/fixed-length-slots.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [33/54]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Fixed-length Records (ii)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For the two fixed-length record page formats ...
+</p><p>
+Implement
+</p><ul>
+<li> a suitable data structure to represent a <large><code>Page</code></large>
+</li><li> insertion ... <large><code>rid = insert_record(rel,pid,rec)</code></large>
+</li><li> deletion ... <large><code>delete_record(rel,rid)</code></large>
+</li></ul>
+Ignore buffer pool <small>(i.e. use <large><code>get_page()</code></large> and <large><code>put_page()</code></large>)</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [34/54]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Formats</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For variable-length records, must use <font color="#0000BB">record directory</font>
+</p><ul>
+<li> <large><code>directory[i]</code></large> gives location within page of <i>i <sup>th</sup></i> record
+</li></ul>
+An important aspect of using record directory
+<small>
+<ul>
+<li> location of tuple within page can change, tuple index does not change
+</li></ul>
+</small>
+Issue with variable-length records
+<ul>
+<li> managing space withing the page <small>(esp. after deletions)</small>
+</li><li> recording used and unused regions of the page
+</li></ul>
+We refer to tuple index within directory as &nbsp; <large><code>TupleId tid</code></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [35/54]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Formats <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Possibilities for handling free-space within block:
+</p><ul>
+<li> compacted <small>(one region of free space)</small>
+</li><li> fragmented <small>(distributed free space)</small>
+</li></ul>
+In practice, a combination is useful:
+<ul>
+<li> normally fragmented <small>(cheap to maintain)</small>
+</li><li> compacted when needed <small>(e.g. record won't fit)</small>
+</li></ul>
+<br>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [36/54]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Formats <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Compacted</font> free space ... before inserting record 7
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/insert1b.png]" src="./lec04_files/insert1b.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [37/54]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Formats <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+After inserting record 7 <small>(80 bytes)</small> ...
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/insert1c.png]" src="./lec04_files/insert1c.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [38/54]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Formats <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Fragmented</font> free space ... before inserting record 7
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/insert2b.png]" src="./lec04_files/insert2b.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [39/54]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Formats <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+After inserting record 7 <small>(80 bytes)</small> ...
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/insert2c.png]" src="./lec04_files/insert2c.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [40/54]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Inserting Variable-length Records</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For both of the following page formats
+</p><ol>
+<li> variable-length records, with compacted free space
+</li><li> variable-length records, with fragmented free space
+</li></ol>
+implement the <large><code>insert()</code></large> function.
+<p>
+Use the above page format, but also assume:
+</p><ul>
+<li> page size is 1024 bytes 
+</li><li> tuples start on 4-byte boundaries
+</li><li> references into page are all 8-bits (1 byte) long
+</li><li> a function <large><code>recSize(rec)</code></large> gives size in bytes
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [41/54]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Storage Utilisation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How many records can fit in a page? <small>(denoted <i>c</i> = capacity)</small>
+</p><p>
+Depends on:
+</p><ul>
+<li> page size ... typical values: 1KB, 2KB, 4KB, 8KB
+</li><li> record size ... typical values: 64B, 200B, app-dependent
+</li><li> page header data ... typically: 4B - 32B
+</li><li> slot directory ... depends on how many records
+</li></ul>
+We typically consider <i>average</i> record size (<i>R</i>)
+<p>
+Given <i>c</i>, &nbsp; <i>HeaderSize + c*SlotSize + c*R &nbsp;≤&nbsp; PageSize</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [42/54]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Space Utilisation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following page/record information:
+</p><ul>
+<li> page size = 1KB = 1024 bytes = 2<sup>10</sup> bytes
+</li><li> records: <large><code>(w:int,x:varchar(20),y:char(10),z:int)</code></large>
+</li><li> records are all aligned on 4-byte boundaries
+</li><li> <large><code>x</code></large> field padded to ensure <large><code>z</code></large> starts on 4-byte boundary
+</li><li> each record has 4 field-offsets at start of record (each 1 byte)
+</li><li> <large><code>char(10)</code></large> field rounded up to 12-bytes to preserve alignment
+</li><li> maximum size of <large><code>x</code></large> values = 20 bytes; average size = 16 bytes
+</li><li> page has 32-bytes of header information, starting at byte 0
+</li><li> only insertions, no deletions or updates
+</li></ul>
+Calculate <i>c</i> = average number of records per page.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [43/54]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Overflows</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Sometimes, it may not be possible to insert a record into a page:
+</p><ol>
+<li> no free-space fragment large enough
+</li><li> overall free-space in page is not large enough
+</li><li> the record is larger than the page
+</li><li> no more free directory slots in page
+</li></ol>
+For case (1), can first try to compact free-space within the page.
+<p>
+If still insufficient space, we need an alternative solution ...
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [44/54]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Overflows <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+File organisation determines how cases (2)..(4) are handled.
+</p><p>
+If records may be inserted anywhere that there is free space
+</p><ul>
+<li> cases (2) and (4) can be handled by making a new page
+</li><li> case (3) requires either spanned records or "overflow file"
+</li></ul>
+If file organisation determines record placement (e.g. hashed file)
+<ul>
+<li> cases (2) and (4) require an "overflow page"
+</li><li> case (3) requires an "overflow file"
+</li></ul>
+<small>
+With overflow pages, <i>rid</i> structure may need modifying <i>(rel,page,ovfl,rec)</i>
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [45/54]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Overflows <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Overflow pages for full buckets in a hashed file:
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/ovflow-files.png]" src="./lec04_files/ovflow-files.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [46/54]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Overflows <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Overflow file for very large records and BLOBs:
+</p><p><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/ovflow-blobs.png]" src="./lec04_files/ovflow-blobs.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [47/54]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Page Representation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Functions: <large><font color="#008800"><b><code>src/backend/storage/page/*.c</code></b></font></large>
+</p><p>
+Definitions: <large><font color="#008800"><b><code>src/include/storage/bufpage.h</code></b></font></large>
+</p><p>
+Each page is 8KB <small>(default <large><code>BLCKSZ</code></large>)</small> and contains:
+</p><ul>
+<li> header (free space pointers, flags, xact data)
+</li><li> array of (offset,length) pairs for tuples in page
+</li><li> free space region (between array and tuple data)
+</li><li> actual tuples themselves <small>(inserted from end towards start)</small>
+</li><li> (optionally) region for special data <small>(e.g. index data)</small>
+</li></ul>
+Large data items are stored in separate (TOAST) files &nbsp; <small>(implicit)</small>
+<p>
+Also supports ~SQL-standard BLOBs &nbsp; <small>(explicit large data items)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [48/54]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Page Representation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL page layout:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/pg-page-struct.png]" src="./lec04_files/pg-page-struct.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [49/54]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Page Representation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Page-related data types:
+</p><p></p><pre><small>
+<span class="comment">// a Page is simply a pointer to start of buffer</span>
+typedef Pointer Page;
+
+<span class="comment">// indexes into the tuple directory</span>
+typedef uint16  LocationIndex;
+
+<span class="comment">// entries in tuple directory (line pointer array)</span>
+typedef struct ItemIdData
+{
+   unsigned   lp_off:15,  <span class="comment">// tuple offset from start of page</span>
+              lp_flags:2, <span class="comment">// unused,normal,redirect,dead</span>
+              lp_len:15;  <span class="comment">// length of tuple (bytes)</span>
+} ItemIdData;
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [50/54]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s52"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Page Representation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Page-related data types: <small>(cont)</small>
+</p><p></p><pre><small>
+typedef struct PageHeaderData  <span class="comment">(simplified)</span>
+{
+  <font color="#999999">...</font>                        <span class="comment">// transaction-related data</span>
+  uint16        pd_checksum; <span class="comment">// checksum</span>
+  uint16        pd_flags;    <span class="comment">// flag bits (e.g. free, full, ...</span>
+  LocationIndex pd_lower;    <span class="comment">// offset to start of free space</span>
+  LocationIndex pd_upper;    <span class="comment">// offset to end of free space</span>
+  LocationIndex pd_special;  <span class="comment">// offset to start of special space</span>
+  uint16        pd_pagesize_version;
+  ItemIdData    pd_linp[1];  <span class="comment">// beginning of line pointer array</span>
+} <font color="#008800">PageHeaderData</font>;
+
+typedef PageHeaderData *<font color="#008800">PageHeader</font>;
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [51/54]</div> <div class="slideCl1    " id="s52">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s51"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s53"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Page Representation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Operations on <large><code>Page</code></large>s:
+</p><p>
+<large><font color="#008800"><b><code>void PageInit(Page page, Size pageSize, ...)</code></b></font></large>
+</p><ul>
+<li> initialize a <large><code>Page</code></large> buffer to empty page
+</li><li> in particular, sets <large><code>pd_lower</code></large> and <large><code>pd_upper</code></large>
+</li></ul>
+<large><font color="#008800"><b><code>OffsetNumber PageAddItem(Page page, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Item item, Size size, ...)</code></b></font></large>
+<ul>
+<li> insert one tuple (or index entry) into a <large><code>Page</code></large>
+</li><li> fails if: not enough free space, too many tuples
+</li></ul>
+<large><font color="#008800"><b><code>void PageRepairFragmentation(Page page)</code></b></font></large>
+<ul>
+<li> compact tuple storage to give one large free space region
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [52/54]</div> <div class="slideCl1    " id="s53">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s52"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s54"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Page Representation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL has two kinds of pages:
+</p><ul>
+<li> <font color="#0000BB">heap pages</font> which contain tuples
+</li><li> <font color="#0000BB">index pages</font> which contain index entries
+</li></ul>
+Both kinds of page have the same page layout.
+<p>
+One important difference:
+</p><ul>
+<li> index entries tend be a smaller than tuples
+</li><li> can typically fit more index entries per page
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [53/54]</div> <div class="slideCl1    " id="s54">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s53"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/w02t/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ TOAST Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Each data file has a corresponding TOAST file <small>(if needed)</small>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/toast-file.png]" src="./lec04_files/toast-file.png">
+</div><p>
+
+Tuples in data pages contain <large><code>rid</code></large>s for long values
+</p><p>
+TOAST = The Oversized Attribute Storage Technique
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Thursday Lecture ♢ [54/54]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 22 Feb 2024</span>
+ <script src="./lec04_files/prism.js"></script>   
+ <script src="./lec04_files/sg.js"></script>   
+
+
+</p></body></html>

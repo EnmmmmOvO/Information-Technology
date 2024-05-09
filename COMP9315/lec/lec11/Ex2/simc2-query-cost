@@ -1,0 +1,42 @@
+Consider a SIMC-indexed database with the following properties
+* all pages are B = 8192 bytes
+* page descriptors have m = 4096 bits ( = 512 bytes)
+* total records r = 102,400,   records/page c = 100
+* false match probability p_F = 1/1000
+* answer set has 1000 tuples from 100 pages
+* 90% of false matches occur on data pages with true match
+* 10% of false matches are distributed 1 per page
+Calculate the total number of pages read in answering the query.
+
+
+Number of data pages:
+
+b = ceil(r/c) = ceil(102400/100) = 1024
+
+
+Number of pages of signature data:
+
+bytes/signature = 512
+
+signatures/page =
+c_D = floor(B/bytes(m)) = floor(8192/512) = 16
+
+total signature pages =
+b_D = ceil(b/c_D) = ceil(1024/16) = 64
+
+
+Number of data pages read:
+
+true match pages = b_q = 100
+
+false match pages =
+b_F = (b-b_q) * p_F = (1024 - 100) * 0.001 = (approx) 1
+
+
+Total pages read:
+
+#pages
+= signature pages + true match pages + false match pages
+= 64 + 100 + 1
+= 165
+

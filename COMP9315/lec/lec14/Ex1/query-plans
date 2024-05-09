@@ -1,0 +1,34 @@
+1. select max(birthday) from People
+
+sequential scan, with aggregate checking max
+
+
+2. select max(id) from People
+
+id is a pk => have Btree index
+backward scan index to find right-most key
+
+
+3. select family from People order by family
+
+sort, invoked by sequential scan of People
+
+
+
+4. select distinct p.id, p.name 
+   from   People p, Course_Enrolments e 
+   where  p.id=e.student and e.grade='FL'
+
+nested loop join
+  outer relation is Sel[e.grade='FL']
+  inner relation is People
+
+5. select * from EnrolmentCounts where code='COMP9315';
+
+Tmp1 = select code=COMP9315 from Subjects
+Tmp2 = Join Courses [c.subject=Tmp1.id] Tmp1
+Tmp3 = Join Tmp2 [Tmp2.semester=s.id] Semesters
+Tmp4 = Join Tmp3 [Tmp3.c.id = e.course] Enrolments
+Tmp5 = Sort Tmp4 by t.year,t.term
+Tmp6 = Group code,year,term Tmp5
+Res  = Aggregate e.student on Tmp6

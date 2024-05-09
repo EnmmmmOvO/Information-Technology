@@ -1,0 +1,875 @@
+
+<!-- saved from url=(0080)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 05 Thursday Lecture</title>
+<link href="./lec10_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec10_files/latest.js" async=""></script>
+<script src="./lec10_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec10_files/MathJax.js"></script>
+<link href="./lec10_files/css" rel="stylesheet">
+<link href="./lec10_files/prism.css" rel="stylesheet">
+<script src="./lec10_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 05 Thursday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s2">Debugging Assignment 1</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s6">Tree Indexes for N-d Selection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s7">Multi-dimensional Tree Indexes</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s9">Exercise: Query Types and Tuple Space</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s10">kd-Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s12">Searching in kd-Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s13">Exercise:  Searching in kd-Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s14">Quad Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s17">Searching in Quad-tree</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s18">Exercise: Searching in Quad-trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s19">R-Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s21">Insertion into R-tree</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s22">Query with R-trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s23">Exercise: Query with R-trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s24">Multi-d Trees in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s25">Costs of Search in Multi-d Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s26">Similarity Retrieval</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s27">Similarity Selection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s29">Example: Content-based Image Retrieval</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s31">Similarity-based Retrieval</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s37">Approaches to <i>k</i>NN Retrieval</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s39">Similarity Retrieval in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s41">Signature-based Selection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s42">Indexing with Signatures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s44">Signatures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s45">Generating Codewords</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [0/45]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><ul>
+<li> Assignment 1
+<ul>
+<li> due midnight Friday 15 March (TOMORROW!)
+</li><li> standard UNSW late penalties apply: 5%/day for 5 days
+</li><li> 3 weeks ago, I said "Don't leave it to the last minute"
+</li></ul>
+</li><li> Quiz 3
+<ul>
+<li> out Monday 18 March ... due Friday 22 March
+</li></ul>
+</li><li> Assignment 2
+<ul>
+<li> does not involve PostgreSQL
+</li><li> build a DBMS component <small>(indexing scheme)</small> in C
+</li><li> out Friday 22 March ... due Friday 12 April
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [1/45]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+The <large><code>lz4</code></large> bug ...
+</p><ul>
+<li> you mess up setting the length of a <large><code>PersonName</code></large> object
+</li><li> PostgreSQL sees it as a large object and wants to TOAST it
+</li><li> TOASTed objects are compressed using <large><code>lz4</code></large> compression
+</li></ul>
+The fix ...
+<ul>
+<li> set the size of <large><code>PersonName</code></large> objects using SET_VARSIZE()
+</li><li> make sure the size includes the VARHDRSZ + name length + 1
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [2/45]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><code>./run_test.py</code></large> is a convenience feature, but not essential
+</p><p>
+Also, ceases to be useful once the load average on vxdb &gt; 20
+</p><p>
+You can DIY and get more fine-grained feedback
+</p><p>
+Testing directories contain
+</p><ul>
+<li> <large><code>info.txt</code></large> ... description of what is being tested
+</li><li> <large><code>schema.sql</code></large> ... schema, including <large><code>PersonName</code></large>s
+</li><li> <large><code>dataX.sql</code></large> ... sets of tuples, with <large><code>PersonName</code></large>s
+</li><li> <large><code>queriesY.sql</code></large> ... set of tests in SQL
+</li><li> <large><code>expected-dataX-queriesY.log</code></large> ... expected output
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [3/45]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+To do some manual debugging ...
+</p><p></p><pre><span class="comment">... assume we have done env and p1 ...</span>
+$ cd /localstorage/$USER/testing
+$ make   <span class="comment">... fix errors in pname.c and pname.source</span>
+$ dropdb xyz
+$ createdb xyz
+$ psql xyz -f pname.sql  <span class="comment">... fix any errors in pname.source</span>
+$ cd tests/<i>some_test_directory</i>
+$ psql xyz -f schema.sql
+$ psql xyz -f data1.sql
+$ psql xyz -f queries1.sql
+$ <span class="comment">... compare output with expected-data1-queries1.log ...</span>
+</pre><p>
+If it crashes server, run individual queries from <large><code>queries1.sql</code></large>
+</p><p>
+Find which query causes first crash
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [4/45]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Having found the offending query, may indicate a specific function
+</p><p></p><pre>$ cd ../..
+$ <i>edit</i> pname.c  <span class="comment">... add some elog() statements</span>
+$ make
+<span class="comment">... may need to rebuild the xyz database ...</span>
+$ cd tests/<i>some_test_directory</i>
+$ psql xyz
+xyz=# <span class="comment">run the problem query ... examine elog output</span>
+xyz=#\q
+$ cd ../..
+$ <i>edit</i> pname.c  <span class="comment">... maybe remove elog() statements</span>
+<span class="comment">... repeat above steps until query runs successfully ...</span>
+$ <span class="comment">... compare output with expected-data1-queries1.log ...</span>
+</pre><p>
+Problem solved!
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [5/45]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Tree Indexes for N-d Selection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [6/45]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-dimensional Tree Indexes</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Over the last 20 years, from a range of problem areas
+</p><ul>
+<li> different multi-d tree index schemes have been proposed
+</li><li> varying primarily in how they partition tuple-space
+</li></ul>
+<p>
+Consider three popular schemes: &nbsp; kd-trees, Quad-trees, R-trees.
+</p><p>
+Example data for multi-d trees is based on the following relation:
+</p><p></p><pre>create table Rel (
+    X char(1) check (X between 'a' and 'z'),
+    Y integer check (Y between 0 and 9)
+);
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [7/45]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-dimensional Tree Indexes <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example tuples:
+</p><p></p><pre>Rel('a',1)  Rel('a',5)  Rel('b',2)  Rel('d',1)
+Rel('d',2)  Rel('d',4)  Rel('d',8)  Rel('g',3)
+Rel('j',7)  Rel('m',1)  Rel('r',5)  Rel('z',9)
+</pre><p>
+The tuple-space for the above tuples:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/2d-space.png]" src="./lec10_files/2d-space.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [8/45]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Query Types and Tuple Space</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Which part of the tuple-space does each query represent?
+</p><p></p><pre><small>
+Q1: select * from Rel where X = 'd' and Y = 4
+Q2: select * from Rel where 'j' &lt; X ≤ 'r'
+Q3: select * from Rel where X &gt; 'm' and Y &gt; 4
+Q4: select * from Rel where 'k' ≤ X ≤ 'p' and 3 ≤ Y ≤ 6
+</small></pre><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/2d-space.png]" src="./lec10_files/2d-space.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [9/45]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ kd-Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">kd-trees</font> are multi-way search trees where
+</p><ul>
+<li> each level of the tree partitions on a different attribute
+</li><li> each node contains <i>n-1</i> key values, pointers to <i>n</i> subtrees
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/select/kd-tree.png]" src="./lec10_files/kd-tree.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [10/45]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ kd-Trees <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+How this tree partitions the tuple space:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/kd-tree-space.png]" src="./lec10_files/kd-tree-space.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [11/45]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Searching in kd-Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre><span class="comment">// Started by Search(Q, R, 0, kdTreeRoot)</span>
+Search(Query Q, Relation R, Level L, Node N)
+{
+   if (isDataPage(N)) {
+      Buf = getPage(fileOf(R),idOf(N))
+      check Buf for matching tuples
+   } else {
+      a = attrLev[L]
+      if (!hasValue(Q,a))
+         nextNodes = all children of N
+      else {
+         val = getAttr(Q,a)
+         nextNodes = find(N,Q,a,val)
+      }
+      for each C in nextNodes
+         Search(Q, R, L+1, C)
+}  }
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [12/45]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise:  Searching in kd-Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Using the following kd-tree index
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/kd-tree.png]" src="./lec10_files/kd-tree.png">
+</div><p>
+Answer the queries &nbsp; <large><code>(m,1)</code></large>, &nbsp; <large><code>(a,?)</code></large>, &nbsp; <large><code>(?,1)</code></large>, &nbsp; <large><code>(?,?)</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [13/45]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Quad Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Quad trees</font> use regular, disjoint partitioning of tuple space.
+</p><ul>
+<li> for <i>2d</i>, partition space into quadrants (NW, NE, SW, SE)
+</li><li> each quadrant can be further subdivided into four, etc.
+</li></ul>
+Example:
+<p></p><div align="center">
+<img alt="[Diagram:Pics/select/quad-tree-space.png]" src="./lec10_files/quad-tree-space.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [14/45]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Quad Trees <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Basis for the partitioning:
+</p><ul>
+<li> a quadrant that has no sub-partitions is a <font color="#0000BB">leaf quadrant</font>
+</li><li> each leaf quadrant maps to a single data page
+</li><li> subdivide until points in each quadrant fit into one data page
+</li><li> ideal: same number of points in each leaf quadrant (balanced)
+</li><li> point density varies over space <br>
+	<i>⇒</i> different regions require different levels of partitioning
+</li><li> this means that the tree is not necessarily balanced
+</li></ul>
+Note: effective for <i>d≤5</i>, ok for <i>6≤d≤10</i>, ineffective for <i>d&gt;10</i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [15/45]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Quad Trees <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The previous partitioning gives this tree structure, e.g.
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/quad-tree1.png]" src="./lec10_files/quad-tree1.png">
+</div><p>
+<small>
+In this and following examples, we give coords of top-left,bottom-right of a region
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [16/45]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Searching in Quad-tree</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<i>Space</i> query example:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/quad-query.png]" src="./lec10_files/quad-query.png">
+</div><p>
+Need to traverse: red(NW), green(NW,NE,SW,SE), blue(NE,SE).
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [17/45]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Searching in Quad-trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Using the following quad-tree index
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/quad-tree-space.png]" src="./lec10_files/quad-tree-space.png">
+</div><p>
+Answer the queries &nbsp; <large><code>(m,1)</code></large>, &nbsp; <large><code>(a,?)</code></large>, &nbsp; <large><code>(?,1)</code></large>, &nbsp; <large><code>(?,?)</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [18/45]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ R-Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+R-trees use a flexible, overlapping partitioning of tuple space.
+</p><ul>
+<li> each node in the tree represents a <i>k</i>d hypercube
+</li><li> its children represent (possibly overlapping) subregions 
+</li><li> the child regions do not need to cover the entire parent region
+</li></ul>
+Overlap and partial cover means:
+<ul>
+<li> can optimize space partitioning wrt data distribution
+</li><li> so that there are similar numbers of points in each region
+</li></ul>
+Aim: height-balanced, partly-full index pages &nbsp; <small>(cf. B-tree)</small> 
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [19/45]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ R-Trees <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/r-tree.png]" src="./lec10_files/r-tree.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [20/45]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion into R-tree</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Insertion of an object <i>R</i> occurs as follows:
+</p><ul>
+<li> start at root, look for children that completely contain <i>R</i>
+</li><li> if no child completely contains <i>R</i>,
+	<font color="#0000BB">choose one</font> of the children
+	and expand its boundaries so that it does contain <i>R</i>
+</li><li> if several children contain <i>R</i>, <font color="#0000BB">choose one</font> and proceed to child
+</li><li> repeat above containment search in children of current node
+</li><li> once we reach data page, insert <i>R</i> if there is room
+</li><li> if no room in data page, replace by two data pages
+</li><li> <font color="#0000BB">partition</font> existing objects between two data pages
+</li><li> update node pointing to data pages <br>
+	<small>(may cause B-tree-like propagation of node changes up into tree)</small>
+</li></ul>
+Note that <i>R</i> may be a point or a polygon.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [21/45]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query with R-trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Designed to handle <i>space</i> queries and "where-am-I" queries.
+</p><p>
+"Where-am-I" query: find all regions containing a given point <i>P</i>:
+</p><ul>
+<li> start at root, select all children whose subregions contain <i>P</i>
+</li><li> if there are zero such regions, search finishes with <i>P</i> not found
+</li><li> otherwise, recursively search within node for each subregion
+</li><li> once we reach a leaf, we know that region contains <i>P</i>
+</li></ul>
+<i>Space</i> (region) queries are handled in a similar way
+<ul>
+<li> we traverse down any path that intersects the query region
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [22/45]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Query with R-trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Using the following R-tree:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/r-treeA.png]" src="./lec10_files/r-treeA.png">
+</div><p>
+Show how the following queries would be answered:
+</p><p></p><pre><small>
+Q1: select * from Rel where X='a' and Y=4
+Q2: select * from Rel where X='i' and Y=6
+Q3: select * from Rel where 'c'≤X≤'j' and Y=5
+Q4: select * from Rel where X='c'
+</small></pre><p>
+Note: can view unknown value <large><code>X=?</code></large> as range <i>min(</i><large><code>X</code></large><i>) ≤</i> <large><code>X</code></large> <i>≤ max(</i><large><code>X</code></large><i>)</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [23/45]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-d Trees in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Up to version 8.2, PostgreSQL had R-tree implementation
+</p><p>
+Superseded by <font color="#0000BB">GiST</font> = Generalized Search Trees 
+</p><p>
+GiST indexes parameterise: data type, searching, splitting
+</p><ul>
+<li> via seven user-defined functions (e.g. <large><code>picksplit()</code></large>)
+</li></ul>
+GiST trees have the following structural constraints:
+<ul>
+<li> every node is at least fraction <i>f</i> &nbsp;full (e.g. 0.5)
+</li><li> the root node has at least two children <small>(unless also a leaf)</small>
+</li><li> all leaves appear at the same level
+</li></ul>
+Details: <font color="#000099">src/backend/access/gist</font>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [24/45]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Costs of Search in Multi-d Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Difficult to determine cost precisely.
+</p><p>
+Best case: <i>pmr</i> query where all attributes have known values
+</p><ul>
+<li> in kd-trees and quad-trees, follow single tree path
+</li><li> cost is equal to depth <i>D</i> of tree
+</li><li> in R-trees, may follow several paths <small>(overlapping partitions)</small>
+</li></ul>
+Typical case: some attributes are unknown or defined by range
+<ul>
+<li> need to visit multiple sub-trees
+</li><li> how many depends on: range, choice-points in tree nodes
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [25/45]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity Retrieval</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [26/45]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity Selection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Relational selection</font> is based on a boolean condition <i>C</i>
+</p><ul>
+<li> evaluate <i>C</i> for each tuple <i>t</i>
+</li><li> if <i>C(t)</i> is true, add <i>t</i> to result set
+</li><li> if <i>C(t)</i> is false, <i>t</i> is not part of solution
+</li><li> result is a set of tuples <i>{ t<sub>1</sub>, t<sub>2</sub>, ..., t<sub>n</sub> }</i> all of which satisfy <i>C</i>
+</li></ul>
+Uses for relational selection:
+<ul>
+<li> precise matching on structured data
+</li><li> using individual attributes with known, exact values
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [27/45]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity Selection <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Similarity selection</font> is used in contexts where
+</p><ul>
+<li> cannot define a precise matching condition
+</li><li> <i>can</i> define a measure <i>d</i> &nbsp;of "distance" between tuples
+</li><li> <i>d=0</i> &nbsp;is an exact match, <i>d&gt;0</i> is less accurate match
+</li><li> result is a list of pairs <i>[ (t<sub>1</sub>,d<sub>1</sub>), (t<sub>2</sub>,d<sub>2</sub>), ..., (t<sub>n</sub>,d<sub>n</sub>) ]</i> &nbsp; <small>(ordered by <i>d<sub>i</sub></i>)</small>
+</li></ul>
+Uses for similarity matching:
+<ul>
+<li> text or multimedia (image/music) retrieval
+</li><li> ranked queries in conventional databases
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [28/45]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example: Content-based Image Retrieval</div></td><td align="right"></td></tr></tbody></table>
+<p>
+User supplies a description or sample of desired image.
+</p><p>
+System returns a ranked list of "matching" images from database.
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/cbir-sys.png]" src="./lec10_files/cbir-sys.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [29/45]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example: Content-based Image Retrieval <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+At the SQL level, this might appear as ...
+</p><p></p><pre><span class="comment">// relational matching</span>
+create view <font color="#996600">Sunset</font> as
+select image from MyPhotos
+where  title = 'Pittwater Sunset'
+       and taken = '2012-01-01';
+<span class="comment">// similarity matching with threshold</span>
+create view <font color="#996600">SimilarSunsets</font> as
+select title, image
+from   MyPhotos
+where  (image <b><font color="#0000EE">~~</font></b> (select * from Sunset)) &lt; 0.05
+order  by (image <b><font color="#0000EE">~~</font></b> (select * from Sunset));
+</pre><p>
+where <tiny>(imaginary)</tiny> <font color="#0000EE"><large><code>~~</code></large></font> operator measures how "alike" images are
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [30/45]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity-based Retrieval</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Database contains media objects, but also tuples, e.g.
+</p><ul>
+<li> <large><code>id</code></large> to uniquely identify object &nbsp; (e.g. PostgreSQL <large><code>oid</code></large>)
+</li><li> metadata &nbsp; (e.g. artist, title, genre, date taken, ...)
+</li><li> <large><code>val</code></large>ue of object itself &nbsp; (e.g. PostgreSQL BLOB or <large><code>bytea</code></large>)
+</li></ul>
+<p><br>
+BLOB = Binary Large OBject
+</p><ul>
+<li> BLOB stored in separate file; tuple contains reference <tiny>(cf. TOAST)</tiny>
+</li><li> BLOBs are typically MB in size (1MB..2GB)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [31/45]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity-based Retrieval <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Similarity-based retrieval requires a <font color="#0000BB">distance</font> measure
+</p><ul>
+<li> <i>dist(x,y) ∈ 0..1</i>, &nbsp;&nbsp;&nbsp; <i>dist(x,x) = 0</i>, &nbsp;&nbsp;&nbsp; <item> <i>dist(x,y) = dist(y,x)</i>
+</item></li></ul>
+where <i>x</i> and <i>y</i> are two objects (in the database)
+<p>
+<tiny>Note: distance calculation often requires substantial computational effort</tiny>
+</p><p><br>
+How to restrict solution set to only the "most similar" objects:
+</p><ul>
+<li> <font color="#0000BB">threshold</font> <i>d<sub>max</sub></i>
+	&nbsp; (only objects <i>t</i> such that <i>dist(t,q) ≤ d<sub>max</sub></i>)
+</li><li> <font color="#0000BB">count</font> <i>k</i>
+	&nbsp; (<i>k</i> closest objects (<i>k</i> nearest neighbours))
+</li></ul>
+<tiny>BUT both above methods require knowing distance between query object and all objects in DB</tiny>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [32/45]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity-based Retrieval <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Naive approach to similarity-based retrieval
+</p><p></p><pre>q = ...    <span class="comment">// query object</span>
+dmax = ... <span class="comment">// dmax &gt; 0  =&gt;  using threshold</span>
+knn = ...  <span class="comment">// knn &gt; 0   =&gt;  using nearest-neighbours</span>
+Dists = [] <span class="comment">// empty list</span>
+foreach tuple t in R {
+    d = dist(t.val, q)
+    insert (t.oid,d) into Dists  <span class="comment">// sorted on d</span>
+}
+n = 0;  Results = []
+foreach (i,d) in Dists {
+    if (dmax &gt; 0 &amp;&amp; d &gt; dmax) break;
+    if (knn &gt; 0 &amp;&amp; ++n &gt; knn) break;
+    insert (i,d) into Results  <span class="comment">// sorted on d</span>
+}
+return Results;
+</pre><p>
+Cost &nbsp;=&nbsp; fetch all <i>r</i> objects &nbsp;+&nbsp; compute <i>distance()</i> &nbsp;for each
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [33/45]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity-based Retrieval <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For some applications, <i>Cost(dist(x,y))</i> is comparable to <i>T<sub>r</sub></i>
+</p><p>
+<i>⇒</i> &nbsp; computing <large><code>dist(t.val,q)</code></large> for every tuple <large><code>t</code></large> is infeasible.
+</p><p>
+To improve this ...
+</p><ul>
+<li> compute <font color="#0000BB">feature vector</font> to capture "critical" object properties
+</li><li> store feature vectors "in parallel" with objects &nbsp; <small>(cf. signatures)</small>
+</li><li> compute distance using feature vectors &nbsp; <small>(not objects)</small>
+</li></ul>
+i.e. replace <i>dist(t,q)</i> by <i>dist'(vec(t),vec(q))</i> in previous algorithm.
+<p>
+Further optimisation: dimension-reduction to make vectors smaller
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [34/45]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity-based Retrieval <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Feature vectors ...
+</p><ul>
+<li> often use multiple features, concatenated into single vector
+</li><li> represent points in a <i>very</i> &nbsp;high-dimensional (vh-dim) space
+</li></ul>
+Content of feature vectors depends on application ...
+<ul>
+<li> image ... colour histogram <small>(e.g. 100's of values/dimensions)</small>
+</li><li> music ... loudness/pitch/tone <small>(e.g. 100's of values/dimensions)</small>
+</li><li> text ... term frequencies <small>(e.g. 1000's of values/dimensions)</small>
+</li></ul>
+Query: feature vector representing one point in vh-dim space
+<p>
+Answer: list of objects "near to" query object in this space
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [35/45]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity-based Retrieval <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<b>Inputs</b> to content-based similarity-retrieval:
+</p><ul>
+<li> a database of <i>r</i> objects
+&nbsp; (<i>obj<sub>1</sub>,&nbsp;obj<sub>2</sub>,&nbsp;...,&nbsp;obj<sub>r</sub></i>)
+&nbsp; plus associated ...
+</li><li> <i>r × n</i>-dimensional feature vectors
+&nbsp; (<i>v<sub>obj<sub>1</sub></sub>,&nbsp;v<sub>obj<sub>2</sub></sub>,&nbsp;...,&nbsp;v<sub>obj<sub>r</sub></sub></i>)
+</li><li> a query image <i>q</i> with associated <i>n</i>-dimensional vector (<i>v<sub>q</sub></i>)
+</li><li> a distance measure &nbsp; <i>D(v<sub>i</sub>,v<sub>j</sub>) : [0..1)</i>
+	&nbsp;&nbsp; (<i>D=0 → v<sub>i</sub>=v<sub>j</sub></i>)
+</li></ul>
+<b>Outputs</b> from content-based similarity-retrieval:
+<ul>
+<li> a list of the <i>k</i> nearest objects in the database 
+&nbsp; [<i>a<sub>1</sub>, &nbsp; a<sub>2</sub>, &nbsp; ... &nbsp; a<sub>k</sub></i>]
+</li><li> ordered by distance
+&nbsp; <i> D(v<sub>a<sub>1</sub></sub>,v<sub>q</sub>) &nbsp;≤&nbsp;
+	D(v<sub>a<sub>2</sub></sub>,v<sub>q</sub>) &nbsp;≤&nbsp; ... &nbsp;≤&nbsp;
+	D(v<sub>a<sub>k</sub></sub>,v<sub>q</sub>) </i>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [36/45]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Approaches to <i>k</i>NN Retrieval</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Partition-based
+</p><ul>
+<li> use auxiliary data structure to identify candidates
+</li><li> space/data-partitioning methods: e.g. k-d-B-tree, R-tree, ...
+</li><li> unfortunately, such methods "fail" when #dims <i>&gt;</i> 10..20
+</li><li> absolute upper bound on <i>d</i> before linear scan is best <i>d = 610</i>
+</li></ul>
+Approximation-based
+<ul>
+<li> use approximating data structure to identify candidates
+</li><li> signatures: VA-files 
+</li><li> projections: iDistance, LSH, MedRank, CurveIX, Pyramid
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [37/45]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Approaches to <i>k</i>NN Retrieval <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Above approaches try to reduce number of objects considered.
+</p><ul>
+<li> cf. indexes in relational databases
+</li></ul>
+Other optimisations to make <i>k</i>NN retrieval faster
+<ul>
+<li> reduce I/O by reducing size of vectors &nbsp; <small>(compression, <i>d</i>-reduction)</small>
+</li><li> reduce I/O by placing "similar" records together &nbsp; (clustering)
+</li><li> reduce I/O by remembering previous pages &nbsp; (caching)
+</li><li> reduce cpu by making distance computation faster
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [38/45]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity Retrieval in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL has always supported simple "similarity" on strings
+</p><p></p><pre><span class="comment">-- for most SQL implementations</span>
+select * from Students where name <font color="#008800">like</font> '%oo%';
+<span class="comment">-- and PostgreSQL-specific</span>
+select * from Students where name <font color="#008800">~</font> '[Ss]mit';
+</pre><p>
+<br>
+Also provides support for ranked similarity on <large><code>text</code></large> values
+</p><ul>
+<li> using <large><font color="#008800"><b><code>tsvector</code></b></font></large> data type &nbsp;<tiny>(stemmed, stopped feature vector for <large><code>text</code></large>)
+</tiny></li><li> using <large><font color="#008800"><b><code>tsquery</code></b></font></large> data type &nbsp;<tiny>(stemmed, stopped feature vector for strings)
+</tiny></li><li> using <large><font color="#008800"><b><code>@@</code></b></font></large> similarity operator
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [39/45]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Similarity Retrieval in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example of PostgreSQL text retrieval:
+</p><p></p><pre>create table Docs
+   ( id integer, title text, body text );
+<span class="comment">// add column to hold document feature vectors</span>
+alter table Docs add column features <font color="#996600">tsvector</font>;
+update Docs set features =
+   <font color="#996600">to_tsvector</font>('english', title||' '||body);
+<span class="comment">// ask query and get results in ranked order</span>
+select title, <font color="#996600">ts_rank</font>(d.features, query) as rank
+from   Docs d,
+       <font color="#996600">to_tsquery</font>('potter|(roger&amp;rabbit)') as query
+where  query <font color="#996600">@@</font> d.features
+order  by rank desc
+limit  10;
+</pre><p>
+For more details, see PostgreSQL documentation, Chapter 12.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [40/45]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Signature-based Selection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [41/45]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Indexing with Signatures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Signature-based indexing:
+</p><ul>
+<li> designed for <i>pmr</i> queries &nbsp; <small>(conjunction of equalities)</small>
+</li><li> does not try to achieve better than <i>O(n)</i> performance
+</li><li> attempts to provide an "efficient" linear scan
+</li></ul>
+<p>
+Each tuple is associated with a <font color="#0000BB">signature</font>
+</p><ul>
+<li> a compact (lossy) descriptor for the tuple
+</li><li> formed by combining information from multiple attributes
+</li><li> stored in a signature file, parallel to data file
+</li></ul>
+Instead of scanning/testing tuples, do pre-filtering via signatures.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [42/45]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Indexing with Signatures <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+File organisation for signature indexing (two files)
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/sigfile1.png]" src="./lec10_files/sigfile1.png">
+</div><p>
+<small>
+One signature slot per tuple slot; unused signature slots are zeroed.
+</small></p><p><small>
+Signatures do not determine record placement <tiny>⇒ can use with other indexing.</tiny>
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [43/45]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Signatures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A <font color="#0000BB">signature</font> "summarises" the data in one tuple
+</p><p>
+A tuple consists of <i>N</i> attribute values <i>A<sub>1</sub> .. A<sub>n</sub></i>
+</p><p>
+A <font color="#0000BB">codeword</font> <i>cw(A<sub>i</sub>)</i> is
+</p><ul>
+<li> a bit-string, <i>m</i> bits long, where <i>k</i> bits are set to 1 &nbsp;<small>(<i>k ≪ m</i>)</small>
+</li><li> derived from the value of a single attribute  <i>A<sub>i</sub></i>
+</li></ul>
+A <font color="#0000BB">tuple descriptor</font> (signature) is built by combining <i>cw(A<sub>i</sub>), i=1..n</i>
+<ul>
+<li> could combine by <i>overlaying</i> (or <i>concatenating</i>) codewords
+</li><li> aim to have roughly half of the bits set to 1
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [44/45]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week05-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Generating Codewords</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Generating a <i>k-in-m</i> codeword for attribute <i>A<sub>i</sub></i>
+</p><p></p><pre>bits codeword(char *attr_value, int m, int k)
+{
+   int  nbits = 0;   <span class="comment">// count of set bits</span>
+   bits cword = 0;   <span class="comment">// assuming m &lt;= 32 bits</span>
+   srandom(hash(attr_value));
+   while (nbits &lt; k) {
+      int i = random() % m;
+      if (((1 &lt;&lt; i) &amp; cword) == 0) {
+         cword |= (1 &lt;&lt; i);
+         nbits++;
+      }
+   }
+   return cword;  <span class="comment">// m-bits with k 1-bits and m-k 0-bits</span>
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 5 Thursday Lecture ♢ [45/45]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 14 Mar 2024</span>
+ <script src="./lec10_files/prism.js"></script>   
+ <script src="./lec10_files/sg.js"></script>   
+
+
+</p></body></html>

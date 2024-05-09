@@ -1,0 +1,1090 @@
+
+<!-- saved from url=(0080)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 04 Thursday Lecture</title>
+<link href="./lec08_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec08_files/latest.js" async=""></script>
+<script src="./lec08_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec08_files/MathJax.js"></script>
+<link href="./lec08_files/css" rel="stylesheet">
+<link href="./lec08_files/prism.css" rel="stylesheet">
+<script src="./lec08_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 04 Thursday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s2">Debugging Assignment 1</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s8">Linear Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s9">Selection with Lin.Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s11">File Expansion with Lin.Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s12">Insertion with Lin.Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s13">Splitting</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s15">Exercise: Insertion into Linear Hashed File</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s17">Insertion Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s18">Deletion with Lin.Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s19">Hash Files in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s22">Indexing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s23">Indexing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s24">Indexes</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s26">Dense Primary Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s27">Sparse Primary Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s28">Exercise: Index Storage Overheads</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s29">Selection with Primary Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s32">Insertion with Primary Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s33">Deletion with Primary Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s34">Clustering Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s35">Secondary Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s36">Multi-level Indexes</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s38">Select with Multi-level Index</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s39">B-Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s41">B-Tree Depth</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s42">Insertion into B-Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s43">Example: B-tree Insertion</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s46">B-Tree Insertion Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s48">Selection with B-Trees</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s50">B-trees in PostgreSQL</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [0/51]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><ul>
+<li> Quiz 2
+<ul>
+<li> due midnight Friday 8 March ... 190/534 submissions so far
+</li></ul>
+</li><li> Assignment 1
+<ul>
+<li> due midnight Friday 15 March ... 33?/534 submissions so far
+</li><li> Help Session ... Friday 8 March ... 2.30 - 4.30 ... K17-410
+</li></ul>
+</li><li> Census
+<ul>
+<li> drop course before Sunday if you don't want to pay
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [1/51]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Don't rely just on running <large><code>./run_test.py</code></large>
+</p><p>
+Run some tests "manually"
+</p><p></p><pre style="font-size:90%"><span class="comment">... run your PostgreSQL server ...</span>
+$ cd /localstorage/$USER/testing
+$ createdb xyz
+$ psql xyz -f pname.sql   <span class="comment"># load the data type</span>
+$ psql xyz <font color="#CC0000">-e</font> -f tests/0_sanity-checks/queries1.sql
+$ psql xyz <font color="#CC0000">-e</font> -f tests/0_sanity-checks/queries2.sql
+$ psql xyz <font color="#CC0000">-e</font> -f tests/0_sanity-checks/queries3.sql
+$ psql xyz <font color="#CC0000">-e</font> -f tests/0_sanity-checks/queries4.sql
+$ psql xyz <font color="#CC0000">-e</font> -f tests/0_sanity-checks/queries5.sql
+</pre><p>
+Note: <large><code>-e</code></large> displays the SQL statements being executed
+</p><p>
+If this is not fine-grained enough, run the individual queries.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [2/51]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tests in <large><code>0_sanity_checks</code></large> don't write any data to disk.
+</p><p>
+Later tests attempt to store and retrieve <large><code>PersonName</code></large> data, e.g.
+</p><p></p><pre style="font-size:90%"><span class="comment">... ensure your PostgreSQL server is running ...</span>
+$ cd /localstorage/$USER/testing
+$ dropdb xyz
+$ createdb xyz
+$ psql xyz -f pname.sql   <span class="comment"># load the data type</span>
+$ cd tests/1_users
+$ psql xyz -f schema.sql
+$ psql xyz -f data1.sql
+$ psql xyz <font color="#CC0000">-e</font> xyz -f queries1.sql
+$ psql xyz <font color="#CC0000">-e</font> xyz -f queries2.sql
+$ psql xyz
+...
+xyz=# <b>select count(*) from Users;</b>
+ count 
+-------
+    20
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [3/51]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Any implementation of <large><code>PersonName</code></large> that looks like:
+</p><p></p><pre>typedef struct PersonName {
+   char <font color="#CC0000">*</font>family;
+   char <font color="#CC0000">*</font>given;
+} PersonName;
+</pre><p>
+is incorrect ... it produces the following:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/assignments/pname2.png]" src="./lec08_files/pname2.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [4/51]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+This implementation of <large><code>PersonName</code></large> is slightly better:
+</p><p></p><pre>typedef struct PersonName {
+   char family[128];
+   char given[128];
+} PersonName;
+</pre><p>
+It keeps all of the data within the <large><code>PersonName</code></large> object, BUT
+</p><ul>
+<li> most names aren't nearly this big ⇒ wasted space
+</li><li> some names may be larger than this ⇒ truncated?
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [5/51]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Correct implementation of <large><code>PersonName</code></large> requires:
+</p><ul>
+<li> a flexible-sized array that is part of the struct
+</li><li> an number to record how long is the array
+</li></ul>
+From chapter 38 in the PostgreSQL documentation:
+<p>
+<span style="font-size:16pt">
+If the internal representation of the data type is variable-length,
+the internal representation must follow the standard layout for
+variable-length data: the first four bytes must be a <code>char[4]</code>
+field which is never accessed directly (customarily named <code>vl_len_</code>).
+You must use the SET_VARSIZE() macro to store the total size of the
+datum (including the length field itself) in this field and VARSIZE()
+to retrieve it. (These macros exist because the length field may be
+encoded differently depending on platform.)
+</span>
+</p><p>
+There are examples in <large><code>postgresql-15.6/contrib</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [6/51]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Debugging outside PostgreSQL:
+</p><ul>
+<li> write a new C program containing versions of
+<ul>
+<li> <large><code>typedef struct PersonName {...}</code></large>
+</li><li> <large><code>PersonName *pname_in(char *name)</code></large>
+</li><li> <large><code>char *pname_out(PersonName *pname)</code></large>
+</li><li> <large><code>family()</code></large>, <large><code>given()</code></large>, <large><code>show()</code></large> functions
+</li><li> comparison operators
+</li></ul>
+</li><li> main program reads lines containing names
+</li><li> stores in array of <large><code>PersonName *</code></large>
+</li><li> displays, shows, compares <large><code>PersonName</code></large> values
+</li></ul>
+Will require re-writing function interfaces to fit into PostgreSQL.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [7/51]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Linear Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [8/51]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Lin.Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+If <i>b != 2<sup>d</sup></i>, treat different parts of the file differently.
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/linhash2.png]" src="./lec08_files/linhash2.png">
+</div><p>
+Parts <i>A</i> and <i>C</i> are treated as if part of a
+file of size <i>2<sup>d+1</sup></i>.
+</p><p>
+Part <i>B</i> is treated as if part of a file of size <i>2<sup>d</sup></i>.
+</p><p>
+Part <i>D</i> does not yet exist <small>(tuples in <i>B</i> may move into it)</small>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [9/51]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Lin.Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Modified search algorithm:
+</p><p></p><pre><span class="comment">// select * from R where k = val</span>
+h = hash(val);
+pid = bits(d,h);
+<font color="#008800">if (P &lt; sp) { pid = bits(d+1,h); }</font>
+P = getPage(f, pid)
+for each tuple t in page P
+         and its overflow blocks {
+    if (t.k == val) return R;
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [10/51]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Expansion with Lin.Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/linhash3.png]" src="./lec08_files/linhash3.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [11/51]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion with Lin.Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Abstract view:
+</p><p></p><pre style="font-size:90%">pid = bits(d,hash(val));
+if (pid &lt; sp) pid = bits(d+1,hash(val));
+<span class="comment">// bucket[pid] = page pid + its overflow pages</span>
+for each page P in bucket[pid] {
+    if (space in P) {
+        insert tuple into P
+        break
+    }
+}
+if (no insertion) {
+    add new ovflow page to bucket[pid]
+    insert tuple into new page
+}
+if (<font color="#008800">need to split</font>) {
+    partition tuples from bucket[sp]
+          into bucket[sp] and bucket[sp+2^d]
+    sp++;
+    if (sp == 2^d) { d++; sp = 0; }
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [12/51]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Splitting</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How to decide that we "need to split"?
+</p><p>
+Two approaches to triggering a split:
+</p><ul>
+<li> split every time a tuple is inserted into full block
+</li><li> split when load factor reaches threshold (every <i>k</i> inserts)
+</li></ul>
+<p>
+Note: always split block <i>sp</i>, even if not full/"current"
+</p><p>
+Systematic splitting like this ...
+</p><ul>
+<li> eventually reduces length of every overflow chain
+</li><li> helps to maintain short average overflow chain length
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [13/51]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Splitting <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Splitting process for block <i>sp</i>=<large><code>01</code></large>:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/linhash4.png]" src="./lec08_files/linhash4.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [14/51]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Insertion into Linear Hashed File</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a file with <i>b=4</i>, <i>c=3</i>, <i>d=2</i>, <i>sp=0</i>, <i>hash(x)</i> as above
+</p><p>
+Insert tuples in alpha order with the following keys and hashes:
+</p><div class="center">
+<table border="1" cellpadding="4" cellspacing="0">
+<tbody><tr>
+ <td><i>k</i></td><td><i>hash(k)</i></td>
+ <td>&nbsp;&nbsp;</td>
+ <td><i>k</i></td><td><i>hash(k)</i></td>
+ <td>&nbsp;&nbsp;</td>
+ <td><i>k</i></td><td><i>hash(k)</i></td>
+ <td>&nbsp;&nbsp;</td>
+ <td><i>k</i></td><td><i>hash(k)</i></td>
+</tr>
+<tr>
+ <td><large><code>a</code></large></td><td><large><code>10001</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>g</code></large></td><td><large><code>00000</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>m</code></large></td><td><large><code>11001</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>s</code></large></td><td><large><code>01110</code></large></td>
+</tr>
+<tr>
+ <td><large><code>b</code></large></td><td><large><code>11010</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>h</code></large></td><td><large><code>00000</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>n</code></large></td><td><large><code>01000</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>t</code></large></td><td><large><code>10011</code></large></td>
+</tr>
+<tr>
+ <td><large><code>c</code></large></td><td><large><code>01111</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>i</code></large></td><td><large><code>10010</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>o</code></large></td><td><large><code>00110</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>u</code></large></td><td><large><code>00010</code></large></td>
+</tr>
+<tr>
+ <td><large><code>d</code></large></td><td><large><code>01111</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>j</code></large></td><td><large><code>10110</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>p</code></large></td><td><large><code>11101</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>v</code></large></td><td><large><code>11111</code></large></td>
+</tr>
+<tr>
+ <td><large><code>e</code></large></td><td><large><code>01100</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>k</code></large></td><td><large><code>00101</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>q</code></large></td><td><large><code>00010</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>w</code></large></td><td><large><code>10000</code></large></td>
+</tr>
+<tr>
+ <td><large><code>f</code></large></td><td><large><code>00010</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>l</code></large></td><td><large><code>00101</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>r</code></large></td><td><large><code>00000</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>x</code></large></td><td><large><code>00111</code></large></td>
+</tr>
+</tbody></table>
+</div>
+<p>
+The hash values are the 5 lower-order bits from the full 32-bit hash.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [15/51]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Insertion into Linear Hashed File <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Splitting algorithm:
+</p><p></p><pre><small>
+<span class="comment">// partition tuples between two buckets</span>
+newp = sp + 2^d; oldp = sp;
+for all tuples t in bucket[oldp] {
+    pid = bits(d+1,hash(t.k));
+    if (pid == newp) 
+        add tuple t to bucket[newp]
+    else
+        add tuple t to bucket[oldp]
+}
+sp++;
+if (sp == 2^d) { d++; sp = 0; }
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [16/51]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+If no split required, cost same as for standard hashing:
+</p><p>
+<small>
+<i>Cost<sub>insert</sub></i>:
+&nbsp;&nbsp; Best: <i>1<sub>r</sub> + 1<sub>w</sub></i>,
+&nbsp;&nbsp; Avg: <i>(1+Ov)<sub>r</sub> + 1<sub>w</sub></i>,
+&nbsp;&nbsp; Worst: <i>(1+max(Ov))<sub>r</sub> + 2<sub>w</sub></i>
+</small>
+</p><p>
+If split occurs, incur <i>Cost<sub>insert</sub></i> &nbsp;plus cost of splitting:
+</p><ul>
+<li> read block <i>sp</i> &nbsp; <small>(plus all of its overflow blocks)</small>
+</li><li> write block <i>sp</i> &nbsp; <small>(and its new overflow blocks)</small>
+</li><li> write block <i>sp+2<sup>d</sup></i> &nbsp; <small>(and its new overflow blocks)</small>
+</li></ul>
+On average,
+<i>Cost<sub>split</sub> &nbsp;=&nbsp; (1+Ov)<sub>r</sub> + (2+Ov)<sub>w</sub></i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [17/51]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deletion with Lin.Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Deletion is similar to ordinary static hash file.
+</p><p>
+But might wish to contract file when enough tuples removed.
+</p><p>
+Rationale: <i>r</i> &nbsp;shrinks, <i>b</i> &nbsp;stays large <i>⇒</i> wasted space.
+</p><p>
+Method:
+</p><ul>
+<li> remove last bucket in data file <small>(contracts linearly)</small>.
+</li><li> merge tuples from bucket with its buddy page <small>(using d-1 hash bits)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [18/51]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hash Files in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL uses linear hashing on tables which have been:
+</p><p></p><pre>create index <i>Ix</i> on <i>R</i> using hash (<i>k</i>);
+</pre><p>
+Hash file implementation: <large><font color="#008800"><b><code>backend/access/hash</code></b></font></large>
+</p><ul>
+<li> <large><font color="#008800"><b><code>hashfunc.c</code></b></font></large> ... a family of hash functions
+</li><li> <large><font color="#008800"><b><code>hashinsert.c</code></b></font></large> ... insert, with overflows
+</li><li> <large><font color="#008800"><b><code>hashpage.c</code></b></font></large> ... utilities + splitting
+</li><li> <large><font color="#008800"><b><code>hashsearch.c</code></b></font></large> ... iterator for hash files
+</li></ul>
+<br>
+<small>
+Based on "A New Hashing Package for Unix", Margo Seltzer, Winter Usenix 1991
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [19/51]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hash Files in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL uses slightly different file organisation ...
+</p><ul>
+<li> has a single file containing main and overflow pages
+</li><li> has groups of main pages of size <i>2<sup>n</sup></i>
+</li><li> in between groups, arbitrary number of overflow pages
+</li><li> maintains collection of "split pointers" in header page
+</li><li> each split pointer indicates start of main page group
+</li></ul>
+If overflow pages become empty, add to free list and re-use.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [20/51]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hash Files in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL hash file structure:
+<br><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/pgsql-hashfile.png]" src="./lec08_files/pgsql-hashfile.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [21/51]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Indexing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [22/51]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Indexing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+An index is a file of (keyVal,tupleID) pairs, e.g.
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/index.png]" src="./lec08_files/index.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [23/51]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Indexes</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A 1-d <font color="#0000BB">index</font> is based on the value of a single attribute <i>A</i>.
+</p><p>
+Some possible properties of <i>A</i>:
+</p><ul>
+<li> may be used to sort data file
+	&nbsp; <small>(or may be sorted on some other field)</small>
+</li><li> values may be unique
+	&nbsp; <small>(or there may be multiple instances)</small>
+</li></ul>
+Taxonomy of index types, based on properties of index attribute:
+<p><table border="0" cellpadding="6">
+<tbody><tr valign="top">
+<td><nobr> primary </nobr></td>
+<td></td><td> index on unique field, may be sorted on <i>A</i> </td>
+</tr>
+<tr valign="top">
+<td><nobr> clustering </nobr></td>
+<td></td><td> index on non-unique field, file sorted on <i>A</i> </td>
+</tr>
+<tr valign="top">
+<td><nobr> secondary </nobr></td>
+<td></td><td> file <i>not</i> sorted on <i>A</i> </td>
+</tr>
+</tbody></table></p><p>
+</p><p>
+A given table may have indexes on several attributes.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [24/51]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Indexes <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Indexes themselves may be structured in several ways:
+</p><p><table border="0" cellpadding="6">
+<tbody><tr valign="top">
+<td><nobr> dense </nobr></td>
+<td></td><td> <small>every tuple is referenced by an entry in the index file</small> </td>
+</tr>
+<tr valign="top">
+<td><nobr> sparse </nobr></td>
+<td></td><td> <small>only some tuples are referenced by index file entries</small> </td>
+</tr>
+<tr valign="top">
+<td><nobr> single-level </nobr></td>
+<td></td><td> <small>tuples are accessed directly from the index file</small> </td>
+</tr>
+<tr valign="top">
+<td><nobr> multi-level </nobr></td>
+<td></td><td> <small>may need to access several index pages to reach tuple</small> </td>
+</tr>
+</tbody></table></p><p>
+Index file has total <i>i</i> pages
+	&nbsp; (where typically <i>i ≪ b</i>)
+</p><p>
+Index file has page capacity <i>c<sub>i</sub></i>
+	&nbsp; (where typically <i>c<sub>i</sub> ≫ c</i>)
+</p><p>
+Dense index: &nbsp;<i>i = ceil( r/c<sub>i</sub> )</i>
+&nbsp;&nbsp;&nbsp;
+Sparse index: &nbsp;<i>i = ceil( b/c<sub>i</sub> )</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [25/51]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Dense Primary Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/dense-primary-index.png]" src="./lec08_files/dense-primary-index.png">
+</div><p>
+<br>
+</p><p align="right">Data file unsorted; one index entry for each tuple</p>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [26/51]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sparse Primary Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/sparse-primary-index.png]" src="./lec08_files/sparse-primary-index.png">
+</div><p>
+<br>
+</p><p align="right">Data file sorted; one index entry for each page</p>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [27/51]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Index Storage Overheads</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a relation with the following storage parameters:
+</p><ul>
+<li> <i>B = 8192, &nbsp; R = 128, &nbsp; r = 100000</i>
+</li><li> header in data pages: 256 bytes
+</li><li> key is integer, data file is sorted on key
+</li><li> index entries (keyVal,tupleID): 8 bytes
+</li><li> header in index pages: 32 bytes
+</li></ul>
+How many pages are needed to hold a dense index?
+<p>
+How many pages are needed to hold a sparse index?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [28/51]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Primary Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <i>one</i> queries:
+</p><p></p><pre>ix = binary search index for entry with key K
+if nothing found { return NotFound }
+P = getPage(pageOf(ix.tid))
+t = getTuple(P,offsetOf(ix.tid))
+   <span class="comment">-- may require reading overflow pages</span>
+return t
+</pre><p>
+Worst case: &nbsp; read <i>log<sub>2</sub>i</i> &nbsp;index pages &nbsp;+&nbsp; read <i>1+Ov</i> data pages.
+</p><p>
+Thus, <i>Cost<sub>one,prim</sub> &nbsp;=&nbsp; <font color="#0000EE">log<sub>2</sub> i</font> + <font color="#008800">1 + Ov</font></i>
+</p><p>
+<small>Assume: index pages are same size as data pages ⇒ same reading cost</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [29/51]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Primary Index <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <i>range</i> queries on primary key:
+</p><ul>
+<li> use index search to find lower bound
+</li><li> read index sequentially until reach upper bound
+</li><li> accumulate set of buckets to be examined
+</li><li> examine each bucket in turn to check for matches
+</li></ul>
+For <i>pmr</i> queries involving primary key:
+<ul>
+<li> search as if performing <i>one</i> query. 
+</li></ul>
+For queries not involving primary key, index gives no help.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [30/51]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Primary Index <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Method for range queries <tiny>(when data file is not sorted)</tiny>
+</p><p></p><pre><span class="comment">// e.g. select * from R where a between lo and hi</span>
+pages = {}   results = {}
+ixPage = findIndexPage(R.ixf,lo)
+while (ixTup = getNextIndexTuple(R.ixf)) {
+   if (ixTup.key &gt; hi) break;
+   pages = pages ∪ pageOf(ixTup.tid)
+}
+foreach pid in pages {
+   <span class="comment">// scan data page plus ovflow chain</span>
+   while (buf = getPage(R.datf,pid)) {
+      foreach tuple T in buf {
+         if (lo&lt;=T.a &amp;&amp; T.a&lt;=hi)
+            results = results ∪ T
+}  }  }
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [31/51]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion with Primary Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Overview:
+</p><p></p><pre>tid = insert tuple into page P at position p
+find location for new entry in index file
+insert new index entry (k,tid) into index file 
+</pre><p>
+Problem: order of index entries must be maintained
+</p><ul>
+<li> need to avoid overflow pages in index
+</li><li> either reorganise index file or mark entries
+</li></ul>
+<p>
+Reogranisation requires, on average, read/write half of index file:
+</p><p>
+<i>Cost<sub>insert,prim</sub> &nbsp;=&nbsp;
+ <font color="#0000EE">(log<sub>2</sub>i)<sub>r</sub></font> + <font color="#996600">i/2.(1<sub>r</sub>+1<sub>w</sub>)</font> + <font color="#008800">(1+Ov)<sub>r</sub> + (1+δ)<sub>w</sub></font></i>
+</p><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [32/51]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deletion with Primary Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Overview:
+</p><p></p><pre>find tuple using index
+mark tuple as deleted
+delete index entry for tuple
+</pre><p>
+If we delete index entries by marking ...
+</p><ul>
+<li> <i>Cost<sub>delete,prim</sub> &nbsp;=&nbsp;
+ <font color="#0000EE">(log<sub>2</sub> i)<sub>r</sub></font> + <font color="#008800">(1 + Ov)<sub>r</sub></font> + <font color="#0000EE">1<sub>w</sub></font> + <font color="#008800">1<sub>w</sub></font></i>
+</li></ul>
+If we delete index entry by index file reorganisation ...
+<ul>
+<li> <i>Cost<sub>delete,prim</sub> &nbsp;=&nbsp;
+  <font color="#0000EE">(log<sub>2</sub> i)<sub>r</sub></font> + <font color="#008800">(1 + Ov)<sub>r</sub></font> + <font color="#996600">i/2.(1<sub>r</sub>+1<sub>w</sub>)</font> + <font color="#008800">1<sub>w</sub></font></i>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [33/51]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Clustering Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data file sorted; one index entry for each key value
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/clustering-index.png]" src="./lec08_files/clustering-index.png">
+</div><p>
+</p><p>
+Cost penalty: maintaining both index and data file as sorted
+</p><p>
+<small>
+(Note: can't mark index entry for value X until all X tuples are deleted)
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [34/51]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Secondary Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data file not sorted; want one index entry for each key value
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/sec-index.png]" src="./lec08_files/sec-index.png">
+</div><p>
+</p><p>
+<i>Cost<sub>pmr</sub> &nbsp;=&nbsp;
+ (log<sub>2</sub>i<sub><tiny>ix1</tiny></sub> + a<sub><tiny>ix2</tiny></sub> + b<sub>q</sub>.(1 + Ov))</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [35/51]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-level Indexes</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Above Secondary Index used two index files to speed up search
+</p><ul>
+<li> by keeping the initial index search relatively quick
+</li><li> <large><code>Ix1</code></large> small <small>(depends on number of unique key values)</small>
+</li><li> <large><code>Ix2</code></large> larger <small>(depends on amount of repetition of keys)</small>
+</li><li> typically, <i>b<sub><tt>Ix1</tt></sub> ≪ b<sub><tt>Ix2</tt></sub></i>
+</li></ul>
+Could improve further by
+<ul>
+<li> making <large><code>Ix1</code></large> sparse, since <large><code>Ix2</code></large> is guaranteed to be ordered
+</li><li> in this case, <i>b<sub><tt>Ix1</tt></sub> = ceil( b<sub><tt>Ix2</tt></sub> / c<sub>i</sub> )</i>
+</li><li> if <large><code>Ix1</code></large> becomes too large, add <large><code>Ix3</code></large> and make <large><code>Ix2</code></large> sparse
+</li><li> if data file ordered on key, could make <large><code>Ix3</code></large> sparse
+</li></ul>
+<p>
+Ultimately, reduce top-level of index hierarchy to one page.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [36/51]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-level Indexes <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example data file with three-levels of index:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/multi-level-index.png]" src="./lec08_files/multi-level-index.png">
+</div><p>
+</p><p>
+Assume: &nbsp;not primary key, &nbsp;<i>c = 100</i>, &nbsp;<i>c<sub>i</sub> = 3</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [37/51]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Select with Multi-level Index</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <i>one</i> query on indexed key field:
+</p><p></p><pre>xpid = top level index page
+for level = 1 to d {
+    read index entry xpid
+    search index page for J'th entry
+        where index[J].key &lt;= K &lt; index[J+1].key
+    if (J == -1) { return NotFound }
+    xpid = index[J].page
+}
+pid = xpid  <span class="comment">// pid is data page index</span>
+search page pid and its overflow pages
+</pre><p>
+</p><p>
+<i>Cost<sub>one,mli</sub> &nbsp;=&nbsp; (<font color="#0000EE">d</font> + <font color="#008800">1 + Ov</font>)<sub>r</sub></i>
+</p><p>
+<small>(Note that <i>d = ceil( log<sub>c<sub>i</sub></sub> r )</i> and <i>c<sub>i</sub></i> is large because index entries are small)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [38/51]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ B-Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">B-trees</font> are MSTs with the properties:
+</p><ul>
+<li> they are updated so as to remain balanced
+</li><li> each node has at least <i>(n-1)/2</i> entries in it
+</li><li> each tree node occupies an entire disk page
+</li></ul>
+B-tree insertion and deletion methods
+<ul>
+<li> are moderately complicated to describe
+</li><li> can be implemented very efficiently
+</li></ul>
+Advantages of B-trees over general MSTs
+<ul>
+<li> better storage utilisation <small>(around 2/3 full)</small>
+</li><li> better worst case performance <small>(shallower)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [39/51]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ B-Trees <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example B-tree (depth=3, n=3) &nbsp; <tiny>(actually B+ tree)</tiny>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/btree0.png]" src="./lec08_files/btree0.png">
+</div><p>
+<small>(Note: in DBs, nodes are pages ⇒ large branching factor, e.g. <i>n=500</i>)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [40/51]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ B-Tree Depth</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Depth depends on effective branching factor
+	&nbsp;<small>(i.e. how full nodes are)</small>.
+</p><p>
+Simulation studies show typical B-tree nodes are 69% full.
+</p><p>
+Gives &nbsp; load <i>L<sub>i</sub> = 0.69 × c<sub>i</sub></i>
+&nbsp; and &nbsp;
+depth of tree <i>~ ceil( log<sub>L<sub>i</sub></sub> r )</i>.
+</p><p>
+Example: <i>c<sub>i</sub>=128, &nbsp;&nbsp; L<sub>i</sub>=88</i>
+</p><p><table border="1" cellpadding="2">
+<tbody><tr align="center">
+<td> <b>Level</b> </td>
+<td> <b>#nodes</b> </td>
+<td> <b>#keys</b> </td>
+</tr>
+<tr align="center">
+<td> root </td>
+<td> 1 </td>
+<td> 87 </td>
+</tr>
+<tr align="center">
+<td> 1 </td>
+<td> 88 </td>
+<td> 7656 </td>
+</tr>
+<tr align="center">
+<td> 2 </td>
+<td> 7744 </td>
+<td> 673728 </td>
+</tr>
+<tr align="center">
+<td> 3 </td>
+<td> 681472 </td>
+<td> 59288064 </td>
+</tr>
+</tbody></table></p><p>
+Note: <i>c<sub>i</sub></i> is generally larger than 128 for a real B-tree.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [41/51]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion into B-Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Overview of the method:
+</p><ol>
+<li> find leaf node and position in node where entry would be stored
+</li><li> if node is not full, insert entry into appropriate spot
+</li><li> if node is full, split node into two half-full nodes<br>
+	&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; and promote middle element to parent
+</li><li> if parent full, split and promote upwards
+</li><li> if reach root, and root is full, make new root upwards
+</li></ol>
+<br>
+<small>
+Note: if duplicates not allowed and key exists, may stop after step 1.
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [42/51]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example: B-tree Insertion</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Starting from this tree:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/btree1.png]" src="./lec08_files/btree1.png">
+</div><p>
+insert the following keys in the given order &nbsp; <large><code>12 15 30 10</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [43/51]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example: B-tree Insertion <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/btree1a.png]" src="./lec08_files/btree1a.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [44/51]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example: B-tree Insertion <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/btree1b.png]" src="./lec08_files/btree1b.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [45/51]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ B-Tree Insertion Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Insertion cost = <i>Cost<sub>treeSearch</sub> + Cost<sub>treeInsert</sub> + Cost<sub>dataInsert</sub></i>
+</p><p>
+Best case: write one page <small>(most of time)</small>
+</p><ul>
+<li> traverse from root to leaf
+</li><li> read/write data page, write updated leaf
+</li></ul>
+<i> Cost<sub>insert</sub> &nbsp;=&nbsp; <font color="#0000EE">D<sub>r</sub> + 1<sub>w</sub></font> + <font color="#008800">1<sub>r</sub> + 1<sub>w</sub></font></i>
+<p>
+Common case: <i>3</i> node writes <small>(rearrange 2 leaves + parent)</small>
+</p><ul>
+<li> traverse from root to leaf, holding nodes in buffer
+</li><li> read/write data page
+</li><li> update/write leaf, parent and sibling
+</li></ul>
+<i> Cost<sub>insert</sub> &nbsp;=&nbsp; <font color="#0000EE">D<sub>r</sub> + 3<sub>w</sub></font> + <font color="#008800">1<sub>r</sub> + 1<sub>w</sub></font></i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [46/51]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ B-Tree Insertion Cost <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Worst case: <i>2D-1</i> node writes <small>(propagate to root)</small>
+</p><ul>
+<li> traverse from root to leaf, holding nodes in buffers
+</li><li> read/write data page
+</li><li> update/write leaf, parent and sibling
+</li><li> repeat previous step <i>D-1</i> times
+</li></ul>
+<i> Cost<sub>insert</sub> &nbsp;=&nbsp; <font color="#0000EE">D<sub>r</sub> + (2D-1)<sub>w</sub></font> + <font color="#008800">1<sub>r</sub> + 1<sub>w</sub></font></i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [47/51]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with B-Trees</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <i>one</i> queries:
+</p><p></p><pre>N = B-tree root node
+while (N is not a leaf node)
+   N = scanToFindChild(N,K)
+tid = scanToFindEntry(N,K)
+access tuple T using tid
+</pre><p>
+<i>Cost<sub>one</sub> &nbsp;=&nbsp; (<font color="#0000EE">D</font> + <font color="#008800">1</font>)<sub>r</sub></i>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/btree00.png]" src="./lec08_files/btree00.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [48/51]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with B-Trees <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+For <i>range</i> queries <small>(assume sorted on index attribute)</small>:
+</p><p></p><pre>search index to find leaf node for Lo
+for each leaf node entry until Hi found {
+	access tuple T using tid from entry
+}
+</pre><p>
+<i>Cost<sub>range</sub> &nbsp;=&nbsp; (<font color="#0000EE">D + b<sub>i</sub></font> + <font color="#008800">b<sub>q</sub></font>)<sub>r</sub></i>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/btree00.png]" src="./lec08_files/btree00.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [49/51]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ B-trees in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL implements ≅ Lehman/Yao-style B-trees
+</p><ul>
+<li> variant that works effectively in high-concurrency environments.
+</li></ul>
+B-tree implementation: <large><font color="#008800"><b><code>backend/access/nbtree</code></b></font></large>
+<ul>
+<li> <large><font color="#008800"><b><code>README</code></b></font></large> ... comprehensive description of methods
+</li><li> <large><font color="#008800"><b><code>nbtree.c</code></b></font></large> ... interface functions (for iterators)
+</li><li> <large><font color="#008800"><b><code>nbtsearch.c</code></b></font></large> ... traverse index to find key value
+</li><li> <large><font color="#008800"><b><code>nbtinsert.c</code></b></font></large> ... add new entry to B-tree index
+</li></ul>
+<small>
+Notes:
+<ul>
+<li> stores all instances of equal keys
+</li><li> avoids splitting by scanning right if key = max(key) in page
+</li><li> common insert case: new key is max(key) overall; handled efficiently
+</li></ul>
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [50/51]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ B-trees in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Interface functions for B-trees
+</p><p></p><pre><span class="comment">// build Btree index on relation</span>
+Datum btbuild(rel,index,...)
+<span class="comment">// insert index entry into Btree</span>
+Datum btinsert(rel,key,tupleid,index,...)
+<span class="comment">// start scan on Btree index</span>
+Datum btbeginscan(rel,key,scandesc,...)
+<span class="comment">// get next tuple in a scan</span>
+Datum btgettuple(scandesc,scandir,...)
+<span class="comment">// close down a scan</span>
+Datum btendscan(scandesc)
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Thursday Lecture ♢ [51/51]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 7 Mar 2024</span>
+ <script src="./lec08_files/prism.js"></script>   
+ <script src="./lec08_files/sg.js"></script>   
+
+
+</p></body></html>

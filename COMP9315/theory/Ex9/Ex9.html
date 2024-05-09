@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 09</title>
+<link href="./Ex9_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex9_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 09</span><br>
+  <span class="subheading">Transaction Processing: Concurrency, Recovery</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php?view=all">[Show with all answers]</a></p></div>
+
+<ol>
+
+<br><li>
+<p>
+Consider the following transaction <i>T1</i>: <tt>R(X), R(X)</tt>
+</p>
+<ol type="a">
+<li>
+<p>
+Give an example of another transaction <i>T2</i> that, if run concurrently
+to transaction <i>T1</i> without some form of concurrency control, could
+interfere with <i>T1</i> to produce unrepeatable reads. Show the sequence
+of operations which would cause the problem.
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<p>
+Even a transaction as simple as <i>T2</i>: <tt>W(X)</tt> is sufficient to
+cause unrepeatable reads. If <i>T2</i> runs concurrently with <i>T1</i>
+and if the <tt>W(X)</tt> operation occurs between the two <tt>R(X)</tt>
+operations, then <i>T1</i> sees a different value of <tt>X</tt> on each
+of the read operations. The following schedule shows the problem:
+</p>
+<pre>T1:  R(X)        R(X)
+T2:        W(X)
+</pre>
+</div><p></p>
+</li><li>
+<p>
+Explain how the application of strict two-phase locking would prevent the
+problem described in your previous answer.
+</p>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<p>
+In the case of two-phase locking the transactions would be re-written as:
+</p>
+<pre>T1: ReadLock(X)  R(X)  R(X)  Unlock(X)
+
+T2: WriteLock(X)  W(X)  Unlock(X)
+</pre>
+<p>
+If <i>T1</i> starts first and acquires the ReadLock on <tt>X</tt>, then <i>T2</i>
+will be unable to proceed until <i>T1</i> has completed its two reads (it
+cannot acquire the WriteLock while another transaction holds a ReadLock).
+If <i>T2</i> starts first and acquires the WriteLock on <tt>X</tt>, then
+<i>T1</i> will be unable to proceed until <i>T2</i> has completed (it
+cannot acquire a ReadLock while another transaction holds a WriteLock).
+</p>
+<p>
+The following two schedules are the only possible ones that can occur
+(where "<tt>.....</tt>" indicates a delay while waiting for a lock):
+</p>
+<pre>Schedule 1:
+
+T1:  ReadLock(X)  R(X)  R(X)  Unlock(X)
+T2:             .......................  WriteLock(X)  W(X)  Unlock(X)
+
+Schedule 2:
+
+T1:             .................  ReadLock(X)  R(X)  R(X)  Unlock(X)
+T2: WriteLock(X)  W(X)  Unlock(X)
+</pre></div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+SQL supports four isolation-levels and two access-modes, for a total of
+eight combinations of isolation-level and access-mode. Each combination
+implicitly defines a class of transactions; the following questions
+refer to these eight classes: 
+</p>
+<ol type="a">
+<li>
+<p>
+Describe which of the following phenomena can occur at each of the
+four SQL isolation levels: dirty read, unrepeatable read, phantom problem.
+</p>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<p>
+For Read Uncommitted, all three may occur.<br>
+For Read Committed, only unrepeatable read and the phantom problem may occur.<br>
+For Repeatable Read, only the phantom problem may occur.<br>
+For Serializable, none of the problems can occur.
+</p></div><p></p>
+</li><li>
+<p>
+Why does the access mode of a transaction matter?
+</p>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+If all transactions are READ-ONLY mode, then the isolation level
+doesn't matter, since none of the problems noted above can occur.
+As soon as even one transaction is READ/WRITE access mode, then
+the above problems <em>may</em> occur, and an appropriate
+isolation-level needs to be used to avoid any of the above
+problems that are undesirable.
+<p></p>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+</p><p>
+Draw the precedence graph for the following schedule:
+</p>
+<pre>T1:      R(A) W(Z)                C
+T2:                R(B) W(Y)        C
+T3: W(A)                     W(B)     C
+</pre>
+<p></p>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<p>
+It has an edge from T3 to T1 (because of A) and an edge from
+T2 to T3 because of B.
+</p>
+<p>
+This gives: <tt>T2 --&gt; T3 --&gt; T1</tt>
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+<small>[Based on RG Ex.17.2]</small> &nbsp;
+Consider the following incomplete schedule <i>S</i>:
+</p>
+<pre>T1: R(X) R(Y) W(X)           W(X)
+T2:                R(Y)           R(Y)
+T3:                     W(Y)
+</pre>
+<p></p>
+<ol type="a">
+<li>
+<p>Determine (by using a precedence graph) whether the schedule is serializable</p>
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<p>
+The precedence graph has an edge, from <i>T1</i> to <i>T3</i>,
+because of the conflict between <tt>T1:R(Y)</tt> and <tt>T3:W(Y)</tt>.
+It also has an edge, from <i>T2</i> to <i>T3</i>,
+because of the conflict between the first <tt>T2:R(Y)</tt> and
+<tt>T3:W(Y)</tt>.
+It also has an edge, from <i>T3</i> to <i>T2</i>,
+because of the conflict between <tt>T3:W(Y)</tt> and the
+second <tt>T2:R(Y)</tt>.
+The edges between <i>T2</i> and <i>T3</i> form a cycle,
+so the schedule is not conflict-serializable.
+</p>
+</div><p></p>
+</li><li>
+<p>Modify <i>S</i> to create a complete schedule that is conflict-serializable</p>
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<p>
+One possibility would be to move the <tt>W(Y)</tt> operation in <i>T3</i>
+to the end (i.e. make it the last operation).
+An alternative would be to move the second <tt>R(Y)</tt> in <i>T2</i> to
+just before the <tt>W(Y)</tt> operation in <i>T3</i>.
+</p>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+Is the following schedule conflict serializable? Show your working.
+</p>
+<pre>T1:                R(X) W(X) W(Z)           R(Y) W(Y)
+T2: R(Y) W(Y) R(Y)                W(Y) R(X)           W(X) R(V) W(V)
+</pre>
+<p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+<p>
+As above, the working for this question involves constructing a
+precedence graph, based on conflicting operations, and looking
+for cycles.
+</p>
+<p>
+In this case there's a conflict between <tt>T1:R(X)</tt> and
+<tt>T2:W(X)</tt>, giving a graph edge from <tt>T1</tt> to <tt>T2</tt>.
+There's also a conflict between <tt>T2:R(Y)</tt> and <tt>T1:W(Y)</tt>,
+giving a graph edge from <tt>T2</tt> to <tt>T1</tt>.
+This means the graph has a cycle, so the schedule is not serializable.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+<small>[Based on RG Ex.17.3]</small> &nbsp;
+For each of the following schedules, state whether it is
+conflict-serializable and/or view-serializable.
+If you cannot decide whether a schedule belongs to either
+class, explain briefly.
+The actions are listed in the order they are scheduled,
+and prefixed with the transaction name.
+</p>
+<ol type="a">
+<li> <code>T1:R(X) T2:R(X) T1:W(X) T2:W(X)</code>
+</li><li> <code>T1:W(X) T2:R(Y) T1:R(Y) T2:R(X)</code>
+</li><li> <code>T1:R(X) T2:R(Y) T3:W(X) T2:R(X) T1:R(Y)</code>
+</li><li> <code>T1:R(X) T1:R(Y) T1:W(X) T2:R(Y) T3:W(Y) T1:W(X) T2:R(Y)</code>
+</li><li> <code>T1:R(X) T2:W(X) T1:W(X) T3:W(X)</code>
+</li></ol>
+<p></p>
+<p><small>[<a id="q9a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q9&#39;)">show answer</a>]</small></p>
+<div id="q9" style="color:#000099;display:none">
+<p>
+The techniques used to determine these solutions:
+for conflict-serializablility, draw precedence graph and look for cycles;
+for view-serializablility, apply the definition from lecture notes.
+</p>
+
+<ol type="a">
+<li> not conflict-serializable, not view serializable
+</li><li> conflict-serializable, view serializable (view equivalent to T1,T2)
+</li><li> conflict-serializable, view serializable (view equivalent to T1,T3,T2)
+</li><li> not conflict-serializable, not view serializable
+</li><li> not conflict-serializable, view serializable (view equivalent to T1,T2,T3)
+</li></ol>
+
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Recoverability and serializability are both important properties of
+concurrent transaction schedules. They are also orthogonal.
+Serializability requires that the schedule be equivalent to some serial
+ordering of the transactions.
+Recoverability requires that each transaction commits only after all
+of the transactions from which is has read data have also committed.
+</p>
+<p>
+Using the following two transactions: 
+</p>
+<pre>T1:  W(A)  W(B)  C         T2:  W(A)  R(B)  C
+</pre>
+<p>
+give examples of schedules that are:
+</p>
+<ol type="a">
+<li> recoverable and serializable
+</li><li> recoverable and not serializable
+</li><li> not recoverable and serializable
+</li></ol>
+<p><small>[<a id="q10a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q10&#39;)">show answer</a>]</small></p>
+<div id="q10" style="color:#000099;display:none">
+<ol type="a">
+<li> <p>the following schedule is both recoverable and serializable</p>
+<pre>T1:  W(A)  W(B)              C
+T2:              W(A)  R(B)     C
+</pre>
+<p>
+The update operations of the schedules are serial, and therefore serializable.
+For recoverability, the only read is <tt>R(B)</tt> in T2, and T2 does not
+commit until after T1 has committed.
+</p>
+</li><li> <p>the following schedule is recoverable but not serializable</p>
+<pre>T1:        W(A)  W(B)       C
+T2:  W(A)             R(B)     C
+</pre>
+<p>
+There is a cycle in the dependency graph T2--A-&gt;T1 and T1--B-&gt;T2,
+so it's not serializable. However, T1 commits before T2, so it's
+recoverable for the same reasons as (a).
+</p>
+</li><li> <p>the following schedule is not recoverable but is serializable</p>
+<pre>T1:  W(A)  W(B)                 C
+T2:              W(A)  R(B)  C
+</pre>
+<p>
+It is clearly serializable for the same reason as (a).
+However, since T2 commits before T1 we could end up in the following
+scenario: T2 commits completely but the system crashes before T1 does.
+After recovery, T2 would remain committed, but T1 would be rolled back
+because it has no log entry. Since the result of T2 depends on T1's
+completion, we would have a contradiction; T2 should not be able to
+complete if T1 does not complete.
+</p>
+</li></ol>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+ACR schedules avoid the potential cascading rollbacks that can make
+recoverable schedules less than desirable.
+Using the transactions from the previous question, give an example
+of an ACR schedule.
+</p>
+<p><small>[<a id="q11a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q11&#39;)">show answer</a>]</small></p>
+<div id="q11" style="color:#000099;display:none">
+<p>
+The following schedule is clearly serializable.
+However, since no reads are performed on data modified by
+uncommitted transactions, there is also no chance of
+cascading rollback.
+</p>
+<pre>T1:  W(A)  W(B)        C
+T2:              W(A)     R(B)  C
+</pre>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider the following two transactions:
+</p>
+<pre>     T1               T2
+------------     ------------
+read(A)          read(B)
+A := 10*A+4      B := 2*B+3
+write(A)         write(B)
+read(B)          read(A)
+B := 3*B         A := 100-A
+write(B)         write(A)
+</pre>
+<ol type="a">
+<li>
+<p>
+Write versions of the above two transactions that use two-phase locking.
+</p>
+<p><small>[<a id="q12a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q12&#39;)">show answer</a>]</small></p>
+<div id="q12" style="color:#000099;display:none">
+<p>
+The basic idea behind two-phase locking is that you take out all the locks
+you need, do the processing, and then release the locks. Thus two-phase
+implementations of <tt>T1</tt> and <tt>T2</tt> would be:
+</p>
+<pre>     T1               T2
+------------     ------------
+write_lock(A)    write_lock(B)
+read(A)          read(B)
+A := 10*A+4      B := 2*B+3
+write(A)         write(B)
+write_lock(B)    write_lock(A)
+read(B)          read(A)
+B := 3*B         A := 100-A
+write(B)         write(A)
+unlock(A)        unlock(B)
+unlock(B)        unlock(A)
+</pre>
+</div><p></p>
+</li><li>
+<p>
+Is there a non-serial schedule for <i>T1</i> and <i>T2</i> that is
+serializable? Why?
+</p>
+<p><small>[<a id="q13a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q13&#39;)">show answer</a>]</small></p>
+<div id="q13" style="color:#000099;display:none">
+<p>
+No. It's not possible. The last operation in <i>T1</i> is <tt>write(B)</tt>,
+and the last operation in <i>T2</i> is <tt>write(A)</tt>. <i>T1</i>
+starts with <tt>read(A)</tt> and <i>T2</i> starts with <tt>read(B)</tt>.
+Therefore, in any serializable schedule, we would require that either
+<tt>read(A)</tt> in <i>T1</i> should  be after <tt>write(B)</tt> in
+<i>T2</i> or <tt>read(B)</tt> in <i>T2</i> should be after
+<tt>write(B)</tt> in <i>T1</i>.
+</p>
+</div><p></p>
+</li><li>
+<p>
+Can a schedule for <i>T1</i> and <i>T2</i> result in deadlock?
+If so, give an example schedule. If not, explain why not.
+</p>
+<p><small>[<a id="q14a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q14&#39;)">show answer</a>]</small></p>
+<div id="q14" style="color:#000099;display:none">
+<p>
+Yes. Consider the following schedule (where <tt>L(X)</tt> denotes
+taking an exclusive lock on object <tt>X</tt>):
+</p>
+<pre>T1: L(A) R(A)      W(A) L(B) ...
+T2:           L(B)           R(B) W(B) L(A) ...
+</pre>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+What is the difference between quiescent and non-quiescent checkpointing?
+Why is quiescent checkpointing not used in practice?
+</p>
+<p><small>[<a id="q15a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q15&#39;)">show answer</a>]</small></p>
+<div id="q15" style="color:#000099;display:none">
+<p>
+In quiescent checkpointing, the system must wait until there are no
+active transactions, then flush the transaction log and write a
+checkpoint record. All transactions before the checkpoint are complete,
+and do not need to be considered further in any subsequent recovery.
+</p>
+<p>
+In non-quiescent checkpointing, the system marks a checkpoint period
+via a pair of start-checkpoint and end-checkpoint records.
+The checkpoint covers a period in time during which active transactions
+may have made changes to the database. Recovery to checkpoints
+is more complicated, and must take account of which transactions were
+active before and after the checkpoint started, and which ones
+completed during the checkpoint period.
+</p>
+<p>
+Because real database systems are heavily used and must have high
+availability. The first point (heavy use) means that there is never
+have any point in time when there are no transactions executing.
+The second point (high availability) means that we can't afford to
+block all new transactions while the system runs checkpointing.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider the following sequence of undo/redo log records:
+</p>
+<pre>&lt;START T&gt; ; &lt;T,A,10,11&gt; ; &lt;T,B,20,21&gt; ; &lt;COMMIT T&gt;
+</pre>
+<p>
+Give all of the sequences of <q>events</q> that are legal according to the
+rules of undo/redo logging.
+An <q>event</q> consists of one of: writing to disk a block containing a
+given data item, and writing to disk an individual log record.
+</p>
+<p><small>[<a id="q16a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q16&#39;)">show answer</a>]</small></p>
+<div id="q16" style="color:#000099;display:none">
+<p>
+In this example, there are five events, which we shall denote:
+</p>
+<ul>
+<li> A: database element A is written to disk.
+</li><li> B: database element B is written to disk.
+</li><li> LA: the log record for A is written to disk.
+</li><li> LB: the log record for B is written to disk.
+</li><li> C: the commit record is written to disk.
+</li></ul>
+<p>
+The only constraints that undo/redo logging requires are that LA
+appears before A, and LB appears before B. Of course the log records
+must be written to disk in the order in which they appear in the log:
+LA,LB,C.
+The eight orders consistent with these constraints are:
+</p>
+<ul>
+<li> LA,A,LB,B,C
+</li><li> LA,A,LB,C,B
+</li><li> LA,LB,A,B,C
+</li><li> LA,LB,A,C,B
+</li><li> LA,LB,B,A,C
+</li><li> LA,LB,C,A,B
+</li><li> LA,LB,B,C,A
+</li><li> LA,LB,C,B,A
+</li></ul>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider the following sequence of undo/redo log records from two
+transactions T and U:
+</p>
+<pre>    &lt;START T&gt; ; &lt;T,A,10,11&gt; ; &lt;START U&gt; ; &lt;U,B,20,21&gt; ;
+    &lt;T,C,30,31&gt; ; &lt;U,D,40,41&gt; ; &lt;COMMIT U&gt; ; &lt;T,E,50,51&gt;;
+    &lt;COMMIT T&gt;
+</pre>
+<p>
+Describe the actions of the recovery manager, if there is a crash and the
+last log record to appear on disk is:
+</p>
+<ol type="a">
+<li> <p> <tt>&lt;START U&gt;</tt> </p>
+</li><li> <p> <tt>&lt;COMMIT U&gt;</tt> </p>
+</li><li> <p> <tt>&lt;T,E,50,51&gt;</tt> </p>
+</li><li> <p> <tt>&lt;COMMIT T&gt;</tt> </p>
+</li></ol>
+<p>
+You may assume that there is an <tt>&lt;END CKPT&gt;</tt> record in the
+log immediately before the start of transaction T, so that we do not need
+to worry about the log any further back than the start of T.
+</p>
+<p><small>[<a id="q17a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex09/index.php##" onclick="toggleVisible(&#39;q17&#39;)">show answer</a>]</small></p>
+<div id="q17" style="color:#000099;display:none">
+<p>
+Each recovery session these commences with a scan forward from the most recent
+checkpoint (just before start of T), to determine which transactions
+had started and which had committed since the checkpoint.
+</p>
+<ol type="a">
+<li>
+<p>
+Since neither T nor U is committed, we need to undo all of their actions.
+We move backwards through the log to the most recent checkpoint. Since U
+had only just started, we find no actions by it to undo. However, we do
+find an update record for T, so we reset the value of A to 10.
+</p>
+</li><li>
+<p>
+Since U is committed, we redo its actions, setting B to 21 and D to 41.
+Then, since T is uncommitted, we undo its actions from the end moving
+backwards; we reset C to 30 and A to 10.
+</p>
+</li><li>
+<p>
+This is similar to the previous part, except that we also reset E to 50.
+</p>
+</li><li>
+<p>
+In this case, both transactions have finished, and so we need to redo all
+of their actions, setting A to 11, B to 21, C to 31, D to 41 and E to 51.
+There are no incomplete transactions, so there is no need for an undo
+pass.
+</p>
+</li></ol>
+
+</div><p></p>
+</li>
+
+</ol>
+
+
+</body></html>

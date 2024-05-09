@@ -1,0 +1,1243 @@
+
+<!-- saved from url=(0078)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 07 Monday Lecture</title>
+<link href="./lec11_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec11_files/latest.js" async=""></script>
+<script src="./lec11_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec11_files/MathJax.js"></script>
+<link href="./lec11_files/css" rel="stylesheet">
+<link href="./lec11_files/prism.css" rel="stylesheet">
+<script src="./lec11_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 07 Monday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s2">Assignment 2</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s7">Signature-based Selection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s8">Indexing with Signatures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s10">Signatures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s11">Generating Codewords</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s12">Superimposed Codewords (SIMC)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s13">SIMC Example</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s14">SIMC Queries</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s16">Example SIMC Query</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s17">SIMC Parameters</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s19">Query Cost for SIMC</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s20">Exercise: SIMC Query Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s21">Page-level SIMC</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s22">Page-Level SIMC Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s23">Exercise: Page-level SIMC Query Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s24">Bit-sliced SIMC</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s26">Exercise: Bit-sliced SIMC Query Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s27">Implementing Join</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s28">Join</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s29">Join Example</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s33">Nested Loop Join</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s34">Block Nested Loop Join</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s36">Exercise: Nested Loop Join Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s38">BNJ in Practice</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s39">Index Nested Loop Join</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s41">Exercise: Index Nested Loop Join Cost</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s42">Sort-Merge Join</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s48">Sort-Merge Join on Example</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s50">Exercise: Sort-merge Join Cost</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [0/50]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><ul>
+<li> Assignment 1
+<ul>
+<li> assignments submitted after midnight Sunday are worht ZERO
+</li><li> unless you have an extension via Special Consid or ELS
+</li></ul>
+</li><li> Assignment 2
+<ul>
+<li> now released ... due start week 10
+</li></ul>
+</li><li> Quiz 4
+<ul>
+<li> released Monday week 8 ... due Friday week 8
+</li></ul>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [1/50]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 2</div></td><td align="right"></td></tr></tbody></table>
+<p>
+An implementation of <font color="#0000BB">multi-attribute linear hashing</font>
+</p><ul>
+<li> linear hashing ... grow data file one page at a time
+<ul>
+<li> covered in Week 04 Lectures ... end Monday, start Thursday
+</li></ul>
+</li><li> multi-attribute hashing ... use bits from all attributes in hash
+<ul>
+<li> covered in Week 05 Lectures ... Monday (slides 19-37)
+</li></ul>
+</li></ul>
+Individual relations are built as MALH files
+<ul>
+<li> info file <small>(1 page)</small>, 
+&nbsp; data file <small>(<i>b</i> &nbsp;pages)</small>,
+&nbsp; overflow file <small>(<i>b<sub>Ov</sub></i> &nbsp;pages)</small>
+</li></ul>
+<br>
+Does NOT involve PostgreSQL
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [2/50]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 2 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Implementation involves three main commands
+</p><ul>
+<li> <large><font color="#008800"><b><code>create</code></b></font></large> ... create an empty MALH relation
+</li><li> <large><font color="#008800"><b><code>insert</code></b></font></large> ... add tuples into an MALH relation
+</li><li> <large><font color="#008800"><b><code>select</code></b></font></large> ... find tuples in an MALH relation
+</li></ul>
+plus three utility commands
+<ul>
+<li> <large><font color="#008800"><b><code>stats</code></b></font></large> ... print info about an MALH relation
+</li><li> <large><font color="#008800"><b><code>dump</code></b></font></large> ... list all tuples in an MALH relation
+</li><li> <large><font color="#008800"><b><code>gendata</code></b></font></large> ... generate random tuples
+</li></ul>
+Each of the above is a C program containing a <large><code>main()</code></large> function.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [3/50]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 2 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The commands are supported by a set of ADTs:
+</p><ul>
+<li> <large><font color="#008800"><b><code>bits</code></b></font></large> ... ADT for bit-strings
+</li><li> <large><font color="#008800"><b><code>chvec</code></b></font></large> ... ADT for choice vectors
+</li><li> <large><font color="#008800"><b><code>hash</code></b></font></large> ... PostgreSQL hash function
+</li><li> <large><font color="#008800"><b><code>page</code></b></font></large> ... ADT for data/overflow pages
+</li><li> <large><font color="#008800"><b><code>query</code></b></font></large> ... ADT for query scanners &nbsp; <small><font color="#CC0000">(incomplete)</font></small>
+</li><li> <large><font color="#008800"><b><code>reln</code></b></font></large> ... ADT for relations &nbsp; <small><font color="#CC0000">(partly complete)</font></small>
+</li><li> <large><font color="#008800"><b><code>tuple</code></b></font></large> ... ADT for tuples &nbsp; <small><font color="#CC0000">(partly complete)</font></small>
+</li><li> <large><font color="#008800"><b><code>util</code></b></font></large> ... utility functions
+</li></ul>
+Each ADT has a <large><code>.h</code></large> file (interface) and a <large><code>.c</code></large> file (implementation)
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [4/50]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 2 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+As supplied, all code compiles
+</p><ul>
+<li> <large><font color="#008800"><b><code>create</code></b></font></large> ... creates an empty MALH relation
+</li><li> <large><font color="#008800"><b><code>insert</code></b></font></large> ... adds tuples into an MALH relation, BUT
+<ul>
+<li> does not do MA hashing ... simply hashes first attribute
+</li><li> does not do linear hashing ... data file has fixed number of pages
+</li></ul>
+</li><li> <large><font color="#008800"><b><code>select</code></b></font></large> ... does not do anything
+</li></ul>
+The three utility commands are all complete
+<p>
+Your task: complete the ADTs so that all commands work.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [5/50]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 2 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+What to change:
+</p><ul>
+<li> change <large><code>tuple.c</code></large> to use multi-attribute hashing
+</li><li> change <large><code>query.c</code></large> to implement query evaluation
+</li><li> change <large><code>reln.c</code></large> to implement linear hashing
+</li></ul>
+What to submit:
+<ul>
+<li> <large><code>zip ass2.zip <i>all changed files</i></code></large>
+</li><li> <large><code>give cs9315 ass2 ass2.zip</code></large>
+</li></ul>
+Do NOT change <large><code>create.c</code></large>, <large><code>insert.c</code></large>, <large><code>select.c</code></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [6/50]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Signature-based Selection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [7/50]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Indexing with Signatures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Signature-based indexing:
+</p><ul>
+<li> designed for <i>pmr</i> queries &nbsp; <small>(conjunction of equalities)</small>
+</li><li> does not try to achieve better than <i>O(n)</i> performance
+</li><li> attempts to provide an "efficient" linear scan
+</li></ul>
+<p>
+Each tuple is associated with a <font color="#0000BB">signature</font>
+</p><ul>
+<li> a compact (lossy) descriptor for the tuple
+</li><li> formed by combining information from multiple attributes
+</li><li> stored in a signature file, parallel to data file
+</li></ul>
+Instead of scanning/testing tuples, do pre-filtering via signatures.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [8/50]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Indexing with Signatures <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+File organisation for signature indexing (two files)
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/sigfile1.png]" src="./lec11_files/sigfile1.png">
+</div><p>
+<small>
+One signature slot per tuple slot; unused signature slots are zeroed.
+</small></p><p><small>
+Signatures do not determine record placement <tiny>⇒ can use with other indexing.</tiny>
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [9/50]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Signatures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A <font color="#0000BB">signature</font> "summarises" the data in one tuple
+</p><p>
+A tuple consists of <i>N</i> attribute values <i>A<sub>1</sub> .. A<sub>n</sub></i>
+</p><p>
+A <font color="#0000BB">codeword</font> <i>cw(A<sub>i</sub>)</i> is
+</p><ul>
+<li> a bit-string, <i>m</i> bits long, where <i>k</i> bits are set to 1 &nbsp;<small>(<i>k ≪ m</i>)</small>
+</li><li> derived from the value of a single attribute  <i>A<sub>i</sub></i>
+</li></ul>
+A <font color="#0000BB">tuple descriptor</font> (signature) is built by combining <i>cw(A<sub>i</sub>), i=1..n</i>
+<ul>
+<li> could combine by <i>overlaying</i> (or <i>concatenating</i>) codewords
+</li><li> aim to have roughly half of the bits set to 1
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [10/50]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Generating Codewords</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Generating a <i>k-in-m</i> codeword for attribute <i>A<sub>i</sub></i>
+</p><p></p><pre>bits codeword(char *attr_value, int m, int k)
+{
+   int  nbits = 0;   <span class="comment">// count of set bits</span>
+   bits cword = 0;   <span class="comment">// assuming m &lt;= 32 bits</span>
+   srandom(hash(attr_value));
+   while (nbits &lt; k) {
+      int i = random() % m;
+      if (((1 &lt;&lt; i) &amp; cword) == 0) {
+         cword |= (1 &lt;&lt; i);
+         nbits++;
+      }
+   }
+   return cword;  <span class="comment">// m-bits with k 1-bits and m-k 0-bits</span>
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [11/50]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Superimposed Codewords (SIMC)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+In a superimposed codewords (simc) indexing scheme
+</p><ul>
+<li> a tuple descriptor is formed by overlaying attribute codewords
+</li></ul>
+A tuple descriptor <i>desc(r)</i> is
+<ul>
+<li> a bit-string, <i>m</i> bits long, where <i>j ≤ nk</i> bits are set to 1
+</li><li> <i>desc(r)&nbsp;=&nbsp;cw(A<sub>1</sub>)</i> <large><code>OR</code></large> <i>cw(A<sub>2</sub>)</i> <large><code>OR</code></large> ... <large><code>OR</code></large> <i>cw(A<sub>n</sub>)</i>
+</li></ul>
+Method <small>(assuming all <i>n</i> attributes are used in descriptor)</small>:
+<p></p><pre>bits desc = 0 
+for (i = 1; i &lt;= n; i++) {
+   bits cw = codeword(A[i])
+   desc = desc | cw
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [12/50]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ SIMC Example</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following tuple <small>(from bank deposit database)</small>
+</p><p>
+</p><div class="center">
+<table cellpadding="5" cellspacing="0" border="1">
+<tbody><tr style="background:#CCCCCC">
+<td> <b>Branch</b> </td>
+<td> <b>AcctNo</b> </td>
+<td> <b>Name</b> </td>
+<td> <b>Amount</b> </td>
+</tr>
+<tr>
+<td> Perryridge </td>
+<td> 102 </td>
+<td> Hayes </td>
+<td> 400 </td>
+</tr>
+</tbody></table>
+</div>
+<p>
+It has the following codewords/descriptor (for <i>m = 12, &nbsp; k = 2</i> )
+</p><p>
+</p><div class="center">
+<table cellpadding="6" border="0">
+<tbody><tr>
+<td> <i>A<sub>i</sub></i> </td>
+<td> <i>cw(A<sub>i</sub>)</i> </td>
+</tr>
+<tr>
+<td> Perryridge </td>
+<td> <large><code>010000000001</code></large> </td>
+</tr>
+<tr>
+<td> 102        </td>
+<td> <large><code>000000000011</code></large> </td>
+</tr>
+<tr>
+<td> Hayes      </td>
+<td> <large><code>000001000100</code></large> </td>
+</tr>
+<tr>
+<td> 400        </td>
+<td> <large><code>000010000100</code></large> </td>
+</tr>
+<tr>
+<td> <i>desc(r)</i>  </td>
+<td> <large><code>010011000111</code></large> </td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [13/50]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ SIMC Queries</div></td><td align="right"></td></tr></tbody></table>
+<p>
+To answer query <i>q</i> in SIMC
+</p><ul>
+<li> first generate a <font color="#0000BB">query descriptor</font> <i>desc(q)</i>
+</li><li> then use the query descriptor to search the signature file
+</li></ul>
+<p>
+<i>desc(q)</i> is formed by <tt>OR</tt> of codewords for known attributes.
+</p><p>
+E.g. consider the query <large><code>(Perryridge, ?, ?, ?)</code></large>.
+</p><p>
+</p><div class="center">
+<table cellpadding="5" cellspacing="0" border="0">
+<tbody><tr>
+<td> <i>A<sub>i</sub></i> </td>
+<td> <i>cw(A<sub>i</sub>)</i> </td>
+</tr>
+<tr>
+<td> Perryridge </td>
+<td> <large><code>010000000001</code></large> </td>
+</tr>
+<tr>
+<td> <large><code>?</code></large>        </td>
+<td> <large><code>000000000000</code></large> </td>
+</tr>
+<tr>
+<td> <large><code>?</code></large>        </td>
+<td> <large><code>000000000000</code></large> </td>
+</tr>
+<tr>
+<td> <large><code>?</code></large>        </td>
+<td> <large><code>000000000000</code></large> </td>
+</tr>
+<tr>
+<td> <i>desc(q)</i>  </td>
+<td> <large><code>010000000001</code></large> </td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [14/50]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ SIMC Queries <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Once we have a query descriptor, we search the signature file:
+</p><p></p><pre>pagesToCheck = {}
+for each descriptor D[i] in signature file {
+    if (<font color="#996600">matches</font>(D[i],desc(q))) {
+        pid = pageOf(tupleID(i))
+        pagesToCheck = pagesToCheck ∪ pid
+    }
+}
+for each P in pagesToCheck {
+    Buf = getPage(f,P)
+    check tuples in Buf for answers
+}
+<span class="comment">// where ...</span>
+#define matches(rdesc,qdesc)
+               ((rdesc &amp; qdesc) == qdesc)
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [15/50]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example SIMC Query</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the query and the example database:
+</p><p>
+</p><div class="center">
+<table cellpadding="6" border="0">
+<tbody><tr>
+<td> <b>Signature</b> </td>
+<td> <b>Deposit Record</b> </td>
+</tr>
+<tr>
+<td> <large><code><font color="#996600">0<font color="#0000EE">1</font>000000000<font color="#0000EE">1</font></font></code></large> </td>
+<td> <font color="#996600">(Perryridge,?,?,?)</font> </td>
+</tr>
+<tr>
+<td> <large><code>10010100100<font color="#0000EE">1</font></code></large> </td>
+<td> (Brighton,217,Green,750) </td>
+</tr>
+<tr>
+<td> <large><code>0<font color="#0000EE">1</font>001100011<font color="#0000EE">1</font></code></large> </td>
+<td> <font color="#008800">(Perryridge,102,Hayes,400)</font> </td>
+</tr>
+<tr>
+<td> <large><code>10100100100<font color="#0000EE">1</font></code></large> </td>
+<td> (Downtown,101,Johnshon,512) </td>
+</tr>
+<tr>
+<td> <large><code>10110000001<font color="#0000EE">1</font></code></large> </td>
+<td> (Mianus,215,Smith,700) </td>
+</tr>
+<tr>
+<td> <large><code>0<font color="#0000EE">1</font>010101010<font color="#0000EE">1</font></code></large> </td>
+<td> <font color="#008800">(Clearview,117,Throggs,295)</font> </td>
+</tr>
+<tr>
+<td> <large><code>10010101001<font color="#0000EE">1</font></code></large> </td>
+<td> (Redwood,222,Lindsay,695) </td>
+</tr>
+</tbody></table>
+</div>
+<p>
+Gives two matches: &nbsp;one true match, &nbsp;one <font color="#0000BB">false match</font>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [16/50]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ SIMC Parameters</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">False match probablity</font> <i>p<sub>F</sub></i> &nbsp;=&nbsp; likelihood of a false match
+</p><p>
+How to reduce likelihood of false matches?
+</p><ul>
+<li> use different hash function for each attribute
+	&nbsp; (<i>h<sub>i</sub></i> for <i>A<sub>i</sub></i>)
+</li><li> increase descriptor size (<i>m</i>)
+</li><li> choose <i>k</i> so that <i>≅</i> half of bits are set
+</li></ul>
+<br>
+Larger <i>m</i> means reading more descriptor data.
+<p>
+Having <i>k</i> too high &nbsp;<i>⇒</i>&nbsp; increased overlapping. 
+<br>
+Having <i>k</i> too low &nbsp;<i>⇒</i>&nbsp; increased hash collisions.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [17/50]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ SIMC Parameters <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+How to determine "optimal" <i>m</i> and <i>k</i>?
+</p><p>
+</p><ol>
+<li> start by choosing acceptable <i>p<sub>F</sub></i> <br> &nbsp;
+    <small>(e.g. <i>p<sub>F</sub> ≤ 10<sup>-5</sup></i> i.e. one false match in 10,000)</small>
+</li><li> then choose <i>m</i> and <i>k</i> to achieve no more than this <i>p<sub>F</sub></i>.
+</li></ol>
+Formulae to derive <i>m</i> and <i>k</i> given <i>p<sub>F</sub></i> and <i>n</i>:
+<p>
+</p><div class="center">
+<i> k &nbsp;=&nbsp; 1/log<sub>e</sub>2 . log<sub>e</sub> ( 1/p<sub>F</sub> ) </i>
+<p>
+<i> m &nbsp;=&nbsp; ( 1/log<sub>e</sub> 2 )<sup>2</sup> . n . log<sub>e</sub> ( 1/p<sub>F</sub> ) </i>
+</p></div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [18/50]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Cost for SIMC</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Cost to answer <i>pmr</i> query: <i>Cost<sub>pmr</sub> = b<sub>D</sub> + b<sub>q</sub></i>
+</p><ul>
+<li> read <i>r</i> descriptors on <i>b<sub>D</sub></i> descriptor pages
+</li><li> then read <i>b<sub>q</sub></i> data pages and check for matches
+</li></ul>
+<i><font color="#008800">b<sub>D</sub></font> = ceil( r/c<sub>D</sub> )</i> 
+	&nbsp;and&nbsp; <i>c<sub>D</sub> = floor(B/ceil(m/8))</i>
+<p>
+E.g. <i>m=64, &nbsp; B=8192, &nbsp; r=10<sup>4</sup> &nbsp;&nbsp;&nbsp;⇒&nbsp;&nbsp;&nbsp; c<sub>D</sub> = 1024, &nbsp; b<sub>D</sub>=10 </i>
+</p><p>
+<i><font color="#008800">b<sub>q</sub></font></i> includes pages with <i>r<sub>q</sub></i> matching tuples and <i>r<sub>F</sub></i> false matches 
+</p><p>
+Expected false matches = <i>r<sub>F</sub> &nbsp;=&nbsp; (r - r<sub>q</sub>).p<sub>F</sub> &nbsp;≅&nbsp; r.p<sub>F</sub></i> &nbsp; <small>if <i>r<sub>q</sub> ≪ r</i></small>
+</p><p>
+E.g. Worst <i>b<sub>q</sub> = r<sub>q</sub>+r<sub>F</sub></i>,
+	&nbsp; Best <i>b<sub>q</sub> = 1</i>,
+	&nbsp; Avg <i>b<sub>q</sub> = ceil(b(r<sub>q</sub>+r<sub>F</sub>)/r)</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [19/50]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: SIMC Query Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a SIMC-indexed database with the following properties
+</p><ul>
+<li> all pages are <i>B</i> = 8192 bytes
+</li><li> tuple descriptors have <i>m</i> = 64 bits ( = 8 bytes)
+</li><li> total records <i>r</i> = 102,400, &nbsp; records/page <i>c</i> = 100
+</li><li> false match probability <i>p<sub>F</sub></i> = 1/1000
+</li><li> answer set has 1000 tuples from 100 pages
+</li><li> 90% of false matches occur on data pages with true match
+</li><li> 10% of false matches are distributed 1 per page
+</li></ul>
+Calculate the total number of pages read in answering the query.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [20/50]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page-level SIMC</div></td><td align="right"></td></tr></tbody></table>
+<p>
+SIMC has one descriptor per tuple ... potentially inefficient.
+</p><p>
+Alternative approach: one descriptor for each data page.
+</p><p>
+Every attribute of every tuple in page contributes to descriptor.
+</p><p>
+Size of page descriptor (PD) <small>(clearly larger than tuple descriptor)</small>:
+</p><ul>
+<li> use above formulae but with <i>c.n</i> "attributes"
+</li></ul>
+E.g. <i>n = 4, c = 128, p<sub>F</sub> = 10<sup>-3</sup> &nbsp; ⇒ &nbsp; m ≅ 7000bits ≅ 900bytes</i>
+<p>
+Typically, pages are 1..8KB &nbsp;<i>⇒</i>&nbsp; 1..9 PD/page (<i>N<sub>PD</sub></i>).
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [21/50]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page-Level SIMC Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+File organisation for page-level superimposed codeword index
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/simc-2level.png]" src="./lec11_files/simc-2level.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [22/50]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Page-level SIMC Query Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a SIMC-indexed database with the following properties
+</p><ul>
+<li> all pages are <i>B</i> = 8192 bytes
+</li><li> page descriptors have <i>m</i> = 4096 bits ( = 512 bytes)
+</li><li> total records <i>r</i> = 102,400, &nbsp; records/page <i>c</i> = 100
+</li><li> false match probability <i>p<sub>F</sub></i> = 1/1000
+</li><li> answer set has 1000 tuples from 100 pages
+</li><li> 90% of false matches occur on data pages with true match
+</li><li> 10% of false matches are distributed 1 per page
+</li></ul>
+Calculate the total number of pages read in answering the query.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [23/50]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Bit-sliced SIMC</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Improvement: store <i>b</i> <i>m</i>-bit page descriptors as <i>m</i> <i>b</i>-bit "bit-slices"
+</p><p><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/select/bit-sliced.png]" src="./lec11_files/bit-sliced.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [24/50]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Bit-sliced SIMC <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+At query time
+</p><p></p><pre>matches = ~0  <span class="comment">//all ones</span>
+for each bit i set to 1 in desc(q) {
+   slice = fetch bit-slice i
+   matches = matches &amp; slice
+}
+for each bit i set to 1 in matches {
+   fetch page i
+   scan page for matching records
+}
+</pre><p>
+<br>
+Effective because <i>desc(q)</i> typically has less than half bits set to 1
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [25/50]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Bit-sliced SIMC Query Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a SIMC-indexed database with the following properties
+</p><ul>
+<li> all pages are <i>B</i> = 8192 bytes
+</li><li> <i>r</i> = 102,400, &nbsp; <i>c</i> = 100, &nbsp; <i>b</i> = 1024
+</li><li> page descriptors have <i>m</i> = 4096 bits ( = 512 bytes)
+</li><li> bit-slices have <i>b</i> = 1024 bits ( = 128 bytes)
+</li><li> false match probability <i>p<sub>F</sub></i> = 1/1000
+</li><li> query descriptor has <i>k</i> = 10 bits set to 1
+</li><li> answer set has 1000 tuples from 100 pages
+</li><li> 90% of false matches occur on data pages with true match
+</li><li> 10% of false matches are distributed 1 per page
+</li></ul>
+Calculate the total number of pages read in answering the query.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [26/50]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Implementing Join</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [27/50]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Join</div></td><td align="right"></td></tr></tbody></table>
+<p>
+DBMSs are engines to <font color="#0000BB">store</font>, <font color="#0000BB">combine</font> and <font color="#0000BB">filter</font> information.
+</p><p>
+<font color="#0000BB">Join</font> (<i>⋈</i>) is the primary means of <font color="#0000BB">combining</font> information.
+</p><p>
+<font color="#0000BB">Join</font> is important and potentially expensive <br>
+</p><p>
+Most common join condition: equijoin, e.g. <large><code>(R.pk = S.fk)</code></large>
+</p><p>
+Join varieties (natural, inner, outer, semi, anti) all behave similarly.
+</p><p>
+We consider three strategies for implementing join
+</p><ul>
+<li> <font color="#0000BB">nested loop</font> ... <small>simple, widely applicable, inefficient without buffering</small>
+</li><li> <font color="#0000BB">sort-merge</font> ... <small>works best if tables are sorted on join attributes</small>
+</li><li> <font color="#0000BB">hash-based</font> ... <small>requires good hash function and sufficient buffering</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [28/50]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Join Example</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a university database with the schema:
+</p><p></p><pre>create table Student(
+   id     integer primary key,
+   name   text,  ...
+);
+create table Enrolled(
+   stude  integer references Student(id),
+   subj   text references Subject(code),  ...
+);
+create table Subject(
+   code   text primary key,
+   title  text,  ...
+);
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [29/50]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Join Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<i>List names of students in all subjects, arranged by subject.</i>
+</p><p>
+SQL query to provide this information:
+</p><p></p><pre>select E.subj, S.name
+from   Student S, Enrolled E
+where  S.id = E.stude
+order  by E.subj, S.name;
+</pre><p>
+And its relational algebra equivalent:
+</p><div class="center">
+<i>Sort<small>[subj]</small> ( Project<small>[subj,name]</small> ( <font color="#0000EE">Join<small>[id=stude]</small>(Student,Enrolled)</font> ) )</i>
+</div>
+<br><br>
+To simplify formulae, we denote <large><code>Student</code></large> by <i>S</i> and <large><code>Enrolled</code></large> by <i>E</i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [30/50]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Join Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Some database statistics:
+</p><p>
+</p><div class="center">
+<table cellpadding="5px" cellspacing="0" border="1">
+<tbody><tr style="background:#CCCCCC">
+<td> <b>Sym</b> </td>
+<td> <b>Meaning</b> </td>
+<td> <b>Value</b> </td>
+</tr>
+<tr>
+<td> <i>r<sub>S</sub></i> </td>
+<td> # student records </td>
+<td> 20,000 </td>
+</tr>
+<tr>
+<td> <i>r<sub>E</sub></i> </td>
+<td> # enrollment records </td>
+<td> 80,000 </td>
+</tr>
+<tr>
+<td> <i>c<sub>S</sub></i> </td>
+<td> <large><code>Student</code></large> records/page </td>
+<td> 20 </td>
+</tr>
+<tr>
+<td> <i>c<sub>E</sub></i> </td>
+<td> <large><code>Enrolled</code></large> records/page </td>
+<td> 40 </td>
+</tr>
+<tr>
+<td> <i>b<sub>S</sub></i> </td>
+<td> # data pages in <large><code>Student</code></large> </td>
+<td> 1,000 </td>
+</tr>
+<tr>
+<td> <i>b<sub>E</sub></i> </td>
+<td> # data pages in <large><code>Enrolled</code></large> </td>
+<td> 2,000 </td>
+</tr>
+</tbody></table>
+</div>
+<p>
+Also, in cost analyses below, <i>N</i> = number of memory buffers.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [31/50]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Join Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><code>Out</code></large> = <i>Student ⋈ Enrolled</i> relation statistics:
+</p><p>
+</p><div class="center">
+<table cellpadding="5px" cellspacing="0" border="1">
+<tbody><tr style="background:#CCCCCC">
+<td> <b>Sym</b> </td>
+<td> <b>Meaning</b> </td>
+<td> <b>Value</b> </td>
+</tr>
+<tr>
+<td> <i>r<sub>Out</sub></i> </td>
+<td> # tuples in result </td>
+<td> 80,000 </td>
+</tr>
+<tr>
+<td> <i>C<sub>Out</sub></i> </td>
+<td> result records/page </td>
+<td> 80 </td>
+</tr>
+<tr>
+<td> <i>b<sub>Out</sub></i> </td>
+<td> # data pages in result </td>
+<td> 1,000 </td>
+</tr>
+</tbody></table>
+</div>
+<p>
+Notes:
+</p><ul>
+<li> <i>r<sub>Out</sub></i> ... one result tuple for each <large><code>Enrolled</code></large> tuple
+</li><li> <i>C<sub>Out</sub></i> ... result tuples have only <large><code>subj</code></large> and <large><code>name</code></large>
+</li><li> in analyses, ignore cost of writing result ... same in all methods
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [32/50]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Nested Loop Join</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Basic strategy (R.a ⋈ S.b):
+</p><p></p><pre>Result = {}
+for each page i in R {
+   pageR = getPage(R,i)
+   for each page j in S {
+      pageS = getPage(S,j)
+      for each pair of tuples t<sub>R</sub>,t<sub>S</sub>
+                       from pageR,pageS {
+         if (t<sub>R</sub>.a == t<sub>S</sub>.b)
+            Result = Result ∪ (t<sub>R</sub>:t<sub>S</sub>)
+}  }  }
+</pre><p>
+Needs input buffers for R and S, output buffer for "joined" tuples
+</p><p>
+Terminology: R is outer relation, S is inner relation
+</p><p>
+Cost = <i>b<sub>R</sub> . b<sub>S</sub></i> &nbsp; ... &nbsp; ouch!
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [33/50]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Block Nested Loop Join</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Method (for <i>N</i> memory buffers):
+</p><ul>
+<li> read <i>N-2</i>-page chunk of <i>R</i> into memory buffers
+</li><li> for each <i>S</i> page <br>
+	&nbsp;&nbsp;&nbsp; check join condition on all <large><code>(t<sub>R</sub>,t<sub>S</sub>)</code></large> pairs in buffers
+</li><li> repeat for all <i>N-2</i>-page chunks of <i>R</i>
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/join/blk-nested-loop.png]" src="./lec11_files/blk-nested-loop.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [34/50]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Block Nested Loop Join <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Best-case scenario: <i>b<sub>R</sub> ≤ N-2</i>
+</p><ul>
+<li> read <i>b<sub>R</sub></i> pages of relation <i>R</i> into buffers
+</li><li> while whole <i>R</i> is buffered, read <i>b<sub>S</sub></i> pages of <i>S</i>
+</li></ul>
+Cost &nbsp; = &nbsp;
+	<i>b<sub>R</sub> + b<sub>S</sub></i>
+<p>
+Typical-case scenario: <i>b<sub>R</sub> &gt; N-2</i>
+</p><ul>
+<li> read <i>ceil(b<sub>R</sub>/(N-2))</i> chunks of pages from <i>R</i>
+</li><li> for each chunk, read <i>b<sub>S</sub></i> pages of <i>S</i>
+</li></ul>
+<p>
+Cost &nbsp; = &nbsp;
+	<i>b<sub>R</sub> + b<sub>S</sub> .
+	ceil(b<sub>R</sub>/N-2)</i>
+</p><p>
+Note: always requires <i>r<sub>R</sub>.r<sub>S</sub></i> checks of the join condition
+
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [35/50]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Nested Loop Join Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Compute the cost (# pages fetched) of <i>(S ⋈ E)</i>
+</p><p>
+</p><div class="center">
+<table cellpadding="5px" cellspacing="0" border="1">
+<tbody><tr style="background:#CCCCCC">
+<td> <b>Sym</b> </td>
+<td> <b>Meaning</b> </td>
+<td> <b>Value</b> </td>
+</tr>
+<tr>
+<td> <i>r<sub>S</sub></i> </td>
+<td> # student records </td>
+<td> 20,000 </td>
+</tr>
+<tr>
+<td> <i>r<sub>E</sub></i> </td>
+<td> # enrollment records </td>
+<td> 80,000 </td>
+</tr>
+<tr>
+<td> <i>c<sub>S</sub></i> </td>
+<td> <large><code>Student</code></large> records/page </td>
+<td> 20 </td>
+</tr>
+<tr>
+<td> <i>c<sub>E</sub></i> </td>
+<td> <large><code>Enrolled</code></large> records/page </td>
+<td> 40 </td>
+</tr>
+<tr>
+<td> <i>b<sub>S</sub></i> </td>
+<td> # data pages in <large><code>Student</code></large> </td>
+<td> 1,000 </td>
+</tr>
+<tr>
+<td> <i>b<sub>E</sub></i> </td>
+<td> # data pages in <large><code>Enrolled</code></large> </td>
+<td> 2,000 </td>
+</tr>
+</tbody></table>
+</div>
+<p>
+for <i>N = 22, 202, 2002</i> and different inner/outer combinations
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [36/50]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Nested Loop Join Cost <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+If the query in the above example was:
+</p><p></p><pre>select j.code, j.title, s.name
+from   Student s
+       join Enrolled e on (s.id=e.student)
+       join Subject j on (e.subj=j.code)
+</pre><p>
+how would this change the previous analysis?
+</p><p>
+What join combinations are there?
+</p><p>
+Assume 2000 subjects, with <i>c<sub>J</sub> = 10</i>
+</p><p>
+How large would the intermediate tuples be? What assumptions?
+</p><p>
+Compute the cost (# pages fetched, # pages written) for <i>N</i> = 202
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [37/50]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ BNJ in Practice</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Why block nested loop join is actually useful in practice ...
+</p><p>
+Many queries have the form
+</p><p></p><pre>select * from R,S where <font color="#008800">r.i=s.j</font> and <font color="#CC0000">r.x=k</font>
+</pre><p>
+This would typically be evaluated as
+</p><p>
+</p><p></p><pre>Tmp = Sel[r.x=k](R)
+Res = Tmp Join<small>[i=j]</small> S
+</pre><p>
+</p><p>
+If <large><code>Tmp</code></large> is small ⇒ may fit in memory
+	<small>(in small #buffers)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [38/50]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Index Nested Loop Join</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A problem with nested-loop join:
+</p><ul>
+<li> needs repeated scans of <i>entire</i> inner relation <i>S</i>
+</li></ul>
+If there is an index on <i>S</i>, we can avoid such repeated whole-of-<i>S</i> &nbsp;scanning.
+<p>
+Consider <i>Join<small>[i=j]</small>(R,S)</i>:
+</p><p></p><pre>for each tuple r in relation R {
+    use index to select tuples
+        from S where s.j = r.i
+    for each selected tuple s from S {
+        add (r,s) to result
+}   }
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [39/50]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Index Nested Loop Join <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+This method requires:
+</p><ul>
+<li> one scan of <i>R</i> relation (<i>b<sub>R</sub></i>)
+<ul>
+<li> only one buffer needed, since we use <i>R</i> &nbsp;tuple-at-a-time
+</li></ul>
+</li><li> for each <font color="#0000BB">tuple</font> in <i>R</i> (<i>r<sub>R</sub></i>), one index lookup on <i>S</i>
+<ul>
+<li> cost depends on type of index and number of results
+</li><li> best case is when each <i>R.i</i> &nbsp;matches few <i>S</i> tuples
+</li></ul>
+</li></ul>
+Cost &nbsp; = &nbsp; <i>b<sub>R</sub> + <font color="#CC0000">r<sub>R</sub></font>.Sel<sub>S</sub></i>
+	&nbsp;&nbsp; <small>(<i>Sel<sub>S</sub></i> is the cost of performing a select on <i>S</i>).</small>
+<p>
+Typical <i>Sel<sub>S</sub></i> &nbsp;=&nbsp; 1-2 (hashing) .. <i>b<sub>q</sub></i> (unclustered index)
+</p><p>
+Trade-off: &nbsp; <i>r<sub>R</sub>.Sel<sub>S</sub></i> &nbsp;vs&nbsp; <i>b<sub>R</sub>.b<sub>S</sub></i>, &nbsp; where &nbsp; <i>b<sub>R</sub> ≪ r<sub>R</sub></i> and <i>Sel<sub>S</sub> ≪ b<sub>S</sub></i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [40/50]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Index Nested Loop Join Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider executing <i>Join[i=j](S,T)</i> with the following parameters:
+</p><ul>
+<li> <i>r<sub>S</sub> = 1000</i>,&nbsp; <i>b<sub>S</sub> = 50</i>,&nbsp;
+	<i>r<sub>T</sub> = 3000</i>,&nbsp; <i>b<sub>T</sub> = 600</i>
+</li><li> <i>S.i</i> is primary key, and <i>T</i> has index on <i>T.j</i>
+</li><li> <i>T</i> is sorted on <i>T.j</i>, each <i>S</i> tuple joins with 2 <i>T</i> tuples
+</li><li> DBMS has <i>N = 12</i> buffers available for the join
+</li></ul>
+Calculate the costs for evaluating the above join
+<ul>
+<li> using block nested loop join
+</li><li> using index nested loop join
+</li></ul>
+Cost<sub>r</sub> = # pages read &nbsp; and &nbsp; Cost<sub>j</sub> = # join-condition checks
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [41/50]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-Merge Join</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Basic approach:
+</p><ul>
+<li> sort both relations on join attribute
+	&nbsp; <small>(reminder: <i>Join <small>[i=j]</small> (R,S)</i>)</small>
+</li><li> scan together using <font color="#0000BB">merge</font> to form result <large><code>(r,s)</code></large> tuples
+</li></ul>
+Advantages:
+<ul>
+<li> no need to deal with "entire" <i>S</i> &nbsp;relation for each <i>r</i> &nbsp;tuple
+</li><li> deal with runs of matching <i>R</i> &nbsp;and <i>S</i> &nbsp;tuples
+</li></ul>
+Disadvantages:
+<ul>
+<li> cost of sorting both relations
+       &nbsp; <small>(already sorted on join key?)</small>
+</li><li> some rescanning required when long runs of <i>S</i> &nbsp;tuples
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [42/50]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-Merge Join <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Method requires several cursors to scan sorted relations:
+</p><ul>
+<li> <large><code>r</code></large> = current record in <i>R</i> relation
+</li><li> <large><code>s</code></large> = start of current run in <i>S</i> relation
+</li><li> <large><code>ss</code></large> = current record in current run in <i>S</i> relation
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/join/sort-merge.png]" src="./lec11_files/sort-merge.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [43/50]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-Merge Join <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Algorithm using query iterators/scanners:
+</p><p></p><pre>Query ri, si;  Tuple r,s;
+
+ri = startScan("SortedR");
+si = startScan("SortedS");
+while ((r = nextTuple(ri)) != NULL
+       &amp;&amp; (s = nextTuple(si)) != NULL) {
+    <span class="comment">// align cursors to start of next common run</span>
+    while (r != NULL &amp;&amp; r.i &lt; s.j)
+           r = nextTuple(ri);
+    if (r == NULL) break;
+    while (s != NULL &amp;&amp; r.i &gt; s.j)
+           s = nextTuple(si);
+    if (s == NULL) break;
+    <span class="comment">// must have (r.i == s.j) here</span>
+...
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [44/50]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-Merge Join <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre>...
+    <span class="comment">// remember start of current run in S</span>
+    TupleID startRun = scanCurrent(si)
+    <span class="comment">// scan common run, generating result tuples</span>
+    while (r != NULL &amp;&amp; r.i == s.j) {
+        while (s != NULL and s.j == r.i) {
+            addTuple(outbuf, combine(r,s));
+            if (isFull(outbuf)) {
+                writePage(outf, outp++, outbuf);
+                clearBuf(outbuf);
+            }
+            s = nextTuple(si);
+        }
+        r = nextTuple(ri);
+        setScan(si, startRun);
+    }
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [45/50]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-Merge Join <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Buffer requirements:
+</p><ul>
+<li> for sort phase:
+<ul>
+<li> as many as possible <small>(remembering that cost is <i>O(log<sub>N</sub>)</i> )</small>
+</li><li> if insufficient buffers, sorting cost can dominate
+</li></ul>
+</li><li> for merge phase:
+<ul>
+<li> one output buffer for result
+</li><li> one input buffer for relation <i>R</i>
+</li><li> (preferably) enough buffers for longest run in <i>S</i>
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [46/50]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-Merge Join <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Cost of sort-merge join.
+</p><p>
+Step 1: sort each relation &nbsp; <small>(if not already sorted)</small>:
+</p><ul>
+<li> Cost =
+<i>2.b<sub>R</sub> (1 + log<sub>N-1</sub>(b<sub>R</sub> /N))</i> &nbsp;+&nbsp;
+<i>2.b<sub>S</sub> (1 + log<sub>N-1</sub>(b<sub>S</sub> /N))</i>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <tiny>(where <i>N</i> = number of memory buffers)</tiny>
+</li></ul>
+Step 2: merge sorted relations:
+<ul>
+<li> if every run of values in <i>S</i> fits completely in buffers, <br>
+	merge requires single scan,
+	&nbsp; Cost = <i>b<sub>R</sub> + b<sub>S</sub></i>
+</li><li> if some runs in of values in <i>S</i> are larger than buffers, <br>
+	need to re-scan run for each corresponding value from <i>R</i>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [47/50]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-Merge Join on Example</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Case 1: &nbsp; <i>Join<small>[id=stude]</small>(Student,Enrolled)</i>
+</p><ul>
+<li> relations are not sorted on <i>id#</i>
+</li><li> memory buffers <i>N=32</i>; all runs are of length <i>&lt; 30</i>
+</li></ul>
+&nbsp;<br>
+<table border="0" cellpadding="4">
+<tbody><tr>
+<td> Cost </td>
+<td> = </td>
+<td> <i>sort(S) + sort(E) + b<sub>S</sub> + b<sub>E</sub></i> </td>
+</tr>
+<tr>
+<td> </td>
+<td> = </td>
+<td> <i>2b<sub>S</sub>(1+log<sub>31</sub>(b<sub>S</sub>/32)) + 2b<sub>E</sub>(1+log<sub>31</sub>(b<sub>E</sub>/32)) + b<sub>S</sub> + b<sub>E</sub></i> </td>
+</tr>
+<tr>
+<td> </td>
+<td> = </td>
+<td> <i>2×1000×(1+2) + 2×2000×(1+2) + 1000 + 2000</i> </td>
+</tr>
+<tr>
+<td> </td>
+<td> = </td>
+<td> <i>6000 + 12000 + 1000 + 2000</i> </td>
+</tr>
+<tr>
+<td> </td>
+<td> = </td>
+<td> <i>21,000</i> </td>
+</tr>
+</tbody></table>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [48/50]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-Merge Join on Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+Case 2: &nbsp; <i>Join<small>[id=stude]</small>(Student,Enrolled)</i>
+</p><ul>
+<li> <i>Student</i> &nbsp;and <i>Enrolled</i> &nbsp;already sorted on <i>id#</i>
+</li><li> memory buffers <i>N=4</i> (<i>S</i> input, 2 × <i>E</i> input, output)
+</li><li> 5% of the "runs" in <i>E</i> &nbsp;span two pages
+</li><li> there are no "runs" in <i>S</i>, since <i>id#</i> &nbsp;is a primary key
+</li></ul>
+For the above, no re-scans of <i>E</i> &nbsp;runs are ever needed
+<p>
+<i>Cost &nbsp;=&nbsp; 2,000 + 1,000 &nbsp;=&nbsp; 3,000</i> &nbsp; <small>(regardless of which relation is outer)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [49/50]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week07-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Sort-merge Join Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider executing <i>Join[i=j](S,T)</i> with the following parameters:
+</p><ul>
+<li> <i>r<sub>S</sub> = 1000</i>,&nbsp; <i>b<sub>S</sub> = 50</i>,&nbsp;
+	<i>r<sub>T</sub> = 3000</i>,&nbsp; <i>b<sub>T</sub> = 150</i>
+</li><li> <i>S.i</i> &nbsp;is primary key, and <i>T</i> &nbsp;has index on <i>T.j</i>
+</li><li> <i>T</i> &nbsp;is sorted on <i>T.j</i>, each <i>S</i> &nbsp;tuple joins with 2 <i>T</i> &nbsp;tuples
+</li><li> DBMS has <i>N = 42</i> buffers available for the join
+</li></ul>
+Calculate the cost for evaluating the above join
+<ul>
+<li> using sort-merge join
+</li><li> compute #pages read/written
+</li><li> compute #join-condition checks performed
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 7 Monday Lecture ♢ [50/50]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 25 Mar 2024</span>
+ <script src="./lec11_files/prism.js"></script>   
+ <script src="./lec11_files/sg.js"></script>   
+
+
+</p></body></html>

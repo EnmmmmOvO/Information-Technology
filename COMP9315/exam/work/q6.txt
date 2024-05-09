@@ -1,0 +1,48 @@
+# COMP9315 21T1 Final Exam Q4
+
+Type your answer(s) to replace the xxx's
+Submit this file as your answer for Q4
+
+State before inserting 6
+
+xxx
+
+State after splitting and inserting 6
+
+xxx
+
+
+State before inserting 12
+
+xxx
+
+State after splitting and inserting 12
+
+xxx
+
+
+State before inserting 18
+
+xxx
+
+State after splitting and inserting 18
+
+xxx
+
+
+State before inserting 24
+
+xxx
+
+State after splitting and inserting 24
+
+xxx
+
+
+State before inserting 30
+
+xxx
+
+State after splitting and inserting 30
+
+xxx

@@ -1,0 +1,855 @@
+
+<!-- saved from url=(0078)https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 01 Monday Lecture</title>
+<link href="./lec01_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec01_files/latest.js" async=""></script>
+<script src="./lec01_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec01_files/MathJax.js"></script>
+<link href="./lec01_files/css" rel="stylesheet">
+<link href="./lec01_files/prism.css" rel="stylesheet">
+<script src="./lec01_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 01 Monday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s2">Lecturer</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s3">Useful Contacts</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s4">Course Goals</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s5">Pre-requisites</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s6">Exercise: SQL <small>(revision)</small></a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s7">Exercise: Unix File I/O <small>(revision)</small></a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s8">Learning/Teaching</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s10">Rough Schedule</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s11">Textbooks</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s12">Prac Work</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s14">Assignments</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s17">Quizzes</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s18">Exam</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s20">Assessment Summary</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s21">Relational Database Revision</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s22">Relational DBMS Functionality</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s23">Data Definition</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s25">Data Modification</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s27">Query Evaluator</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s29">DBMS Architecture</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s34">Installing/Using PostgreSQL</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s35">Installing PostgreSQL</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s36">Before Installing ...</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s37">Installing/Using PostgreSQL</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s39">Exercise: Install PostgreSQL</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s40">Using PostgreSQL for Assignments</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [0/42]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> &nbsp;
+<div align="center">
+<div style="font-size:36pt;color:#336699">COMP9315 24T1<br>DBMS Implementation</div>
+<small>( Data structures and algorithms inside relational DBMSs )</small>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/pgsql.jpg]" src="./lec01_files/pgsql.jpg">
+</div><p>
+</p><p>
+Lecturer: &nbsp; <font color="#000099"><b><i>John Shepherd</i></b></font>
+</p><p>
+Web Site: &nbsp; <a href="http://www.cse.unsw.edu.au/~cs9315/"><font color="#000099">http://www.cse.unsw.edu.au/~cs9315/</font></a>
+</p><p>
+<small>(If WebCMS unavailable, use http://www.cse.unsw.edu.au/~cs9315/24T1/)</small>
+</p></div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [1/42]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Lecturer</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p><table border="0" cellpadding="6">
+<tbody><tr valign="top"><td><nobr>Name:</nobr></td><td></td><td>John Shepherd</td></tr>
+<tr valign="top"><td><nobr>Admin:</nobr></td><td></td><td>Deputy Head of School (education)</td></tr>
+<tr valign="top"><td><nobr>Office:</nobr></td><td></td><td>K17-410 &nbsp; <small>(turn right from lift)</small></td></tr>
+<tr valign="top"><td><nobr>Email:</nobr></td><td></td><td>cs9315@cse.unsw.edu.au</td></tr>
+<tr valign="top"><td><nobr>Consults:</nobr></td><td></td><td>still working out the details</td></tr>
+<tr valign="top"><td><nobr>Research:</nobr></td><td></td><td>
+e-Learning Technologies <span class="smaller">(e.g. Webcms)</span><br>
+Information Extraction/Integration <br>
+Information Retrieval/Web Search <br>
+Multimedia Databases <br>
+Query Processing
+</td></tr>
+</tbody></table></p><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [2/42]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Useful Contacts</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p><table border="0" cellpadding="6">
+<tbody><tr valign="top"><td><nobr>Email:</nobr></td><td></td><td>cs9315@cse.unsw.edu.au <br><br>
+</td></tr>
+<tr valign="top"><td><nobr>The Nucleus</nobr></td>
+<td></td><td>Enrolment problems</td></tr>
+<tr valign="top"><td><nobr>Special Consideration</nobr></td>
+<td></td><td>Illness, Misadventure<br>
+Assignment extension, Supp Exam<br>
+Must be <i>documented</i></td></tr>
+<tr valign="top"><td><nobr>Forum</nobr></td>
+<td></td><td>Assignment Problems</td></tr>
+<tr valign="top"><td><nobr>Email/Help Sessions</nobr></td>
+<td></td><td>Detailed assignment Problems</td></tr>
+</tbody></table></p><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [3/42]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Course Goals</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Introduce you to:
+</p><ul>
+<li> architecture of relational DBMSs &nbsp;<small>(e.g. PostgreSQL)</small>
+</li><li> algorithms/data-structures for data-intensive computing
+</li><li> representation of relational database objects
+</li><li> representation of relational operators <small>(sel,proj,join)</small>
+</li><li> techniques for processing SQL queries
+</li><li> techniques for managing concurrent transactions
+</li><li> ?concepts in distributed and non-relational databases?
+</li></ul>
+Develop skills in:
+<ul>
+<li> analysing the performance of data-intensive algorithms
+</li><li> the use of C to implement data-intensive algorithms
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [4/42]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Pre-requisites</div></td><td align="right"></td></tr></tbody></table>
+<p>
+We assume that you are already familiar with
+</p><ul>
+<li> <font color="#008800">the C language and programming in C (or C++)</font> <br>
+	&nbsp; <small>(e.g. completed ≥ 1 programming course in C)</small>
+</li><li> <font color="#008800">developing applications on RDBMSs</font> <br>
+	&nbsp; <small>(SQL, [relational algebra] &nbsp; e.g. an intro DB course)</small>
+</li><li> <font color="#008800">basic ideas about file organisation and file manipulation</font> <br>
+	&nbsp; <small>(Unix &nbsp; <large><code>open, close, lseek, read, write, flock</code></large>)</small>
+</li><li> <font color="#008800">sorting algorithms, data structures for searching</font> <br>
+	&nbsp; <small>(sorting, trees, hashing &nbsp; e.g. a data structures course)</small>
+</li></ul>
+If you don't know this material very well, <font color="#CC0000">don't take this course.</font>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [5/42]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: SQL <small>(revision)</small></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Given the following schema:
+</p><p></p><pre>Students(sid, name, degree, ...)
+<span class="comment">e.g. Students(3322111, 'John Smith', 'MEngSc', ...)</span>
+Courses(cid, code, term, title, ...)
+<span class="comment">e.g. Courses(1732, 'COMP9311', '12s1', 'Databases', ...)</span>
+Enrolments(sid, cid, mark, grade)
+<span class="comment">e.g. Enrolments(3322111, 1732, 50, 'PS')</span>
+</pre><p>
+Write an SQL query to solve the problem
+</p><ul>
+<li> find all students who passed COMP9315 in 18s2
+</li><li> for each student, give (student ID, name, mark)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [6/42]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Unix File I/O <small>(revision)</small></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Write a C program that reads a file, block-by-block.
+</p><p>
+Command-line parameters:
+</p><ul>
+<li> block size in bytes
+</li><li> name of input file
+</li></ul>
+Use low-level C operations: <large><code>open, read</code></large>.
+<p>
+Count and display how many blocks/bytes read.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [7/42]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Learning/Teaching</div></td><td align="right"></td></tr></tbody></table>
+<p>
+What's available for you:
+</p><ul>
+<li> Textbooks: describe some syllabus topics in detail
+</li><li> Notes: describe syllabus topics in some detail <small>(from 2019)</small>
+</li><li> Topic Videos: describe syllabus topics in less detail <small>(from 2021)</small>
+</li><li> Lecture slides: summarise Topic Videos and contain exercises <small>(old+new)</small>
+</li><li> Lecture videos: for review <small>or if you miss a lecture, or are in WEB stream</small>
+</li><li> Readings: research papers on selected topics
+</li></ul>
+The onus is on <font color="#0000BB">you</font> to use this material.
+<p><br>
+<small>
+Note: Exercises and videos will be available only <i>after</i> the lecture.
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [8/42]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Learning/Teaching <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Things that you need to <b>do</b>:
+</p><ul>
+<li> <font color="#008800">Exercises</font>: tutorial-like questions
+</li><li> <font color="#008800">Prac work</font>: lab-class-like exercises
+</li><li> <font color="#CC0000">Assignments</font>: large/important practical exercises
+</li><li> <font color="#CC0000">On-line quizzes</font>: for self-assessment
+</li></ul>
+Dependencies:
+<ul>
+<li> Exercises → Exam (theory part)
+</li><li> Prac work → Assignments → Exam (prac part)
+</li></ul>
+There are <b>no</b> tute/lab classes; use Forum, Email, Help Sessions
+<ul>
+<li> debugging is best done in person &nbsp;<small>(can see full context)</small>
+</li><li> at the very least, send error messages &nbsp; <small>(<b>not</b> screenshots)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [9/42]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Rough Schedule</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p><table border="0" cellpadding="6">
+<tbody><tr valign="top"><td><nobr>Week 01</nobr></td><td></td><td>intro, dbms review, RA, catalogs</td></tr>
+<tr valign="top"><td><nobr>Week 02</nobr></td><td></td><td>storage: disks, buffers, pages, tuples</td></tr>
+<tr valign="top"><td><nobr>Week 03</nobr></td><td></td><td>RA ops: scan, sort, projection</td></tr>
+<tr valign="top"><td><nobr>Week 04</nobr></td><td></td><td>selection: heaps, hashing, indexes</td></tr>
+<tr valign="top"><td><nobr>Week 05</nobr></td><td></td><td>selection: N-d matching, similarity</td></tr>
+<tr valign="top"><td><nobr>Week 06</nobr></td><td></td><td>no lectures</td></tr>
+<tr valign="top"><td><nobr>Week 07</nobr></td><td></td><td>joins: naive, sort-merge, hash join</td></tr>
+<tr valign="top"><td><nobr>Week 08</nobr></td><td></td><td>query processing, optimisation</td></tr>
+<tr valign="top"><td><nobr>Week 09</nobr></td><td></td><td>transactions: concurrency, recovery</td></tr>
+<tr valign="top"><td><nobr>Week 10</nobr></td><td></td><td>distributed and non-SQL databases</td></tr>
+</tbody></table></p><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [10/42]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Textbooks</div></td><td align="right"></td></tr></tbody></table>
+<p>
+No official text book; several are suitable ...
+<img align="right" src="./lec01_files/stanford-small.jpg">
+</p><ul>
+<li> Garcia-Molina, Ullman, Widom <br>
+	"Database Systems: The Complete Book"
+</li><li> Ramakrishnan, Gehrke <br>
+	"Database Systems Management"
+</li><li> Silberschatz, Korth, Sudarshan <br>
+	"Database System Concepts"
+</li><li> Kifer, Bernstein, Lewis <br>
+	"Database Systems: An algorithmic-oriented approach"
+</li><li> Elmasri, Navathe <br>
+	"Database Systems: Models, languages, design ..."
+</li></ul>
+but not all cover all topics in detail
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [11/42]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Prac Work</div></td><td align="right"></td></tr></tbody></table>
+<p>
+In this course, we use PostgreSQL v15.6 &nbsp; <small>(compulsory)</small>
+</p><p>
+Prac Work requires you to compile PostgreSQL from source code
+</p><ul>
+<li> instructions explain how to do this on Linux at CSE
+</li><li> also works easily on Linux and Mac OSX at home
+</li><li> PostgreSQL docs describe how to compile for Windows
+</li></ul>
+Make sure you do the first Prac Exercise when it becomes available.
+<p>
+Sort out any problems ASAP <small>(preferably at a help session)</small>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [12/42]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Prac Work <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL is a <font color="#0000BB">large</font> software system:
+</p><ul>
+<li> &gt; 2400 source code files in the core engine/clients
+</li><li> &gt; 1,400,000 lines of C code in the core
+</li></ul>
+You won't be required to understand all of it :-)
+<p>
+You will need to learn to navigate this code effectively.
+</p><p>
+Will discuss relevant parts in lectures to help with this.
+</p><p>
+PostgreSQL books?
+</p><ul>
+<li> tend to add little to the manual, and cost a lot
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [13/42]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignments</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Schedule of assignment work:
+</p><p>
+<table border="0" cellpadding="4">
+<tbody><tr valign="top"><td><nobr><b>Ass</b></nobr></td><td></td><td><b>Description</b></td><td></td><td><b>Due</b></td><td></td><td><b>Marks</b></td></tr>
+<tr valign="top"><td><nobr>1</nobr></td><td></td><td>New Data Type</td><td></td><td>Week 5</td><td></td><td>15%</td>
+</tr><tr valign="top"><td><nobr>2</nobr></td><td></td><td>Query Processing</td><td></td><td>Week 10</td><td></td><td>20%</td></tr>
+</tbody></table>
+</p><p>
+Assignments will be carried out <font color="#0000BB">individually</font>
+</p><p>
+Ultimately, submission is via CSE's <large><code>give</code></large> system.
+</p><p>
+Will spend some time in lectures reviewing assignments.
+</p><p>
+Assignments will require up-front code-reading (see Pracs).
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [14/42]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignments <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Don't leave assignments to the last minute
+</p><ul>
+<li> they require significant code reading
+</li><li> as well as code writing and testing
+</li><li> and, you <font color="#0000BB">can</font> submit early.
+</li></ul>
+Standard UNSW late penalty applies to assignments
+<ul>
+<li> 5% off total mark for each day late
+</li><li> after 5 days, mark is zero
+</li></ul>
+Valid special consideration can give extension of X days
+<ul>
+<li> late penalty starts accruing after X days
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [15/42]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignments <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+<font color="#996600">Cheating</font> will be penalised with mark of zero for that assignment
+</p><ul>
+<li> submitting work copied from another student
+</li><li> submitting work copied from an online code repo
+</li><li> submitting work derived from generative AI
+</li><li> submitting work written by someone else for $$$
+</li></ul>
+You are only cheating yourself ... losing an opportunity to <font color="#008800">learn</font>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [16/42]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Quizzes</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Over the course of the semester ...
+</p><ul>
+<li> five online quizzes; released Monday, due Friday
+</li><li> taken in your own time (but there are deadlines)
+</li><li> each quiz is worth a small number of marks
+</li></ul>
+Quizzes are primarily a review tool to check progress.
+<p>
+But they contribute 15% of your overall mark for the course.
+</p><p>
+No extensions on quizzes, since solutions released on following Monday
+</p><p>
+For valid special consideration on quiz
+</p><ul>
+<li> cancel late penalty if quiz submitted before solutions released
+</li><li> remove this quiz from calculation of overall quiz mark if not submitted
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [17/42]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exam</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Three-hour <font color="#CC0000">exam</font> in the May exam period.
+</p><p>
+Exam is held in CSE Labs <small>(learn the environment, VLab)</small>
+</p><p>
+PostgreSQL and C documentation (only) will be available in the exam.
+</p><p>
+Things that we <font color="#CC0000">can't</font> reasonably test in the exam:
+</p><ul>
+<li> writing <font color="#0000BB">large</font> programs, running <font color="#0000BB">major</font> experiments
+</li></ul>
+Everything else is potentially examinable.
+<p>
+Contains: descriptive questions, analysis, small programming exercises.
+</p><p>
+Exam contributes 50% of the overall mark for this course.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [18/42]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exam <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+If you cannot attend the final exam ...
+</p><ul>
+<li> because of documented illness/misadventure
+</li></ul>
+then you will be offered a Supplementary Exam (in O-week of Term 2)
+<p>
+You get <font color="#0000BB">one chance</font> at passing the exam
+</p><ul>
+<li> unsw's fit-to-sit rule applies
+</li></ul>
+<p>
+Exam hurdle 20/50 <small>(which is 40%)</small>
+</p><p>
+You <font color="#0000BB">must</font> attend the exam in-person
+</p><ul>
+<li> no online exams are available ... be in Sydney ... be at UNSW
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [19/42]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assessment Summary</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Your final mark/grade is computed according to the following:
+</p><p></p><pre>quiz   = mark for on-line quizzes   (out of 15)
+ass1   = mark for assignment 1      (out of 15)
+ass2   = mark for assignment 2      (out of 20)
+exam   = mark for final exam        (out of 50)
+okExam = exam &gt; 20/50           (after scaling)
+
+mark   = ass1 + ass2 + quiz + exam
+grade  = HD|DN|CR|PS,  if mark ≥ 50 &amp;&amp; okExam
+       = FL,           if mark &lt; 50 &amp;&amp; okExam
+       = UF,           if !okExam
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [20/42]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relational Database Revision</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [21/42]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relational DBMS Functionality</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Relational DBMSs provide a variety of functionalities:
+</p><ul>
+<li> storing/modifying <font color="#0000BB">data</font> and <font color="#0000BB">meta-data</font> &nbsp;<small>(data defintions)</small>
+</li><li> <font color="#0000BB">constraint</font> definition/storage/maintenance/checking
+</li><li> declarative manipulation of data (via <font color="#0000BB">SQL</font>)
+</li><li> extensibility via <font color="#0000BB">views, triggers, stored procedures</font>
+</li><li> query re-writing (<font color="#0000BB">rules</font>), optimisation (<font color="#0000BB">indexes</font>)
+</li><li> <font color="#0000BB">transaction</font> processing, concurrency/recovery
+</li><li> etc. etc. etc.
+</li></ul>
+Common feature of all relational DBMSs: relational model, SQL.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [22/42]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Definition</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Relational data: relations/tables, tuples, values, types, e.g.
+</p><p></p><pre><small>
+create domain WAMvalue float
+   check (value between 0.0 and 100.0);
+
+create table Students (
+   id          integer,  -- e.g. 3123456
+   familyName  text,     -- e.g. 'Smith'
+   givenName   text,     -- e.g. 'John'
+   birthDate   date,     -- e.g. '1-Mar-1984'
+   wam         WAMvalue, -- e.g. 85.4
+   primary key (id)
+);
+</small></pre><p>
+The above adds <font color="#0000BB">meta-data</font> to the database.
+</p><p>
+DBMSs typically store meta-data as special tables <small>(catalog)</small>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [23/42]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Definition <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Input: DDL statement &nbsp; <small>(e.g. <large><code>create table</code></large>)</small>
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/ddl-stat.png]" src="./lec01_files/ddl-stat.png">
+</div><p>
+</p><p>
+Result: meta-data in catalog is modified
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [24/42]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Modification</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Critical function of DBMS: changing data
+</p><ul>
+<li> <large><code>insert</code></large> new tuples into tables
+</li><li> <large><code>delete</code></large> existing tuples from tables
+</li><li> <large><code>update</code></large> values within existing tuples
+</li></ul>
+E.g.
+<p></p><pre>insert into Enrolments(student,course,mark)
+values (3312345, 5542, 75);
+
+update Enrolments set mark = 77
+where  student = 3354321 and course = 5542;
+
+delete Enrolments where student = 3112233;
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [25/42]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Modification <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Input: DML statements
+<vspace>
+</vspace></p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/dml-stat.png]" src="./lec01_files/dml-stat.png">
+</div><p>
+<vspace>
+Result: tuples are added, removed or modified
+</vspace></p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [26/42]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluator</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Most common function of relational DBMSs
+</p><ul>
+<li> read an SQL query
+</li><li> return a table giving result of query
+</li></ul>
+E.g.
+<p></p><pre>select s.id, c.code, e.mark
+from   Students s
+       join Enrolments e on s.id = e.student
+       join Courses c on e.course = c.id;
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [27/42]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluator <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Input: SQL query
+<vspace>
+</vspace></p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/query.png]" src="./lec01_files/query.png">
+</div><p>
+<vspace>
+Output: table (displayed as text)
+</vspace></p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [28/42]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ DBMS Architecture</div></td><td align="right"></td></tr></tbody></table>
+<p>
+The aim of this course is to
+</p><ul>
+<li> look inside the DBMS box
+</li><li> discover the various mechanisms it uses
+</li><li> understand and analyse their performance
+</li></ul>
+Why should we care? &nbsp; <small>(apart from passing the exam)</small>
+<p>
+Practical reason:
+</p><ul>
+<li> if we understand how query processor works, <br>
+	we can (maybe) do a better job of writing efficient queries
+</li></ul>
+Educational reason:
+<ul>
+<li> DBMSs contain interesting data structures + algorithms <br>
+	which may be useful outside the (relational) DBMS context
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [29/42]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ DBMS Architecture <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Path of a query through a typical DBMS:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/qryeval1.png]" src="./lec01_files/qryeval1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [30/42]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ DBMS Architecture <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/intro/dbmsarch.png]" src="./lec01_files/dbmsarch.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [31/42]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ DBMS Architecture <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Important factors related to DBMS architecture
+</p><ul>
+<li> data is stored permanently on large slow devices**
+</li><li> data is processed in small fast memory
+</li></ul>
+Implications:
+<ul>
+<li> data structures should minimise storage utilisation
+</li><li> algorithms should minimise memory/disk data transfers
+</li></ul>
+Modern DBMSs interact with storage via the O/S file-system.
+<p>
+<br>
+<small>** SSDs change things a little, but most high volume bulk storage still on disks</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [32/42]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ DBMS Architecture <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Implementation of DBMS operations is complicated by
+</p><ul>
+<li> potentially multiple <font color="#0000BB">concurrent accesses</font> to data structures <br>
+    <small>(not just data tables, but indexes, buffers, catalogues, ...)</small>
+</li><li> <font color="#0000BB">transactional</font> requirements (atomicity, rollback, ...)
+</li><li> requirement for high <font color="#0000BB">reliability</font> of raw data (recovery)
+</li></ul>
+Require "concurrency-tolerant" data structures.
+<p>
+Transactions/reliability require some form of logging.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [33/42]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Installing/Using PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [34/42]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Installing PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL is available via the COMP9315 web site.
+</p><p>
+Provided as tar-file in <large><code>~cs9315/web/24T1/postgresql/</code></large>
+</p><p>
+File: <large><code>postgresql-15.6.tar.bz2</code></large> is ~23MB **
+</p><p>
+Unpacked, source code + binaries is ~210MB **
+</p><p>
+If using on CSE, do not put it under your home directory
+</p><p>
+Place it under <large><code>/localstorage/<i>YOU</i>/</code></large> which has 600MB quota
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [35/42]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Before Installing ...</div></td><td align="right"></td></tr></tbody></table>
+<p>
+If you have databases from previous DB courses
+</p><ul>
+<li> the databases will no longer work under v15.6
+</li><li> to preserve them, use dump/restore
+</li></ul>
+E.g.
+<p></p><pre><span class="comment">... login to <large><code>vxdb<!--@ ...</span-->
+<span class="comment">... run your old server for the last time ...</span>
+$ <b>pg_dump -O -x myFavDB &gt; /localstorage/<i>YOU</i>/myFavDB.dump</b>
+<span class="comment">... stop your old server for the last time ...</span>
+<span class="comment">... remove data from your old server ...</span>
+$ <b>rm -fr /localstorage/<i>YOU</i>/pgsql</b>
+<span class="comment">... install and run your new PostgreSQL 15.6 server ...</span>
+$ <b>createdb myFavDB</b>
+$ <b>psql myFavDB -f /srvr/<i>YOU</i>/myFavDB.dump</b>
+<span class="comment">... your old database is restored under 15.6 ...</span>
+</code></large></span></pre><p><code>
+</code></p></div><code>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [36/42]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Installing/Using PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Environment setup for running PostgreSQL in COMP9315:
+</p><p></p><pre># Must be "source"d from sh, bash, ksh, ...
+
+export PGDATA=/localstorage/$USER/pgsql/data
+export PGHOST=$PGDATA
+export LD_LIBRARY_PATH=/localstorage/$USER/pgsql/lib
+
+export PATH=/localstorage/$USER/pgsql/bin:$PATH
+
+alias p0="pg_ctl stop"
+alias p1="pg_ctl -l $PGDATA/log start"
+</pre><p>
+<small>
+Will probably work (with tweaks) on home laptop if Linux or MacOS
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [37/42]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Installing/Using PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Brief summary of installation:
+</p><p></p><pre>$ tar xfj ..../postgresql/src.tar.bz2
+  <span class="comment"># create a directory postgresql-11.3</span>
+  <span class="comment"># set up environment variables</span>
+$ configure --prefix=$PGHOME
+$ make
+$ make install
+$ source <i>your/environment/file</i>
+$ initdb
+  <span class="comment"># set up postgresql configuration ... done once?</span>
+$ <i>edit</i> postgresql.conf
+$ pg_ctl start -l $PGDATA/log
+  <span class="comment"># do some work with PostgreSQL databases</span>
+$ pg_ctl stop
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [38/42]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Install PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Follow instruction from previous slide (or P01)
+<iitemize>
+</iitemize></p><li> install a PostgreSQL server
+</li><li> run it without setting environment
+</li><li> try to use it without running server
+</li><li> try to close it while a job is running
+</li><li> examine the files/directories under $PGDATA
+
+</li></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [39/42]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Using PostgreSQL for Assignments</div></td><td align="right"></td></tr></tbody></table>
+<p>
+If changes don't modify storage structures ...
+</p><p></p><pre>$ <i>edit source code</i>
+$ pg_ctl stop
+$ make
+$ make install
+$ pg_ctl start -l $PGDATA/log
+  <span class="comment"># run tests, analyse results, ...</span>
+$ pg_ctl stop
+</pre><p>
+</p><p>
+In this case, existing databases will continue to work ok.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [40/42]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Using PostgreSQL for Assignments <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+If changes modify storage structures ...
+</p><p></p><pre>$ <i>edit source code</i>
+$ <i>save a copy of</i> postgresql.conf
+$ <font color="#008800">pg_dump testdb &gt; testdb.dump</font>
+$ pg_ctl stop
+$ make
+$ make install
+$ <font color="#996600">rm -fr $PGDATA</font>
+$ initdb
+$ <i>restore</i> postgresql.conf
+$ pg_ctl start -l $PGDATA/log
+$ <font color="#008800">createdb testdb</font>
+$ <font color="#008800">psql testdb -f testdb.dump</font>
+  <span class="comment"># run tests and analyse results</span>
+</pre><p>
+</p><p>
+Old databases will not work with the new server.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [41/42]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week01-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Using PostgreSQL for Assignments <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Troubleshooting ...
+</p><ul>
+<li> read the <large><code>$PGDATA/log</code></large> file
+</li><li> which socket file are you trying to connect to?
+</li><li> check the <large><code>$PGDATA</code></large> directory for socket files
+</li><li> remove <large><code>postmster.pid</code></large> if sure no server running
+</li><li> ...
+</li></ul>
+Prac Exercise P01 has useful tips down the bottom
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 1 Monday Lecture ♢ [42/42]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 13 Feb 2024</span>
+ <script src="./lec01_files/prism.js"></script>   
+ <script src="./lec01_files/sg.js"></script>   
+
+
+</p></code></body></html>

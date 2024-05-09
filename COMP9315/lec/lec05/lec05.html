@@ -1,0 +1,1047 @@
+
+<!-- saved from url=(0078)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 03 Monday Lecture</title>
+<link href="./lec05_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec05_files/latest.js" async=""></script>
+<script src="./lec05_files/jquery.min.js"></script>
+<link href="./lec05_files/css" rel="stylesheet">
+<link href="./lec05_files/prism.css" rel="stylesheet">
+<script src="./lec05_files/sg.js"></script><script type="text/javascript" async="" src="./lec05_files/MathJax.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 03 Monday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s2">Assignment 1</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s7">Tuples</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s8">Tuples</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s9">Records vs Tuples</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s10">Operations on Records</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s11">Operations on Tuples</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s12">Scanning</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s13">Example Query</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s14">Exercise: Implement next_tuple()</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s15">Fixed-length Records</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s16">Variable-length Records</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s17">Converting Records to Tuples</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s22">Exercise: How big is a <large><code>FieldDesc</code></large>?</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s23">PostgreSQL Tuples</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s30">Relational Operations and Cost Models</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s31">DBMS Architecture (revisited)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s32">Relational Operations</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s33">Cost Analyses</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s36">Query Types</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s37">File Structures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s39">Exercise: Operation Costs</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s40">Operation Costs Example</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s43">Scanning</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s44">Scanning</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s47">Selection via Scanning</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s49">Exercise: Cost of Search in Hashed File</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s50">Relation Copying</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s53">Exercise: Cost of Relation Copy</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [0/53]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><ul>
+<li> no Quiz this week
+</li><li> prepare for Assignment 1 (Prac Exercise P04)
+<ul>
+<li> <large><code>complex.c</code></large> is useful, but is not everything
+</li></ul>
+</li><li> have "fixed" the <large><code>SET</code></large> in testing expected output
+</li><li> auto-marking will have more tests than <large><code>run_test.py</code></large>
+</li><li> submission via <large><code>give</code></large> and Webcms3 are now set up
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [1/53]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 1</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>pname.c</code></b></font></large>
+</p><ul>
+<li> <large><code>struct PersonName</code></large> ... internal representation of names
+</li><li> <large><code>pname_in()</code></large> ... reads a string and converts to a <large><code>PersonName</code></large>
+</li><li> <large><code>pname_out()</code></large> ... converts a <large><code>PersonName</code></large> to a string
+</li><li> <large><code>pname_family()</code></large>, &nbsp;<large><code>pname_given()</code></large>, &nbsp;<large><code>pname_show()</code></large>
+</li><li> <large><code>pname_eq()</code></large>, <large><code>pname_lt()</code></large>, etc. etc. etc.
+</li></ul>
+<large><font color="#008800"><b><code>pname.source</code></b></font></large>
+<ul>
+<li> defines a "bridge" between SQL and C functions
+</li><li> define function function interfaces and operator properties
+</li><li> define operator classes for indexing (btree and hash)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [2/53]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+How it fits together:
+</p><ul>
+<li> <large><code>Makefile</code></large> converts <large><code>pname.c</code></large> into <large><code>pname.so</code></large>
+<br> &nbsp;&nbsp; which can be linked into the PostgreSQL server
+</li><li> <large><code>Makefile</code></large> converts <large><code>pname.source</code></large> into <large><code>pname.sql</code></large>
+<br> &nbsp;&nbsp; by filling in the full file/path names
+</li><li> load SQL interface by loading <large><code>pname.sql</code></large> into a database
+<br> &nbsp;&nbsp; which gives the type, all functions, all operators and indexes
+</li><li> can remove the type via &nbsp;<large><code>drop PersonName cascade</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [3/53]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Creating and using <large><code>PersonName</code></large> objects:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/assignments/pname1.png]" src="./lec05_files/pname1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [4/53]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Incorrect memory usage:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/assignments/pname2.png]" src="./lec05_files/pname2.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [5/53]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Assignment 1 <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Correct memory usage:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/assignments/pname3.png]" src="./lec05_files/pname3.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [6/53]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Tuples</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [7/53]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Tuples</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Each <font color="#0000BB">page</font> contains a collection of <font color="#0000BB">tuples</font>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/page-tuples.png]" src="./lec05_files/page-tuples.png">
+</div><p>
+<br>
+What do tuples contain? How are they structured internally?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [8/53]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Records vs Tuples</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A <font color="#0000BB">table</font> is defined by a collection of attributes (<font color="#0000BB">schema</font>), e.g.
+</p><p></p><pre>create table Employee (
+   id integer primary key,  name varchar(20),
+   job  varchar(10),  dept number(4)
+);
+</pre><p>
+<font color="#0000BB">Tuple</font> = collection of attribute values for such a schema, e.g.
+</p><p></p><pre>(33357462, 'Neil Young', 'Musician', 0277)
+</pre><p>
+<font color="#0000BB">Record</font> = sequence of bytes, containing data for one tuple, e.g.
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/tuple-bytes.png]" src="./lec05_files/tuple-bytes.png">
+</div><p>
+Bytes need to be interpreted relative to schema to get tuple
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [9/53]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Operations on Records</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Common operation on records ... access record via <large><code>RecordId</code></large>:
+</p><p></p><pre>Record <font color="#996600">get_record</font>(Relation rel, RecordId rid) {
+    (pid,tid) = rid;
+    Page *buf = request_page(rel, pid);
+    return get_record(buf, tid);
+}
+</pre><p>
+</p><p>
+Gives a sequence of bytes, which needs to be interpreted, e.g.
+</p><p></p><pre>Relation rel = ... <span class="comment">// relation schema</span>
+Record rec = get_record(rel,rid)
+Tuple t = <font color="#996600">makeTuple</font>(rel,rec)
+</pre><p>
+Once we have a tuple, we can access individual attributes/fields
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [10/53]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Operations on Tuples</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Once we have a record, we need to interpret it as a tuple ...
+</p><p>
+<large><font color="#008800"><b><code>Tuple t = makeTuple(Relation rel, Record rec)</code></b></font></large>
+</p><ul>
+<li> convert record to tuple data structure for relation <large><code>rel</code></large>
+</li></ul>
+<p><br>
+Once we have a tuple, we want to examine its contents ...
+</p><p>
+<large><font color="#008800"><b><code><i>Typ</i> &nbsp; get<i>Typ</i>Field(Tuple t, int fieldNum)</code></b></font></large>
+</p><ul>
+<li> extract the <large><code>fno</code></large>'th field from a <large><code>Tuple</code></large> as a value of type <i>Typ</i>
+</li></ul>
+<small>
+E.g. &nbsp; <large><code>int x = getIntField(t,1)</code></large>, &nbsp; <large><code>char *s = getStrField(t,2)</code></large>
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [11/53]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Access methods typically involve <font color="#0000BB">iterators</font>, e.g.
+</p><p><br>
+<large><font color="#008800"><b><code>Scan s = start_scan(Relation r, ...)</code></b></font></large>
+</p><ul>
+<li> commence a scan of relation <large><code>r</code></large>
+</li><li> <large><code>Scan</code></large> may include condition to implement <large><code>WHERE</code></large>-clause
+</li><li> <large><code>Scan</code></large> holds data on progress through file <small>(e.g. current page)</small>
+</li></ul>
+<p><br>
+<large><font color="#008800"><b><code>Tuple next_tuple(Scan s)</code></b></font></large>
+</p><ul>
+<li> returns next <large><code>Tuple</code></large> after last accessed one
+</li><li> returns <large><code>NULL</code></large> if no more <large><code>Tuples</code></large> left in the relation
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [12/53]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example Query</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: simple scan of a table ...
+</p><p></p><pre>select name from Employee
+</pre><p>
+implemented as:
+</p><p></p><pre>DB db = openDatabase("myDB");
+Relation r = openRel(db,"Employee");
+Scan s = start_scan(r);
+Tuple t;  <span class="comment">// current tuple</span>
+while ((t = next_tuple(s)) != NULL)
+{
+   char *name = <font color="#008800">getStrField</font>(t,2);
+   printf("%s\n", name);
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [13/53]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Implement next_tuple()</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following possible <large><font color="#008800"><b><code>Scan</code></b></font></large> data structure
+</p><p></p><pre>typedef struct {
+   Relation rel;
+   Page     *curPage;  <span class="comment">// Page buffer</span>
+   int      curPID;    <span class="comment">// current pid</span>
+   int      curTID;    <span class="comment">// current tid</span>
+} ScanData;
+</pre><p>
+Assume tuples are indexed 0..<large><code>nTuples(p)</code></large>-1
+</p><p>
+Assume pages are indexed 0..<large><code>nPages(rel)</code></large>-1
+</p><p>
+Implement the &nbsp;<large><font color="#008800"><b><code>Tuple next_tuple(Scan)</code></b></font></large>&nbsp; function
+</p><p>
+P.S. What's in a <large><code>Relation</code></large> object?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [14/53]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Fixed-length Records</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Encoding scheme for fixed-length records:
+</p><ul>
+<li> record format (length + offsets) stored in catalogue
+</li><li> data values stored in fixed-size slots in data pages
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/fixed-length.png]" src="./lec05_files/fixed-length.png">
+</div><p>
+<small>
+Since record format is frequently used at query time, should be in memory.
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [15/53]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Variable-length Records</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Some encoding schemes for variable-length records:
+</p><ul>
+<li> Prefix each field by length
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/rec1.png]" src="./lec05_files/rec1.png">
+</div><p>
+</p></li><li> Terminate fields by delimiter
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/rec2.png]" src="./lec05_files/rec2.png">
+</div><p>
+</p></li><li> Array of offsets
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/rec3.png]" src="./lec05_files/rec3.png">
+</div><p>
+</p></li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [16/53]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Converting Records to Tuples</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A <large><code>Record</code></large> is an array of bytes (<large><code>byte[]</code></large>)
+</p><ul>
+<li> representing the data values from a typed <large><code>Tuple</code></large>
+</li></ul>
+A <large><code>Tuple</code></large> is a collection of named,typed values &nbsp;<small>(cf. C <large><code>struct</code></large>)</small>
+<p>
+Information on how to interpret the bytes as typed values
+</p><ul>
+<li> will be contained in schema data in DBMS catalogue
+</li><li> may be stored in the header for the data file
+</li><li> may be stored partly in the record and partly in the schema
+</li></ul>
+For variable-length records, some formatting info ...
+<ul>
+<li> must be stored in the record or in the page directory
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [17/53]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Converting Records to Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+DBMSs typically define a fixed set of field types, e.g.
+</p><p>
+</p><div class="center">
+<large><code>DATE</code></large>, &nbsp;<large><code>FLOAT</code></large>, &nbsp;<large><code>INTEGER</code></large>, &nbsp;<large><code>NUMBER(</code></large><i>n</i><large><code>)</code></large>, &nbsp;<large><code>VARCHAR(</code></large><i>n</i><large><code>)</code></large>, ...
+</div>
+<p>
+This determines implementation-level data types:
+</p><p><table border="0" cellpadding="6">
+<tbody><tr valign="top">
+  <td><nobr> <large><code>DATE</code></large> </nobr></td>
+  <td></td><td> <large><code>time_t</code></large> </td>
+</tr>
+<tr valign="top">
+  <td><nobr> <large><code>FLOAT</code></large> </nobr></td>
+  <td></td><td> <large><code>float,double</code></large> </td>
+</tr>
+<tr valign="top">
+  <td><nobr> <large><code>INTEGER</code></large> </nobr></td>
+  <td></td><td> <large><code>int,long</code></large> </td>
+</tr>
+<tr valign="top">
+  <td><nobr> <large><code>NUMBER(</code></large><i>n</i><large><code>)</code></large> </nobr></td>
+  <td></td><td> <large><code>int[]</code></large> (?)</td>
+</tr>
+<tr valign="top">
+  <td><nobr> <large><code>VARCHAR(</code></large><i>n</i><large><code>)</code></large> </nobr></td>
+  <td></td><td> <large><code>char[]</code></large> </td>
+</tr>
+</tbody></table></p><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [18/53]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Converting Records to Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+A <large><code>Tuple</code></large> could be defined as
+</p><ul>
+<li> a list of field descriptors for a record instance <br>
+	<small>(where a <large><code>FieldDesc</code></large> gives (offset,length,type) information)</small>
+</li><li> along with a reference to the <large><code>Record</code></large> data
+</li></ul>
+<p></p><pre>typedef struct {
+  ushort    nfields;   <span class="comment">// number of fields/attrs</span>
+  ushort    data_off;  <span class="comment">// offset in struct for data</span>
+  FieldDesc fields[];  <span class="comment">// field descriptions</span>
+  Record    data;      <span class="comment">// pointer to record in buffer</span>
+} Tuple;
+</pre><p>
+Fields are derived from relation descriptor + record instance data.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [19/53]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Converting Records to Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tuple <large><code>data</code></large> could be 
+</p><ul>
+<li> a pointer to bytes stored elsewhere in memory
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/rec8.png]" src="./lec05_files/rec8.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [20/53]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Converting Records to Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Or, tuple <large><code>data</code></large> could be ...
+</p><ul>
+<li> appended to <large><code>Tuple struct</code></large> &nbsp;
+	<tiny>(used widely in PostgreSQL)</tiny>
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/rec9.png]" src="./lec05_files/rec9.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [21/53]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: How big is a <large><code>FieldDesc</code></large>?</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><code>FieldDesc</code></large> = (offset,length,type), where
+</p><ul>
+<li> offset = offset of field within record data
+</li><li> length = length (in bytes) of field
+</li><li> type = data type of field
+</li></ul>
+If pages are 8KB in size, how many bits are needed for each?
+<p>
+E.g.
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/field-desc.png]" src="./lec05_files/field-desc.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [22/53]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Tuples</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Definitions: <large><font color="#008800"><b><code>include/postgres.h</code></b></font></large>, &nbsp;<large><font color="#008800"><b><code>include/access/*tup*.h</code></b></font></large>
+</p><p>
+Functions: <large><font color="#008800"><b><code>backend/access/common/*tup*.c</code></b></font></large> &nbsp;e.g.
+</p><ul>
+<li> <large><font color="#008800"><b><code>HeapTuple heap_form_tuple(desc,values[],isnull[])</code></b></font></large>
+</li><li> <large><font color="#008800"><b><code>heap_deform_tuple(tuple,desc,values[],isnull[])</code></b></font></large>
+</li></ul>
+PostgreSQL defines tuples via:
+<ul>
+<li> a contiguous chunk of memory
+</li><li> starting with a header giving e.g. #fields, nulls
+</li><li> followed by the data values (as sequence of <large><code>Datum</code></large>)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [23/53]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tuple structure:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/pg-tuple-struct.png]" src="./lec05_files/pg-tuple-struct.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [24/53]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tuple-related data types:
+</p><p></p><pre><span class="comment">// representation of a data value</span>
+typedef uintptr_t Datum;
+</pre><p>
+The actual data value:
+</p><ul>
+<li> may be stored in the <large><code>Datum</code></large> (e.g. <large><code>int</code></large>)
+</li><li> may have a header with length (for varlen attributes)
+</li><li> may be stored in a TOAST file
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [25/53]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tuple-related data types: <small>(cont)</small>
+</p><p></p><pre style="font-size:90%"><span class="comment">// TupleDescData: schema-related information for HeapTuples</span>
+
+typedef struct tupleDescData
+{
+  int         natts;          <span class="comment">// number of attributes in the tuple </span>
+  Oid         tdtypeid;       <span class="comment">// composite type ID for tuple type </span>
+  int32       tdtypmod;       <span class="comment">// typmod for tuple type </span>
+  int         tdrefcount;     <span class="comment">// reference count (-1 if not counting)</span>
+  TupleConstr *constr;        <span class="comment">// constraints, or NULL if none </span>
+  FormData_pg_attribute attrs[FLEXIBLE_ARRAY_MEMBER];
+  <span class="comment">// attrs[N] is description of attribute number N+1 </span>
+} *<font color="#008800">TupleDesc</font>;
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [26/53]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><code>HeapTupleData</code></large> contains information about a stored tuple
+</p><p></p><pre>typedef HeapTupleData *<font color="#008800">HeapTuple</font>;
+
+typedef struct HeapTupleData
+{
+  uint32           t_len;  <span class="comment">// length of *t_data </span>
+  ItemPointerData t_self;  <span class="comment">// SelfItemPointer </span>
+  Oid         t_tableOid;  <span class="comment">// table the tuple came from </span>
+  HeapTupleHeader t_data;  <span class="comment">// -&gt; tuple header and data </span>
+} HeapTupleData;
+</pre><p>
+<large><code>HeapTupleHeader</code></large> is a pointer to a location in a buffer
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [27/53]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL stores a single block of data for tuple
+</p><li> containing a tuple header, followed by data <large><code>byte[]</code></large>
+
+<p></p><pre style="font-size:90%">typedef struct HeapTupleHeaderData <span class="comment">// simplified</span>
+{
+  HeapTupleFields t_heap;
+  ItemPointerData t_ctid;      <span class="comment">// TID of this tuple or newer version</span>
+  uint16          t_infomask2; <span class="comment">// #attributes + flags</span>
+  uint16          t_infomask;  <span class="comment">// flags e.g. has_null, has_varwidth</span>
+  uint8           t_hoff;      <span class="comment">// sizeof header incl. bitmap+padding</span>
+  <span class="comment">// above is fixed size (23 bytes) for all heap tuples</span>
+  bits8           t_bits[1];   <span class="comment">// bitmap of NULLs, variable length</span>
+  <span class="comment">// OID goes here if HEAP_HASOID is set in t_infomask</span>
+  <span class="comment">// actual data follows at end of struct</span>
+} <font color="#008800">HeapTupleHeaderData</font>;
+</pre><p>
+</p></li></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [28/53]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Tuples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tuple-related data types: <small>(cont)</small>
+</p><p></p><pre>typedef struct HeapTupleFields  <span class="comment">// simplified</span>
+{
+  TransactionId t_xmin;  <span class="comment">// inserting xact ID</span>
+  TransactionId t_xmax;  <span class="comment">// deleting or locking xact ID</span>
+  union {
+    CommandId   t_cid;   <span class="comment">// inserting or deleting command ID</span>
+    TransactionId t_xvac;<span class="comment">// old-style VACUUM FULL xact ID </span>
+  } t_field3;
+} <font color="#008800">HeapTupleFields</font>;
+</pre><p>
+Note that not all system fields from stored tuple appear
+</p><ul>
+<li> <large><code>oid</code></large> is stored after the tuple header, if used
+</li><li> both <large><code>xmin</code></large>/<large><code>xmax</code></large> are stored, but only one of <large><code>cmin</code></large>/<large><code>cmax</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [29/53]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relational Operations and Cost Models</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [30/53]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ DBMS Architecture (revisited)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Implementation of relational operations in DBMS:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/dbmsarch-relop.png]" src="./lec05_files/dbmsarch-relop.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [31/53]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relational Operations</div></td><td align="right"></td></tr></tbody></table>
+<p>
+DBMS core = relational engine, with implementations of
+</p><ul>
+<li> selection, &nbsp; projection, &nbsp; join, &nbsp; set operations
+</li><li> scanning, &nbsp; sorting, &nbsp; grouping, &nbsp; aggregation, &nbsp; ...
+</li></ul>
+In this part of the course:
+<ul>
+<li> examine methods for implementing each operation
+</li><li> develop cost models for each implementation
+</li><li> characterise when each method is most effective
+</li></ul>
+Terminology reminder:
+<ul>
+<li> tuple = <small>collection of data values under some schema</small> ≅ record
+</li><li> page = block = <small>collection of tuples + management data</small> = i/o unit
+</li><li> relation = table ≅ file = <small>collection of tuples</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [32/53]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Analyses</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+When showing the cost of operations, don't include <i>T<sub>r</sub></i> and <i>T<sub>w</sub></i>:
+</p><ul>
+<li> for queries, simply count number of pages read <small>(or written)</small>
+</li><li> for updates, use <i>n<sub>r</sub></i> and <i>n<sub>w</sub></i> to distinguish reads/writes
+</li></ul>
+When comparing two methods for same query
+<ul>
+<li> ignore the cost of writing the result <small>(same for both)</small>
+</li></ul>
+In counting reads and writes, assume minimal buffering
+<ul>
+<li> each <large><code>request_page()</code></large> causes a read
+</li><li> each <large><code>release_page()</code></large> causes a write <small>(if page is dirty)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [33/53]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Analyses <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Two "dimensions of variation":
+</p><ul>
+<li> which relational operation &nbsp; <small>(e.g. Sel, Proj, Join, Sort, ...)</small>
+</li><li> which access-method &nbsp; <small>(e.g. file struct: heap, indexed, hashed, ...)</small>
+</li></ul>
+Each <font color="#0000BB">query method</font> involves an operator and a file structure:
+<ul>
+<li> e.g. primary-key selection on hashed file
+</li><li> e.g. primary-key selection on indexed file
+</li><li> e.g. join on ordered heap files (sort-merge join)
+</li><li> e.g. join on hashed files (hash join)
+</li><li> e.g. two-dimensional range query on R-tree indexed file
+</li></ul>
+As well as query costs, consider update costs (insert/delete).
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [34/53]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Analyses <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+SQL vs DBMS engine
+</p><ul>
+<li> <large><font color="#008800"><b><code>select ... from R where C</code></b></font></large>
+<ul>
+<li> find relevant tuples (satisfying C) in file(s) of R
+</li></ul>
+</li><li> <large><font color="#008800"><b><code>insert into R values(...)</code></b></font></large>
+<ul>
+<li> place new tuple in some page of a file of R
+</li></ul>
+</li><li> <large><font color="#008800"><b><code>delete from R where C</code></b></font></large>
+<ul>
+<li> find relevant tuples and "remove" from file(s) of R
+</li></ul>
+</li><li> <large><font color="#008800"><b><code>update R set ... where C</code></b></font></large>
+<ul>
+<li> find relevant tuples in file(s) of R and "change" them
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [35/53]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Types</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><div class="center">
+<p><table border="0" cellpadding="6">
+<tbody><tr valign="top">
+<td><nobr> <b>Type</b> </nobr></td>
+<td></td><td> <b>SQL</b> </td>
+<td></td><td> <b>RelAlg</b> </td>
+<td></td><td> <b>a.k.a.</b> </td>
+</tr>
+<tr valign="top">
+<td><nobr> Scan </nobr></td>
+<td></td><td> <large><code>select * from R</code></large> </td>
+<td></td><td> <i>R</i> </td>
+<td></td><td> - </td>
+</tr>
+<tr valign="top">
+<td><nobr> Proj </nobr></td>
+<td></td><td> <large><code>select </code></large><i>x,y</i><large><code> from R</code></large> </td>
+<td></td><td> <i>Proj[x,y]R</i> </td>
+<td></td><td> - </td>
+</tr>
+<tr valign="top">
+<td><nobr> Sort </nobr></td>
+<td></td><td> <large><code>select * from R</code></large> <br> <large><code>order by </code></large><i>x</i></td>
+<td></td><td> <i>Sort[x]R</i> </td>
+<td></td><td> <i>ord</i> </td>
+</tr>
+<tr valign="top">
+<td><nobr> Sel<sub>1</sub> </nobr></td>
+<td></td><td> <large><code>select * from R</code></large> <br> <large><code>where id = </code></large><i>k</i></td>
+<td></td><td> <i>Sel[id=k]R</i> </td>
+<td></td><td> <i>one</i> </td>
+</tr>
+<tr valign="top">
+<td><nobr> Sel<sub>n</sub> </nobr></td>
+<td></td><td> <large><code>select * from R</code></large> <br> <large><code>where a = </code></large><i>k</i></td>
+<td></td><td> <i>Sel[a=k]R</i> </td>
+<td></td><td> - </td>
+</tr>
+<tr valign="top">
+<td><nobr> Join<sub>1</sub> </nobr></td>
+<td></td><td> <large><code>select * from R,S</code></large> <br> <large><code>where R.id = S.r</code></large></td>
+<td></td><td> <i>R Join[id=r] S</i> </td>
+<td></td><td> - </td>
+</tr>
+</tbody></table></p><p>
+</p></div>
+<small>
+Different query classes exhibit different query processing behaviours.
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [36/53]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Structures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+When describing file structures
+</p><ul>
+<li> use a large box to represent a <font color="#0000BB">page</font>
+</li><li> use either a small box or <i>tup<sub>i</sub></i> <small>(or <i>rec<sub>i</sub></i>)</small> to represent a <font color="#0000BB">tuple</font>
+</li><li> sometimes refer to tuples via their <font color="#0000BB">key</font>
+<ul>
+<li> mostly, <i>key</i> corresponds to the notion of "primary key"
+</li><li> sometimes, <i>key</i> means "search key" in selection condition 
+</li></ul>
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/one-page.png]" src="./lec05_files/one-page.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [37/53]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Structures <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider three simple file structures:
+</p><ul>
+<li> <font color="#0000BB">heap file</font> ... tuples added to any page which has space
+</li><li> <font color="#0000BB">sorted file</font> ... tuples arranged in file in key order
+</li><li> <font color="#0000BB">hash file</font> ... tuples placed in pages using hash function
+</li></ul>
+All files are composed of <i>b</i> primary blocks/pages
+<p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/file-struct0.png]" src="./lec05_files/file-struct0.png">
+</div><p>
+Some records in each page may be marked as "deleted".
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [38/53]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Operation Costs</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For each of the following file structures
+</p><ul>
+<li> determine #page-reads + #page-writes for each operation
+</li></ul>
+You can assume the existence of a file header containing
+<ul>
+<li> values for <i>r</i>, <i>R</i>, <i>b</i>, <i>B</i>, <i>c</i>
+</li><li> index of first page with free space (and a free list)
+</li></ul>
+Assume also
+<ul>
+<li> each page contains a header and directory as well as tuples
+</li><li> no buffering &nbsp; <small>(worst case scenario)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [39/53]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Operation Costs Example</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Heap file with <i>b = 4, c = 4</i>:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/file-heap.png]" src="./lec05_files/file-heap.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [40/53]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Operation Costs Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Sorted file with <i>b = 4, c = 4</i>:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/file-sort1.png]" src="./lec05_files/file-sort1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [41/53]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Operation Costs Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Hashed file with <i>b = 3, c = 4, h(k) = k%3</i>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/file-hash.png]" src="./lec05_files/file-hash.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [42/53]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [43/53]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the query:
+</p><p></p><pre>select * from Rel;
+</pre><p>
+Operational view:
+</p><p></p><pre>for each page P in file of relation Rel {
+   for each tuple t in page P {
+      add tuple t to result set
+   }
+}
+</pre><p>
+Cost: read every data page once
+</p><p>
+<i>Cost = b</i>  &nbsp;&nbsp;&nbsp; <small>(<i>b</i> page reads + ≤<i>b</i> page writes)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [44/53]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Scan implementation when file has overflow pages, e.g.
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/file-struct1.png]" src="./lec05_files/file-struct1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [45/53]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+In this case, the implementation changes to:
+</p><p></p><pre>for each page P in file of relation T {
+    for each tuple t in page P {
+        add tuple t to result set
+    }
+    for each overflow page V of page P {
+        for each tuple t in page V {
+            add tuple t to result set
+}   }   }
+</pre><p>
+Cost: read each data and overflow page once
+</p><p>
+<i>Cost = b + b<sub>Ov</sub></i>
+</p><p>
+where <i>b<sub>Ov</sub></i> = total number of overflow pages
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [46/53]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection via Scanning</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a <i>one</i> query like:
+</p><p></p><pre>select * from Employee where id = 762288;
+</pre><p>
+In an unordered file, search for matching tuple requires:
+</p><p><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/file-search.png]" src="./lec05_files/file-search.png">
+</div><p>
+</p><p><br>
+Guaranteed at most one answer; but could be in any page.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [47/53]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection via Scanning <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Overview of scan process:
+</p><p></p><pre>for each page P in relation Employee {
+    for each tuple t in page P {
+        if (t.id == 762288) return t
+}   }
+</pre><p>
+Cost analysis for <i>one</i> searching in unordered file
+</p><ul>
+<li> best case: read one page, find tuple
+</li><li> worst case: read all <i>b</i> pages, find in last <small>(or don't find)</small>
+</li><li> average case: read half of the pages (<i>b/2</i> )
+</li></ul>
+Page Costs:
+&nbsp;
+<i>Cost<sub>avg</sub> = b/2</i> &nbsp;&nbsp;&nbsp;
+<i>Cost<sub>min</sub> = 1</i> &nbsp;&nbsp;&nbsp;
+<i>Cost<sub>max</sub> = b</i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [48/53]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Cost of Search in Hashed File</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the hashed file structure <i>b = 10, c = 4, h(k) = k%10</i>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/hash-file-10.png]" src="./lec05_files/hash-file-10.png">
+</div><p>
+Describe how the following queries
+</p><p></p><pre>select * from R where k = 51;
+select * from R where k &gt; 50;
+</pre><p>
+might be solved in a file structure like the above (<i>h(k) = k%b</i>).
+</p><p>
+Estimate the minimum and maximum cost <small>(as #pages read)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [49/53]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relation Copying</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider an SQL statement like:
+</p><p></p><pre>create table T as (select * from S);
+</pre><p>
+Effectively, copies data from one table to another.
+</p><p>
+Process:
+</p><p></p><pre>s = start scan of S
+make empty relation T
+while (t = next_tuple(s)) {
+    insert tuple t into relation T
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [50/53]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s52"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relation Copying <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Possible that <large><code>T</code></large> is smaller than <large><code>S</code></large>
+</p><ul>
+<li> may be unused free space in <large><code>S</code></large> where tuples were removed
+</li><li> if <large><code>T</code></large> is built by simple append, will be compact
+</li></ul>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/copy-files.png]" src="./lec05_files/copy-files.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [51/53]</div> <div class="slideCl1    " id="s52">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s51"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s53"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relation Copying <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+In terms of existing relation/page/tuple operations:
+</p><p></p><pre style="font-size:80%">Relation in;       <span class="comment">// relation handle (incl. files)</span>
+Relation out;      <span class="comment">// relation handle (incl. files)</span>
+int ipid,opid,tid; <span class="comment">// page and record indexes</span>
+Record rec;        <span class="comment">// current record (tuple)</span>
+Page ibuf,obuf;    <span class="comment">// input/output file buffers</span>
+
+in = openRelation("S", READ);
+out = openRelation("T", NEW|WRITE);
+clear(obuf);  opid = 0;
+for (ipid = 0; ipid &lt; nPages(in); ipid++) {
+    <font color="#996600">get_page</font>(in, ipid, ibuf);
+    for (tid = 0; tid &lt; nTuples(ibuf); tid++) {
+        rec = get_record(ibuf, tid);
+        if (!hasSpace(obuf,rec)) {
+            <font color="#996600">put_page</font>(out, opid++, obuf);
+            clear(obuf);
+        }
+        insert_record(obuf,rec);
+}   }
+if (nTuples(obuf) &gt; 0) <font color="#996600">put_page</font>(out, opid, obuf);
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [52/53]</div> <div class="slideCl1    " id="s53">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s52"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Cost of Relation Copy</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Analyse cost for relation copying:
+</p><ol>
+<li> if both input and output are heap files
+</li><li> if input is sorted and output is heap file
+</li><li> if input is heap file and output is sorted
+</li></ol>
+Assume ...
+<ul>
+<li> <i>r</i> records in input file, <i>c</i> records/page
+</li><li> <i>b<sub>in</sub></i> = number of pages in input file 
+</li><li> some pages in input file are <i>not</i> full
+</li><li> all pages in output file are full <small>(except the last)</small>
+</li></ul>
+<p>
+Give cost in terms of #pages read + #pages written
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Monday Lecture ♢ [53/53]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 29 Feb 2024</span>
+ <script src="./lec05_files/prism.js"></script>   
+ <script src="./lec05_files/sg.js"></script>   
+
+
+</p></body></html>

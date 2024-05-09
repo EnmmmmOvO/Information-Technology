@@ -1,0 +1,1297 @@
+
+<!-- saved from url=(0080)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 08 Thursday Lecture</title>
+<link href="./lec13_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec13_files/latest.js" async=""></script>
+<script src="./lec13_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec13_files/MathJax.js"></script>
+<link href="./lec13_files/css" rel="stylesheet">
+<link href="./lec13_files/prism.css" rel="stylesheet">
+<script src="./lec13_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 08 Thursday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s2">Query Optimization</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s5">Cost Models and Analysis</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s6">Choosing Access Methods (RelOps)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s10">Cost Estimation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s11">Estimating Projection Result Size</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s12">Estimating Selection Result Size</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s15">Exercise: Selection Size Estimation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s16">Selection Size Estimation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s17">Exercise: Selection Size Estimation (ii)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s18">Selection Size Estimation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s19">Estimating Join Result Size</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s20">Exercise: Join Size Estimation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s21">Cost Estimation: Postscript</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s22">PostgreSQL Query Optimiser</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s23">Overview of QOpt Process</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s25">QOpt Data Structures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s27">Query Optimisation Process</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s28">Top-down Trace of QOpt</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s31">Join-tree Generation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s34">Query Execution</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s35">Query Execution</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s38">Materialization</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s39">Pipelining</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s40">Iterators (reminder)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s41">Pipelining Example</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s43">Disk Accesses</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s44">PostgreSQL Query Execution</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s45">PostgreSQL Query Execution</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s46">PostgreSQL Executor</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s47">Example PostgreSQL Execution</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s51">Query Performance</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s52">Performance Tuning</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s55">PostgreSQL Query Tuning</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s56">EXPLAIN Examples</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [0/63]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><ul>
+<li> Assignment 1
+<ul>
+<li> automarking done ... handmarking in progress ... slowly ...
+</li></ul>
+</li><li> Assignment 2
+<ul>
+<li> due at start week 10 (11:59pm Monday 15 April)
+</li></ul>
+</li><li> Quiz 4
+<ul>
+<li> due before Friday (April 5) at midnight
+</li></ul>
+</li><li> Exam
+<ul>
+<li> Thu 9 May ... in CSE labs, closed environment, invigilated
+</li><li> two 3-hour sessions ... morning + afternoon ... no overlap
+</li><li> will collect morning/afternoon preferences in week 10
+</li></ul>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [1/63]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Optimization</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Input: relational algebra expression tree
+</p><p>
+Output: tree of instantiated relation operations
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/qproc/query-transform.png]" src="./lec13_files/query-transform.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [2/63]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Optimization <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Where query optimisation fits in query evaluation:
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/qproc/qproc2.png]" src="./lec13_files/qproc2.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [3/63]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Optimization <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Approximate algorithm for <font color="#0000BB">cost-based</font> optimisation:
+</p><p></p><pre>translate SQL query to RAexp
+for <font color="#008800">enough</font> transformations RA' of RAexp {
+   while (more choices for RelOps in RA') {
+      Plan = {}
+      for each node N of RA' <small><i>(recursively)</i></small> {
+         ROp = select RelOp method for N
+         Plan = Plan ∪ ROp
+      }
+      cost = 0
+      for each node P of Plan <small><i>(bottom-up)</i></small> 
+         { cost += Cost(P) <span class="comment">// using child info</span> }
+      if (cost &lt; MinCost)
+         { MinCost = cost;  BestPlan = Plan }
+   }
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [4/63]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Models and Analysis</div></td><td align="right"></td></tr></tbody></table>
+<p>
+The cost of evaluating a query is determined by:
+</p><ul>
+<li> size of relations &nbsp; <small>(database relations and temporary relations)</small>
+</li><li> access mechanisms &nbsp; <small>(indexing, hashing, sorting, join algorithms)</small>
+</li><li> size/number of main memory buffers &nbsp; <small>(and replacement strategy)</small>
+</li></ul>
+Analysis of costs involves <i>estimating</i>:
+<ul>
+<li> size of intermediate results
+</li><li> number of secondary storage accesses
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [5/63]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Choosing Access Methods (RelOps)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Performed for each node in RA expression tree ...
+</p><p>
+Inputs:
+</p><ul>
+<li> a single RA operation &nbsp; (<i><span style="font-size:150%">σ</span>, &nbsp; <span style="font-size:150%">π</span>, &nbsp; ⋈</i>)
+</li><li> information about file organisation, data distribution, ...
+</li><li> list of operations available in the database engine
+</li></ul>
+Output:
+<ul>
+<li> specific DBMS operation to implement this RA operation
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [6/63]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Choosing Access Methods (RelOps) <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<b>Example:</b>
+</p><ul>
+<li> RA operation: <i>Sel<sub>[name='John' ∧ age&gt;21]</sub>(Student)</i>
+</li><li> <large><code>Student</code></large> relation has B-tree index on <large><code>name</code></large>
+</li><li> database engine <small>(obviously)</small> has B-tree search method
+</li></ul>
+giving
+<p></p><pre>tmp[i]   := BtreeSearch[name='John'](Student)
+tmp[i+1] := LinearSearch[age&gt;21](tmp[i])
+</pre><p>
+Where possible, use pipelining to avoid storing <large><code>tmp[i]</code></large> on disk.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [7/63]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Choosing Access Methods (RelOps) <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Rules for choosing <i><span style="font-size:150%">σ</span></i> access methods:
+</p><ul>
+<li> <i><span style="font-size:150%">σ</span><sub>A=c</sub>(R)</i> and <large><code>R</code></large> has index on <large><code>A</code></large>
+	&nbsp; <i>⇒</i> &nbsp; <large><code>indexSearch[A=c](R)</code></large>
+</li><li> <i><span style="font-size:150%">σ</span><sub>A=c</sub>(R)</i> and <large><code>R</code></large> is hashed on <large><code>A</code></large>
+	&nbsp; <i>⇒</i> &nbsp; <large><code>hashSearch[A=c](R)</code></large>
+</li><li> <i><span style="font-size:150%">σ</span><sub>A=c</sub>(R)</i> and <large><code>R</code></large> is sorted on <large><code>A</code></large>
+	&nbsp; <i>⇒</i> &nbsp; <large><code>binarySearch[A=c](R)</code></large>
+</li><li> <i><span style="font-size:150%">σ</span><sub>A ≥ c</sub>(R)</i> and <large><code>R</code></large> has clustered index on <large><code>A</code></large>
+<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+	<i>⇒</i> &nbsp; <large><code>indexSearch[A=c](R)</code></large> then scan
+</li><li> <i><span style="font-size:150%">σ</span><sub>A ≥ c</sub>(R)</i> and <large><code>R</code></large> is hashed on <large><code>A</code></large>
+<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+	<i>⇒</i> &nbsp; <large><code>linearSearch[A&gt;=c](R)</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [8/63]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Choosing Access Methods (RelOps) <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Rules for choosing <i>⋈</i> access methods:
+</p><ul>
+<li> <i>R ⋈ S</i> and <large><code>R</code></large> fits in memory buffers
+	&nbsp; <i>⇒</i> &nbsp; <large><code>bnlJoin(R,S)</code></large>
+</li><li> <i>R ⋈ S</i> and <large><code>S</code></large> fits in memory buffers
+	&nbsp; <i>⇒</i> &nbsp; <large><code>bnlJoin(S,R)</code></large>
+</li><li> <i>R ⋈ S</i> and <large><code>R</code></large>,<large><code>S</code></large> sorted on join attr
+	&nbsp; <i>⇒</i> &nbsp; <large><code>smJoin(R,S)</code></large>
+</li><li> <i>R ⋈ S</i> and <large><code>R</code></large> has index on join attr
+	&nbsp; <i>⇒</i> &nbsp; <large><code>inlJoin(S,R)</code></large>
+</li><li> <i>R ⋈ S</i> and no indexes, no sorting
+	&nbsp; <i>⇒</i> &nbsp; <large><code>hashJoin(R,S)</code></large>
+</li></ul>
+&nbsp;<br>
+<small>
+(<large><code>bnl</code></large> = block nested loop;
+&nbsp; <large><code>inl</code></large> = index nested loop;
+&nbsp; <large><code>sm</code></large> = sort merge)
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [9/63]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Estimation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Without executing a plan, cannot always know its precise cost.
+</p><p>
+Thus, query optimisers <font color="#0000BB">estimate</font> costs via:
+</p><ul>
+<li> cost of performing operation 
+	&nbsp; <small>(dealt with in earlier lectures)</small>
+</li><li> size of result
+	&nbsp; <small>(which affects cost of performing next operation)</small>
+</li></ul>
+Result size estimated by statistical measures on relations, e.g.
+<div class="center">
+<table border="0" cellpadding="4">
+<tbody><tr>
+<td> <i>r<sub>S</sub></i> </td>
+<td> cardinality of relation <i>S</i> </td>
+</tr>
+<tr>
+<td> <i>R<sub>S</sub></i>    </td>
+<td> avg size of tuple in relation <i>S</i> </td>
+</tr>
+<tr>
+<td> <i>V(A,S)</i> </td>
+<td> # distinct values of attribute <i>A</i> </td>
+</tr>
+<tr>
+<td> <i>min(A,S)</i> </td>
+<td> min value of attribute <i>A</i> </td>
+</tr>
+<tr>
+<td> <i>max(A,S)</i> </td>
+<td> max value of attribute <i>A</i> </td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [10/63]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Estimating Projection Result Size</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Straightforward, since we know:
+</p><ul>
+<li> number of tuples in output
+<p>
+<i>r<sub>out</sub></i> = <big>|</big> <i><span style="font-size:150%">π</span><sub>a,b,..</sub>(T)</i> <big>|</big> = | <i>T</i> | = r<sub>T</sub>
+	&nbsp;&nbsp; <small>(in SQL, because of bag semantics)</small>
+</p></li><li> size of tuples in output
+<p>
+<i>R<sub>out</sub></i> = sizeof(<i>a</i>) + sizeof(<i>b</i>) + ... + tuple-overhead
+</p></li></ul>
+<p>
+Assume page size <i>B</i>,
+	&nbsp; <i>b<sub>out</sub> = ceil(r<sub>T</sub> / c<sub>out</sub>)</i>,
+	&nbsp; where <i>c<sub>out</sub> = floor(B/R<sub>out</sub>)</i>
+</p><p>
+If using <large><code>select distinct</code></large> ...
+</p><ul>
+<li> <big>|</big> <i><span style="font-size:150%">π</span><sub>a,b,..</sub>(T)</i> <big>|</big> depends on proportion of duplicates produced
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [11/63]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Estimating Selection Result Size</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Selectivity = fraction of tuples expected to satisfy a condition.
+</p><p>
+Common assumption: attribute values uniformly distributed.
+</p><p>
+<b>Example:</b>
+Consider the query
+</p><p></p><pre>select * from Parts where colour='Red'
+</pre><p>
+If &nbsp; <i>V(colour,Parts)=4, &nbsp; r=1000 &nbsp;⇒&nbsp; |<span style="font-size:150%">σ</span><sub>colour=red</sub>(Parts)|=250 </i>
+</p><p>
+In general, <i>| <span style="font-size:150%">σ</span><sub>A=c</sub>(R) | &nbsp;≅&nbsp;
+	 r<sub>R</sub> / V(A,R)</i>
+</p><p><br>
+Heuristic used by PostgreSQL: <i>| <span style="font-size:150%">σ</span><sub>A=c</sub>(R) | &nbsp;≅&nbsp; r/10</i> &nbsp;&nbsp; <small>(unless primary key)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [12/63]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Estimating Selection Result Size <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Estimating size of result for e.g. 
+</p><p></p><pre>select * from Enrolment where year &gt; 2015;
+</pre><p>
+Could estimate by using:
+</p><ul>
+<li> uniform distribution assumption, &nbsp; <i>r</i>, &nbsp; min/max years
+</li></ul>
+Assume: min(year)=2010, max(year)=2019, <i>|Enrolment|</i>=<i>10<sup>5</sup></i>
+<ul>
+<li> <i>10<sup>5</sup></i> from 2010-2019 means approx 10000 enrolments/year
+</li><li> this suggests 40000 enrolments since 2016 
+</li></ul>
+<br>
+Heuristic used by some systems: &nbsp; <i>| <span style="font-size:150%">σ</span><sub>A&gt;c</sub>(R) | ≅ r/3</i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [13/63]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Estimating Selection Result Size <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Estimating size of result for e.g.
+</p><p></p><pre>select * from Enrolment where course &lt;&gt; 'COMP9315';
+</pre><p>
+Could estimate by using:
+</p><ul>
+<li> uniform distribution assumption, &nbsp; <i>r</i>, &nbsp; domain size
+</li></ul>
+e.g. <i>| V(course,Enrolment) |</i> = 2000, &nbsp; <i>| <span style="font-size:150%">σ</span><sub>A&lt;&gt;c</sub>(E) |</i> = <i>r * 1999/2000</i>
+<p><br>
+Heuristic used by some systems: &nbsp; <i>| <span style="font-size:150%">σ</span><sub>A&lt;&gt;c</sub>(R) | ≅ r</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [14/63]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Selection Size Estimation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Assuming that
+</p><ul>
+<li> all attributes have uniform distribution of data values
+</li><li> attributes are independent of each other
+</li></ul>
+Give formulae for the number of expected results for
+<ol>
+<li> <large><code>select * from R where not A=k</code></large>
+</li><li> <large><code>select * from R where A=k and B=j</code></large>
+</li><li> <large><code>select * from R where A in (k,l,m,n)</code></large>
+</li></ol>
+where <i>j</i>, <i>k</i>, <i>l</i>, <i>m</i>, <i>n</i> are constants.
+<p>
+Assume: <i>V(A,R) = 10</i> &nbsp;and <i>V(B,R)=100</i> &nbsp;and <i>r=1000</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [15/63]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection Size Estimation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How to handle non-uniform attribute value distributions?
+</p><ul>
+<li> collect statistics about the values stored in the attribute/relation
+</li><li> store these as e.g. a histogram in the meta-data for the relation
+</li></ul>
+So, for part colour example, might have distribution like:
+<p>
+</p><div class="center">
+<large><code>White</code></large>: 35% &nbsp;
+<large><code>Red</code></large>: 30% &nbsp;
+<large><code>Blue</code></large>: 25% &nbsp;
+<large><code>Silver</code></large>: 10%
+</div>
+<p>
+Use histogram as basis for determining # selected tuples.
+</p><p>
+Disadvantage: cost of storing/maintaining histograms.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [16/63]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Selection Size Estimation (ii)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Given a relation R with attribute X whose statistics are:
+</p><ul>
+<li> <i>r<sub>R</sub></i> &nbsp;= 500
+</li><li> <i>V(X,R)</i> &nbsp;= {a,b,c,d,e}
+</li><li> histogram: a,b,c,d,e,NULL = 40:20:10:10:10:10
+</li></ul>
+Estimate the size of the result of the following queries:
+<ol>
+<li> <large><code>select * from R where X is not null</code></large>
+</li><li> <large><code>select * from R where X &gt;= 'c'</code></large>
+</li><li> <large><code>select * from R where X between 'b' and 'd'</code></large>
+</li></ol>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [17/63]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection Size Estimation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Summary: analysis relies on operation and data distribution:
+</p><p>
+E.g. <large><code>select * from R where a <font color="#0000EE">=</font> k;</code></large>
+</p><p>
+Case 1: &nbsp; <i>uniq(R.a)</i> &nbsp; ⇒ &nbsp; 0 or 1 result
+</p><p>
+Case 2: &nbsp; <i>r<sub>R</sub></i> &nbsp;tuples &amp;&amp; <i>size(dom(R.a)) = n</i> &nbsp; ⇒ &nbsp; <i>r<sub>R</sub> / n</i> results
+</p><p>
+E.g. <large><code>select * from R where a <font color="#0000EE">&lt;</font> k;</code></large>
+</p><p>
+Case 1: &nbsp; <i>k ≤ min(R.a)</i> &nbsp; ⇒ &nbsp; 0 results
+</p><p>
+Case 2: &nbsp; <i>k &gt; max(R.a)</i> &nbsp; ⇒ &nbsp;  ≅ <i>r<sub>R</sub></i> results
+</p><p>
+Case 3: &nbsp; <i>size(dom(R.a)) = n</i> &nbsp; ⇒ &nbsp; ? <i>min(R.a) ... k ... max(R.a)</i> ?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [18/63]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Estimating Join Result Size</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Analysis relies on semantic knowledge about data/relations.
+</p><p>
+Consider equijoin on common attr: <i>R ⋈<sub>a</sub> S</i>
+</p><p>
+Case 1: &nbsp; <i>values(R.a) ∩ values(S.a) = {} &nbsp; ⇒ &nbsp;
+	size(R ⋈<sub>a</sub> S) = 0</i>
+</p><p>
+Case 2: &nbsp; <i>uniq(R.a)</i> and <i>uniq(S.a)</i> &nbsp; <i>⇒ &nbsp;
+	size(R ⋈<sub>a</sub> S) &nbsp;≤&nbsp; min(|R|, |S|) </i>
+</p><p>
+Case 3: &nbsp; <i>pkey(R.a)</i> and <i>fkey(S.a)</i> &nbsp;
+	<i>⇒ &nbsp; size(R ⋈<sub>a</sub> S) &nbsp;≤&nbsp; |S| </i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [19/63]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Join Size Estimation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How many tuples are in the output from:
+</p><ol>
+<li> <large><code>select * from R, S where R.s = S.id</code></large> <br>
+	<small>where <large><code>S.id</code></large> is a primary key and <large><code>R.s</code></large> is a foreign key referencing <large><code>S.id</code></large></small>
+</li><li> <large><code>select * from R, S where R.s &lt;&gt; S.id</code></large> <br>
+	<small>where <large><code>S.id</code></large> is a primary key and <large><code>R.s</code></large> is a foreign key referencing <large><code>S.id</code></large></small>
+</li><li> <large><code>select * from R, S where R.x = S.y</code></large> <br>
+	<small>where <large><code>R.x</code></large> and <large><code>S.y</code></large> have no connection except that <i>dom(R.x)=dom(S.y)</i></small>
+</li></ol>
+Under what conditions will the first query have maximum size?
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [20/63]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Estimation: Postscript</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Inaccurate cost estimation can lead to poor evaluation plans.
+</p><p>
+Above methods can (sometimes) give inaccurate estimates.
+</p><p>
+To get more accurate cost estimates:
+</p><ul>
+<li> more time ... complex computation of selectivity
+</li><li> more space ... storage for histograms of data values
+</li></ul>
+Either way, optimisation process costs more
+	<small>(more than query?)</small>
+<p>
+Trade-off between optimiser performance and query performance.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [21/63]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Optimiser</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [22/63]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Overview of QOpt Process</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Input: tree of <large><font color="#008800"><b><code>Query</code></b></font></large> nodes returned by parser
+</p><p>
+Output: tree of <large><font color="#008800"><b><code>Plan</code></b></font></large> nodes used by query <font color="#0000BB">executor</font>
+</p><ul>
+<li> wrapped in a <large><font color="#008800"><b><code>PlannedStmt</code></b></font></large> node containing state info
+</li></ul>
+Intermediate data structures are trees of <large><font color="#008800"><b><code>Path</code></b></font></large> nodes
+<ul>
+<li> a path tree represents one evaluation order for a query
+</li></ul>
+All <large><font color="#008800"><b><code>Node</code></b></font></large> types are defined in <large><font color="#008800"><b><code>include/nodes/*.h</code></b></font></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [23/63]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Overview of QOpt Process <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+&nbsp;
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/qproc/qopt-trees1.png]" src="./lec13_files/qopt-trees1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [24/63]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ QOpt Data Structures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Generic <large><font color="#008800"><b><code>Path</code></b></font></large> node structure:
+</p><p></p><pre><small>
+typedef struct Path
+{
+   NodeTag     type;          <span class="comment">// scan/join/...</span>
+   NodeTag     pathtype;      <span class="comment">// specific method</span>
+   RelOptInfo *parent;        <span class="comment">// output relation</span>
+   PathTarget *pathtarget;    <span class="comment">// list of Vars/Exprs, width </span>
+   <span class="comment">// estimated execution costs for path ...</span>
+   Cost        startup_cost;  <span class="comment">// setup cost</span>
+   Cost        total_cost;    <span class="comment">// total cost</span>
+   List       *pathkeys;      <span class="comment">// sort order</span>
+} Path;
+</small></pre><p>
+<br>
+<large><code>PathKey</code></large> = (opfamily:Oid, strategy:SortDir, nulls_first:bool)
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [25/63]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ QOpt Data Structures <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Specialised <large><font color="#008800"><b><code>Path</code></b></font></large> nodes (simplified):
+</p><p></p><pre><small>
+typedef struct IndexPath
+{
+   Path    path;
+   IndexOptInfo *indexinfo; <span class="comment">// index for scan </span>
+   List   *indexclauses; <span class="comment">// index select conditions </span>
+   ...
+   ScanDirection  indexscandir; <span class="comment">// used by planner </span>
+   Selectivity  indexselectivity; <span class="comment">// estimated #results </span>
+} IndexPath;
+
+typedef struct JoinPath
+{
+   Path      path;
+   JoinType  jointype;     <span class="comment">// inner/outer/semi/anti </span>
+   Path     *outerpath;    <span class="comment">// outer part of the join </span>
+   Path     *innerpath;    <span class="comment">// inner part of the join </span>
+   List     *restrictinfo; <span class="comment">// join condition(s) </span>
+} JoinPath;
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [26/63]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Optimisation Process</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Query optimisation proceeds in two stages (after parsing)...
+</p><p>
+<font color="#0000BB">Rewriting:</font>
+</p><ul>
+<li> uses PostgreSQL's <font color="#0000BB">rule</font> system to rearrange RA expressions
+</li><li> query tree is expanded to include e.g. view definitions
+</li></ul>
+<font color="#0000BB">Planning and optimisation:</font>
+<ul>
+<li> using cost-based analysis of generated paths
+</li><li> via one of <font color="#0000BB">two</font> different path generators
+</li><li> chooses least-cost path from all those considered
+</li></ul>
+Then produces a <large><font color="#008800"><b><code>Plan</code></b></font></large> tree from the selected path.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [27/63]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Top-down Trace of QOpt</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Top-level of query execution: <large><font color="#008800"><b><code>backend/tcop/postgres.c</code></b></font></large>
+</p><p>
+</p><p></p><pre><small>
+exec_simple_query(const char *query_string)
+{
+  <span class="comment">// lots of setting up ... including starting xact</span>
+  parsetree_list = pg_parse_query(query_string);
+  foreach(parsetree, parsetree_list) {
+    <span class="comment">// Query optimisation</span>
+    querytree_list = <font color="#CC0000">pg_analyze_and_rewrite</font>(parsetree,...);
+    plantree_list = <font color="#CC0000">pg_plan_queries</font>(querytree_list,...);
+    <span class="comment">// Query execution</span>
+    portal = CreatePortal(...plantree_list...);
+    PortalRun(portal,...);
+  }
+  <span class="comment">// lots of cleaning up ... including close xact</span>
+}
+</small></pre><p>
+<small>
+Assumes that we are dealing with multiple queries (i.e. SQL statements)
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [28/63]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Top-down Trace of QOpt <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>query_planner()</code></b></font></large> produces plan for a select/join tree
+</p><ul>
+<li> make list of tables used in query
+</li><li> split <large><code>where</code></large> qualifiers ("quals") into
+<ul>
+<li> restrictions (e.g. <large><code>r.a=1</code></large>) ... for selections
+</li><li> joins (e.g. <large><code>s.id=r.s</code></large>) ... for joins
+</li></ul>
+</li><li> search for quals to enable merge/hash joins
+</li></ul>
+<li> invoke <large><font color="#008800"><b><code>make_one_rel()</code></b></font></large> to find best path/plan
+
+<p>
+Code in: <large><font color="#008800"><b><code>backend/optimizer/plan/planmain.c</code></b></font></large>
+</p></li></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [29/63]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Top-down Trace of QOpt <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+<large><font color="#008800"><b><code>make_one_rel()</code></b></font></large> generates possible plans, selects best
+</p><ul>
+<li> generate scan and index paths for base tables
+<ul>
+<li> using restrictions list generated above
+</li></ul>
+</li><li> generate access paths for the entire join tree
+<ul>
+<li> recursive process, controlled by <large><font color="#008800"><b><code>make_rel_from_joinlist()</code></b></font></large>
+</li></ul>
+</li><li> returns a single "relation", representing result set
+</li></ul>
+
+Code in: <large><font color="#008800"><b><code>backend/optimizer/path/allpaths.c</code></b></font></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [30/63]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Join-tree Generation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><font color="#008800"><b><code>make_rel_from_joinlist()</code></b></font></large> arranges path generation
+</p><ul>
+<li> switches between two possible path tree generators
+</li><li> path tree generators finally return best cost path
+</li></ul>
+Standard path tree generator (<large><font color="#008800"><b><code>standard_join_search()</code></b></font></large>):
+<ul>
+<li> "exhaustively" generates join trees <small>(like System R)</small>
+</li><li> starts with 2-way joins, finds best combination
+</li><li> then adds extra table to give 3-table join, etc.
+</li></ul>
+Code in: &nbsp; <large><font color="#008800"><b><code>backend/optimizer/path/{allpaths.c,joinrels.c}</code></b></font></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [31/63]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Join-tree Generation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Genetic query optimiser (<large><font color="#008800"><b><code>geqo</code></b></font></large>):
+</p><ul>
+<li> uses genetic algorithm (GA) to generate path trees 
+</li><li> handles joins involving &gt; <large><code>geqo_threshold</code></large> relations
+</li><li> goals of this approach:
+<ul>
+<li> find near-optimal solution
+</li><li> examine far less than entire search space
+</li></ul>
+</li></ul>
+Code in: &nbsp; <large><font color="#008800"><b><code>backend/optimizer/geqo/*.c</code></b></font></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [32/63]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Join-tree Generation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Basic idea of genetic algorithm:
+</p><p></p><pre>Optimize(join)
+{
+   t = 0
+   p = initialState(join)  <span class="comment">// pool of (random) join orders</span>
+   for (t = 0; t &lt; #generations; t++) {
+      p' = recombination(p) <span class="comment">// get parts of good join orders </span>
+      p'' = mutation(p')    <span class="comment">// generate new variations </span>
+      p = selection(p'',p)  <span class="comment">// choose best join orders </span>
+   }
+}
+</pre><p>
+<br>
+#generations determined by size of initial pool of join orders
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [33/63]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Execution</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [34/63]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Execution</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Query execution: &nbsp; applies evaluation plan <i>→</i> result tuples
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/qproc/qproc3.png]" src="./lec13_files/qproc3.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [35/63]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Execution <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example of query translation:
+</p><p></p><pre>select s.name, s.id, e.course, e.mark
+from   Student s, Enrolment e
+where  e.student = s.id and e.semester = '05s2';
+</pre><p>
+maps to
+</p><p>
+</p><div class="center">
+<i><span style="font-size:150%">π</span><sub>name,id,course,mark</sub>(Stu ⋈<sub>e.student=s.id</sub> (<span style="font-size:150%">σ</span><sub>semester=05s2</sub>Enr))</i>
+</div>
+<p>
+maps to
+</p><p></p><pre>Temp1  = BtreeSelect[semester=05s2](Enr)
+Temp2  = HashJoin[e.student=s.id](Stu,Temp1)
+Result = Project[name,id,course,mark](Temp2)
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [36/63]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Execution <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+A query execution plan:
+</p><ul>
+<li> consists of a <font color="#0000BB">collection of RelOps</font>
+</li><li> executing together to produce a set of result tuples
+</li></ul>
+Results may be passed from one operator to the next:
+<ul>
+<li> <font color="#0000BB">materialization</font> ... <small>writing results to disk and reading them back</small>
+</li><li> <font color="#0000BB">pipelining</font> ... <small>generating and passing via memory buffers</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [37/63]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Materialization</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Steps in <font color="#0000BB">materialization</font> between two operators
+</p><ul>
+<li> first operator reads input(s) and writes results to disk
+</li><li> next operator treats tuples on disk as its input
+</li><li> in essence, the <large><code>Temp</code></large> tables are produced as real tables
+</li></ul>
+Advantage:
+<ul>
+<li> intermediate results can be placed in a file structure <br>
+	<small>(which can be chosen to speed up execution of subsequent operators)</small>
+</li></ul>
+Disadvantage:
+<ul>
+<li> requires disk space/writes for intermediate results
+</li><li> requires disk access to read intermediate results
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [38/63]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Pipelining</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How <font color="#0000BB">pipelining</font> is organised between two operators:
+</p><ul>
+<li> operators execute "concurrently" as producer/consumer pairs
+</li><li> structured as interacting iterators (open; while(next); close)
+</li></ul>
+Advantage:
+<ul>
+<li> no requirement for disk access
+	<small>(results passed via memory buffers)</small>
+</li></ul>
+Disadvantage:
+<ul>
+<li> higher-level operators access inputs via linear scan, &nbsp; or
+</li><li> requires sufficient memory buffers to hold all outputs
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [39/63]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Iterators (reminder)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Iterators provide a "stream" of results:
+</p><ul>
+<li> <large><font color="#008800"><b><code>iter = startScan(</code></b></font></large><font color="#008800"><i>params</i></font><large><font color="#008800"><b><code>)</code></b></font></large>
+<ul>
+<li> set up data structures for iterator
+	&nbsp; <small>(create state, open files, ...)</small>
+</li><li> <i>params</i> are specific to operator
+	&nbsp;<small>(e.g. reln, condition, #buffers, ...)</small>
+</li></ul>
+</li><li> <large><font color="#008800"><b><code>tuple = nextTuple(iter)</code></b></font></large>
+<ul>
+<li> get the next tuple in the iteration; return null if no more
+</li></ul>
+</li><li> <large><font color="#008800"><b><code>endScan(iter)</code></b></font></large>
+<ul>
+<li> clean up data structures for iterator
+</li></ul>
+</li></ul>
+Other possible operations: reset to specific point, restart, ...
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [40/63]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Pipelining Example</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the query:
+</p><p></p><pre>select s.id, e.course, e.mark
+from   Student s, Enrolment e
+where  e.student = s.id and
+       e.semester = '05s2' and s.name = 'John';
+</pre><p>
+which maps to the RA expression
+</p><p>
+</p><div class="center">
+<i>Proj<sub>[id,course,mark]</sub>(Join<sub>[student=id]</sub>(Sel<sub>[05s2]</sub>(Enr),Sel<sub>[John]</sub>(Stu)))</i>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [41/63]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Pipelining Example <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Evaluated via communication between RA tree nodes:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/qproc/qtree.png]" src="./lec13_files/qtree.png">
+</div><p>
+<br><br>
+Note: likely that projection is combined with join in PostgreSQL
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [42/63]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Disk Accesses</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Pipelining cannot avoid all disk accesses.
+</p><p>
+Some operations use multiple passes <small>(e.g. merge-sort, hash-join)</small>.
+</p><ul>
+<li> data is written by one pass, read by subsequent passes
+</li></ul>
+Thus ...
+<ul>
+<li> <font color="#0000BB">within</font> an operation, disk reads/writes are possible
+</li><li> <font color="#0000BB">between</font> operations, no disk reads/writes are needed
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [43/63]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Execution</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [44/63]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Execution</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Defs: <large><font color="#008800"><b><code>src/include/executor</code></b></font></large> and <large><font color="#008800"><b><code>src/include/nodes</code></b></font></large>
+</p><p>
+Code: <large><font color="#008800"><b><code>src/backend/executor</code></b></font></large>
+</p><p>
+PostgreSQL uses pipelining ...
+</p><ul>
+<li> query plan is a tree of <large><font color="#008800"><b><code>Plan</code></b></font></large> nodes
+</li><li> each type of node implements one kind of RA operation <br>
+	<small>(node implements specific access method via iterator interface)</small>
+</li><li> node types e.g. <large><font color="#008800"><b><code>Scan</code></b></font></large>, <large><font color="#008800"><b><code>Group</code></b></font></large>, <large><font color="#008800"><b><code>Indexscan</code></b></font></large>, <large><font color="#008800"><b><code>Sort</code></b></font></large>, <large><font color="#008800"><b><code>HashJoin</code></b></font></large>
+</li><li> execution is managed via a tree of <large><font color="#008800"><b><code>PlanState</code></b></font></large> nodes <br>
+	<small>(mirrors the structure of the tree of Plan nodes; holds execution state)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [45/63]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Executor</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Modules in <large><font color="#008800"><b><code>src/backend/executor</code></b></font></large> fall into two groups:
+</p><p>
+<large><font color="#008800"><b><code>execXXX</code></b></font></large> <small>(e.g. execMain, execProcnode, execScan)</small>
+</p><ul>
+<li> implement generic control of plan evaluation (execution)
+</li><li> provide overall plan execution and dispatch to node iterators
+</li></ul>
+<large><font color="#008800"><b><code>nodeXXX</code></b></font></large> &nbsp;
+	<small>(e.g. nodeSeqscan, nodeNestloop, nodeGroup)</small>
+<ul>
+<li> implement iterators for specific types of RA operators
+</li><li> typically contains <large><font color="#008800"><b><code>ExecInitXXX</code></b></font></large>, <large><font color="#008800"><b><code>ExecXXX</code></b></font></large>, <large><font color="#008800"><b><code>ExecEndXXX</code></b></font></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [46/63]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example PostgreSQL Execution</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the query:
+</p><p></p><pre><span class="comment">-- get manager's age and # employees in Shoe department</span>
+select e.age, d.nemps
+from   Departments d, Employees e
+where  e.name = d.manager and d.name ='Shoe'
+</pre><p>
+and its execution plan tree
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/qproc/qtree1.png]" src="./lec13_files/qtree1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [47/63]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example PostgreSQL Execution <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The execution plan tree
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/qproc/qtree1.png]" src="./lec13_files/qtree1.png">
+</div><p>
+</p><p>
+contains three nodes:
+</p><ul>
+<li> <large><code>NestedLoop</code></large> with join condition <small>(Outer.manager = Inner.name)</small>
+</li><li> <large><code>IndexScan</code></large> on Departments with selection <small>(name = 'Shoe')</small>
+</li><li> <large><code>SeqScan</code></large> on Employees
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [48/63]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example PostgreSQL Execution <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Initially <large><code>InitPlan()</code></large> invokes <large><code>ExecInitNode()</code></large> on plan tree root.
+</p><p>
+<large><code>ExecInitNode()</code></large> sees a <large><code>NestedLoop</code></large> node ... <br>
+&nbsp;&nbsp;&nbsp;so dispatches to <large><code>ExecInitNestLoop()</code></large> to set up iterator<br>
+&nbsp;&nbsp;&nbsp;then invokes <large><code>ExecInitNode()</code></large> on left and right sub-plans<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;in left subPlan, <large><code>ExecInitNode()</code></large> sees an <large><code>IndexScan</code></large> node <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; so dispatches to <large><code>ExecInitIndexScan()</code></large> to set up iterator<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;in right sub-plan, <large><code>ExecInitNode()</code></large> sees a <large><code>SeqScan</code></large> node <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; so dispatches to <large><code>ExecInitSeqScan()</code></large> to set up iterator<br>
+</p><p>
+Result: a plan state tree with same structure as plan tree.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [49/63]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example PostgreSQL Execution <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Then <large><code>ExecutePlan()</code></large> repeatedly invokes <large><code>ExecProcNode()</code></large>.
+</p><p>
+<large><code>ExecProcNode()</code></large> sees a <large><code>NestedLoop</code></large> node ... <br>
+&nbsp;&nbsp;&nbsp;so dispatches to <large><code>ExecNestedLoop()</code></large> to get next tuple <br>
+&nbsp;&nbsp;&nbsp;which invokes <large><code>ExecProcNode()</code></large> on its sub-plans <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;in left sub-plan, <large><code>ExecProcNode()</code></large> sees an <large><code>IndexScan</code></large> node <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; so dispatches to <large><code>ExecIndexScan()</code></large> to get next tuple <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if no more tuples, return END <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; for this tuple, invoke <large><code>ExecProcNode()</code></large> on right sub-plan <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <large><code>ExecProcNode()</code></large> sees a <large><code>SeqScan</code></large> node <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; so dispatches to <large><code>ExecSeqScan()</code></large> to get next tuple <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; check for match and return joined tuples if found <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; continue scan until end <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; reset right sub-plan iterator <br>
+</p><p>
+Result: stream of result tuples returned via <large><code>ExecutePlan()</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [50/63]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s52"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Performance</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [51/63]</div> <div class="slideCl1    " id="s52">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s51"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s53"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Performance Tuning</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How to make a database-backed system perform "better"?
+</p><p>
+Improving performance may involve any/all of:
+</p><ul>
+<li> making applications using the DB run faster
+</li><li> lowering response time of queries/transactions
+</li><li> improving overall transaction throughput
+</li></ul>
+Remembering that, to some extent ...
+<ul>
+<li> the query optimiser removes choices from DB developers
+</li><li> by making its own decision on the optimal execution plan
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [52/63]</div> <div class="slideCl1    " id="s53">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s52"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s54"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Performance Tuning <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tuning requires us to consider the following:
+</p><ul>
+<li> which queries and transactions will be used? <br>
+	&nbsp; <small>(e.g. check balance for payment, display recent transaction history)</small>
+</li><li> how frequently does each query/transaction occur? <br>
+	&nbsp; <small>(e.g. 80% withdrawals; 1% deposits; 19% balance check)</small>
+</li><li> are there time constraints on queries/transactions? <br>
+	&nbsp; <small>(e.g. EFTPOS payments must be approved within 7 seconds)</small>
+</li><li> are there uniqueness constraints on any attributes? <br>
+	&nbsp; <small>(define indexes on attributes to speed up insertion uniqueness check)</small>
+</li><li> how frequently do updates occur? <br>
+	&nbsp; <small>(indexes slow down updates, because must update table <i>and</i> index)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [53/63]</div> <div class="slideCl1    " id="s54">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s53"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s55"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Performance Tuning <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Performance can be considered at two times:
+</p><ul>
+<li> <i>during</i> schema design
+<ul>
+<li> typically towards the end of schema design process
+</li><li> requires schema transformations such as <font color="#0000BB">denormalisation</font>
+</li></ul>
+</li><li> <i>outside</i> schema design
+<ul>
+<li> typically after application has been deployed/used
+</li><li> requires adding/modifying data structures such as <font color="#0000BB">indexes</font>
+</li></ul>
+</li></ul>
+Difficult to predict what query optimiser will do, so ...
+<ul>
+<li> implement queries using methods which <i>should</i> be efficient
+</li><li> observe execution behaviour and modify query accordingly
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [54/63]</div> <div class="slideCl1    " id="s55">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s54"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s56"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Query Tuning</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL provides the <large><font color="#008800"><b><code>explain</code></b></font></large> statement to
+</p><ul>
+<li> give a representation of the query execution plan
+</li><li> with information that may help to tune query performance
+</li></ul>
+Usage:
+<p></p><pre>EXPLAIN [ANALYZE] <i>Query</i>
+</pre><p>
+Without <large><code>ANALYZE</code></large>, <large><code>EXPLAIN</code></large> shows plan with estimated costs.
+</p><p>
+With <large><code>ANALYZE</code></large>, <large><code>EXPLAIN</code></large> executes query and prints real costs.
+</p><p>
+<small>
+Note that runtimes may show considerable variation due to buffering.
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [55/63]</div> <div class="slideCl1    " id="s56">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s55"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s57"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ EXPLAIN Examples</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Database
+</p><p></p><pre><small>
+people(id, family, given, title, name, ..., birthday)
+courses(id, subject, semester, homepage) 
+course_enrolments(student, course, mark, grade, ...) 
+subjects(id, code, name, longname, uoc, offeredby, ...)
+...
+</small></pre><p>
+where
+</p><p></p><pre><small>
+       table_name          | n_records 
+---------------------------+-----------
+ people                    |     55767
+ courses                   |     73220
+ course_enrolments         |    525688
+ subjects                  |     18525
+...
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [56/63]</div> <div class="slideCl1    " id="s57">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s56"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s58"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ EXPLAIN Examples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: Select on non-indexed attribute
+</p><p></p><pre><small>
+uni=# <font color="#008800">explain</font>
+uni=# select * from Students where stype='local';
+                     QUERY PLAN
+----------------------------------------------------
+ <font color="#0000EE">Seq Scan</font> on students
+             (cost=0.00..562.01 rows=23543 width=9)
+   Filter: ((stype)::text = 'local'::text)
+</small></pre><p>
+where
+</p><ul>
+<li> <large><code>Seq Scan</code></large> = operation (plan node)
+</li><li> <large><code>cost=</code></large><i>StartUpCost</i><large><code>..</code></large><i>TotalCost</i>
+</li><li> <large><code>rows=</code></large><i>NumberOfResultTuples</i>
+</li><li> <large><code>width=</code></large><i>SizeOfTuple</i>  <tiny>(# bytes)</tiny>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [57/63]</div> <div class="slideCl1    " id="s58">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s57"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s59"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ EXPLAIN Examples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+More notes on <large><code>explain</code></large> output:
+</p><ul>
+<li> each major entry corresponds to a plan node
+<small>
+<ul>
+<li> e.g. <large><code>Seq Scan</code></large>, &nbsp;<large><code>Index Scan</code></large>, &nbsp;<large><code>Hash Join</code></large>, &nbsp;<large><code>Merge Join</code></large>, ...
+</li></ul>
+</small>
+</li><li> some nodes include additional qualifying information
+<small>
+<ul>
+<li> e.g. <large><code>Filter</code></large>, &nbsp;<large><code>Index Cond</code></large>, &nbsp;<large><code>Hash Cond</code></large>, &nbsp;<large><code>Buckets</code></large>, ...
+</li></ul>
+</small>
+</li><li> <large><code>cost</code></large> values in <large><code>explain</code></large> are estimates &nbsp;<tiny>(notional units)</tiny>
+</li><li> <large><code>explain analyze</code></large> also includes actual time costs (ms)
+</li><li> costs of parent nodes include costs of all children
+</li><li> estimates of #results based on sample of data
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [58/63]</div> <div class="slideCl1    " id="s59">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s58"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s60"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ EXPLAIN Examples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: Select on non-indexed attribute with actual costs
+</p><p></p><pre><small>
+uni=# <font color="#008800">explain analyze</font>
+uni=# select * from Students where stype='local';
+                       QUERY PLAN
+----------------------------------------------------------
+ <font color="#0000EE">Seq Scan</font> on students
+             (cost=0.00..562.01 rows=23543 width=9)
+             (actual time=0.011..4.704 rows=23551 loops=1)
+   Filter: ((stype)::text = 'local'::text)
+   Rows Removed by Filter: 7810
+ Planning time: 0.054 ms
+ Execution time: 5.875 ms
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [59/63]</div> <div class="slideCl1    " id="s60">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s59"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s61"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ EXPLAIN Examples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: Select on indexed, unique attribute
+</p><p></p><pre><small>
+uni=# explain analyze
+uni-# select * from Students where id=100250;
+                       QUERY PLAN
+-------------------------------------------------------
+ <font color="#0000EE">Index Scan</font> using student_pkey on student
+            (cost=0.00..8.27 rows=1 width=9)
+            (actual time=0.049..0.049 rows=0 loops=1)
+   Index Cond: (id = 100250)
+ Planning Time: 0.088 ms
+ Execution Time: 0.057 ms
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [60/63]</div> <div class="slideCl1    " id="s61">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s60"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s62"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ EXPLAIN Examples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: Select on indexed, unique attribute
+</p><p></p><pre><small>
+uni=# explain analyze
+uni-# select * from Students where id=1216988;
+                       QUERY PLAN
+-------------------------------------------------------
+ <font color="#0000EE">Index Scan</font> using students_pkey on students
+                  (cost=0.29..8.30 rows=1 width=9)
+                  (actual time=0.011..0.012 rows=1 loops=1)
+   Index Cond: (id = 1216988)
+ Planning time: 0.066 ms
+ Execution time: 0.062 ms
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [61/63]</div> <div class="slideCl1    " id="s62">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s61"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s63"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ EXPLAIN Examples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: Join on a primary key (indexed) attribute &nbsp;(2016)
+</p><p></p><pre><small>
+uni=# explain analyze
+uni-# select s.id,p.name
+uni-# from Students s, People p where s.id=p.id;
+                      QUERY PLAN
+----------------------------------------------------------
+<font color="#0000EE">Hash Join</font> (cost=988.58..3112.76 rows=31048 width=19)
+          (actual time=11.504..39.478 rows=31048 loops=1)
+  Hash Cond: (p.id = s.id)
+  -&gt; <font color="#0000EE">Seq Scan</font> on people p
+         (cost=0.00..989.97 rows=36497 width=19)
+         (actual time=0.016..8.312 rows=36497 loops=1)
+  -&gt; <font color="#0000EE">Hash</font> (cost=478.48..478.48 rows=31048 width=4)
+          (actual time=10.532..10.532 rows=31048 loops=1)
+          Buckets: 4096  Batches: 2  Memory Usage: 548kB
+      -&gt;  <font color="#0000EE">Seq Scan</font> on students s 
+              (cost=0.00..478.48 rows=31048 width=4)
+              (actual time=0.005..4.630 rows=31048 loops=1)
+Total runtime: 41.0 ms
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [62/63]</div> <div class="slideCl1    " id="s63">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s62"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week08-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ EXPLAIN Examples <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: Join on a primary key (indexed) attribute &nbsp;(2018)
+</p><p></p><pre><small>
+uni=# explain analyze
+uni-# select s.id,p.name
+uni-# from Students s, People p where s.id=p.id;
+                      QUERY PLAN
+----------------------------------------------------------
+<font color="#0000EE">Merge Join</font>  (cost=0.58..2829.25 rows=31361 width=18)
+            (actual time=0.044..25.883 rows=31361 loops=1)
+  Merge Cond: (s.id = p.id)
+  -&gt;  <font color="#0000EE">Index Only Scan</font> using students_pkey on students s
+            (cost=0.29..995.70 rows=31361 width=4)
+            (actual time=0.033..6.195 rows=31361 loops=1)
+        Heap Fetches: 31361
+  -&gt;  <font color="#0000EE">Index Scan</font> using people_pkey on people p
+            (cost=0.29..2434.49 rows=55767 width=18)
+            (actual time=0.006..6.662 rows=31361 loops=1)
+Planning time: 0.259 ms
+Execution time: 27.327 ms
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 8 Thursday Lecture ♢ [63/63]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 4 Apr 2024</span>
+ <script src="./lec13_files/prism.js"></script>   
+ <script src="./lec13_files/sg.js"></script>   
+
+
+</p></body></html>

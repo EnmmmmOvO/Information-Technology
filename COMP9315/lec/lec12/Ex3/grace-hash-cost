@@ -1,0 +1,103 @@
+Consider executing Join[i=j](R,S) with the following parameters:
+* rR = 1000,  bR = 50,  rS = 3000,  bS = 150
+* R.i is primary key, and S has index on S.j
+* S is sorted on S.j, each R tuple joins with 2 S tuples
+* DBMS has N = 42 buffers available for the join
+* data + hash have reasonably uniform distribution
+
+Method:
+
+for each tuple s in relation R 
+    add s to partition h(s.i) in output file R'
+for each tuple t in relation S
+    add t to partition h(t.j) in output file S'
+for each partition p = 0 .. N-1 {
+    // Build in-memory hash table for partition p of R'
+    for each tuple r in partition p of R'
+        insert r into buffer h2(r.i)
+    // Scan partition p of S', probing for matching tuples
+    for each tuple s in partition p of S' {
+        b = h2(s.j)
+        for all matching tuples r in buffer b
+            add (r,s) to result
+}   }
+
+
+Cost:
+
+best case for R ... k partitions, each with k pages
+
+realistically
+* number of partitions <= k (some empty)
+* last page in each partition is not full
+
+assuming reasonably uniform distributions
+#R-partitions = 41, each with ~25 tuples in ~2 pages
+#S-partitions = 41, each with ~73 tuples in ~4 pages
+if *really* uniform distribution
+#R-partitions = 41, each with 25 tuples in 2 pages
+#S-partitions = 41, each with 73 tuples in 4 pages
+
+# pages in R-partitions = 41*2 = 82
+# pages in S-partitions = 41*4 = 164
+
+# page accesses
+= partition(R) + partition(S) + probe/join
+  partition(R) = bR[reads] + (b'R)[writes] = 50 + 82
+  partition(S) = bS[reads] + (b'y)[writes] = 150 + 164
+  probe/join   = Cost to read R partitions
+                 + Cost to read S partitions
+
+Pages read/written
+= 50 + 82 + 150 + 164 + 82 + 164
+= 692
+
+
+#checks (all in probe/join phase)
+
+* rR = 1000,  bR = 50,  rS = 3000,  bS = 150, N = 42
+* cR = cS = 20
+
+#checks = rS * cS
+for each partition of R
+    load R tuples into in-memory hash table
+    for each tuple in corresponding partition of S
+        examine one page in hash table
+
+assuming reasonably uniform distributions
+#R-partitions = 41, each with ~25 tuples in ~2 pages
+#S-partitions = 41, each with ~73 tuples in ~4 pages
+if *really* uniform distribution
+#R-partitions = 41, each with 25 tuples in 2 pages
+#S-partitions = 41, each with 73 tuples in 4 pages
+
+Reading each partition into memory ...
+25 tuples across 40 buffers => 0.6 tuples per buffer
+
+So for each S tuple, we hash to one in-memory hash table page
+and compare against tuples in that page (approx 0.6 tuples)
+
+Best case #checks
+= rS * 1 = 3000
+
+Compare to nested loop
+= rR * rS = 1000 * 3000 = 3,000,000
+
+
+We actually have way more pages than we need
+
+Consider N = 12
+
+Doesn't change # page accesses
+
+#checks
+
+for uniform distribution ...
+#R-partitions = 11, each with 91 tuples in 5 pages
+#S-partitions = 11, each with 273 tuples in 13 pages
+
+Reading each partition into memory
+91 tuples across 40 buffers => ~2 tuples per buffer
+
+# checks
+= rS * 2 = 6000

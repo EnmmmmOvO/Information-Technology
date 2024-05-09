@@ -1,0 +1,1161 @@
+
+<!-- saved from url=(0078)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 04 Monday Lecture</title>
+<link href="./lec07_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec07_files/latest.js" async=""></script>
+<script src="./lec07_files/jquery.min.js"></script>
+<link href="./lec07_files/css" rel="stylesheet">
+<link href="./lec07_files/prism.css" rel="stylesheet">
+<script src="./lec07_files/sg.js"></script><script type="text/javascript" async="" src="./lec07_files/MathJax.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 04 Monday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s2">Implementing Select Efficiently</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s3">Heap Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s4">Selection in Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s6">Insertion in Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s9">Deletion in Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s10">Exercise: Cost of Deletion in Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s11">Deletion in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s12">Updates in Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s14">Heaps in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s16">Sorted Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s17">Sorted Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s19">Selection in Sorted Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s23">Exercise: Searching in Sorted File</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s24">Exercise: Optimising Sorted-file Search</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s25">Search with <i>pmr</i> and <i>range</i> Queries</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s29">Insertion into Sorted Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s30">Deletion from Sorted Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s31">Hashed Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s32">Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s35">Hashing Performance</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s37">Selection with Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s40">Insertion with Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s41">Exercise: Insertion into Static Hashed File</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s42">Deletion with Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s43">Problem with Hashing...</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s45">Exercise: Bit Manipulation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s46">Page Splitting</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s48">Linear Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s50">Selection with Lin.Hashing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s53">File Expansion with Lin.Hashing</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [0/53]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><ul>
+<li> Quiz 2
+<ul>
+<li> released 8am today ... due midnight Friday (March 8)
+</li></ul>
+<br>
+</li><li> Assignment 1
+<ul>
+<li> valid names are defined by the BNF grammar
+</li><li> "connection to the server was lost" ... your code crashed PostgreSQL
+</li><li> <large><code>pg_size_pretty</code></large> isn't looking for exact match ... just close
+</li></ul>
+<br>
+</li><li> Considering dropping this course?
+<ul>
+<li> next Sunday is Census Day ... drop before then or you have to pay
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [1/53]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Implementing Select Efficiently</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Two basic approaches:
+</p><ul>
+<li> physical arrangement of tuples
+<ul>
+<li> sorting
+	&nbsp; <small>(search strategy)</small>
+</li><li> hashing
+	&nbsp; <small>(static, dynamic, <i>n</i>-dimensional)</small>
+</li></ul>
+</li><li> additional indexing information
+<ul>
+<li> index files
+	&nbsp; <small>(primary, secondary, trees)</small>
+</li><li> signatures 
+	&nbsp; <small>(superimposed, disjoint)</small>
+</li></ul>
+</li></ul>
+<p>
+Our analyses assume: 1 input buffer available for each relation.
+</p><p>
+If more buffers are available, most methods benefit.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [2/53]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Heap Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+</p><div class="center">
+<small>
+Note: this is <b>not</b> "heap" as in the top-to-bottom ordered tree.
+<br>
+It means simply an unordered collection of tuples in a file.
+</small>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [3/53]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For all selection queries, the only possible strategy is:
+</p><p></p><pre><span class="comment">// select * from R where C</span>
+for each page P in file of relation R {
+    for each tuple t in page P {
+        if (t satisfies C)
+            add tuple t to result set
+    }
+}
+</pre><p>
+i.e. linear scan through file searching for matching tuples
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [4/53]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection in Heaps <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The heap is scanned from the first to the last page:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/heapscan.png]" src="./lec07_files/heapscan.png">
+</div><p>
+<i>Cost<sub>range</sub> &nbsp;=&nbsp; Cost<sub>pmr</sub> &nbsp;=&nbsp; b</i>
+</p><p>
+If we know that only one tuple matches the query (<i>one</i> query), <br>
+a simple optimisation is to stop the scan once that tuple is found.
+</p><p>
+<i>Cost<sub>one</sub></i> :  &nbsp;&nbsp;&nbsp;&nbsp;
+Best = <i>1</i> &nbsp;&nbsp;&nbsp;&nbsp;
+Average = <i>b/2</i> &nbsp;&nbsp;&nbsp;&nbsp;
+Worst = <i>b</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [5/53]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Insertion: new tuple is appended to file (in last page).
+</p><p></p><pre>rel = openRelation("R", READ|WRITE);
+pid = nPages(rel)-1;
+get_page(rel, pid, buf);
+if (size(newTup) &gt; size(buf))
+   { deal with oversize tuple }
+else {
+   if (!hasSpace(buf,newTup))
+      { pid++; nPages(rel)++; clear(buf); }
+   insert_record(buf,newTup);
+   put_page(rel, pid, buf);
+}
+</pre><p>
+<i>Cost<sub>insert</sub> &nbsp;=&nbsp; 1<sub>r</sub> + 1<sub>w</sub></i>
+</p><p>
+<small>Plus possible extra writes for oversize tuples, e.g. PostgreSQL's TOAST</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [6/53]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion in Heaps <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Alternative strategy:
+</p><ul>
+<li> find any page from <large><code>R</code></large> with enough space
+</li><li> preferably a page already loaded into memory buffer
+</li></ul>
+PostgreSQL's strategy:
+<ul>
+<li> use last updated page of <large><code>R</code></large> in buffer pool
+</li><li> otherwise, search buffer pool for page with enough space
+</li><li> assisted by free space map (FSM) associated with each table
+</li><li> for details: <large><font color="#008800"><b><code>backend/access/heap/{heapam.c,hio.c}</code></b></font></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [7/53]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion in Heaps <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL's tuple insertion:
+</p><p></p><pre><large><font color="#008800"><b><code>heap_insert</code></b></font></large>(Relation relation,    <span class="comment">// relation desc</span>
+            HeapTuple newtup,     <span class="comment">// new tuple data</span>
+            CommandId cid, ...)   <span class="comment">// SQL statement</span>
+</pre><p>
+</p><ul>
+<li> finds page which has enough free space for <large><code>newtup</code></large>
+</li><li> ensures page loaded into buffer pool and locked
+</li><li> copies tuple data into page buffer, sets <large><code>xmin</code></large>, etc.
+</li><li> marks buffer as dirty
+</li><li> writes details of insertion into transaction log
+</li><li> returns OID of new tuple if relation has OIDs
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [8/53]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deletion in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+SQL: &nbsp;<large><code>delete from</code></large> <i>R</i> &nbsp;<large><code>where</code></large> <i>Condition</i>
+</p><p>
+Implementation of deletion:
+</p><p></p><pre>rel = openRelation("R",READ|WRITE);
+for (p = 0; p &lt; nPages(rel); p++) {
+    get_page(rel, p, buf);
+    ndels = 0;
+    for (i = 0; i &lt; nTuples(buf); i++) {
+        tup = get_record(buf,i);
+        if (tup satisfies <i>Condition</i>)
+            { ndels++; delete_record(buf,i); }
+    }
+    if (ndels &gt; 0) put_page(rel, p, buf);
+    if (ndels &gt; 0 &amp;&amp; unique) break;
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [9/53]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Cost of Deletion in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following queries ...
+</p><p></p><pre>delete from Employees where id = 12345  <span class="comment">-- one</span>
+delete from Employees where dept = 'Marketing'  <span class="comment">-- pmr</span>
+delete from Employees where 40 &lt;= age and age &lt; 50  <span class="comment">-- range</span>
+</pre><p>
+Show how each will be executed and estimate the cost, assuming:
+</p><ul>
+<li> <i>b</i> = 100, &nbsp;<i>b<sub>q2</sub></i> = 3, &nbsp;<i>b<sub>q3</sub></i> = 20
+</li></ul>
+State any other assumptions.
+<p>
+Generalise the cost models for each query type.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [10/53]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deletion in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL tuple deletion:
+</p><p></p><pre><large><font color="#008800"><b><code>heap_delete</code></b></font></large>(Relation relation,    <span class="comment">// relation desc</span>
+            ItemPointer tid, ..., <span class="comment">// tupleID</span>
+            CommandId cid, ...)   <span class="comment">// SQL statement</span>
+</pre><p>
+</p><ul>
+<li> gets page containing tuple into buffer pool and locks it
+</li><li> sets flags, commandID and <large><code>xmax</code></large> in tuple; dirties buffer
+</li><li> writes indication of deletion to transaction log
+</li></ul>
+<br>
+Vacuuming eventually compacts space in each page.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [11/53]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Updates in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+SQL: &nbsp;<large><code>update </code></large> <i>R</i> &nbsp;<large><code>set </code></large> <i>F</i> <large><code>=</code></large> <i>val</i> &nbsp;<large><code>where </code></large> <i>Condition</i>
+</p><p>
+Analysis for updates is similar to that for deletion
+</p><ul>
+<li> scan all pages
+</li><li> replace any updated tuples &nbsp; <small>(within each page)</small>
+</li><li> write affected pages to disk
+</li></ul>
+<i>Cost<sub>update</sub> &nbsp;=&nbsp; b<sub>r</sub> + b<sub>qw</sub></i>
+<p>
+Complication: new tuple larger than old version &nbsp;<small>(too big for page)</small>
+</p><p>
+Solution: &nbsp; delete, re-organise free space, then insert
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [12/53]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Updates in Heaps <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL tuple update:
+</p><p></p><pre><large><font color="#008800"><b><code>heap_update</code></b></font></large>(Relation relation,     <span class="comment">// relation desc</span>
+            ItemPointer otid,      <span class="comment">// old tupleID</span>
+            HeapTuple newtup, ..., <span class="comment">// new tuple data</span>
+            CommandId cid, ...)    <span class="comment">// SQL statement</span>
+</pre><p>
+</p><ul>
+<li> essentially does <large><code>delete(otid)</code></large>, then <large><code>insert(newtup)</code></large>
+</li><li> also, sets old tuple's <large><code>ctid</code></large> field to reference new tuple
+</li><li> can also update-in-place if no referencing transactions
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [13/53]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Heaps in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL stores all table data in heap files (by default).
+</p><p>
+Typically there are also associated index files.
+</p><p>
+If a file is more useful in some other form:
+</p><ul>
+<li> PostgreSQL may make a transformed copy during query execution
+</li><li> programmer can set it via &nbsp; <large><code>create index...using hash</code></large>
+</li></ul>
+Heap file implementation: &nbsp; <font color="#000099">src/backend/access/heap</font>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [14/53]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Heaps in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL "heap file" may use multiple physical files
+</p><ul>
+<li> files are named after the OID of the corresponding table
+</li><li> first data file is called simply <large><code>OID</code></large>
+</li><li> if size exceeds 1GB, create a <font color="#0000BB">fork</font> called <large><code>OID.1</code></large>
+</li><li> add more forks as data size grows <small>(one fork for each 1GB)</small>
+</li><li> other files:
+<ul>
+<li> free space map (<large><code>OID_fsm</code></large>), visibility map (<large><code>OID_vm</code></large>)
+</li><li> optionally, TOAST file <small>(if table has varlen attributes)</small>
+</li></ul>
+</li><li> for details: Chapter 73 in PostgreSQL 15 documentation
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [15/53]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sorted Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [16/53]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sorted Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+Records stored in file in order of some field <font color="#0000BB">k</font>
+(the sort key).
+</p><p>
+Makes searching more efficient; makes insertion less efficient
+</p><p>
+E.g. assume <i>c = 4</i>
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/insert-in-sorted.png]" src="./lec07_files/insert-in-sorted.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [17/53]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sorted Files <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+In order to mitigate insertion costs, use overflow blocks.
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/sfile1.png]" src="./lec07_files/sfile1.png">
+</div><p>
+</p><p>
+Total number of overflow blocks = <i>b<sub>ov</sub></i>.
+</p><p>
+Average overflow chain length = <i>Ov</i> = <i>b<sub>ov</sub> / b</i>.
+</p><p>
+<font color="#0000BB">Bucket</font> = data page + its overflow page(s)
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [18/53]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection in Sorted Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <i>one</i> queries on sort key, use binary search.
+</p><p></p><pre><span class="comment">// select * from R where k = val  (sorted on R.k)</span>
+lo = 0; hi = b-1
+while (lo &lt;= hi) {
+    mid = (lo+hi) / 2;  <span class="comment">// int division with truncation</span>
+    (tup,loVal,hiVal) = searchBucket(f,mid,<i>k</i>,<i>val</i>);
+    if (tup != NULL) return tup;
+    else if (<i>val</i> &lt; loVal) hi = mid - 1;
+    else if (<i>val</i> &gt; hiVal) lo = mid + 1;
+    else return NOT_FOUND;
+}
+return NOT_FOUND;
+</pre><p>
+where &nbsp;<large><code>f</code></large> is file for relation, &nbsp;<large><code>mid,lo,hi</code></large> are page indexes, <br>
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <large><code>k</code></large> is a field/attr, &nbsp;<large><code>val,loVal,hiVal</code></large> are values for <large><code>k</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [19/53]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection in Sorted Files <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Search a page and its overflow chain for a key value
+</p><p></p><pre>searchBucket(f,pid,<i>k</i>,<i>val</i>)
+{
+    buf = getPage(f,pid);
+    (tup,min,max) = searchPage(buf,<i>k</i>,<i>val</i>,+INF,-INF)
+    if (tup != NULL) return(tup,min,max);
+    ovf = openOvFile(f);
+    ovp = ovflow(buf);
+    while (tup == NULL &amp;&amp; ovp != NO_PAGE) {
+        buf = getPage(ovf,ovp);
+        (tup,min,max) = searchPage(buf,<i>k</i>,<i>val</i>,min,max)
+        ovp = ovflow(buf);
+    }     
+    return (tup,min,max);
+}
+</pre><p>
+Assumes each page contains index of next page in Ov chain
+</p><p>
+<tiny>
+Note: <large><code>getPage(f,pid) = { read_page(f,pid,buf); return buf; }</code></large>
+</tiny>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [20/53]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection in Sorted Files <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Search within a page for key; also find min/max key values
+</p><p></p><pre>searchPage(buf,<i>k</i>,<i>val</i>,min,max)
+{
+    res = NULL;
+    for (i = 0; i &lt; nTuples(buf); i++) {
+        tup = getTuple(buf,i);
+        if (tup.k == <i>val</i>) res = tup;
+        if (tup.k &lt; min) min = tup.k;
+        if (tup.k &gt; max) max = tup.k;
+    }
+    return (res,min,max);
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [21/53]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection in Sorted Files <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The above method treats each bucket like a single large page.
+</p><p>
+Cases:
+</p><ul>
+<li> best: find tuple in first data page we read
+</li><li> worst: full binary search, and not found
+<ul>
+<li> examine <i>log<sub>2</sub>b</i> data pages
+</li><li> plus examine all of their overflow pages
+</li></ul>
+</li><li> average: examine some data pages + their overflow pages
+</li></ul>
+<p>
+<i>Cost<sub>one</sub></i> : &nbsp;&nbsp;&nbsp;
+Best = <i>1</i> &nbsp;&nbsp;&nbsp;&nbsp;
+Worst = <i>log<sub>2</sub> b + b<sub>ov</sub></i>
+</p><p>
+Average case cost analysis needs assumptions &nbsp;<small>(e.g. data distribution)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [22/53]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Searching in Sorted File</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider this sorted file with overflows (<i>b=5, c=4</i>):
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/sorted-file.png]" src="./lec07_files/sorted-file.png">
+</div><p>
+Compute the cost for answering each of the following:
+</p><ul>
+<li> <large><code>select * from R where k = 24</code></large>
+</li><li> <large><code>select * from R where k = 3</code></large>
+</li><li> <large><code>select * from R where k = 14</code></large>
+</li><li> <large><code>select max(k) from R</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [23/53]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Optimising Sorted-file Search</div></td><td align="right"></td></tr></tbody></table>
+<p>
+The <large><code>searchBucket(f,pid,k,val)</code></large> function requires:
+</p><ul>
+<li> read the <i>pid<sup>th</sup></i> page from data file
+</li><li> scan it to find a match and min/max k values in page
+</li><li> while no match, repeat the above for each overflow page
+</li><li> if we find a match in any page, return it
+</li><li> otherwise, remember min/max over all pages in bucket
+</li></ul>
+Suggest an optimisation that would improve <large><code>searchBucket()</code></large>
+performance for most buckets.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [24/53]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Search with <i>pmr</i> and <i>range</i> Queries</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <i>pmr</i> query, on non-unique attribute <i>k</i>, where file is sorted on <i>k</i>
+</p><ul>
+<li> tuples containing <i>k</i> may span several pages
+</li></ul>
+E.g. <large><code>select * from R where k = 2</code></large>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/sfile-pmr.png]" src="./lec07_files/sfile-pmr.png">
+</div><p>
+</p><p>
+Begin by locating a page <i>p</i> containing <large><code>k=</code></large><i>val</i>
+	&nbsp; <small>(as for <i>one</i> query).</small>
+</p><p>
+Scan backwards and forwards from <i>p</i> to find matches.
+</p><p>
+Thus, <i>Cost<sub>pmr</sub> &nbsp;=&nbsp; Cost<sub>one</sub> + (b<sub>q</sub>-1).(1+Ov)</i>
+</p><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [25/53]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Search with <i>pmr</i> and <i>range</i> Queries <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <i>range</i> queries on unique sort key <small>(e.g. primary key)</small>:
+</p><ul>
+<li> use binary search to find lower bound
+</li><li> read sequentially until reach upper bound
+</li></ul>
+E.g. <large><code>select * from R where k &gt;= 5 and k &lt;= 13</code></large>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/sfile-range-pk.png]" src="./lec07_files/sfile-range-pk.png">
+</div><p>
+<i>Cost<sub>range</sub> &nbsp;=&nbsp; Cost<sub>one</sub> + (b<sub>q</sub>-1).(1+Ov)</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [26/53]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Search with <i>pmr</i> and <i>range</i> Queries <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For <i>range</i> queries on non-unique sort key, similar method to <i>pmr</i>.
+</p><ul>
+<li> binary search to find lower bound
+</li><li> then go backwards to start of run
+</li><li> then go forwards to last occurence of upper-bound
+</li></ul>
+E.g. <large><code>select * from R where k &gt;= 2 and k &lt;= 6</code></large>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/sfile-range.png]" src="./lec07_files/sfile-range.png">
+</div><p>
+<i>Cost<sub>range</sub> = Cost<sub>one</sub> + (b<sub>q</sub>-1).(1+Ov)</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [27/53]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Search with <i>pmr</i> and <i>range</i> Queries <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+So far, have assumed query condition involves sort key <i>k</i>.
+</p><p>
+But what about &nbsp; <large><code>select * from R where j = 100.0</code></large> ?
+</p><p>
+If condition contains attribute <i>j</i>, not the sort key
+</p><ul>
+<li> file is unlikely to be sorted by <i>j</i> as well
+</li><li> sortedness gives no searching benefits
+</li></ul>
+<p><br>
+<i>Cost<sub>one</sub></i>,
+ &nbsp; <i>Cost<sub>range</sub></i>,
+ &nbsp; <i>Cost<sub>pmr</sub></i>
+&nbsp; as for heap files
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [28/53]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion into Sorted Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<b>Insertion</b> approach:
+</p><ul>
+<li> find appropriate page for tuple <small>(via binary search)</small>
+</li><li> if page not full, insert into page
+</li><li> otherwise, insert into next overflow block with space
+</li></ul>
+Thus, <i>Cost<sub>insert</sub> &nbsp;=&nbsp; Cost<sub>one</sub> + δ<sub>w</sub></i>
+	&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <small>(where <i>δ<sub>w</sub></i> = 1 or 2)</small>
+<p>
+Consider insertions of k=33, k=25, k=99 into:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/sorted-file1.png]" src="./lec07_files/sorted-file1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [29/53]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deletion from Sorted Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+E.g. &nbsp; <large><code>delete from R where k = 2</code></large>
+</p><p>
+<b>Deletion</b> strategy:
+</p><ul>
+<li> find matching tuple(s)
+</li><li> mark them as deleted
+</li></ul>
+Cost depends on <font color="#0000BB">selectivity</font> of selection condition
+<p>
+Recall: selectivity determines <i>b<sub>q</sub></i> &nbsp; <small>(# pages with matches)</small>
+</p><p>
+Thus, <i>Cost<sub>delete</sub> &nbsp;=&nbsp; Cost<sub>select</sub> + b<sub>qw</sub></i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [30/53]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashed Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [31/53]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Basic idea: use key value to compute page address of tuple.
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/hash.png]" src="./lec07_files/hash.png">
+</div><p>
+e.g. tuple with key = <i>v</i> &nbsp;is stored in page <i>i</i>
+</p><p>
+Requires: hash function <i>h(v)</i> that maps <i>KeyDomain → [0..b-1]</i>.
+</p><ul>
+<li> hashing converts key value (any type) into integer value
+</li><li> integer value is then mapped to page index
+</li><li> note: can view integer value as a bit-string
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [32/53]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL hash function <small>(simplified)</small>:
+</p><p></p><pre><small>
+Datum <b>hash_any</b>(unsigned char *k, register int keylen)
+{
+   register uint32 a, b, c, len;
+   <span class="comment">/* Set up the internal state */</span>
+   len = keylen;  a = b = c = 0x9e3779b9 + len + 3923095;
+   <span class="comment">/* handle most of the key */</span>
+   while (len &gt;= 12) {
+      a += ka[0]; b += ka[1]; c += ka[2];
+      mix(a, b, c);
+      ka += 3;  len -= 12;
+   }
+   <span class="comment">/* collect any data from last 11 bytes into a,b,c */</span>
+   mix(a, b, c);
+   return UInt32GetDatum(c);
+}
+</small></pre><p>
+See <large><font color="#008800"><b><code>backend/access/hash/hashfunc.c</code></b></font></large> for details &nbsp;<small>(incl <large><code>mix()</code></large>)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [33/53]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<large><code>hash_any()</code></large> gives hash value as 32-bit quantity (<large><code>uint32</code></large>).
+</p><p>
+Two ways to map raw hash value into a page address:
+</p><ul>
+<li> if <i>b = 2<sup>k</sup></i>, bitwise AND with <i>k</i> low-order bits set to one
+<p></p><pre>uint32 hashToPageNum(uint32 hval) {
+    uint32 mask = 0xFFFFFFFF;
+    return (hval &amp; (mask &gt;&gt; (32-k)));
+}
+</pre><p>
+</p></li><li> otherwise, use <i>mod</i> &nbsp;to produce value in range <i>0..b-1</i>
+<p></p><pre>uint32 hashToPageNum(uint32 hval) {
+    return (hval % b);
+}
+</pre><p>
+</p></li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [34/53]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashing Performance</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Aims:
+</p><ul>
+<li> distribute tuples evenly amongst buckets
+</li><li> have most buckets nearly full 
+	&nbsp; <small>(attempt to minimise wasted space)</small>
+</li></ul>
+<small>
+Note: if data distribution not uniform,
+address distribution can't be uniform.
+</small>
+<p>
+<font color="#008800">Best case</font>: every bucket contains same number of tuples.
+</p><p>
+<font color="#CC0000">Worst case</font>: every tuple hashes to same bucket.
+</p><p>
+<font color="#0000EE">Average case</font>: some buckets have more tuples than others.
+</p><p>
+Use overflow pages to handle "overfull" buckets  &nbsp;<small>(cf. sorted files)</small>
+</p><p>
+All tuples in each bucket must have same hash value.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [35/53]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hashing Performance <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Two important measures for hash files:
+</p><ul>
+<li> load factor: &nbsp; <i>L &nbsp;=&nbsp; r / bc</i>
+</li><li> average overflow chain length: &nbsp; <i>Ov &nbsp;=&nbsp; b<sub>ov</sub> / b</i>
+</li></ul>
+Three cases for distribution of tuples in a hashed file:
+<p>
+</p><div class="center">
+<table border="1" cellpadding="6" cellspacing="0">
+<tbody><tr>
+<td> <b>Case</b> </td>
+<td> <i>L</i> </td>
+<td> <i>Ov</i> </td>
+</tr>
+<tr>
+<td> Best </td>
+<td> <i>≅ 1</i> </td>
+<td> 0 </td>
+</tr>
+<tr>
+<td> Worst </td>
+<td> <i>≫ 1</i> </td>
+<td> ** </td>
+</tr>
+<tr>
+<td> Average </td>
+<td> <i>&lt; 1</i> </td>
+<td> <i>0&lt;Ov&lt;1</i> </td>
+</tr>
+</tbody></table>
+<p>
+<small>(** performance is same as Heap File)</small>
+</p></div>
+<p>
+To achieve average case, aim for &nbsp; <i>0.75 &nbsp;≤&nbsp; L &nbsp;≤&nbsp; 0.9</i>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [36/53]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Select via hashing on unique key <i>k</i>  (<i>one</i>)
+</p><p></p><pre><span class="comment">// select * from R where k = val</span>
+(pid,P) = getPageViaHash(val,R)
+for each tuple t in page P {
+    if (t.k == val) return t
+}
+for each overflow page Q of P {
+    for each tuple t in page Q {
+        if (t.k == val) return t
+}   }
+</pre><p>
+</p><p>
+<i>Cost<sub>one</sub></i> : &nbsp; Best = 1, &nbsp; Avg = <i>1+Ov/2</i> &nbsp; Worst = <i>1+max(OvLen)</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [37/53]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Select via hashing on non-unique hash key <i>nk</i> (<i>pmr</i>)
+</p><p></p><pre><span class="comment">// select * from R where nk = val</span>
+(pid,P) = getPageViaHash(val,R) 
+for each tuple t in page P {
+    if (t.nk == val) add t to results
+}
+for each overflow page Q of P {
+    for each tuple t in page Q {
+        if (t.nk == val) add t to results
+}   }
+return results
+</pre><p>
+</p><p>
+<i>Cost<sub>pmr</sub></i> &nbsp;=&nbsp; <i>1 + Ov</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [38/53]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Hashing does not help with <i>range</i> queries** ...
+</p><p>
+<i>Cost<sub>range</sub> = b + b<sub>ov</sub></i>
+</p><p><br>
+Selection on attribute <i>j</i> which is not hash key ...
+</p><p>
+<i>Cost<sub>one</sub></i>,
+ &nbsp; <i>Cost<sub>range</sub></i>,
+ &nbsp; <i>Cost<sub>pmr</sub></i>
+&nbsp;=&nbsp;
+<i>b + b<sub>ov</sub></i>
+</p><p><br></p><p>
+** unless the hash function is order-preserving (and most aren't)
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [39/53]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion with Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Insertion uses similar process to <i>one</i> queries.
+</p><p></p><pre><span class="comment">// insert tuple t with key=val into rel R</span>
+(pid,P) = getPageViaHash(val,R) 
+if room in page P {
+    insert t into P; return
+}
+for each overflow page Q of P {
+    if room in page Q {
+        insert t into Q; return
+}   }
+add new overflow page Q
+link Q to previous page
+insert t into Q
+</pre><p>
+<i>Cost<sub>insert</sub></i> :
+ &nbsp;&nbsp; Best: <i>1<sub>r</sub> + 1<sub>w</sub></i>
+ &nbsp;&nbsp; Worst: <i>1+max(OvLen))<sub>r</sub> + 2<sub>w</sub></i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [40/53]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Insertion into Static Hashed File</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a file with <i>b=4</i>, <i>c=3</i>, <i>d=2</i>, <i>h(x) = bits(d,hash(x))</i>
+</p><p>
+Insert tuples in alpha order with the following keys and hashes:
+</p><div class="center">
+<table border="1" cellpadding="4" cellspacing="0">
+<tbody><tr>
+ <td><i>k</i></td><td><i>hash(k)</i></td>
+ <td>&nbsp;&nbsp;</td>
+ <td><i>k</i></td><td><i>hash(k)</i></td>
+ <td>&nbsp;&nbsp;</td>
+ <td><i>k</i></td><td><i>hash(k)</i></td>
+ <td>&nbsp;&nbsp;</td>
+ <td><i>k</i></td><td><i>hash(k)</i></td>
+</tr>
+<tr>
+ <td><large><code>a</code></large></td><td><large><code>10001</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>g</code></large></td><td><large><code>00000</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>m</code></large></td><td><large><code>11001</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>s</code></large></td><td><large><code>01110</code></large></td>
+</tr>
+<tr>
+ <td><large><code>b</code></large></td><td><large><code>11010</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>h</code></large></td><td><large><code>00000</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>n</code></large></td><td><large><code>01000</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>t</code></large></td><td><large><code>10011</code></large></td>
+</tr>
+<tr>
+ <td><large><code>c</code></large></td><td><large><code>01111</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>i</code></large></td><td><large><code>10010</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>o</code></large></td><td><large><code>00110</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>u</code></large></td><td><large><code>00010</code></large></td>
+</tr>
+<tr>
+ <td><large><code>d</code></large></td><td><large><code>01111</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>j</code></large></td><td><large><code>10110</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>p</code></large></td><td><large><code>11101</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>v</code></large></td><td><large><code>11111</code></large></td>
+</tr>
+<tr>
+ <td><large><code>e</code></large></td><td><large><code>01100</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>k</code></large></td><td><large><code>00101</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>q</code></large></td><td><large><code>00010</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>w</code></large></td><td><large><code>10000</code></large></td>
+</tr>
+<tr>
+ <td><large><code>f</code></large></td><td><large><code>00010</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>l</code></large></td><td><large><code>00101</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>r</code></large></td><td><large><code>00000</code></large></td>
+ <td>&nbsp;</td>
+ <td><large><code>x</code></large></td><td><large><code>00111</code></large></td>
+</tr>
+</tbody></table>
+</div>
+<p>
+The hash values are the 5 lower-order bits from the full 32-bit hash.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [41/53]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deletion with Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Similar performance to select on non-unique key:
+</p><p></p><pre><span class="comment">// delete from R where k = val</span>
+<span class="comment">// f = data file ... ovf = ovflow file</span>
+(pid,P) = getPageViaHash(val,R)
+ndel = delTuples(P,k,val)
+if (ndel &gt; 0) putPage(f,P,pid)
+for each overflow page qid,Q of P {
+    ndel = delTuples(Q,k,val)
+    if (ndel &gt; 0) putPage(ovf,Q,qid)
+}
+</pre><p>
+Extra cost over select is cost of writing back modified blocks.
+</p><p>
+Method works for both unique and non-unique hash keys.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [42/53]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Problem with Hashing...</div></td><td align="right"></td></tr></tbody></table>
+<p>
+So far, discussion of hashing has assumed a fixed file size
+(<i>b</i>).
+</p><p>
+What size file to use?
+</p><ul>
+<li> the size we need right now
+	&nbsp; <tiny>(performance degrades as file overflows)</tiny>
+</li><li> the maximum size we might ever need
+	&nbsp; <tiny>(signifcant waste of space)</tiny>
+</li></ul>
+Change file size ⇒ change hash function ⇒ rebuild file
+<p>
+Methods for hashing with dynamic files:
+</p><ul>
+<li> extendible hashing, dynamic hashing &nbsp; <tiny>(need a directory, no overflows)</tiny>
+</li><li> <font color="#0000BB">linear hashing</font> &nbsp; <tiny>(expands file "sytematically", no directory, has overflows)</tiny>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [43/53]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Problem with Hashing... <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+All flexible hashing methods ...
+</p><ul>
+<li> treat hash as 32-bit bit-string
+</li><li> adjust hashing by using more/less bits
+</li></ul>
+Start with hash function to convert value to bit-string:
+<p></p><pre>uint32 hash(unsigned char *val)
+</pre><p>
+Require a function to extract <i>d</i> &nbsp;bits from bit-string:
+</p><p></p><pre>unit32 bits(int d, uint32 val)
+</pre><p>
+Use result of <large><code>bits()</code></large> as page address.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [44/53]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Bit Manipulation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><ol>
+<li>
+Write a function to display <large><code>uint32</code></large> values as <large><code>01010110...</code></large>
+<p></p><pre>char *showBits(uint32 val, char *buf);
+</pre><p>
+Analogous to <large><code>gets()</code></large> &nbsp; <small>(assumes supplied buffer large enough)</small>
+</p><p><br>
+</p></li><li>
+Write a function to extract the <i>d</i> &nbsp;bits of a <large><code>uint32</code></large>
+<p></p><pre>uint32 bits(int d, uint32 val);
+</pre><p>
+If <i>d</i> &gt; 0, gives low-order bits; if <i>d</i> &lt; 0, gives high-order bits
+</p></li></ol>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [45/53]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Splitting</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Important concept for flexible hashing: <font color="#0000BB">splitting</font>
+</p><ul>
+<li> consider one page (all tuples have same hash value)
+</li><li> recompute page numbers by considering one extra bit
+</li><li> if current page is <large><code>101</code></large>, new pages have hashes <large><code><font color="#CC0000">0</font>101</code></large> and <large><code><font color="#CC0000">1</font>101</code></large>
+</li><li> some tuples stay in page <large><code>0101</code></large> (was <large><code>101</code></large>)
+</li><li> some tuples move to page <large><code>1101</code></large> (new page)
+</li><li> also, rehash any tuples in overflow pages of page <large><code>101</code></large>
+</li></ul>
+<br>
+Result: expandable data file, never requiring a complete file rebuild
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [46/53]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Page Splitting <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example of splitting:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/split.png]" src="./lec07_files/split.png">
+</div><p>
+<small>
+Tuples only show key value; assume <i>h(val) = val</i>
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [47/53]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Linear Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+File organisation:
+</p><ul>
+<li> file of primary data blocks
+</li><li> file of overflow data blocks
+</li><li> a "register" called the <i>split pointer</i> (sp)
+</li></ul>
+Uses systematic method of growing data file ...
+<ul>
+<li> hash function "adapts" to changing address range
+</li><li> systematic splitting controls length of overflow chains
+</li></ul>
+Advantage: does <font color="#0000BB">not</font> require auxiliary storage for a directory
+<p>
+Disadvantage: requires overflow pages &nbsp; <small>(don't split on full pages)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [48/53]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Linear Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+File grows linearly (one block at a time, at regular intervals).
+</p><p>
+Has "phases" of expansion; over each phase, <i>b</i> doubles.
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/linhash1.png]" src="./lec07_files/linhash1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [49/53]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Lin.Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+If <i>b=2<sup>d</sup></i>, the file behaves exactly like standard hashing.
+</p><p>
+Use <i>d</i> &nbsp;bits of hash to compute block address.
+</p><p></p><pre><span class="comment">// select * from R where k = val</span>
+h = hash(val);
+pid = bits(d,h);  <span class="comment">// <font color="#996600">lower-order bits</font></span>
+P = getPage(f, pid)
+for each tuple t in page P
+         and its overflow pages {
+    if (t.k == val) add t to Result;
+}
+</pre><p>
+Average <i>Cost<sub>one</sub> &nbsp;=&nbsp; 1+Ov</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [50/53]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s52"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Lin.Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+If <i>b != 2<sup>d</sup></i>, treat different parts of the file differently.
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/linhash2.png]" src="./lec07_files/linhash2.png">
+</div><p>
+Parts <i>A</i> and <i>C</i> are treated as if part of a
+file of size <i>2<sup>d+1</sup></i>.
+</p><p>
+Part <i>B</i> is treated as if part of a file of size <i>2<sup>d</sup></i>.
+</p><p>
+Part <i>D</i> does not yet exist <small>(tuples in <i>B</i> may eventually move into it)</small>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [51/53]</div> <div class="slideCl1    " id="s52">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s51"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s53"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection with Lin.Hashing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Modified search algorithm:
+</p><p></p><pre><span class="comment">// select * from R where k = val</span>
+h = hash(val);
+pid = bits(d,h);
+<font color="#008800">if (pid &lt; sp) { pid = bits(d+1,h); }</font>
+P = getPage(f, pid)
+for each tuple t in page P
+         and its overflow blocks {
+    if (t.k == val) add t to Result;
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [52/53]</div> <div class="slideCl1    " id="s53">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s52"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week04-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Expansion with Lin.Hashing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/linhash3.png]" src="./lec07_files/linhash3.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 4 Monday Lecture ♢ [53/53]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 4 Mar 2024</span>
+ <script src="./lec07_files/prism.js"></script>   
+ <script src="./lec07_files/sg.js"></script>   
+
+
+</p></body></html>

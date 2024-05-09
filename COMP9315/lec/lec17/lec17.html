@@ -1,0 +1,1153 @@
+
+<!-- saved from url=(0080)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 10 Thursday Lecture</title>
+<link href="./lec17_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec17_files/latest.js" async=""></script>
+<script src="./lec17_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec17_files/MathJax.js"></script>
+<link href="./lec17_files/css" rel="stylesheet">
+<link href="./lec17_files/prism.css" rel="stylesheet">
+<script src="./lec17_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 10 Thursday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s2">Distributed Databases</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s3">Distributed Databases</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s8">Data Distribution</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s10">Query Processing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s12">Transaction Processing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s13">Non-classical DBMSs</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s14">Classical DBMSs</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s15">Modern DBMSs</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s18">Scale, Distribution, Replication</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s19">Schema-free Data Models</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s20">Eventual Consistency</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s22">Two Case Studies</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s23">Column Stores</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s24">Column Stores</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s27">Rows vs Columns</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s30">Query Evaluation in CoDbs</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s39">Graph Databases</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s40">Graph Databases</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s42">Graph Data Models</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s46">GDb Queries</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s48">Example Graph Queries</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s50">Course Review + Exam</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s51">Syllabus</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s52">Exam</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s55">What's on the Exam?</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s57">Exam Structure</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s58">Special Consideration</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s59">Revision</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s60">And that's all folks ...</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [0/60]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><ul>
+<li> Assignment 1
+<ul>
+<li> manual adjustment of marks for very poor submissions
+</li></ul>
+</li><li> Assignment 2
+<ul>
+<li> 430/490 submissions so far ... 60 people don't want marks?
+</li></ul>
+</li><li> Pre-exam Consultations
+<ul>
+<li> TBA for the period April 22 to May 9
+</li></ul>
+</li><li> MyExperience
+<ul>
+<li> open now ... please give feedback ... closes April 25
+</li><li> only 60/490 have put in a response
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [1/60]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Distributed Databases</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [2/60]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Distributed Databases</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A <font color="#0000BB">distributed database</font> (DDB) is
+</p><ul>
+<li> collection of ≥ 1 logically-related databases
+</li><li> distributed over a network (generally a WAN)
+</li></ul>
+A <font color="#0000BB">distributed database management system</font> (DDBMS) is
+<ul>
+<li> software that manages a distributed database
+</li><li> providing access that hides complexity of distribution
+</li></ul>
+A DDBMS may involve
+<ul>
+<li> instances of a single DBMS &nbsp;<tiny>(e.g. ≥1 PostgreSQL servers)</tiny>
+</li><li> a layer over multiple different DBMSs &nbsp;<tiny>(e.g. Oracle+PostgreSQL+DB2)</tiny>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [3/60]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Distributed Databases <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+User view:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/ddb-user-view.png]" src="./lec17_files/ddb-user-view.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [4/60]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Distributed Databases <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Architecture:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/ddb-arch.png]" src="./lec17_files/ddb-arch.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [5/60]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Distributed Databases <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Two kinds of distributed databases
+</p><ul>
+<li> parallel database on a distributed architecture
+<ul>
+<li> single schema, homogeneous DBMSs
+</li></ul>
+</li><li> independent databases on a distributed architecture
+<ul>
+<li> independent schemas, heterogeneous DBMSs
+</li></ul>
+</li></ul>
+The latter are also called <font color="#0000BB">federated</font> databases
+<p>
+Ultimately, the distributed database (DDB) provides
+</p><ul>
+<li> global schema, with mappings from constituent schemas
+</li><li> giving the impression of a single database
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [6/60]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Distributed Databases <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Advantages of distributed databases
+</p><ul>
+<li> allow information from multiple DBs to be merged
+</li><li> provide for replication of some data &nbsp;<small>(resilience)</small>
+</li><li> allow for possible parallel query evaluation
+</li></ul>
+<br>
+Disadvatanges of distributed databases
+<ul>
+<li> cost of mapping between different schemas &nbsp;<small>(federated)</small>
+</li><li> communication costs &nbsp;<small>(write-to-network vs write-to-disk)</small>
+</li><li> maintaining ACID properties in distributed transactions
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [7/60]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Distribution</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Partitioning/distributing data
+</p><ul>
+<li> where to place (parts of) tables
+<ul>
+<li> determined by usage of data &nbsp;<small>(locality, used together)</small>
+</li><li> affects communication cost ⇒ query evaluation cost
+</li></ul>
+</li><li> how to partition data within tables
+<ul>
+<li> no partitioning ... whole table stored on ≥1 DBMS
+</li><li> <font color="#0000BB">horizontal partitioning</font> ... subsets of rows
+</li><li> <font color="#0000BB">vertical partitioning</font> ... subsets of columns
+</li></ul>
+</li></ul>
+Problem: maintaining consistency
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [8/60]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Distribution <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider table <i>R</i> &nbsp;horizontally partitioned into <i>R<sub>1</sub>, R<sub>2</sub>, ..., R<sub>n</sub></i>
+</p><p>
+Fragmentation can be done in multiple ways, but need to ensure ...
+</p><p>
+Completeness
+</p><ul>
+<li> decompostion is complete iff each <i>t∈R</i> &nbsp;is in some <i>R<sub>i</sub></i>
+</li></ul>
+Reconstruction
+<ul>
+<li> original <i>R</i> &nbsp;can be produced by some relational operation
+</li></ul>
+Disjoint
+<ul>
+<li> if item <i>t ∈ R<sub>i</sub></i>, then <i>t ∉ R<sub>k</sub></i>, <i>k ≠ i</i> &nbsp; <small>(unless you want replication)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [9/60]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Processing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Query processing typically involves <i>shipping</i> &nbsp;data
+</p><ul>
+<li> e.g. reconstructing table from distributed partitions
+</li><li> e.g. join on tables stored on separate sites
+</li></ul>
+Aim: minimise shipping cost &nbsp; (since it is a networking cost)
+<p>
+Shipping cost becomes the "disk access cost" of DQOpt
+</p><p>
+Can still use cost-based query optimisation
+</p><ul>
+<li> consider possible execution plans, choose cheapest
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [10/60]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Processing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Distributed query processing 
+</p><ul>
+<li> may require query ops to be executed on different nodes
+<ul>
+<li> node provides only source of some data
+</li><li> some nodes may have limited set of operations
+</li></ul>
+</li><li> needs to merge data received from different nodes
+<ul>
+<li> may require data transformation (to fit schemas together)
+</li></ul>
+</li></ul>
+Query optimisation in such contexts is <i>complex</i> ...
+<ul>
+<li> larger space of possibilities than single-node database
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [11/60]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Transaction Processing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Distribution of data complicates tx processing ...
+</p><ul>
+<li> potential for multiple copies of data to become inconsistent
+</li><li> commit or abort must occur consistently on all nodes
+</li></ul>
+Distributed tx processing handled by <font color="#0000BB">two-phase commit</font>
+<ul>
+<li> initiating site has transaction coordinator <i>C<sub>i</sub></i> ...
+<ul>
+<li> waits for all other sites executing tx <large><code>T</code></large> to "complete"
+</li><li> sends <large><code>&lt;prepare T&gt;</code></large> message to all other sites
+</li><li> waits for <large><code>&lt;ready T&gt;</code></large> response from all other sites
+</li><li> if not received (timeout), or <large><code>&lt;abort T&gt;</code></large> received, flag abort
+</li><li> if all other sites respond <large><code>&lt;ready T&gt;</code></large>, flag commit
+</li><li> write <large><code>&lt;commit T&gt;</code></large> or <large><code>&lt;abort T&gt;</code></large> to log
+</li><li> send <large><code>&lt;commit T&gt;</code></large> or <large><code>&lt;abort T&gt;</code></large> to all other sites
+</li></ul>
+</li><li> non-initiating sites write log entries before responding
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [12/60]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Non-classical DBMSs</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [13/60]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Classical DBMSs</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Assumptions made in conventional DBMSs:
+</p><ul>
+<li> data is sets of tuples; tuples are lists of atomic values
+</li><li> data values can be compared precisely <small>(via =, &gt;, &lt;, ...)</small>
+</li><li> filters can be described via boolean formulae
+</li><li> SQL is a suitable language for all data management
+</li><li> transaction-based consistency is critical
+</li><li> data stored on disk, processed in memory
+</li><li> data transferred in blocks of many tuples
+</li><li> disk <i>↔</i> &nbsp;memory cost is most expensive in system
+</li><li> disks are connected to processors via fast local bus
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [14/60]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Modern DBMSs</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Aspects of modern applications:
+</p><ul>
+<li> more flexible data structuring mechanisms
+</li><li> very large data objects/values (e.g. music, video)
+</li><li> alternative comparisons/filters &nbsp; <small>(e.g. similarity matching)</small>
+</li><li> massive amounts of data &nbsp; <small>(too much to store "locally")</small>
+</li><li> massive number of clients &nbsp; <small>(thousands tx's per second)</small>
+</li><li> solid-state storage &nbsp; <small>(minimal data latency)</small>
+</li><li> data required globally &nbsp; <small>(network latency)</small>
+</li></ul>
+<small>
+Clearly, not all of these are relevant for every modern application.
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [15/60]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Modern DBMSs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Some conclusions:
+</p><ul>
+<li> relational model doesn't work <i>for all</i> &nbsp;applications
+</li><li> SQL is not appropriate <i>for all</i> &nbsp;applications
+</li><li> hard transactions not essential <i>for all</i> &nbsp;applications
+</li></ul>
+Some "modernists" claim that
+<ul>
+<li> "for all" &nbsp;is really&nbsp; "for any"
+</li><li> ⇒ &nbsp;relational DBMSs and SQL are dinosaurs
+</li><li> ⇒ &nbsp;NoSQL is the new way
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [16/60]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Modern DBMSs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Some criticisms of the NoSQL approach:
+</p><ul>
+<li> DeWitt/Stonebraker: <font color="#0000BB">MapReduce: A major step backwards</font>
+</li><li>
+<a target="demo" href="http://www.youtube.com/watch?v=b2F-DItXtZs">Online parody of NoSQL advocates</a>
+&nbsp;<small>(strong language warning)</small>
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/future/xtra.png]" src="./lec17_files/xtra.png">
+</div><p>
+</p><p>
+<small>Uses MySQL as the example relational database system ... think PostgreSQL</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [17/60]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scale, Distribution, Replication</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data for modern applications is very large (TB, PB, XB)
+</p><ul>
+<li> not feasible to store on a single machine
+</li><li> not feasible to store in a single location
+</li></ul>
+Some systems opt for massive networks of simple nodes
+<ul>
+<li> each node holds moderate amount of data
+</li><li> each data item is replicated on several nodes
+</li><li> nodes clustered in different geographic sites
+</li></ul>
+Benefits:
+<ul>
+<li> reliability, fault-tolerance, availability
+</li><li> proximity ... use data closest to client
+</li><li> scope for parallel execution/evaluation
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [18/60]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Schema-free Data Models</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Many new DBMSs provide <i>(key,value)</i> &nbsp;stores
+</p><ul>
+<li> <i>key</i> &nbsp;is a unique identifier <small>(cf. URI)</small>
+</li><li> <i>value</i> &nbsp;is an arbitrarily complex "object"
+<ul>
+<li> e.g. a text document &nbsp;<small>(often structured, e.g. Wiki, XML)</small>
+</li><li> e.g. a JSON object: <i>(property,value)</i> &nbsp;list
+</li><li> e.g. an RDF triple &nbsp;<small>(e.g. <large><code>&lt;John,worksFor,UNSW&gt;</code></large>)</small>
+</li></ul>
+</li><li> objects may contain <i>key</i>s to link to other objects
+</li></ul>
+Tables can be simulated by a collection of "similar" objects.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [19/60]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Eventual Consistency</div></td><td align="right"></td></tr></tbody></table>
+<p>
+RDBMSs use a strong transactional/consistency model
+</p><ul>
+<li> if a tx commits, changes take effect "instantly"
+</li><li> all tx's have a strong guarantee about data integrity
+</li></ul>
+Many new DBMSs applications do not need strong consistency
+<ul>
+<li> e.g. doesn't matter if catalogue shows yesterday's price
+</li></ul>
+Because of distribution/replication
+<ul>
+<li> update is initiated on one node
+</li><li> different nodes may have different versions of data
+</li><li> after some time, update propagates to all nodes
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [20/60]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Eventual Consistency <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+If different nodes have different versions of data
+</p><ul>
+<li> conflicts arise, and need to be resolved <small>(when noticed)</small>
+</li><li> need to decide which node has "the right value"
+</li></ul>
+Levels of consistency <small>(from Cassandra system)</small>
+<ul>
+<li> ONE: at least one node has committed change &nbsp; <small>(weakest)</small>
+</li><li> QUORUM: at least half nodes holding data have committed
+</li><li> ALL: changes propagated to all copies &nbsp; <small>(strongest)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [21/60]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Two Case Studies</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider two variations on the DBMS theme ...
+</p><p>
+Column Stores
+</p><ul>
+<li> still based on the relational model
+</li><li> but with a variation in how data is stored
+</li><li> to address a range of modern query types
+</li></ul>
+Graph Databases
+<ul>
+<li> based on a graph model of data
+</li><li> emphasising explicit representation of relationships
+</li><li> relevant to a wide range of application domains
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [22/60]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Column Stores</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p><br>
+</p><div class="center">
+<tiny>(Based on material by Daniel Abadi et al.)</tiny>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [23/60]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Column Stores</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Column-oriented Databases</font> (CoDbs):
+</p><ul>
+<li> are based on the relational model
+</li><li> store data column-by-column rather than row-by-row
+</li><li> leading to performance gains for analytical applications
+</li></ul>
+Ideas for CoDbs have been around since the 1970's
+<p>
+Rose to prominence via Daniel Abadi's PhD thesis <small>(MIT, 2008)</small>
+</p><p>
+Commercial systems have now been developed <small>(e.g. Vertica)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [24/60]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Column Stores <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+File structures for row-store vs column-store:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/future/row-vs-col.png]" src="./lec17_files/row-vs-col.png">
+</div><p>
+<br>
+Values in individual columns are related by extra tuple id <small>(cf. oid)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [25/60]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Column Stores <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Stored representation of logical (relational) tables
+</p><ul>
+<li> each table is stored as a set of projections (slices)
+</li><li> each projection consists of a different set of columns
+</li><li> each column appears in at least one projection
+</li><li> "rows" can be ordered differently in each projection
+</li></ul>
+Example: &nbsp;Enrolment(course,student,term,mark,grade)
+<ul>
+<li> <i>projection<sub>1</sub></i>: (course,<font color="#000099">student</font>,grade) ordered by course
+</li><li> <i>projection<sub>2</sub></i>: (term,<font color="#000099">student</font>,mark) ordered by student
+</li><li> <i>projection<sub>3</sub></i>: (course,<font color="#000099">student</font>) ordered by course
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [26/60]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Rows vs Columns</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Workload for different operations
+</p><ul>
+<li> <font color="#0000BB">insert</font> requires more work in CoDbs
+<small>
+<ul>
+<li> row: update one page; &nbsp; column: update multiple pages
+</li></ul>
+</small>
+</li><li> <font color="#0000BB">project</font> comes "for free" in CoDbs
+<small>
+<ul>
+<li> row: extract fields from each tuple; &nbsp; column: merge columns
+</li></ul>
+</small>
+</li><li> <font color="#0000BB">select</font> may require less work in CoDbs
+<small>
+<ul>
+<li> row: read whole tuples; &nbsp; column: read just needed columns
+</li></ul>
+</small>
+</li><li> <font color="#0000BB">join</font> may require less work in CoDbs
+<small>
+<ul>
+<li> row: hash join; &nbsp; column: scan columns for join attributes
+</li></ul>
+</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [27/60]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Rows vs Columns <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Which is more efficient depends on mix of queries/updates
+</p><ul>
+<li> RDBMSs are, to some extent, write-optimized
+<ul>
+<li> effective for OLTP applications &nbsp;<small>(e.g. ATM, POS, ...)</small>
+</li></ul>
+</li><li> when RDBMSs might be better ...
+<ul>
+<li> when query requires all attributes
+</li><li> might read more data, but less seek-time &nbsp;<tiny>(multiple files)</tiny>
+</li></ul>
+</li><li> when CoDbs might be better ...
+<ul>
+<li> smaller intermediate "tuples"
+</li><li> less competition for access to pages &nbsp;<tiny>(locking)</tiny>
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [28/60]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Rows vs Columns <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Storing sorted columns leads to
+</p><ul>
+<li> potential for effective compression
+<ul>
+<li> compression ⇒ more projections in same space
+</li><li> no need to compress all columns &nbsp;<tiny>(if some aren't "compressible")</tiny>
+</li></ul>
+</li><li> sorted data is useful in some query evaluation contexts
+<ul>
+<li> e.g. terminating scan once unique match found
+</li><li> e.g. sort-merge join
+</li></ul>
+</li></ul>
+Only one column in each projection will be sorted
+<small>
+<ul>
+<li> but if even one projection has a column sorted how you need ...
+</li></ul>
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [29/60]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Projection is easy if one slice contains all required attributes.
+</p><p>
+If not ...
+</p><ul>
+<li> sequential scan of relevant slices in parallel
+</li><li> combine values at each iteration to form a tuple
+</li></ul>
+Example: <large><code>select a,b,c from R(a,b,c,d,e)</code></large>
+<p></p><pre><span class="comment">Assume: each column contains N values</span>
+for i in 0 .. N-1 {
+   x = a[i]   <span class="comment">// i'th value in slice containing a</span>
+   y = b[i]   <span class="comment">// i'th value in slice containing b</span>
+   z = c[i]   <span class="comment">// i'th value in slice containing c</span>
+   add (x,y,z) to Results
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [30/60]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+If slices are sorted differently, more complicated
+</p><ul>
+<li> scan based on tid values
+</li><li> at each step, look up relevant entry in slice
+</li></ul>
+Example: <large><code>select a,b,c from R(a,b,c,d,e)</code></large>
+<p></p><pre><span class="comment">Assume: each column contains N values</span>
+for tid in 0 .. N-1 {
+   x = fetch(a,tid)  <span class="comment">// entry with tid in slice containing a</span>
+   y = fetch(b,tid)  <span class="comment">// entry with tid in slice containing b</span>
+   z = fetch(c,tid)  <span class="comment">// entry with tid in slice containing c</span>
+   add (x,y,z) to Results
+}
+</pre><p>
+Potentially slow, depending on how <large><code>fetch()</code></large> works.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [31/60]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For remaining discussion, assume
+</p><ul>
+<li> each slice has 1 attribute, and &nbsp;a[i].tid = b[i].tid = c[i].tid
+</li></ul>
+<br>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/future/row-vs-col1.png]" src="./lec17_files/row-vs-col1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [32/60]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider typical multi-attribute SQL query
+</p><p></p><pre>select a,b,c from R where b &gt; 10 and d &lt; 7
+</pre><p>
+Query operation on individual column is done in one slice
+</p><p>
+Mark index of each matching entry in a bit-vector
+</p><p>
+Combine (AND) bit-vectors to get indexes for result entries
+</p><p>
+For each index, merge result entry columns into result tuple
+</p><p>
+Known as <font color="#0000BB">late materialization</font>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [33/60]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: <large><code>select a,b,c from R where b = 5</code></large>
+</p><p></p><pre><span class="comment">// Assume: each column contains N values</span>
+matches = all-zero bit-string of length N
+for i in 0 .. N-1 {
+   x = b[i]  <span class="comment">// i'th value in b column</span>
+   if (x == 5)
+       matches[i] = 1  <span class="comment">// set bit i in matches</span>
+}
+for i in 0 .. N-1 {
+   if (matches[i] == 0) continue
+   add (a[i], b[i], c[i]) to Results
+}
+</pre><p>
+<small>Fast sequential scanning of small (compressed?) data</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [34/60]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: <large><code>select a,b,c from R where b&gt;10 and d&lt;7</code></large>
+</p><p></p><pre><small>
+<span class="comment">// Assume: each column contains N values</span>
+matches1 = all-zero bit-string of length N
+matches2 = all-zero bit-string of length N
+for i in 0 .. N-1 {
+   if (b[i] &gt; 10) matches1[i] = 1
+   if (d[i] &lt; 7) matches2[i] = 1
+}
+matches = matches1 AND matches2
+for i in 0 .. N-1 {
+   if (matches[i] == 0) continue
+   add (a[i], b[i], c[i]) to Results
+}
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [35/60]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Join on columns, set up for late materialization
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/future/join.png]" src="./lec17_files/join.png">
+</div><p>
+<br>
+Note: the left result column is always sorted
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [36/60]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: <large><code>select R.a, S.b</code></large><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <large><code>from &nbsp; R join S on R.a = S.x</code></large>
+</p><p></p><pre><span class="comment">// Assume: N tuples in R, M tuples in S</span>
+for i in 0 .. N-1 {
+   for j in 0 .. M-1 {
+      if (a[i] == x[j])
+         append (i,j) to IndexList
+   }
+}
+for each (i,j) in IndexList {
+   add (a<sub>R</sub>[i], b<sub>S</sub>[j]) to Results
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [37/60]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Query Evaluation in CoDbs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Aggregation generally involves a single column
+</p><ul>
+<li> multiple aggregations could be carried out in parallel
+</li></ul>
+E.g.
+<p></p><pre>select <font color="#008800">avg(mark)</font>, <font color="#008800">count(student)</font> from Enrolments
+</pre><p>
+<br>
+Operations involving groups of columns
+</p><ul>
+<li> may require early materialization ⇒ slower
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [38/60]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Graph Databases</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p><br>
+</p><div class="center">
+<tiny>(Based on material by Markus Krotzsch, Renzo Angles, Claudio Gutierrez)</tiny>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [39/60]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Graph Databases</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Graph Databases</font> (GDbs):
+</p><ul>
+<li> DBMSs that use <font color="#0000BB">graphs</font> as the data model
+</li></ul>
+<br>
+But what kind of "graphs"?
+<ul>
+<li> all graphs have nodes and edges, but are they ...
+</li><li> directed or undirected, labelled or unlabelled?
+</li><li> what kinds of labels? what datatypes?
+</li><li> one graph or multiple graphs in each database?
+</li></ul>
+<br>
+Two major GDb data models: &nbsp; RDF, &nbsp; Property Graph
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [40/60]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Graph Databases <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Typical graph modelled by a GDb
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/future/people-graph.png]" src="./lec17_files/people-graph.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [41/60]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Graph Data Models</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">RDF</font> &nbsp;=&nbsp; Resource Description Framework
+</p><ul>
+<li> directed, labelled graphs
+</li><li> nodes have identifiers &nbsp;<small>(constant values, incl. URIs)</small>
+</li><li> edges are labelled with the relationship
+</li><li> can have multiple edges between nodes &nbsp;<small>(diff. labels)</small>
+</li><li> can store multiple graphs in one database
+</li><li> datatypes based on W3C XML Schema datatypes
+</li></ul>
+Data as triples, e.g. <small>&lt;Person1,given,"John"&gt;, &nbsp; &lt;Person1,parent,Person3&gt;</small>
+<p>
+RDF is a W3C standard; &nbsp;supported in many prog. languages
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [42/60]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Graph Data Models <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+RDF model of part of earlier graph:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/future/people-graph-rdf.png]" src="./lec17_files/people-graph-rdf.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [43/60]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Graph Data Models <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Property Graph</font>
+</p><ul>
+<li> directed, labelled graphs
+</li><li> properties are (key/label, value) pairs
+</li><li> nodes and edges are associated with a list of properties
+</li><li> can have multiple edges between nodes &nbsp;<small>(incl same labels)</small>
+</li></ul>
+<br>
+Not a standard like RDF, so variations exist
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [44/60]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Graph Data Models <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Property Graph model of part of earlier graph:
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/future/people-graph-prop.png]" src="./lec17_files/people-graph-prop.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [45/60]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ GDb Queries</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Graph data models require a graph-oriented query framework
+</p><p>
+Types of queries in GDbs
+</p><ul>
+<li> node properties &nbsp; <tiny>(like SQL <large><code>where</code></large> clauses)</tiny>
+<small>
+<ul>
+<li> e.g. &nbsp; is there a Person called John? &nbsp; how old is John?
+</li></ul>
+</small>
+</li><li> adjacency queries
+<small>
+<ul>
+<li> e.g. is John the parent of Jane?
+</li></ul>
+</small>
+</li><li> reachability queries
+<small>
+<ul>
+<li> e.g. is William one of John's ancestors?
+</li></ul>
+</small>
+</li><li> summarization queries &nbsp; <tiny>(like SQL aggregates)</tiny>
+<small>
+<ul>
+<li> e.g. how many generations between William and John?
+</li></ul>
+</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [46/60]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ GDb Queries <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Graphs contain arbitrary-length paths
+</p><p>
+Need an expression mechanism for describing such paths
+</p><ul>
+<li> path expressions are regular expressions involving edge labels
+</li><li> <small>e.g. <large><code>L*</code></large> is a sequence of one or more connected <large><code>L</code></large> edges</small>
+</li></ul>
+GDb query languages:
+<ul>
+<li> SPARQL = based on the RDF model &nbsp; <tiny>(widely available via RDF)</tiny>
+</li><li> Cypher = based on the Property Graph model  &nbsp; <tiny>(used in Neo4j)</tiny>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [47/60]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example Graph Queries</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: Persons whose first name is James
+</p><p>
+SPARQL:
+</p><p></p><pre>PREFIX p: &lt;http://www.people.org&gt;
+SELECT ?X
+WHERE { ?X p:given "James" }
+</pre><p>
+Cypher:
+</p><p></p><pre>MATCH (person:Person)
+WHERE person.given="James"
+RETURN person
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [48/60]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example Graph Queries <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: All of James' ancestors
+</p><p>
+SPARQL:
+</p><p></p><pre>PREFIX p: &lt;http://www.socialnetwork.org/&gt;
+SELECT ?Y
+WHERE { ?X p:type p:Person . ?X p:given "James" .
+        ?Y p:parent* ?X }
+</pre><p>
+Cypher:
+</p><p></p><pre>MATCH (ancestor:Person)-[:parent*]-&gt;(james:Person)
+WHERE james.given="James"
+RETURN DISTINCT ancestor
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [49/60]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Course Review + Exam</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [50/60]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s52"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Syllabus</div></td><td align="right"></td></tr></tbody></table>
+<p>
+View of DBMS internals from the bottom-up:
+</p><ul>
+<li> storage subsystem (disks,pages)
+</li><li> buffer manager, representation of data
+</li><li> processing RA operations (sel,proj,join,...)
+</li><li> combining RA operations (iterators/execution)
+</li><li> query translation, optimization, execution
+</li><li> transactions, concurrency, durability
+</li><li> non-classical DBMSs
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [51/60]</div> <div class="slideCl1    " id="s52">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s51"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s53"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exam</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Thursday 9 May, morning and afternoon sessions
+</p><p>
+Held in CSE Labs (allocations posted in Week 11).
+</p><p>
+All answers are typed and submitted on-line.
+</p><p>
+Environment is similar to Vlab.
+</p><p>
+Before the exam, learn to use ...
+</p><ul>
+<li> the Linux shell, a text editor, on-screen calculator, GDB(?)
+</li></ul>
+And, yes, you have access to VScode.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [52/60]</div> <div class="slideCl1    " id="s53">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s52"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s54"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exam <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Resources available during exam:
+</p><ul>
+<li> exam questions &nbsp; <small>(collection of web pages)</small>
+</li><li> PostgreSQL manual &nbsp; <small>(collection of web pages)</small>
+</li><li> C programming reference &nbsp; <small>(collection of web pages)</small>
+</li><li> lecture slides &nbsp; <small>(without Exercises)</small>
+</li></ul>
+No access to any other material is allowed.
+<p>
+No network access is available (e.g. no web, no email, ...)
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [53/60]</div> <div class="slideCl1    " id="s54">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s53"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s55"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exam <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tools available during the exam
+</p><ul>
+<li> C compiler &nbsp; (<large><code>gcc</code></large>, <large><code>make</code></large>, <large><code>gdb</code></large>)
+</li><li> text editors &nbsp; (<large><code>vim</code></large>, <large><code>emacs</code></large>, <large><code>gedit</code></large>, <large><code>code</code></large>, ...)
+</li><li> on-screen calculators &nbsp; (<large><code>bc</code></large>, <large><code>gcalctool</code></large>, <large><code>xcalc</code></large>)
+</li><li> all your favourite Linux tools &nbsp; (e.g. <large><code>ls</code></large>, <large><code>grep</code></large>, ...)
+</li><li> Linux manual &nbsp; (<large><code>man</code></large>)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [54/60]</div> <div class="slideCl1    " id="s55">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s54"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s56"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ What's on the Exam?</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Potential topics to be examined ...
+</p><ul>
+<li> <s>A - Course Introduction, DBMS Revision,</s> PostgreSQL <br>
+</li><li> B - Storage: Devices, Files, Pages, Tuples, Buffers, Catalogs <br>
+</li><li> C - Cost Models, Implementing Scan, Sort, Projection <br>
+</li><li> D - Implementing Selection on One Attribute <br>
+</li><li> E - Implementing Selection on Multiple Attributes <br>
+</li><li> F - Similarity-based Selection <tiny>(only first 15 slides)</tiny> <br>
+</li><li> G - Implementing Join <br>
+</li><li> H - Query Translation, Optimisation, Execution <br>
+</li><li> I - Transactions, Concurrency, Recovery <br>
+</li><li> <s>J - Future and Non-classical DBMSs</s>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [55/60]</div> <div class="slideCl1    " id="s56">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s55"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s57"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ What's on the Exam? <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Questions will have the following "flavours" ...
+</p><ul>
+<li> write a small C program to do V
+</li><li> describe what happens when we execute method W
+</li><li> how many page accesses occur if we do X on Y
+</li><li> explain the numbers in the following output
+</li><li> describe the characteristics of Z
+</li></ul>
+There will be <b>no</b> SQL/PLpgSQL code writing.
+<p>
+You will <b>not</b> have to modify PostgreSQL during the exam.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [56/60]</div> <div class="slideCl1    " id="s57">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s56"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s58"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exam Structure</div></td><td align="right"></td></tr></tbody></table>
+<p>
+There will be 8 questions
+</p><ul>
+<li> 3 x C programming questions (50 marks)
+</li><li> 5 x written answer questions (50 marks)
+</li></ul>
+Reminder:
+<ul>
+<li> exam contributes 50% of final mark
+</li><li> hurdle requirement: must score &gt; 40/100 on exam
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [57/60]</div> <div class="slideCl1    " id="s58">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s57"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s59"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Special Consideration</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Reminder: this is a one-chance exam.
+</p><ul>
+<li> attendance at the Exam is treated as "I am fit and well"
+</li><li> subsequent claims of "I failed because I felt sick" are ignored
+</li></ul>
+If you're sick, get documentation and do not attend the exam.
+<p>
+Special consideration requests must clearly show
+</p><ul>
+<li> how <font color="#0000BB">you</font> were personally affected
+</li><li> that your ability to study/take-exam was impacted
+</li></ul>
+Other factors are not relevant &nbsp; <small>(e.g. "I can't afford to repeat")</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [58/60]</div> <div class="slideCl1    " id="s59">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s58"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s60"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Revision</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Things you can use for revision:
+</p><ul>
+<li> past exam
+</li><li> theory exercises
+</li><li> prac exercises
+</li><li> quizzes &nbsp; <small>(under Actvities)</small>
+</li><li> lecture slides
+</li><li> textbooks
+</li></ul>
+Pre-exam consultations leading up to exam &nbsp;<small>(see course web site)</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [59/60]</div> <div class="slideCl1    " id="s60">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s59"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ And that's all folks ...</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><div class="center">
+<p><br></p><p>
+<span style="font-size:32pt;color:#EE7700">End of COMP9315 19T2 Lectures.</span>
+</p><p><br></p><p>
+<span style="font-size:28pt;color:#009900">Good luck with the exam ...</span>
+</p><p><br></p><p>
+<span style="font-size:18pt;color:#0099FF">And keep on using PostgreSQL ...</span>
+</p></div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Thursday Lecture ♢ [60/60]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 18 Apr 2024</span>
+ <script src="./lec17_files/prism.js"></script>   
+ <script src="./lec17_files/sg.js"></script>   
+
+
+</p></body></html>

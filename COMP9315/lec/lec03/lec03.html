@@ -1,0 +1,1082 @@
+
+<!-- saved from url=(0078)https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 02 Monday Lecture</title>
+<link href="./lec03_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec03_files/latest.js" async=""></script>
+<script src="./lec03_files/jquery.min.js"></script>
+<link href="./lec03_files/css" rel="stylesheet">
+<link href="./lec03_files/prism.css" rel="stylesheet">
+<script src="./lec03_files/sg.js"></script><script type="text/javascript" async="" src="./lec03_files/MathJax.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 02 Monday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s2">Cost Models</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s3">Cost Models</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s9">Exercise: Relation Scan Cost</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s10">Storage Management</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s11">Storage Technology</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s14">Storage Management</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s16">Storage Management</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s17">Views of Data in Query Evaluation</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s19">File Management</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s21">DBMS File Organisation</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s22">Single-file DBMS</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s24">Single-file Storage Manager</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s27">Example: Scanning a Relation</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s28">Single-File Storage Manager</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s33">Multiple-file Disk Manager</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s36">PostgreSQL Storage Manager</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s38">Relations as Files</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s40">Exercise: PostgreSQL Files</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s41">File Descriptor Pool</a>
+</li><li class="i"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s45">File Manager</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [0/51]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><ul>
+<li> Prac Exercise 01: &nbsp; get your PostgreSQL servers installed ASAP
+<ul>
+<li> Help Session: &nbsp; K17-410, Tuesday 11.30 - 3.00 <small>sharp</small>
+</li></ul>
+</li><li> Assignment 1: &nbsp; due 11:59pm, Fri 15 March (Week 5)
+<ul>
+<li> requires you to to have a working PG server
+</li><li> useful to look at PG doc and Prac Exercise P04 first
+</li><li> testing harness and <large><code>give</code></large> available Wednesday
+</li></ul>
+</li><li> Quiz 1: due 6pm, Fri 23 Feb &nbsp; <span class="smaller">(solutions: 9am Mon 26 Feb)</span>
+</li><li> Power off in K17 6pm Fri 23 Feb &nbsp; <small>(no servers, no Webcms)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [1/51]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Models</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [2/51]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Models</div></td><td align="right"></td></tr></tbody></table>
+<p>
+An important aspect of this course is
+</p><ul>
+<li> analysis of cost of various query methods
+</li></ul>
+<font color="#0000BB">Cost</font> can be measured in terms of
+<ul>
+<li> <i>Time Cost</i>: total time taken to execute method, or
+</li><li> <i>Page Cost</i>: number of pages read and/or written
+</li></ul>
+Primary assumptions in our cost models:
+<ul>
+<li> memory (RAM) is "small", fast, byte-at-a-time
+</li><li> bulk storage is very large, slow, page-at-a-time
+</li></ul>
+Page = fixed-size block of data; size determined by storage medium
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [3/51]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Models <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Since <i>time cost</i> is affected by many factors
+</p><ul>
+<li> speed of i/o to/from storage devices  (disk, SSD)
+</li><li> load on machine
+</li></ul>
+we do not consider time cost in our analyses.
+<p>
+For comparing methods, <i>page cost</i> is better
+</p><ul>
+<li> identifies the workload imposed by a given method
+</li></ul>
+Measures the number of page read/write <font color="#0000BB">requests</font> made.
+<p>
+<small>
+Estimating costs with multiple concurrent operations <i>and</i> &nbsp;buffering is difficult!!
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [4/51]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Models <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Terminology:
+</p><ul>
+<li> <font color="#0000BB">attribute</font> = atomic value (e.g. int, string)
+</li><li> <font color="#0000BB">tuple</font> = record, list of values
+</li><li> <font color="#0000BB">relation</font> = table, set of records
+</li><li> <font color="#0000BB">page</font> = fixed-size block of data 
+</li><li> <font color="#0000BB">database</font> = collection of tables, constraints, ...
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [5/51]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Models <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+In developing cost models, we make assumptions on how DBMSs store data:
+</p><ul>
+<li> a relation is a set of <font color="#008800"><i>r</i></font> tuples, with average size <font color="#008800"><i>R</i></font> bytes
+</li><li> the tuples are stored in <font color="#008800"><i>b</i></font> data pages on a storage device
+</li><li> each page has size <font color="#008800"><i>B</i></font> bytes and contains up to <font color="#008800"><i>c</i></font> tuples
+</li><li> the tuples which answer query <font color="#008800"><i>q</i></font> are contained in <font color="#008800"><i>b<sub>q</sub></i></font> pages
+</li><li> data is transferred bulk-storage<i>↔</i>memory in whole pages
+</li><li> cost of bulk-storage<i>↔</i>memory transfer <font color="#008800"><i>T<sub>r/w</sub></i></font> is high
+</li></ul>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/file-struct0.png]" src="./lec03_files/file-struct0.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [6/51]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Models <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Typical DBMS/table parameter values:
+</p><p>
+</p><div class="center">
+<table border="0" cellpadding="4">
+<tbody><tr valign="top">
+<td><nobr> <b>Quantity</b> </nobr></td>
+<td></td><td> <b>Symbol</b> </td>
+<td></td><td> <b>E.g. Value</b> </td>
+</tr>
+<tr valign="top">
+<td><nobr> total # tuples </nobr></td>
+<td></td><td> <i>r</i> </td>
+<td></td><td> <i>10<sup>6</sup></i> </td>
+</tr>
+<tr valign="top">
+<td><nobr> record size </nobr></td>
+<td></td><td> <i>R</i> </td>
+<td></td><td> 128 bytes </td>
+</tr>
+<tr valign="top">
+<td><nobr> total # pages </nobr></td>
+<td></td><td> <i>b</i> </td>
+<td></td><td> <i>10<sup>5</sup></i> </td>
+</tr>
+<tr valign="top">
+<td><nobr> page size </nobr></td>
+<td></td><td> <i>B</i> </td>
+<td></td><td> 8192 bytes </td>
+</tr>
+<tr valign="top">
+<td><nobr> # tuples per page </nobr></td>
+<td></td><td> <i>c</i> </td>
+<td></td><td> 60 </td>
+</tr>
+<tr valign="top">
+<td><nobr> page read/write time </nobr></td>
+<td></td><td> <i>T<sub>r</sub> ,T<sub>w</sub></i> </td>
+<td></td><td> 10 msec </td>
+</tr>
+<tr valign="top">
+<td><nobr> cost to process<br>one page in memory </nobr></td>
+<td></td><td> - </td>
+<td></td><td> <i>≅ 0</i> </td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [7/51]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost Models <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Our cost models are "rough" (based on assumptions)
+</p><p>
+But do give an <i>O(x)</i> &nbsp;feel for how expensive operations are.
+</p><p>
+Example "rough" estimation: how many piano tuners in Sydney?
+<small>
+</small></p><ul><small>
+<li> Sydney has ≅ 4 000 000 people
+</li><li> Average household size ≅ 3 ∴ 1 300 000 households
+</li><li> Let's say that 1 in 10 households owns a piano
+</li><li> Therefore there are ≅ 130 000 pianos
+</li><li> Say people get their piano tuned every 2 years (on average)
+</li><li> Say a tuner can tune 2/day, working 250 days per year
+</li><li> Therefore 1 tuner can tune 500 pianos per year
+</li><li> Therefore Sydney would need ≅ 130000/2/500 = 130 tuners
+</li></small></ul><small>
+</small>
+Actual number of piano tuners in Yellow Pages = 120
+<p>
+<span class="smaller">Example borrowed from Alan Fekete at Sydney University.</span>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [8/51]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Relation Scan Cost</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a table <i>R(x,y,z)</i> with <i>10<sup>5</sup></i> tuples, implemented as
+</p><ul>
+<li> number of tuples <i>r = 10,000</i>
+</li><li> average size of tuples <i>R = 200</i> bytes
+</li><li> size of data pages <i>B = 4096</i> bytes
+</li><li> time to read one data page <i>T<sub>r</sub> = 10msec</i>
+</li><li> time to check one tuple <i>0.5 usec</i>
+</li><li> time to form one result tuple <i>1 usec</i>
+</li><li> time to write one result page <i>T<sub>w</sub> = 10msec</i>
+</li></ul>
+Calculate the total time-cost for answering the query:
+<p></p><pre>insert into S select * from R where x &gt; 10;
+</pre><p>
+if 50% of the tuples satisfy the condition.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [9/51]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Storage Management</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [10/51]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Storage Technology</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Persistent storage is
+</p><ul>
+<li> large, cheap, relatively slow, accessed in blocks
+</li><li> used for long-term storage of data
+</li></ul>
+Computational storage is
+<ul>
+<li> small, expensive, fast, accessed by byte/word
+</li><li> used for all analysis of data
+</li></ul>
+Access cost HDD:RAM ≅ 100000:1, e.g.
+<ul>
+<li> 10ms to read block containing two tuples
+</li><li> 1µs to compare fields in two tuples
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [11/51]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Storage Technology <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Hard disks are well-established, cheap, high-volume, ...
+</p><p>
+Alternative bulk storage: SSD
+</p><ul>
+<li> faster than HDDs, no latency
+</li><li> can read single items
+</li><li> update requires block erase then write
+</li><li> over time, writes "wear out" blocks
+</li><li> require controllers that spread write load
+</li></ul>
+Feasible for long-term, high-update environments?
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [12/51]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Storage Technology <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Comparison of HDD and SSD properties:
+</p><p>
+<table cellpadding="8" cellspacing="0" border="1">
+<tbody><tr> <td>&nbsp;</td> <td><b>HDD</b></td> <td><b>SSD</b></td> </tr>
+<tr>
+<td>Cost/byte</td>
+<td>~ $13 / TB
+</td><td>~ $35 / TB</td>
+</tr>
+<tr>
+<td>Read latency</td>
+<td>~ 6ms</td>
+<td>~ 50µs</td>
+</tr><tr>
+<td>Write latency</td>
+<td>~ 6ms</td>
+<td>~ 900µs</td>
+</tr>
+
+<tr><td>R/W rate</td>
+<td>150MB/s</td>
+<td>450MB/s</td>
+</tr>
+<tr>
+<td>Read unit</td>
+<td>block <small>(e.g. 1KB)</small></td>
+<td>byte</td>
+</tr>
+<tr>
+<td>Writing</td>
+<td>write a block</td>
+<td>write on empty block</td>
+</tr>
+</tbody></table>
+</p><p><br>
+Will SSDs ever completely replace HDDs?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [13/51]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Storage Management</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Part of DBMS related to storage management:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/dbmsarch.png]" src="./lec03_files/dbmsarch.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [14/51]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Storage Management <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Aims of storage management in DBMS:
+</p><ul>
+<li> provide view of data as collection of pages/tuples
+</li><li> map from database objects (e.g. tables) to disk files
+</li><li> manage transfer of data to/from disk storage
+</li><li> use buffers to minimise disk/memory transfers
+</li><li> interpret loaded data as tuples/records
+</li><li> basis for file structures used by access methods
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [15/51]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Storage Management</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Topics in storage management ...
+</p><ul>
+<li> Disks and Files
+<ul>
+<li> performance issues and organisation of disk files
+</li></ul>
+</li><li> Buffer Management
+<ul>
+<li> using caching to improve DBMS system throughput
+</li></ul>
+</li><li> Tuple/Page Management
+<ul>
+<li> how tuples are represented within disk pages
+</li></ul>
+</li><li> DB Object Management <small>(Catalog)</small>
+<ul>
+<li> how tables/views/functions/types, etc. are represented
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [16/51]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Views of Data in Query Evaluation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/query-ops.png]" src="./lec03_files/query-ops.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [17/51]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Views of Data in Query Evaluation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Representing database objects during query evaluation:
+</p><ul>
+<li> <large><code>DB</code></large> &nbsp; <small>(handle on an authorised/opened database)</small>
+</li><li> <large><code>Rel</code></large> &nbsp; <small>(handle on an opened relation)</small>
+</li><li> <large><code>Page</code></large> &nbsp; <small>(memory buffer to hold contents of disk block)</small>
+</li><li> <large><code>Tuple</code></large> &nbsp; <small>(chunk of memory holding data values from one tuple)</small>
+</li></ul>
+Addressing in DBMSs:
+<ul>
+<li> <large><code>PageID = FileID+Offset</code></large> ... identifies a block of data
+<ul>
+<li> where <large><code>Offset</code></large> gives location of block within file
+</li></ul>
+</li><li> <large><code>TupleID = PageID+Index</code></large> ... identifies a single tuple
+<ul>
+<li> where <large><code>Index</code></large> gives "location" of tuple within page
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [18/51]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Management</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Aims of file management subsystem:
+</p><ul>
+<li> organise layout of data within the filesystem
+</li><li> handle mapping from database ID to file address
+</li><li> transfer blocks of data between buffer pool and filesystem
+</li><li> also attempts to handle file access error problems (retry)
+</li></ul>
+<p>
+Builds higher-level operations on top of OS file operations.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [19/51]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Management <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Typical file operations provided by the operating system:
+</p><p></p><pre>fd = <font color="#0000EE">open</font>(fileName,mode)
+  <span class="comment">// open a named file for reading/writing/appending</span>
+<font color="#0000EE">close</font>(fd)
+  <span class="comment">// close an open file, via its descriptor</span> 
+nread = <font color="#0000EE">read</font>(fd, buf, nbytes)
+  <span class="comment">// attempt to read data from file into buffer </span>
+nwritten = <font color="#0000EE">write</font>(fd, buf, nbytes)
+  <span class="comment">// attempt to write data from buffer to file</span>
+<font color="#0000EE">lseek</font>(fd, offset, seek_type)
+  <span class="comment">// move file pointer to relative/absolute file offset</span>
+<font color="#0000EE">fsync</font>(fd)
+  <span class="comment">// flush contents of file buffers to disk</span>
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [20/51]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ DBMS File Organisation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How is data for DB objects arranged in the file system?
+</p><p>
+Different DBMSs make different choices, e.g.
+</p><ul>
+<li> by-pass the file system and use a raw disk partition
+</li><li> have a single very large file containing all DB data
+</li><li> have several large files, with tables spread across them
+</li><li> have multiple data files, one for each table
+</li><li> have multiple files for each table
+</li><li> etc.
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [21/51]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-file DBMS</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a single file for the entire database <small>(e.g. SQLite)</small>
+</p><p>
+Objects are allocated to regions (segments) of the file.
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/single-file.png]" src="./lec03_files/single-file.png">
+</div><p>
+</p><p>
+If an object grows too large for allocated segment, allocate an extension.
+</p><p>
+What happens to allocated space when objects are removed?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [22/51]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-file DBMS <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Allocating space in Unix files is easy:
+</p><ul>
+<li> simply seek to the place you want and write the data
+</li><li> if nothing there already, data is appended to the file
+</li><li> if something there already, it gets overwritten
+</li></ul>
+If the seek goes way beyond the end of the file:
+<ul>
+<li> Unix does not (yet) allocate disk space for the "hole"
+</li><li> allocates disk space only when data is written in the hole
+</li></ul>
+With the above, a disk/file manager is easy to implement.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [23/51]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-file Storage Manager</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following simple single-file DBMS layout:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/single-file-example.png]" src="./lec03_files/single-file-example.png">
+</div><p>
+E.g.
+</p><p>
+SpaceMap = [ (0,10,U), (10,10,U), (20,600,U), (620,100,U), (720,20,F) ]
+</p><p>
+TableMap = [ ("employee",20,500), ("project",620,40) ]
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [24/51]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-file Storage Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Each file segment consists of a number fixed-size blocks
+</p><p>
+The following data/constant definitions are useful
+</p><p></p><pre>#define PAGESIZE 2048   <span class="comment">// bytes per page</span>
+
+typedef long PageId;    <span class="comment">// PageId is block index</span>
+                        <span class="comment">// pageOffset=PageId*PAGESIZE</span>
+
+typedef char *Page;     <span class="comment">// pointer to page/block buffer</span>
+</pre><p>
+<br>
+Typical <large><code>PAGESIZE</code></large> values: &nbsp;1024, &nbsp;2048, &nbsp;4096, &nbsp;8192
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [25/51]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-file Storage Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Storage Manager data structures for opened DBs &amp; Tables
+</p><p></p><pre>typedef struct DBrec {
+   char *dbname;    <span class="comment">// copy of database name</span>
+   int fd;          <span class="comment">// the database file</span>
+   SpaceMap map;    <span class="comment">// map of free/used areas </span>
+   NameTable names; <span class="comment">// map names to areas + sizes</span>
+} *DB;
+
+typedef struct Relrec {
+   char *relname;   <span class="comment">// copy of table name</span>
+   int   start;     <span class="comment">// page index of start of table data</span>
+   int   npages;    <span class="comment">// number of pages of table data</span>
+   ...
+} *Rel;
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [26/51]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Example: Scanning a Relation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+With the above disk manager, our example:
+</p><p></p><pre>select name from Employee
+</pre><p>
+might be implemented as something like
+</p><p></p><pre>DB db = openDatabase("myDB");
+Rel r = openRelation(db,"Employee");
+Page buffer = malloc(PAGESIZE*sizeof(char));
+for (int i = 0; i &lt; r-&gt;npages; i++) {
+   PageId pid = r-&gt;start+i;
+   get_page(db, pid, buffer);
+   for each tuple in buffer {
+      get tuple data and extract name
+      add (name) to result tuples
+   }
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [27/51]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-File Storage Manager</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre><span class="comment">// start using DB, buffer meta-data</span>
+DB <font color="#008800">openDatabase</font>(char *name) { 
+   DB db = new(struct DBrec);
+   db-&gt;dbname = strdup(name);
+   db-&gt;fd = open(name,O_RDWR);
+   db-&gt;map = readSpaceTable(db-&gt;fd);
+   db-&gt;names = readNameTable(db-&gt;fd);
+   return db;
+}
+<span class="comment">// stop using DB and update all meta-data</span>
+void <font color="#008800">closeDatabase</font>(DB db) {
+   writeSpaceTable(db-&gt;fd,db-&gt;map);
+   writeNameTable(db-&gt;fd,db-&gt;map);
+   fsync(db-&gt;fd);
+   close(db-&gt;fd);
+   free(db-&gt;dbname);
+   free(db);
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [28/51]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-File Storage Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre><span class="comment">// set up struct describing relation</span>
+Rel <font color="#008800">openRelation</font>(DB db, char *rname) {
+   Rel r = new(struct Relrec);
+   r-&gt;relname = strdup(rname);
+   <span class="comment">// get relation data from map tables</span>
+   r-&gt;start = ...;
+   r-&gt;npages = ...;
+   return r;
+}
+
+<span class="comment">// stop using a relation</span>
+void <font color="#008800">closeRelation</font>(Rel r) {
+   free(r-&gt;relname);
+   free(r);
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [29/51]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-File Storage Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre><span class="comment">// assume that Page = byte[PageSize]</span>
+<span class="comment">// assume that PageId = block number in file</span>
+
+<span class="comment">// read page from file into memory buffer</span>
+void <font color="#008800">get_page</font>(DB db, PageId p, Page buf) {
+   lseek(db-&gt;fd, p*PAGESIZE, SEEK_SET);
+   read(db-&gt;fd, buf, PAGESIZE);
+}
+
+<span class="comment">// write page from memory buffer to file</span>
+void <font color="#008800">put_page</font>(DB db, PageId p, Page buf) {
+   lseek(db-&gt;fd, p*PAGESIZE, SEEK_SET);
+   write(db-&gt;fd, buf, PAGESIZE);
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [30/51]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-File Storage Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Managing contents of space mapping table can be complex:
+</p><p></p><pre><span class="comment">// assume an array of (offset,length,status) records</span>
+
+<span class="comment">// allocate n new pages</span>
+PageId <font color="#008800">allocate_pages</font>(DB db, int n) {
+   if (no existing free chunks are large enough) {
+      int endfile = lseek(db-&gt;fd, 0, SEEK_END);
+      addNewEntry(db-&gt;map, endfile, n);
+   } else {
+      grab "worst fit" chunk
+      split off unused section as new chunk
+   }
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [31/51]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Single-File Storage Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Similar complexity for freeing chunks
+</p><p></p><pre><span class="comment">// drop n pages starting from p</span>
+void <font color="#008800">deallocate_pages</font>(DB db, PageId p, int n) {
+   if (no adjacent free chunks) {
+      markUnused(db-&gt;map, p, n);
+   } else {
+      merge adjacent free chunks
+      compress mapping table
+   }
+}
+</pre><p>
+Changes take effect when <large><code>closeDatabase()</code></large> executed.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [32/51]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multiple-file Disk Manager</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Most DBMSs don't use a single large file for all data.
+</p><p>
+They typically provide:
+</p><ul>
+<li> multiple files partitioned physically or logically
+</li><li> mapping from DB-level objects to files <small>(e.g. via meta-data)</small>
+</li></ul>
+Precise file structure varies between individual DBMSs.
+<p>
+Using multiple files (one file per relation) can be easier, e.g.
+</p><ul>
+<li> adding a new relation
+</li><li> extending the size of a relation
+</li><li> computing page offsets within a relation
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [33/51]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multiple-file Disk Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example of single-file vs multiple-file:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/single-vs-multi.png]" src="./lec03_files/single-vs-multi.png">
+</div><p>
+<br>
+<small>
+Consider how you would compute file offset of page[i] in table[1] ...
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [34/51]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multiple-file Disk Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Structure of <large><code>PageId</code></large> for data pages in such systems ...
+</p><p>
+If system uses one file per table, <large><code>PageId</code></large> contains:
+</p><ul>
+<li> relation indentifier (which can be mapped to filename)
+</li><li> page number (to identify page within the file)
+</li></ul>
+If system uses several files per table, <large><code>PageId</code></large> contains:
+<ul>
+<li> relation identifier
+</li><li> file identifier (combined with relid, gives filename)
+</li><li> page number (to identify page within the file)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [35/51]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Storage Manager</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL uses the following file organisation ...
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/pg-file-arch.png]" src="./lec03_files/pg-file-arch.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [36/51]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL Storage Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Components of storage subsystem:
+</p><ul>
+<li> mapping from relations to files &nbsp; (<large><font color="#008800"><b><code>RelFileNode</code></b></font></large>)
+</li><li> abstraction for open relation pool &nbsp; (<large><font color="#008800"><b><code>storage/smgr</code></b></font></large>)
+</li><li> functions for managing files &nbsp; (<large><font color="#008800"><b><code>storage/smgr/md.c</code></b></font></large>)
+</li><li> file-descriptor pool &nbsp; (<large><font color="#008800"><b><code>storage/file</code></b></font></large>)
+</li></ul>
+PostgreSQL has two basic kinds of files:
+<ul>
+<li> heap files containing data (tuples)
+</li><li> index files containing index entries
+</li></ul>
+<small>
+Note: <large><code>smgr</code></large> designed for many storage devices; only disk handler provided
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [37/51]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relations as Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL identifies relation files via their OIDs.
+</p><p>
+The core data structure for this is <large><font color="#008800"><b><code>RelFileNode</code></b></font></large>:
+</p><p></p><pre>typedef struct RelFileNode {
+    Oid  spcNode;  <span class="comment">// tablespace</span>
+    Oid  dbNode;   <span class="comment">// database</span>
+    Oid  relNode;  <span class="comment">// relation</span>
+} RelFileNode;
+</pre><p>
+Global (shared) tables (e.g. <large><code>pg_database</code></large>) have
+</p><ul>
+<li> &nbsp; <large><code>spcNode == GLOBALTABLESPACE_OID</code></large>
+</li><li> &nbsp; <large><code>dbNode == 0</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [38/51]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Relations as Files <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The <large><font color="#008800"><b><code>relpath</code></b></font></large> function maps <large><font color="#008800"><b><code>RelFileNode</code></b></font></large> to file:
+</p><p></p><pre><small>
+char *relpath(RelFileNode r)  <span class="comment">// simplified</span>
+{
+   char *path = malloc(ENOUGH_SPACE);
+
+   if (r.spcNode == GLOBALTABLESPACE_OID) {
+      <span class="comment">/* Shared system relations live in PGDATA/global */</span>
+      Assert(r.dbNode == 0);
+      sprintf(path, "%s/global/%u",
+              DataDir, r.relNode);
+   }
+   else if (r.spcNode == DEFAULTTABLESPACE_OID) {
+      <span class="comment">/* The default tablespace is PGDATA/base */</span>
+      sprintf(path, "%s/base/%u/%u",
+              DataDir, r.dbNode, r.relNode);
+   }
+   else {
+      <span class="comment">/* All other tablespaces accessed via symlinks */</span>
+      sprintf(path, "%s/pg_tblspc/%u/%u/%u", DataDir
+              r.spcNode, r.dbNode, r.relNode);
+   }
+   return path;
+}
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [39/51]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: PostgreSQL Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+In your PostgreSQL server
+</p><ul>
+<li> examine the content of the <large><code>$PGDATA</code></large> directory
+</li><li> find the directory containing the <large><code>pizza</code></large> database
+</li><li> find the file in this directory for the <large><code>People</code></large> table
+</li><li> examine the contents of the <large><code>People</code></large> file
+</li><li> what are the other files in the directory?
+</li><li> are there <font color="#0000BB">forks</font> in any of your databases?
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [40/51]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Descriptor Pool</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Unix has limits on the number of concurrently open files.
+</p><p>
+PostgreSQL maintains a pool of open file descriptors:
+</p><ul>
+<li> to hide this limitation from higher level functions
+</li><li> to minimise expensive <large><code>open()</code></large> operations
+</li></ul>
+File names are simply strings: <large><font color="#008800"><b><code>typedef char *FileName</code></b></font></large>
+<p>
+Open files are referenced via: <large><font color="#008800"><b><code>typedef int File</code></b></font></large>
+</p><p>
+A <large><font color="#008800"><b><code>File</code></b></font></large> is an index into a table of "virtual file descriptors".
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [41/51]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Descriptor Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Interface to file descriptor (pool):
+</p><p></p><pre><small>
+File FileNameOpenFile(FileName fileName,
+                      int fileFlags, int fileMode);
+     <span class="comment">// open a file in the database directory ($PGDATA/base/...)</span>
+File OpenTemporaryFile(bool interXact);
+     <span class="comment">// open temp file; flag: close at end of transaction?</span>
+void FileClose(File file);
+void FileUnlink(File file);
+int  FileRead(File file, char *buffer, int amount);
+int  FileWrite(File file, char *buffer, int amount);
+int  FileSync(File file);
+long FileSeek(File file, long offset, int whence);
+int  FileTruncate(File file, long offset);
+</small></pre><p>
+<small>
+Analogous to Unix syscalls <large><code>open()</code></large>, <large><code>close()</code></large>, <large><code>read()</code></large>, <large><code>write()</code></large>, <large><code>lseek()</code></large>, ...
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [42/51]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Descriptor Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Virtual file descriptors (<large><font color="#008800"><b><code>Vfd</code></b></font></large>)
+</p><ul>
+<li> physically stored in dynamically-allocated array
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/vfd-cache1.png]" src="./lec03_files/vfd-cache1.png">
+</div><p>
+</p></li><li> also arranged into list by recency-of-use
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/vfd-cache2.png]" src="./lec03_files/vfd-cache2.png">
+</div><p>
+</p></li></ul>
+<large><font color="#008800"><b><code>VfdCache[0]</code></b></font></large> holds list head/tail pointers.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [43/51]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Descriptor Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Virtual file descriptor records <small>(simplified)</small>:
+</p><p></p><pre><small>
+typedef struct vfd
+{
+    s_short  fd;              <span class="comment">// current FD, or VFD_CLOSED if none</span>
+    u_short  fdstate;         <span class="comment">// bitflags for VFD's state</span>
+    File     nextFree;        <span class="comment">// link to next free VFD, if in freelist</span>
+    File     lruMoreRecently; <span class="comment">// doubly linked recency-of-use list</span>
+    File     lruLessRecently;
+    long     seekPos;         <span class="comment">// current logical file position</span>
+    char     *fileName;       <span class="comment">// name of file, or NULL for unused VFD</span>
+    <span class="comment">// NB: fileName is malloc'd, and must be free'd when closing the VFD</span>
+    int      fileFlags;       <span class="comment">// open(2) flags for (re)opening the file</span>
+    int      fileMode;        <span class="comment">// mode to pass to open(2)</span>
+} Vfd;
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [44/51]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Manager</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Reminder: PostgreSQL file organisation
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/storage/pg-file-arch.png]" src="./lec03_files/pg-file-arch.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [45/51]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL stores each table
+</p><ul>
+<li> in the directory <large><code><i>PGDATA</i>/pg_database.oid</code></large>
+</li><li> often in multiple data files (aka <i>forks</i>)
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/one-table-files.png]" src="./lec03_files/one-table-files.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [46/51]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data files &nbsp; (<i>Oid</i>, <i>Oid</i><tt>.1</tt>, ...):
+</p><ul>
+<li> sequence of fixed-size blocks/pages &nbsp;<small>(typically 8KB)</small>
+</li><li> each page contains tuple data and admin data &nbsp;<small>(see later)</small>
+</li><li> max size of data files 1GB &nbsp;<small>(Unix limitation)</small>
+</li></ul>
+<br>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/storage/heap-file.png]" src="./lec03_files/heap-file.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [47/51]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Free space map &nbsp; (<i>Oid</i><tt>_fsm</tt>):
+</p><ul>
+<li> indicates where free space is in data pages
+</li><li> "free" space is only free after <large><code>VACUUM</code></large> <br>
+	&nbsp; <small>(<large><code>DELETE</code></large> simply marks tuples as no longer in use <large><code>xmax</code></large>)</small>
+</li></ul>
+Visibility map &nbsp; (<i>Oid</i><tt>_vm</tt>):
+<ul>
+<li> indicates pages where all tuples are "visible" <br>
+	&nbsp; <small>(<i>visible</i> = accessible to all currently active transactions)</small>
+</li><li> such pages can be ignored by <large><code>VACUUM</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [48/51]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The "magnetic disk storage manager" (<large><font color="#008800"><b><code>storage/smgr/md.c</code></b></font></large>)
+</p><ul>
+<li> manages its own pool of open file descriptors (Vfd's)
+</li><li> may use several Vfd's to access data, if several forks
+</li><li> manages mapping from <large><font color="#008800"><b><code>PageID</code></b></font></large> to file+offset.
+</li></ul>
+PostgreSQL <large><code>PageID</code></large> values are structured:
+<p></p><pre>typedef struct
+{
+    RelFileNode rnode;    <span class="comment">// which relation/file</span>
+    ForkNumber  forkNum;  <span class="comment">// which fork (of reln)</span>
+    BlockNumber blockNum; <span class="comment">// which page/block</span> 
+} BufferTag;
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [49/51]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Access to a block of data proceeds (roughly) as follows:
+</p><p></p><pre><span class="comment">// pageID set from pg_catalog tables</span>
+<span class="comment">// buffer obtained from Buffer pool</span>
+getBlock(BufferTag pageID, Buffer buf)
+{
+   Vfd vf;  off_t offset;
+   (vf, offset) = findBlock(pageID)
+   lseek(vf.fd, offset, SEEK_SET)
+   vf.seekPos = offset;
+   nread = read(vf.fd, buf, BLOCKSIZE)
+   if (nread &lt; BLOCKSIZE) <span class="comment">... we have a problem</span>
+}
+</pre><p>
+<large><code>BLOCKSIZE</code></large> is a global configurable constant (default: 8192)
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [50/51]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/lectures/week02-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ File Manager <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre>findBlock(BufferTag pageID) returns (Vfd, off_t)
+{
+   offset = pageID.blockNum * BLOCKSIZE
+   fileName = relpath(pageID.rnode)
+   if (pageID.forkNum &gt; 0)
+      fileName = fileName+"."+pageID.forkNum
+   if (fileName is not in Vfd pool)
+      fd = allocate new Vfd for fileName
+   else
+      fd = use Vfd from pool
+   if (offset &gt; fd.fileSize) {
+      fd = allocate new Vfd for next fork
+      offset = offset - fd.fileSize
+   }
+   return (fd, offset)
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 2 Monday Lecture ♢ [51/51]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 19 Feb 2024</span>
+ <script src="./lec03_files/prism.js"></script>   
+ <script src="./lec03_files/sg.js"></script>   
+
+
+</p></body></html>

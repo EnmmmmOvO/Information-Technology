@@ -1,0 +1,18 @@
+Header gives us:
+* values for r, R, b, B, c
+* index of first page with free space (and a free list)
+* r = #recs,  R = recSize,
+* b = #pages, B = pageSize, c = recs/page
+
+insert into Heap
+
+delete from Heap
+
+insert into Sorted
+
+delete from Sorted
+
+insert into Hashed
+
+delete from Hashed
+

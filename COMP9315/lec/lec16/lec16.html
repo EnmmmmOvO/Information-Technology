@@ -1,0 +1,1257 @@
+
+<!-- saved from url=(0078)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 10 Monday Lecture</title>
+<link href="./lec16_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec16_files/latest.js" async=""></script>
+<script src="./lec16_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec16_files/MathJax.js"></script>
+<link href="./lec16_files/css" rel="stylesheet">
+<link href="./lec16_files/prism.css" rel="stylesheet">
+<script src="./lec16_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 10 Monday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s2">GDB in one slide</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s3">Transactions (reminder)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s4">Exercise: Transaction Internals</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s5">Exercise: Transaction Failure</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s6">Logging</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s7">Undo Logging</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s10">UNDO Logging</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s12">Exercise: Recovery with UNDO Log</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s13">Checkpointing</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s16">Redo Logging</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s20">Undo/Redo Logging</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s24">Recovery in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s26">Database Trends <tiny>(overview)<tiny></tiny></tiny></a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s27">Future of Database</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s33">Large Data</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s35">Information Retrieval</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s36">Multimedia Data</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s37">Uncertainty</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s38">Stream Data Management Systems</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s39">Graph Data</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s40">Dispersed Databases</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s41">Parallelism in Databases</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s42">Parallel DBMSs</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s45">Parallel Architectures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s46">Distributed Architectures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s47">Parallel Databases (PDBs)</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s49">Data Storage in PDBs </a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s54">Parallelism in DB Operations</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s61">PostgreSQL and Parallelism</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [0/63]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+</p><ul>
+<li> Assignment 2
+<ul>
+<li> due 11:59pm TONIGHT &nbsp; <span class="smaller">(220/490 submissions so far)</span>
+</li><li> learn to use GDB (for the exam)
+</li><li> don't pipe through <large><code>sort</code></large> if not working
+</li></ul>
+</li><li> Help Sessions
+<ul>
+<li> Tuesday 16 April, 3pm-4pm
+</li></ul>
+</li><li> MyExperience
+<ul>
+<li> open now ... please give feedback ... closes April 25
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [1/63]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ GDB in one slide</div></td><td align="right"></td></tr></tbody></table>
+<p>
+To debug the program:
+</p><p></p><pre>$ <font color="#000099">./select R '?,?,shoes'</font>
+</pre><p>
+Run GDB as follows
+</p><p></p><pre>$ <font color="#000099">gdb ./select</font>
+...
+(gdb) <font color="#000099">run R '?,?,shoes'</font>
+<span class="comment">... program crashes ...</span>
+(gdb) <font color="#000099">where</font>
+<span class="comment">... look at the line numbers and function arguments ...</span>
+(gdb) <font color="#000099">print pid</font>
+<span class="comment">... examine values of variables in current scope ...</span>
+(gdb) <font color="#000099">quit</font>
+</pre><p>
+Has many other functions, e.g. <large><code><font color="#000099">break</font></code></large> &nbsp; <span class="smaller">(program stops at a given point)</span>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [2/63]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Transactions (reminder)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+A <font color="#0000BB">transaction</font> is
+</p><ul>
+<li> a single application-level operation
+</li><li> implemented via multiple database operations
+</li></ul>
+Transactions deal with three levels of storage
+<ul>
+<li> data on disk, &nbsp; data in memory buffers, &nbsp; data in local variables
+</li></ul>
+Transactions ...
+<ul>
+<li> <large><code>COMMIT</code></large>: all changes are placed in persistent storage
+</li><li> <large><code>ABORT</code></large>: none of the changes appear in persistent storage
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [3/63]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Transaction Internals</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following transaction:
+</p><p>
+</p><p></p><pre style="font-size:90%"><span class="comment">-- implements A = A*2; B = B+1;</span>
+BEGIN
+READ(A,v); v = v*2; WRITE(A,v);
+READ(B,v); v = v+1; WRITE(B,v);
+COMMIT
+</pre><p>
+Show how the following items change values after each statement
+</p><ul>
+<li> <large><code>v</code></large> ... value of local variable
+</li><li> <large><code>Buf(A)</code></large> ... value of A stored in memory buffer
+</li><li> <large><code>Buf(B)</code></large> ... value of B stored in memory buffer
+</li><li> <large><code>Disk(A)</code></large> ... value of A stored on disk
+</li><li> <large><code>Disk(B)</code></large> ... value of B stored on disk
+</li></ul>
+What is the final state after the <large><code>COMMIT</code></large> completes?
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [4/63]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Transaction Failure</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the previous transaction.
+</p><p></p><pre style="font-size:90%"><span class="comment">(0)</span> BEGIN
+<span class="comment">(1)</span> READ(A,v);
+<span class="comment">(2)</span> v = v*2;
+<span class="comment">(3)</span> WRITE(A,v);
+<span class="comment">(4)</span> READ(B,v);
+<span class="comment">(5)</span> v = v+1;
+<span class="comment">(6)</span> WRITE(B,v);
+<span class="comment">(7)</span> COMMIT
+<span class="comment">(8)</span> OUTPUT(A)
+<span class="comment">(9)</span> OUTPUT(B)
+</pre><p>
+</p><p>
+What happens if ...
+</p><ul>
+<li> the tx is aborted before (4)
+</li><li> the tx is aborted before (7)
+</li><li> the system crashes before (8)
+</li><li> the system crashes before (9)
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [5/63]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Logging</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Three "styles" of logging
+</p><ul>
+<li> <font color="#0000BB">undo</font> ... removes changes by any uncommitted tx's
+</li><li> <font color="#0000BB">redo</font> ... repeats changes by any committed tx's
+</li><li> <font color="#0000BB">undo/redo</font> ... combines aspects of both
+</li></ul>
+All approaches require:
+<ul>
+<li> a sequential file of log records
+</li><li> log records describe a change to a data item
+</li><li> log records are written first
+</li><li> actual changes to data are written later
+</li></ul>
+Known as <font color="#0000BB">write-ahead logging</font> &nbsp;&nbsp; <small>(PostgreSQL uses WAL)</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [6/63]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Undo Logging</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Simple form of logging which ensures atomicity.
+</p><p>
+Log file consists of a <font color="#0000BB">sequence</font> of small records:
+</p><ul>
+<li> <large><code>&lt;START T&gt;</code></large> ... transaction <large><code>T</code></large> begins
+</li><li> <large><code>&lt;COMMIT T&gt;</code></large> ... transaction <large><code>T</code></large> completes successfully
+</li><li> <large><code>&lt;ABORT T&gt;</code></large> ... transaction <large><code>T</code></large> fails (no changes)
+</li><li> <large><code>&lt;T,X,v&gt;</code></large> ... transaction <large><code>T</code></large> changed value of <large><code>X</code></large> from <large><code>v</code></large>
+</li></ul>
+Notes:
+<ul>
+<li> we refer to <large><code>&lt;T,X,v&gt;</code></large> generically as <large><code>&lt;UPDATE&gt;</code></large> log records
+</li><li> update log entry created for each <large><code>WRITE</code></large> (not <large><code>OUTPUT</code></large>)
+</li><li> update log entry contains <i>old</i> value
+	<small>(new value is not recorded)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [7/63]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Undo Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data must be written to disk in the following order:
+</p><ol>
+<li> <large><code>&lt;START&gt;</code></large> transaction log record
+</li><li> <large><code>&lt;UPDATE&gt;</code></large> log records indicating changes
+</li><li> the changed data elements themselves
+</li><li> <large><code>&lt;COMMIT&gt;</code></large> log record
+</li></ol>
+Note: sufficient to have <large><code>&lt;T,X,v&gt;</code></large> output before <large><code>X</code></large>, for each <large><code>X</code></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [8/63]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Undo Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For the example transaction, we would get:
+</p><p></p><pre style="font-size:80%">t    Action        v  B(A)  B(B)  D(A)  D(B)  Log
+--------------------------------------------------------
+(0)  BEGIN         .    .     .     8     5   &lt;START T&gt;
+(1)  READ(A,v)     8    8     .     8     5
+(2)  v = v*2      16    8     .     8     5
+(3)  WRITE(A,v)   16   16     .     8     5   &lt;T,A,8&gt;
+(4)  READ(B,v)     5   16     5     8     5
+(5)  v = v+1       6   16     5     8     5
+(6)  WRITE(B,v)    6   16     6     8     5   &lt;T,B,5&gt;
+(7)  FlushLog
+(8)  StartCommit
+(9)  OUTPUT(A)     6   16     6    16     5
+(10) OUTPUT(B)     6   16     6    16     6
+(11) EndCommit                                &lt;COMMIT T&gt;
+(12) FlushLog
+</pre><p>
+Note that T is not regarded as committed until (12) completes.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [9/63]</div><table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ UNDO Logging</div></td><td align="right"></td></tr></tbody></table>
+<p>
+ </p><div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ UNDO Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Simplified view of recovery using UNDO logging:
+</p><ul>
+<li> scan <font color="#0000BB">backwards</font> through log
+<ul>
+<li> if <large><code>&lt;COMMIT T&gt;</code></large>, mark <large><code>T</code></large> as committed
+</li><li> if <large><code>&lt;T,X,v&gt;</code></large> and <large><code>T</code></large> not committed, set <large><code>X</code></large> to <large><code>v</code></large> on disk
+</li><li> if <large><code>&lt;START T&gt;</code></large> and <large><code>T</code></large> not committed, add <large><code>&lt;ABORT T&gt;</code></large> to log
+</li></ul>
+</li></ul>
+Assumes we scan entire log; use checkpoints to limit scan.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [10/63]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ UNDO Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Algorithmic view of recovery using UNDO logging:
+</p><p></p><pre style="font-size:90%">committedTrans = abortedTrans = startedTrans = {}
+for each log record from most recent to oldest {
+    switch (log record) {
+    &lt;COMMIT T&gt; : add T to committedTrans
+    &lt;ABORT T&gt;  : add T to abortedTrans
+    &lt;START T&gt;  : add T to startedTrans
+    &lt;T,X,v&gt;    : if (T in committedTrans)
+                     <span class="comment">// don't undo committed changes</span>
+                 else  <span class="comment">// roll-back changes</span>
+                     { WRITE(X,v); OUTPUT(X) }
+}   }
+for each T in startedTrans {
+    if (T in committedTrans) ignore
+    else if (T in abortedTrans) ignore
+    else write &lt;ABORT T&gt; to log
+}
+flush log
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [11/63]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Recovery with UNDO Log</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Show how the UNDO log would be used if the previous tx
+</p><ul>
+<li> failed at (5)
+</li><li> failed at (10)
+</li><li> failed after (12)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [12/63]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Checkpointing</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Simple view of recovery implies reading entire log file.
+</p><p>
+Since log file grows without bound, this is infeasible.
+</p><p>
+Eventually we can delete "old" section of log.
+</p><ul>
+<li> i.e. where <font color="#0000BB">all</font> prior transactions have completed
+</li></ul>
+This point is called a <font color="#0000BB">checkpoint</font>.
+<ul>
+<li> all of log prior to checkpoint can be ignored for recovery
+</li></ul>
+As described we need to wait for all active tx to complete
+<ul>
+<li> known as <font color="#0000BB">quiescent checkpointing</font>
+</li><li> tx's taking a long time to complete block the system
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [13/63]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Checkpointing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Problem: many concurrent/overlapping transactions.
+</p><p>
+How to know that all have finished?
+</p><ol>
+<li> periodically, write log record <large><code>&lt;CHKPT (T1,..,Tk)&gt;</code></large> <br>
+	<small>(contains references to all active transactions <i>⇒</i> active tx table)</small>
+</li><li> continue normal processing <small>(e.g. new tx's can start)</small>
+</li><li> when all of <large><code>T1,..,Tk</code></large> have completed, <br>
+	write log record <large><code>&lt;END CHKPT&gt;</code></large> and flush log
+</li></ol>
+Note: tx manager maintains chkpt and active tx information
+<p>
+These kinds of checkpoints are often written as <large><code>&lt;START CHKPT ...&gt;</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [14/63]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Checkpointing <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Recovery: scan backwards through log file processing as before.
+</p><p>
+Determining where to stop depends on ...
+</p><ul>
+<li> whether we meet <large><code>&lt;END CHKPT&gt;</code></large> or <large><code>&lt;CHKPT...&gt;</code></large>  first
+</li></ul>
+<p>
+If we encounter <large><code>&lt;END CHKPT&gt;</code></large> first:
+</p><ul>
+<li> we know that all incomplete tx's come after prev <large><code>&lt;CHKPT...&gt;</code></large>
+</li><li> thus, can stop backward scan when we reach <large><code>&lt;CHKPT...&gt;</code></large>
+</li></ul>
+If we encounter <large><code>&lt;CHKPT (T1,..,Tk)&gt;</code></large> first:
+<ul>
+<li> crash occurred <i>during</i> the checkpoint period
+</li><li> any of <large><code>T1,..,Tk</code></large> that committed before crash are ok
+</li><li> for uncommitted tx's, need to continue backward scan
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [15/63]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Redo Logging</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Problem with UNDO logging:
+</p><ul>
+<li> all changed data must be output to disk before committing
+</li><li> conflicts with optimal use of the buffer pool
+</li></ul>
+Alternative approach is <font color="#0000BB">redo</font> logging:
+<ul>
+<li> allow changes to remain only in buffers after commit
+</li><li> write records to indicate what changes are "pending"
+</li><li> after a crash, can apply changes during recovery
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [16/63]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Redo Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Requirement for redo logging: <font color="#0000BB">write-ahead rule</font>.
+</p><p>
+Data must be written to disk as follows:
+</p><ol>
+<li> write start transaction <large><code>&lt;START <i>T</i>&gt;</code></large> log record
+</li><li> write <large><code>&lt;UPDATE...&gt;</code></large> log records indicating changes
+</li><li> then write <large><code>&lt;COMMIT&gt;</code></large> log record (and flush log)
+</li><li> then <large><code>OUTPUT</code></large> changed data elements themselves
+</li></ol>
+Note that update log records now contain <large><code>&lt;T,X,v'&gt;</code></large>, <br>
+where <large><code>v'</code></large> is the <i>new</i> value for <large><code>X</code></large>.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [17/63]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Redo Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For the example transaction, we would get:
+</p><p></p><pre><small>
+t    Action        v  B(A)  B(B)  D(A)  D(B)  Log
+--------------------------------------------------------
+(0)  BEGIN         .    .     .     8     5   &lt;START T&gt;
+(1)  READ(A,v)     8    8     .     8     5
+(2)  v = v*2      16    8     .     8     5
+(3)  WRITE(A,v)   16   16     .     8     5   &lt;T,A,16&gt;
+(4)  READ(B,v)     5   16     5     8     5
+(5)  v = v+1       6   16     5     8     5
+(6)  WRITE(B,v)    6   16     6     8     5   &lt;T,B,6&gt;
+(7)  COMMIT                                   &lt;COMMIT T&gt;
+(8)  FlushLog
+(9)  OUTPUT(A)     6   16     6    16     5
+(10) OUTPUT(B)     6   16     6    16     6
+</small></pre><p>
+Note that T is regarded as committed as soon as (8) completes.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [18/63]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Redo Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Simplified view of recovery using REDO logging:
+</p><ul>
+<li> identify all committed tx's &nbsp; <small>(backwards scan)</small>
+</li><li> scan <font color="#0000BB">forwards</font> through log
+<ul>
+<li> if <large><code>&lt;T,X,v&gt;</code></large> and <large><code>T</code></large> is committed, set <large><code>X</code></large> to <large><code>v</code></large> on disk
+</li><li> if <large><code>&lt;START T&gt;</code></large> and <large><code>T</code></large> not committed, add <large><code>&lt;ABORT T&gt;</code></large> to log
+</li></ul>
+</li></ul>
+Use checkpoints (like UNDO log checkpoints) to limit scan.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [19/63]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Undo/Redo Logging</div></td><td align="right"></td></tr></tbody></table>
+<p>
+UNDO logging and REDO logging are incompatible in
+</p><ul>
+<li> order of outputting <large><code>&lt;COMMIT T&gt;</code></large> and changed data
+</li><li> how data in buffers is handled during checkpoints
+</li></ul>
+<font color="#0000BB">Undo/Redo logging</font> combines aspects of both
+<ul>
+<li> requires new kind of update log record <br>
+	<large><code>&lt;T,X,v,v'&gt;</code></large> gives both old and new values for <large><code>X</code></large>
+</li><li> removes incompatibilities between output orders
+</li></ul>
+As for previous cases, requires write-ahead of log records.
+<p>
+Undo/redo loging is common in practice; Aries algorithm.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [20/63]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Undo/Redo Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+For the example transaction, we might get:
+</p><p></p><pre><small>
+t    Action        v  B(A)  B(B)  D(A)  D(B)  Log
+--------------------------------------------------------
+(0)  BEGIN         .    .     .     8     5   &lt;START T&gt;
+(1)  READ(A,v)     8    8     .     8     5
+(2)  v = v*2      16    8     .     8     5
+(3)  WRITE(A,v)   16   16     .     8     5   &lt;T,A,8,16&gt;
+(4)  READ(B,v)     5   16     5     8     5
+(5)  v = v+1       6   16     5     8     5
+(6)  WRITE(B,v)    6   16     6     8     5   &lt;T,B,5,6&gt;
+(7)  FlushLog
+(8)  StartCommit
+(9)  OUTPUT(A)     6   16     6    16     5
+(10)                                          &lt;COMMIT T&gt;
+(11) OUTPUT(B)     6   16     6    16     6
+</small></pre><p>
+Note that T is regarded as committed as soon as (10) completes.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [21/63]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Undo/Redo Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Simplified view of recovery using UNDO/REDO logging:
+</p><ul>
+<li> scan log to determine committed/uncommitted txs
+</li><li> for each uncommitted tx <large><code>T</code></large> add <large><code>&lt;ABORT T&gt;</code></large> to log
+</li><li> scan <font color="#0000BB">backwards</font> through log
+<ul>
+<li> if <large><code>&lt;T,X,v,w&gt;</code></large> and <large><code>T</code></large> is not committed, set <large><code>X</code></large> to <large><code>v</code></large> on disk
+</li></ul>
+</li><li> scan <font color="#0000BB">forwards</font> through log
+<ul>
+<li> if <large><code>&lt;T,X,v,w&gt;</code></large> and <large><code>T</code></large> is committed, set <large><code>X</code></large> to <large><code>w</code></large> on disk  
+</li></ul>
+</li></ul>
+<br>
+<small>
+Note: undo/redo logging requires dirty buffers to be flushed at <large><code>&lt;CHKPT...&gt;</code></large>
+</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [22/63]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Undo/Redo Logging <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The above description simplifies details of undo/redo logging.
+</p><p>
+<font color="#0000BB">Aries</font> is a complete algorithm for undo/redo logging.
+</p><p>  
+Differences to what we have described:    
+</p><ul>
+<li> log records contain a sequence number (LSN) 
+</li><li> LSNs used in tx and buffer managers, and stored in data pages
+</li><li> additional log record to mark <large><code>&lt;END&gt;</code></large>
+    <small>(of commit or abort)</small>
+</li><li> <large><code>&lt;CHKPT&gt;</code></large> contains only a timestamp
+</li><li> <large><code>&lt;END CHKPT..&gt;</code></large> contains tx and dirty page info
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [23/63]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Recovery in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL uses write-ahead undo/redo style logging.
+</p><p>
+It also uses multi-version concurrency control, which
+</p><ul>
+<li> tags each record with a tx and update timestamp
+</li></ul>
+MVCC simplifies some aspects of undo/redo, e.g.
+<ul>
+<li> some info required by logging is already held in each tuple
+</li><li> no need to undo effects of aborted tx's; use older version
+</li></ul>
+<br>
+Recall: WAL entries in <large><code>postgresql.conf</code></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [24/63]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Recovery in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Transaction/logging code is distributed throughout backend.
+</p><p>
+Core transaction code is in <large><font color="#008800"><b><code>src/backend/access/transam</code></b></font></large>.
+</p><p>
+Transaction/logging data is written to files in <large><font color="#008800"><b><code>PGDATA/pg_xlog</code></b></font></large>
+</p><ul>
+<li> a number of very large files containing log records
+</li><li> old files are removed once all txs noted there are completed
+</li><li> new files added when existing files reach their capacity <small>(16MB)</small>
+</li><li> number of tx log files varies depending on tx activity
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [25/63]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Database Trends <tiny>(overview)<tiny></tiny></tiny></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [26/63]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Future of Database</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Core "database" goals:
+</p><ul>
+<li> deal with very large amounts of data  <small>(petabyes, exabytes, ...)</small>
+</li><li> very-high-level languages <small>(deal with data in uniform ways)</small>
+</li><li> fast query execution &nbsp; <small>(evaluation too slow <i>⇒</i> useless)</small>
+</li></ul>
+At the moment <small>(and for the last 30 years)</small> <font color="#CC0000">R</font>DBMSs dominate ...
+<ul>
+<li> simple/clean data model, backed up by theory
+</li><li> high-level language for accessing data 
+</li><li> ~50 years development work on RDBMS engine technology
+</li></ul>
+RDBMSs work well in domains with uniform, structured data.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [27/63]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Future of Database <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Limitations/pitfalls of classical RDBMSs:
+</p><ul>
+<li> NULL is ambiguous: unknown, not applicable, not supplied
+</li><li> "limited" support for constraints/integrity and rules
+</li><li> no support for uncertainty <small>(data represents <font color="#0000BB">the</font> state-of-the-world)</small>
+</li><li> data model too simple <small>(e.g. no direct support for complex objects)</small>
+</li><li> query model too rigid <small>(e.g. no approximate matching)</small>
+</li><li> continually changing data sources not well-handled
+</li><li> data must be "molded" to fit a single rigid schema
+</li><li> database systems must be manually "tuned"
+</li><li> do not scale well to some data sets <small>(e.g. Google, Telco's)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [28/63]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Future of Database <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+How to overcome (some) RDBMS limitations?
+</p><p>
+Extend the relational model ...
+</p><ul>
+<li> add new data types and query ops for new applications <br>
+</li><li> deal with uncertainty/inaccuracy/approximation in data
+</li></ul>
+Replace the relational model ...
+<ul>
+<li> object-oriented DBMS ... <small>OO programming with persistent objects</small>
+</li><li> XML DBMS ... <small>all data stored as XML documents, new query model</small>
+</li><li> noSQL data stores <small>(e.g. <i>(key,value)</i> pairs, json or rdf)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [29/63]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Future of Database <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+How to overcome (some) RDBMS limitations?
+</p><p>
+Performance ...
+</p><ul>
+<li> new query algorithms/data-structures for new types of queries
+</li><li> parallel processing
+</li><li> DBMSs that "tune" themselves
+</li></ul>
+Scalability ...
+<ul>
+<li> distribute data across (more and more) nodes
+</li><li> techniques for handling streams of incoming data
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [30/63]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Future of Database <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+An overview of the possibilities:
+</p><ul>
+<li> <font color="#0000BB">"classical" RDBMS</font> &nbsp; <tiny>(e.g. PostgreSQL, Oracle, SQLite)</tiny>
+</li><li> <font color="#0000BB">parallel DBMS</font> &nbsp; <tiny>(e.g. XPRS)</tiny>
+</li><li> <font color="#0000BB">distributed DBMS</font> &nbsp; <tiny>(e.g. Cohera)</tiny>
+</li><li> <font color="#0000BB">deductive databases</font> &nbsp; <tiny>(e.g. Datalog)</tiny>
+</li><li> <font color="#0000BB">temporal databases</font> &nbsp; <tiny>(e.g. MariaDB)</tiny>
+</li><li> <font color="#0000BB">column stores</font> &nbsp; <tiny>(e.g. Vertica, Druid)</tiny>
+</li><li> <font color="#0000BB">object-oriented DBMS</font> &nbsp; <tiny>(e.g. ObjectStore)
+</tiny></li><li> <font color="#0000BB">key-value stores</font> &nbsp; <tiny>(e.g. Redis, DynamoDB)</tiny>
+</li><li> <font color="#0000BB">wide column stores</font> &nbsp; <tiny>(e.g. Cassandra, Scylla, HBase)</tiny>
+</li><li> <font color="#0000BB">graph databases</font> &nbsp; <tiny>(e.g. Neo4J, Datastax)</tiny>
+</li><li> <font color="#0000BB">document stores</font> &nbsp; <tiny>(e.g. MongoDB, Couchbase)</tiny>
+</li><li> <font color="#0000BB">search engines</font> &nbsp; <tiny>(e.g. Google, Solr)</tiny>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [31/63]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Future of Database <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Historical perspective
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/future/dbms-history.png]" src="./lec16_files/dbms-history.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [32/63]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Large Data</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Some modern applications have massive data sets <small>(e.g. Google)</small>
+</p><ul>
+<li> far too large to store on a single machine/RDBMS
+</li><li> query demands far too high even if could store in DBMS
+</li></ul>
+Approach to dealing with such data
+<ul>
+<li> distribute data over large collection of nodes &nbsp;<small>(also, redundancy)</small>
+</li><li> provide computational mechanisms for distributing computation
+</li></ul>
+Often this data does not need full relational selection
+<ul>
+<li> represent data via <i>(key,value)</i> pairs
+</li><li> unique <i>key</i>s can be used for addressing data
+</li><li> <i>values</i> can be large objects <small>(e.g. web pages, images, ...)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [33/63]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Large Data <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Popular computational approach to such data: <font color="#0000BB">map/reduce</font>
+</p><ul>
+<li> suitable for widely-distributed, very-large data
+</li><li> allows parallel computation on such data to be easily specified
+</li><li> distribute (map) parts of computation across network
+</li><li> compute in parallel <small>(possibly with further <font color="#0000BB">map</font>ping)</small>
+</li><li> merge (reduce) multiple results for delivery to requestor
+</li></ul>
+Some large data proponents see no future need for SQL/relational ...
+<ul>
+<li> depends on application <small>(e.g. hard integrity vs eventual consistency)</small>
+</li></ul>
+Humour:
+<a target="demo" href="http://www.youtube.com/watch?v=b2F-DItXtZs">Parody of noSQL fans</a>
+&nbsp; <small>(strong language warning)</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [34/63]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Information Retrieval</div></td><td align="right"></td></tr></tbody></table>
+<p>
+DBMSs generally do precise matching <small>(although <large><code>like</code></large>/regexps)</small>
+</p><p>
+Information retrieval systems do approximate matching.
+</p><p>
+E.g. documents containing a set of keywords (Google, etc.)
+</p><p>
+Also introduces notion of "quality" of matching <br>
+(e.g. tuple <i>T<sub>1</sub></i> is a <font color="#0000BB">better</font> match than tuple <i>T<sub>2</sub></i>)
+</p><p>
+Quality also implies <font color="#0000BB">ranking</font> of results.
+</p><p><br>
+Ongoing research in incorporating IR ideas into DBMS context.
+</p><p>
+Goal: support database exploration better.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [35/63]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multimedia Data</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data which does not fit the "tabular model":
+</p><ul>
+<li> image, video, music, text, ... <small>(and combinations of these)</small>
+</li></ul>
+Research problems:
+<ul>
+<li> how to specify queries on such data? 
+	<small>(<i>image<sub>1</sub> ≅ image<sub>2</sub></i>)</small>
+</li><li> how to "display" results?
+	<small>(synchronize components)</small>
+</li></ul>
+Solutions to the first problem typically:
+<ul>
+<li> extend notions of "matching"/indexes for querying
+</li><li> require sophisticated methods for capturing data features
+</li></ul>
+Sample query: find other songs <font color="#0000BB">like</font> this one?
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [36/63]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Uncertainty</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Multimedia/IR introduces approximate matching.
+</p><p>
+In some contexts, we have approximate/uncertain data.
+</p><p>
+E.g. witness statements in a crime-fighting database
+</p><p>
+"I think the getaway car was red ... or maybe orange ..."
+</p><p>
+"I am 75% sure that John carried out the crime"
+</p><p>
+Work by Jennifer Widom at Stanford on the <font color="#0000BB">Trio</font> system 
+</p><ul>
+<li> extends the relational model (ULDB)
+</li><li> extends the query language (TriQL)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [37/63]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Stream Data Management Systems</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Makes one addition to the relational model
+</p><ul>
+<li> <font color="#0000BB">stream</font> = infinite sequence of tuples, arriving one-at-a-time
+</li></ul>
+Applications: <small>news feeds, telecomms, monitoring web usage, ...</small>
+<p>
+RDBMSs: run a variety of queries on (relatively) fixed data <br>
+</p><p>
+StreamDBs: run fixed queries on changing data (stream)
+</p><p>
+One approach: <font color="#0000BB">window</font> = "relation" formed from a stream via a rule
+</p><p>
+E.g. StreamSQL
+</p><p></p><pre style="font-size:90%">select avg(price)
+from examplestream [size 10 advance 1 tuples]
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [38/63]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Graph Data</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Uses <font color="#0000BB">graphs</font> rather than tables as basic data structure tool.
+</p><p>
+Applications: social networks, ecommerce purchases, interests, ...
+</p><p>
+Many real-world problems are modelled naturally by graphs
+</p><ul>
+<li> <i>can</i> &nbsp;be represented in RDBMSs, but not processed efficiently
+</li><li> e.g. recursive queries on &nbsp;<large><code>Nodes</code></large>, &nbsp;<large><code>Properties</code></large>, &nbsp;<large><code>Edges</code></large> tables
+</li></ul>
+<p>
+Graph data models: &nbsp;flexible, &nbsp;"schema-free", &nbsp;inter-linked
+</p><p>
+Typical modeling formalisms: &nbsp;XML, &nbsp;JSON, &nbsp;RDF
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [39/63]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Dispersed Databases</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Characteristics of dispersed databases:
+</p><ul>
+<li> very large numbers of small processing nodes
+</li><li> data is distributed/shared among nodes
+</li></ul>
+Applications: <small> environmental monitoring devices, "intelligent dust", ...</small>
+<p>
+Research issues:
+</p><ul>
+<li> query/search strategies
+	<small>(how to organise query processing)</small>
+</li><li> distribution of data
+	<small>(trade-off between centralised and diffused)</small>
+</li></ul>
+Less extreme versions of this already exist:
+<ul>
+<li> grid and cloud computing
+</li><li> database management for mobile devices
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [40/63]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallelism in Databases</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [41/63]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallel DBMSs</div></td><td align="right"></td></tr></tbody></table>
+<p>
+RDBMS discussion so far has revolved around systems
+</p><ul>
+<li> with a single or small number of processors
+</li><li> accessing a single memory space
+</li><li> getting data from one or more disk devices
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/one-processor.png]" src="./lec16_files/one-processor.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [42/63]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallel DBMSs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Why parallelism? ... Throughput!
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/para-thru.png]" src="./lec16_files/para-thru.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [43/63]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallel DBMSs <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+DBMSs are a success story in application of parallelism
+</p><ul>
+<li> can process many data elements (tuples) at the same time
+</li><li> can create pipelines of query evaluation steps
+</li><li> don't require special hardware
+</li><li> can hide paralleism within the query evaluator
+<ul>
+<li> application programmers don't need to change habits
+</li></ul>
+</li></ul>
+Compare this with effort to do parallel programming.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [44/63]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallel Architectures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Types: &nbsp; <font color="#0000BB">shared memory</font>, &nbsp; <font color="#0000BB">shared disk</font>, &nbsp; <font color="#0000BB">shared nothing</font>
+</p><p>
+Example shared-nothing architecture:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/shared-nothing.png]" src="./lec16_files/shared-nothing.png">
+</div><p>
+Typically same room/LAN &nbsp; <small>(data transfer cost ~ 100's of μsecs .. msecs)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [45/63]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Distributed Architectures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Distributed</font> architectures are ...
+</p><ul>
+<li> effectively shared-nothing, on a global-scale network
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/distrib-arch.png]" src="./lec16_files/distrib-arch.png">
+</div><p>
+Typically on the Internet &nbsp; <small>(data transfer cost ~ secs)</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [46/63]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallel Databases (PDBs)</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Parallel databases</font> provide various forms of parallelism ...
+</p><ul>
+<li> process parallelism can speed up query evaluation
+</li><li> processor parallelism can assist in speeding up memory ops
+</li><li> processor parallelism introduces cache coherence issues
+</li><li> disk parallelism can assist in overcoming latency
+</li><li> disk parallelism can be used to improve fault-tolerance (RAID)
+</li><li> one limiting factor is congestion on communication bus
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [47/63]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallel Databases (PDBs) <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Types of parallelism
+</p><ul>
+<li> <font color="#0000BB">pipeline parallelism</font>
+<ul>
+<li> multi-step process, &nbsp; each processor handles one step
+</li><li> run in parallel and pipeline result from one to another
+</li></ul>
+</li><li> <font color="#0000BB">partition parallelism</font>
+<ul>
+<li> many processors running in parallel
+</li><li> each performs same task on a subset of the data
+</li><li> results from processors need to be merged
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [48/63]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Storage in PDBs </div></td><td align="right"></td></tr></tbody></table>
+<p>
+Assume that each table/relation consists of pages in a file
+</p><p>
+Can distribute data across multiple storage devices
+</p><ul>
+<li> duplicate all pages from a relation &nbsp;<small>(replication)</small>
+</li><li> store some pages on one store, some on others &nbsp;<small>(partitioning)</small>
+</li></ul>
+Replication example:
+<p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/replication.png]" src="./lec16_files/replication.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [49/63]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Storage in PDBs  <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data-partitioning example:
+<br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/data-partition.png]" src="./lec16_files/data-partition.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [50/63]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s52"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Storage in PDBs  <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+A table is a collection of <font color="#0000BB">pages</font> <small>(aka blocks)</small>.
+</p><p>
+Page addressing on single processor/disk: <i>(Table, File, Page)</i>
+</p><ul>
+<li> <i>Table</i> maps to a set of files <small>(e.g. named by tableID)</small>
+</li><li> <i>File</i> distinguishes primary/overflow files
+</li><li> <i>PageNum</i> maps to an offset in a specific file
+</li></ul>
+If multiple nodes, then addressing depends how data distributed 
+<ul>
+<li> partitioned: <i>(Node, Table, File, Page)</i>
+</li><li> replicated: <i>({Nodes}, Table, File, Page)</i>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [51/63]</div> <div class="slideCl1    " id="s52">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s51"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s53"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Storage in PDBs  <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Assume that partitioning is based on one attribute
+</p><p>
+Data-partitioning strategies for one table on <i>n</i> nodes:
+</p><ul>
+<li> <font color="#0000BB">round-robin</font>, &nbsp; <font color="#0000BB">hash-based</font>, &nbsp; <font color="#0000BB">range-based</font>
+</li></ul>
+<br>
+<font color="#0000BB">Round-robin</font> partitioning
+<ul>
+<li> cycle through nodes, new tuple added on "next" node
+</li><li> e.g. <i>i</i> <sup>th</sup> tuple is placed on (<i>i</i> mod <i>n</i>)<sup>th</sup> node
+</li><li> balances load on nodes; &nbsp; no help for querying
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [52/63]</div> <div class="slideCl1    " id="s53">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s52"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s54"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Data Storage in PDBs  <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Hash</font> partitioning
+</p><ul>
+<li> use hash value to determine which node and page
+</li><li> e.g. <i>i = hash(tuple)</i> so tuple is placed on <i>i</i> <sup>th</sup> node
+</li><li> helpful for equality-based queries on hashing attribute
+</li></ul>
+<font color="#0000BB">Range</font> partitioning
+<ul>
+<li> ranges of attr values are assigned to processors
+</li><li> e.g. values 1-10 on node<sub>0</sub>, &nbsp;11-20 on node<sub>1</sub>, ..., &nbsp;99-100 node<sub>n-1</sub>
+</li><li> potentially helpful for range-based queries
+</li></ul>
+In both cases, data skew may lead to unbalanced load
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [53/63]</div> <div class="slideCl1    " id="s54">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s53"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s55"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallelism in DB Operations</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Different types of parallelism in DBMS operations
+</p><ul>
+<li> intra-operator parallelism
+<ul>
+<li> get all machines working to compute a given operation<br>
+	(scan, sort, join)
+</li></ul>
+</li><li> inter-operator parallelism
+<ul>
+<li> each operator runs concurrently on a different processor <br>
+	(exploits pipelining) 
+</li></ul>
+</li><li> Inter-query parallelism
+<ul>
+<li> different queries run on different processors
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [54/63]</div> <div class="slideCl1    " id="s55">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s54"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s56"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallelism in DB Operations <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Parallel scanning
+</p><ul>
+<li> scan partitions in parallel and merge results
+</li><li> maybe ignore some partitions 
+	<tiny>(e.g. range and hash partitioning)</tiny>
+</li><li> can build indexes on each partition
+</li></ul>
+Effectiveness depends on query type vs partitioning type
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/select-partition.png]" src="./lec16_files/select-partition.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [55/63]</div> <div class="slideCl1    " id="s56">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s55"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s57"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallelism in DB Operations <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Parallel sorting
+</p><ul>
+<li> scan in parallel, range-partition during scan
+</li><li> pipeline into local sort on each processor
+</li><li> merge sorted partitions
+</li></ul>
+<br>
+Potential problem:
+<ul>
+<li> data skew because of unfortunate choice of partition points
+</li><li> resolve by initial data sampling to determine partitions
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [56/63]</div> <div class="slideCl1    " id="s57">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s56"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s58"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallelism in DB Operations <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Parallel sort:
+</p><p><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/parallel-sort.png]" src="./lec16_files/parallel-sort.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [57/63]</div> <div class="slideCl1    " id="s58">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s57"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s59"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallelism in DB Operations <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Parallel nested loop join
+</p><ul>
+<li> each outer tuple needs to examine each inner tuple
+</li><li> but only if it could potentially join
+</li><li> range/hash partitioning reduce partitions to consider
+</li></ul>
+<br>
+Parallel sort-merge join
+<ul>
+<li> as noted above, parallel sort gives range partitioning
+</li><li> merging partitioned tables has no parallelism <small>(but is fast)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [58/63]</div> <div class="slideCl1    " id="s59">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s58"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s60"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallelism in DB Operations <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Parallel hash join
+</p><ul>
+<li> distribute partitions to different processors
+</li><li> partition 0 of R goes to same node as partition 0 of S
+</li><li> join phase can be done in parallel on each processor
+</li><li> then results need to be merged
+</li><li> very effective for equijoin
+</li></ul>
+Fragment-and-replicate join
+<ul>
+<li> outer relation R is partitioned <small>(using any partition scheme)</small>
+</li><li> inner relation S is copied to all nodes
+</li><li> each node computes join with R partition and S
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [59/63]</div> <div class="slideCl1    " id="s60">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s59"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s61"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Parallelism in DB Operations <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Parallel hash join:
+</p><p><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/parallel/hash-join.png]" src="./lec16_files/hash-join.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [60/63]</div> <div class="slideCl1    " id="s61">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s60"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s62"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL and Parallelism</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL assumes
+</p><ul>
+<li> shared memory space accessable to all back-ends
+</li><li> files for one table are located on one disk
+</li></ul>
+PostgreSQL allows
+<ul>
+<li> data to be distributed across multiple disk devices
+</li></ul>
+So could run on ...
+<ul>
+<li> shared-memory, shared-disk architectures
+</li><li> hierarchical architectures with distributed virtual memory
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [61/63]</div> <div class="slideCl1    " id="s62">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s61"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s63"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL and Parallelism <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL can provide
+</p><ul>
+<li> multiple servers running on separate nodes
+</li><li> application #1: high availability
+<ul>
+<li> "standby" server takes over if primary server fails
+</li></ul>
+</li><li> application #2: load balancing
+<ul>
+<li> several servers can be used to provide same data
+</li><li> direct queries to least loaded server
+</li></ul>
+</li></ul>
+Both need <font color="#0000BB">data synchronisation</font> between servers
+<p>
+PostgreSQL uses notion of <font color="#0000BB">master</font> and <font color="#0000BB">slave</font> servers.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [62/63]</div> <div class="slideCl1    " id="s63">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s62"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week10-monday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ PostgreSQL and Parallelism <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+High availability ...
+<itemized>
+</itemized></p><li> updates occur on master, recorded in tx log
+</li><li> tx logs shipped/streamed from master to slave(s)
+</li><li> slave uses tx logs to maintain current state
+</li><li> configuration controls frequency of log shipping
+</li><li> bringing slave up-to-date is "fast" <small>(~1-2secs)</small>
+
+<p>
+Note: small window exists for data loss <small>(committed tx log records not sent)</small>
+</p><p>
+Load balancing ...
+</p><ul>
+<li> not provided built-in to PostgreSQL, 3rd-party tools exist
+</li></ul>
+</li></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 10 Monday Lecture ♢ [63/63]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 15 Apr 2024</span>
+ <script src="./lec16_files/prism.js"></script>   
+ <script src="./lec16_files/sg.js"></script>   
+
+
+</p></body></html>

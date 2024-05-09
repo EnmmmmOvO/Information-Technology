@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>COMP9315 22T1 Final Exam </title>
+<link rel='stylesheet' type='text/css' href='exam.css'></head>
+<body>
+<div align='center'>
+<table width='100%' border='0'>
+<tr valign='top'>
+<td align='left' width='20%'>
+  <span class='tiny'>COMP9315 22T1 Final Exam</span>
+</td>
+<td align='center' width='60%'>
+  The University of New South Wales <br>
+  <span class='heading'>COMP9315 DBMS Implementation <br>  22T1 Final Exam</span>
+</td>
+<td align='right' width='20%'>
+  <span class='tiny'>DBMS Implementation</span>
+</td>
+</table>
+</div>
+<center><a href='index.html'>[Instructions]</a> <a target='PostgreSQL' href='https://www.postgresql.org/docs/12/index.html'>[PostgreSQL]</a> <a target='C' href='c-lang/index.html'>[C]</a> <a target='Q1-3 Info' href='q1-3/index.html'>[Q1-3 Info]</a> 
+<br>
+<a href='Q01.html'>[Q1]</a> <a href='Q02.html'>[Q2]</a> <a href='Q03.html'>[Q3]</a> <a href='Q04.html'>[Q4]</a> <a href='Q05.html'>[Q5]</a> <a href='Q06.html'>[Q6]</a> <b>[Q7]</b> <a href='Q08.html'>[Q8]</a> 
+</center>
+<hr>
+<div style='margin-left:40px;margin-right:40px'>
+<h3>Question 7 <span class='tiny'>(10 marks)</span></h3>
+<p>
+Translate the SQL queries below into an efficient sequence of
+relational algebra operations.
+Use the notation for relational algebra operations from the Course Notes
+i.e.
+</p>
+<ul>
+<li><p> Selection: &nbsp; <tt>Sel[<i>Condition</i>]<i>Relation</i></tt> <p></li>
+<li><p> Projection: &nbsp; <tt>Proj[<i>AttrList</i>]<i>Relation</i></tt> <p></li>
+<li><p> Join: &nbsp; <tt><i>Rel<sub>1</sub></i> Join[<i>Condition</i>] <i>Rel<sub>2</sub></i></tt> <p></li>
+<li><p> Set Union: &nbsp; <tt><i>Rel<sub>1</sub></i> U <i>Rel<sub>2</sub></i></tt> <p></li>
+<li><p> Set Intersection: &nbsp; <tt><i>Rel<sub>1</sub></i> ^ <i>Rel<sub>2</sub></i></tt> <p></li>
+<li><p> Set Membership: &nbsp; <tt>(<i>Attr</i> in <i>RelWithOneAttr</i>)</tt> &nbsp; <small>(is used as a boolean expression)</small></p></li>
+</ul>
+<p>
+When showing complex relational algebra, write it as a sequence of
+"assignment" statements, with a single relational algebra operation
+on the right hand side, and a temporary relation to hold the result
+on the left hand side. The temporary relation can be used in subsequent
+"assignment" statements.
+</p>
+<p>
+Example: <tt>select x,y from R where z = 5;</tt>  is rendered as:
+</p>
+<pre>
+Tmp1 = Sel[z=5] R
+Res  = Proj[x,y] Tmp1
+</pre>
+<p>
+Write relational algebra operations for each of these operations
+on the tables <tt>R(a,b,c)</tt> and <tt>S(c,d)</tt> and <tt>T(d,e,f,g)</tt>
+</p>
+<ol type="a">
+<li><pre>
+select * from S where c = 5 and d = 8
+</pre></li>
+<li><pre>
+select a,d from R join S on R.c = S.c
+</pre></li>
+<li><pre>
+select *
+from   R
+where  c in (select c from S where d = 3)
+</pre></li>
+<li><pre>
+select a,f,g
+from   R join S on (R.c = S.c) join T on (S.d = T.d)
+where  R.b = 2 and S.c = 5 and T.e = 10
+</pre></li>
+</ol>
+<p>
+You do not need to worry about the sizes of tables,
+intermediate result, projected tuples, number of
+memory buffers, etc. in answering this question.
+Treat this as the initial relational algebra transformation
+stage after parsing the SQL and before query optimisation,
+and apply the common heuristics used in this phase.
+</p>
+<p>
+State all assumptions. Show all working.
+</p>
+<p><b>Instructions:</b></p>
+<ul>
+<li> Type your answer to this question into the file called <tt>q7.txt</tt>
+<li> Submit via: &nbsp; <b><tt>give cs9315 exam_q7 q7.txt</tt></b> <br>
+	or via: Webcms3 &gt; exams &gt; Final Exam &gt; Q<nobr>7</nobr> submission &gt; Make Submission
+</ul>
+
+</div>
+<center><i>End of Question</i></center>
+</body>
+</html>

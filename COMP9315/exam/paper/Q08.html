@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>COMP9315 22T1 Final Exam </title>
+<link rel='stylesheet' type='text/css' href='exam.css'></head>
+<body>
+<div align='center'>
+<table width='100%' border='0'>
+<tr valign='top'>
+<td align='left' width='20%'>
+  <span class='tiny'>COMP9315 22T1 Final Exam</span>
+</td>
+<td align='center' width='60%'>
+  The University of New South Wales <br>
+  <span class='heading'>COMP9315 DBMS Implementation <br>  22T1 Final Exam</span>
+</td>
+<td align='right' width='20%'>
+  <span class='tiny'>DBMS Implementation</span>
+</td>
+</table>
+</div>
+<center><a href='index.html'>[Instructions]</a> <a target='PostgreSQL' href='https://www.postgresql.org/docs/12/index.html'>[PostgreSQL]</a> <a target='C' href='c-lang/index.html'>[C]</a> <a target='Q1-3 Info' href='q1-3/index.html'>[Q1-3 Info]</a> 
+<br>
+<a href='Q01.html'>[Q1]</a> <a href='Q02.html'>[Q2]</a> <a href='Q03.html'>[Q3]</a> <a href='Q04.html'>[Q4]</a> <a href='Q05.html'>[Q5]</a> <a href='Q06.html'>[Q6]</a> <a href='Q07.html'>[Q7]</a> <b>[Q8]</b> 
+</center>
+<hr>
+<div style='margin-left:40px;margin-right:40px'>
+<h3>Question 8 <span class='tiny'>(6 marks)</span></h3>
+<p>
+Consider the following collection of (very unrealistically sized)
+superimposed codeword page descriptors
+and their corresponding bit-sliced version.
+Page desciptors are 10-bits long, and there are 8 pages.
+Bit-slices are 8-bits long and there are 10 of them.
+</p>
+<pre>
+Page descriptors         Bit Slices
+================         ==========
+[0] 0100010110           [0] 01010110
+[1] 1000110010           [1] 10100101
+[2] 0101010100           [2] 00010110
+[3] 1010101010           [3] 00101110
+[4] 0001111000           [4] 01011001
+[5] 1111000000           [5] 11101001
+[6] 1011000001           [6] 00011000
+[7] 0100110100           [7] 10100001
+                         [8] 11010000
+                         [9] 00000010
+</pre>
+<p>
+Given the query descriptor <tt>0100010100</tt> ...
+</p>
+<ol type="a">
+<li><p> Show how the slice of potentially matching pages is derived. <br/>
+Start from a "matching slice" containing <tt>11111111</tt>, and show
+all intermediate values of the matching slice. </p></li>
+<li><p> State which pages contain potential matches. <br/>
+Bit [0] in a slice corresponds to page [0],
+bit [1] in a slice corresponds to page [1], etc.</p></li>
+</ol>
+<p>
+State all assumptions. Show all working.
+</p>
+<p><b>Instructions:</b></p>
+<ul>
+<li> Type your answer to this question into the file called <tt>q8.txt</tt>
+<li> Submit via: &nbsp; <b><tt>give cs9315 exam_q8 q8.txt</tt></b> <br>
+	or via: Webcms3 &gt; exams &gt; Final Exam &gt; Q<nobr>8</nobr> submission &gt; Make Submission
+</ul>
+
+</div>
+<center><i>End of Question</i></center>
+</body>
+</html>

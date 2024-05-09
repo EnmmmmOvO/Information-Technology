@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0051)https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p04/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Prac Exercise 04</title>
+<link href="./P04_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./P04_files/course.css">
+</head>
+<body>
+<div class="container">
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Prac Exercise 04</span><br>
+  <span class="subheading">Adding New Data Types to PostgreSQL</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div>
+<h3>Aims</h3>
+
+<p>
+This exercise aims to get you to:
+</p>
+<ul>
+<li> explore the mechanisms provided by PostgreSQL for adding user-defined types
+</li><li> add a domain, an enumerated type, and a new base type
+</li></ul>
+<p>
+You ought to get it done before the end of week 3.
+</p>
+
+<h3>Background</h3>
+<p>
+One thing that PostgreSQL does better than many other DBMSs, is to provide
+well-defined and relatively easy-to-use mechanisms for adding new data types.
+PostgreSQL's view of data types is the standard abstract data type view;
+a type is a domain of <em>values</em> and a collection of <em>operators</em>
+on those values.
+In addition, the existence of an ordering on the values of a data type
+and operations that use the ordering allow indexes to be built on attributes
+of that type.
+PostgreSQL has several distinct kinds of types:
+</p>
+<dl class="dl-horizontal">
+<dt>base types</dt>
+ <dd>
+  defined via C functions,
+  and providing genuine new data types;
+  built-in types such as <code>integer</code>,
+  <code>date</code> and <code>varchar(<var>n</var>)</code> are base types;
+  users can also define new base types;
+ </dd>
+<br>
+<dt>domains</dt>
+ <dd>
+  data types based on
+  a constrained version of an existing data type;
+ </dd>
+<br>
+<dt>enumerated types</dt>
+ <dd>
+  defined by enumerating the values of the type;
+  values are specified as a list of strings,
+  and an ordering is defined on the values
+  based on the order they appear in the list;
+ </dd>
+<br>
+<dt>composite types</dt>
+ <dd>
+  these are essentially <em>tuple types</em>;
+  a composite type is composed of a collection of named fields,
+  where the fields can have different types;
+  a composite type is created implicitly whenever a table is defined,
+  but composite types can also be defined without the need for a table;
+ </dd>
+<br>
+<dt>polymorphic types</dt>
+ <dd>
+  define <em>classes</em> of types (e.g. <code>anyarray</code>),
+  and are used primarily in the definition of polymorphic functions;
+ </dd>
+<br>
+<dt>pseudo-types</dt>
+ <dd>
+  special types (such as <code>trigger</code>)
+  used internally by the system;
+  polymorphic types are also considered to be pseudo-types.
+ <d d="">
+</d></dd></dl>
+<p>
+In this exercise, we'll look at domains, enumerated types and base types.
+Assignment 1, which this exercise leads into, is concerned only with base
+types.
+</p>
+
+<h3>Setup</h3>
+<p>
+Re-start your PostgreSQL server on <code>vxdb</code>
+(reminder: <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p01/index.php">Prac Exercise 01</a>
+and don't forget to <code>source</code> the <code>env</code> file).
+Create an empty database called <code>p04</code>.
+</p>
+
+<h3>Exercises</h3>
+<p>
+In the first exercise, we will create a <em>domain</em> and an
+<em>enumerated type</em> for a similar purpose, and examine the
+differences. In the second exercise we will look at the process
+of creating a new <em>base type</em>.
+</p>
+
+<h3>Exercise #1</h3>
+<p>
+Consider the problem of defining a data type for the days of the
+week. We will generally want to represent the days by their names, e.g.
+</p>
+<pre>Monday  Tuesday  Wednesday  Thursday  Friday  Saturday  Sunday
+</pre>
+<p>
+We also normally want some kind of ordering to indicate the order in
+which days occur, although it is an open question (application specific)
+which day starts the week. Let's assume that, as above, we start with
+<code>Monday</code> and we will use the above ordering of day names.
+</p>
+<p>
+Create the following domains and tables in your <code>p04</code>
+database.
+</p>
+<p>
+The day names are best represented in SQL as strings, so we need a
+new type that can be represented by a set of strings. There are two
+ways to produce a type like this in PostgreSQL:
+</p>
+<pre>create domain Days1 as varchar(9)
+       check (value in ('Monday','Tuesday','Wednesday',
+                        'Thursday','Friday','Saturday','Sunday'));
+
+create type Days2 as enum
+       ('Monday','Tuesday','Wednesday',
+        'Thursday','Friday','Saturday','Sunday');
+</pre>
+<p>
+Now define a pair of tables that are identical, except that one
+uses the domain and the other uses the enumerated type:
+</p>
+<pre>create table Log1 ( name text, day Days1, starting time, ending time );
+create table Log2 ( name text, day Days2, starting time, ending time );
+</pre>
+<p>
+Populate the tables via the following two commands:
+</p>
+<pre>copy Log1 (name, day, starting, ending) from '/web/cs9315/24T1/pracs/p04/LogData';
+copy Log2 (name, day, starting, ending) from '/web/cs9315/24T1/pracs/p04/LogData';
+</pre>
+<p>
+Examine the contents of the tables via <code>select</code> statements and
+then run the following two commands:
+</p>
+<pre>select * from Log1 where name='John' order by day;
+select * from Log2 where name='John' order by day;
+</pre>
+<p>
+Explain why they are different.
+Comment on which kind of data type definition is more appropriate
+in this context.
+</p>
+
+<h3>Exercise #2</h3>
+<p>
+In order to define a new base data type, a user needs to provide:
+</p>
+<ul>
+<li> input and output functions (in C) for values of the type
+</li><li> C data structure definitions to represent type values internally
+</li><li> an SQL definition for the type, giving its length, alignment and i/o functions
+</li><li> SQL definitions for operators on the type
+</li><li> C functions to implement the operators
+</li></ul>
+<p>
+The methods for defining the various aspects of a new base type are
+given in the following sections of the PostgreSQL manual:
+</p>
+<ul>
+<li> <a target="_blank" href="https://www.postgresql.org/docs/16/xtypes.html">37.13 User-defined Types</a>
+</li><li> <a target="_blank" href="https://www.postgresql.org/docs/16/xfunc-c.html">37.10 C-Language Functions</a>
+</li><li> <a target="_blank" href="https://www.postgresql.org/docs/16/xoper.html">37.14 User-defined Operators</a>
+</li><li> <a target="_blank" href="https://www.postgresql.org/docs/16/sql-createtype.html">SQL: CREATE TYPE</a>
+</li><li> <a target="_blank" href="https://www.postgresql.org/docs/16/sql-createoperator.html">SQL: CREATE OPERATOR</a>
+</li><li> <a target="_blank" href="https://www.postgresql.org/docs/16/sql-createopclass.html">SQL: CREATE OPERATOR CLASS</a>
+</li></ul>
+<p>
+Section 37.13 uses an example of a complex number type, and you would
+be well advised to at least take a quick look at it before proceeding.
+This example is available in the directory <code>/localstorage/$USER/postgresql-15.6/src/tutorial</code>.
+You should change into that directory now.
+You will find two files relevant to the definition of the complex number
+type: <code>complex.c</code> and <code>complex.source</code>.
+The <code>complex.source</code> file is actually a template that will be
+converted to an SQL file when you run <code>make</code> in the
+<code>tutorial</code> directory.
+Run the <code>make</code> command now.
+The output should look something like ...
+</p>
+<pre><kbd is="shell">cd /localstorage/$USER/postgresql-15.6/src/tutorial</kbd>
+<kbd is="shell">make</kbd>
+rm -f advanced.sql; \
+	C=`pwd`; \
+	sed -e "s:_OBJWD_:$C:g" &lt; advanced.source &gt; advanced.sql
+rm -f basics.sql; \
+	C=`pwd`; \
+	sed -e "s:_OBJWD_:$C:g" &lt; basics.source &gt; basics.sql
+<span class="red">rm -f complex.sql; \
+	C=`pwd`; \
+	sed -e "s:_OBJWD_:$C:g" &lt; complex.source &gt; complex.sql</span>
+rm -f funcs.sql; \
+	C=`pwd`; \
+	sed -e "s:_OBJWD_:$C:g" &lt; funcs.source &gt; funcs.sql
+rm -f syscat.sql; \
+	C=`pwd`; \
+	sed -e "s:_OBJWD_:$C:g" &lt; syscat.source &gt; syscat.sql
+<span class="red">gcc -O2 -Wall <span class="comment">...lots of compiler options...</span> -c -o complex.o complex.c
+gcc -O2 -Wall <span class="comment">...lots of compiler options...</span> -o complex.so complex.o</span>
+gcc -O2 -Wall <span class="comment">...lots of compiler options...</span> -c -o funcs.o funcs.c
+gcc -O2 -Wall <span class="comment">...lots of compiler options...</span> -o funcs.so funcs.o
+</pre>
+<p>
+If <code>make</code> produces errors ... are you logged in to <code>vxdb</code>?
+... have you set your environment (<code>source /localstorage/$USER/env</code>)?
+</p>
+<p>
+The relevant lines above are the ones that mention <code>complex</code> (in red).
+Make sure that you read and understand exactly what is being done here.
+The first red command creates the <code>complex.sql</code> file from
+the <code>complex.source</code> file by filling in the appropriate directory
+name so that PostgreSQL knows where to find the libraries.
+The second and third red commands create a library file called
+<code>complex.so</code> containing all the C functions which implement
+the low-level operations on the <code>Complex</code> data type.
+</p>
+<p>
+Once you have made the complex number library, and
+while still in the <code>src/tutorial</code>
+directory, start a <code>psql</code> session on a
+<code>test</code> database
+and run the <code>complex.sql</code> file as follows:
+</p>
+<pre><kbd is="shell">createdb test</kbd>
+<kbd is="shell">psql test</kbd>
+psql (15.6)
+Type "help" for help.
+
+<kbd is="psql" db="test">\i complex.sql</kbd>
+psql:complex.sql:39: NOTICE:  type "complex" is not yet defined
+DETAIL:  Creating a shell type definition.
+CREATE FUNCTION
+psql:complex.sql:47: NOTICE:  argument type complex is only a shell
+CREATE FUNCTION
+psql:complex.sql:55: NOTICE:  return type complex is only a shell
+CREATE FUNCTION
+psql:complex.sql:63: NOTICE:  argument type complex is only a shell
+CREATE FUNCTION
+CREATE TYPE
+CREATE TABLE
+INSERT 0 1
+INSERT 0 1
+     a     |       b
+-----------+----------------
+ (1,2.5)   | (4.2,3.55)
+ (33,51.4) | (100.42,93.55)
+(2 rows)
+
+CREATE FUNCTION
+CREATE OPERATOR
+        c
+-----------------
+ (5.2,6.05)
+ (133.42,144.95)
+(2 rows)
+
+    aa     |       bb
+-----------+----------------
+ (2,3.5)   | (5.2,4.55)
+ (34,52.4) | (101.42,94.55)
+(2 rows)
+
+DROP TABLE
+psql:complex.sql:228: NOTICE:  drop cascades to 19 other objects
+DETAIL:  drop cascades to function complex_in(cstring)
+drop cascades to function complex_out(complex)
+<span class="comment">... etc etc etc ...</span>
+<span class="comment">... etc etc etc ...</span>
+<span class="comment">... etc etc etc ...</span>
+drop cascades to operator &gt;(complex,complex)
+drop cascades to function complex_abs_cmp(complex,complex)
+drop cascades to operator class complex_abs_ops for access method btree
+DROP TYPE
+<kbd is="psql" db="test"></kbd>
+</pre>
+<p>
+The <code>complex.sql</code> file sets up the <code>Complex</code> type,
+creates a table that uses the type and then runs some operations
+to check that it's working.
+After the testing, it removes the <code>Complex</code> type.
+If you want this type to remain in the <code>test</code> database, then
+you should edit <code>complex.sql</code> file and remove the following
+lines at the end of the file (or simply comment them out).
+</p>
+<pre>DROP TABLE test_complex;
+DROP TYPE complex CASCADE;
+</pre>
+<p>
+and then re-enter the <code>test</code> database and re-run the
+<code>complex.sql</code> script. This will leave you with a
+database containing a <code>Complex</code> number type and
+table containing values of that type.
+You can explore the various operations on the type.
+Note that you can also create other databases and use the new
+<code>Complex</code> number type in them.
+The <code>Complex</code> type is now included in your PostgreSQL
+server in much the same way as built-in types like <code>date</code>,
+<code>integer</code> and <code>text</code>.
+</p>
+<p>
+Once you have a feel for how the <code>Complex</code> type behaves
+from the SQL level, it's time to take a look at the code that
+implements it.
+Read the files <code>complex.sql</code> and <code>complex.c</code> in
+conjunction with the PostgreSQL manual sections mentioned above.
+Once you feel confident that you understand how it all fits
+together, perhaps you could try making some changes to the
+<code>Complex</code> type (e.g. use <code>[...]</code> rather than
+<code>(...)</code> to enclose values of type <code>complex</code>)
+and installing them.
+</p>
+<p>
+If you do plan to change the type (or implement a new type),
+I would suggest making copies of the original <code>complex.c</code>
+and <code>complex.source</code> (e.g. to <code>mytype.c</code> and
+<code>mytype.source</code>), and then editing <code>mytype.c</code>
+and <code>mytype.source</code>. You will also need to add lines
+to the <code>Makefile</code> to create <code>mytype.sql</code> and
+<code>mytype.so</code>.
+Once you've modified the code, do the following:
+</p>
+<ul>
+<li> re-run the <code>make</code> command to create <code>mytype.sql</code> and <code>mytype.so</code>
+</li><li> create a new database (or simply use the <code>test</code> database)
+</li><li> if the new type is called <code>Complex</code>, you'll need to drop the old <code>Complex</code> type first
+</li><li> load up the new data type via <code>\i mytype.sql</code> <br>
+</li><li> experiment with values of the new type
+</li></ul>
+
+<h4>End of Prac</h4>
+
+<p>
+Let me know via the forums,
+or come to a consultation
+if you have any problems with this exercise
+... <em>jas</em>
+</p>
+
+</div>
+
+</body></html>

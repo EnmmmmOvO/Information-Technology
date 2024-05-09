@@ -1,0 +1,30 @@
+
+t    Action        v  B(A)  B(B)  D(A)  D(B)  Log
+--------------------------------------------------------
+(0)  BEGIN         .    .     .     8     5   <START T>
+(1)  READ(A,v)     8    8     .     8     5
+(2)  v = v*2      16    8     .     8     5
+(3)  WRITE(A,v)   16   16     .     8     5   <T,A,8>
+(4)  READ(B,v)     5   16     5     8     5
+(5)  v = v+1       6   16     5     8     5
+(6)  WRITE(B,v)    6   16     6     8     5   <T,B,5>
+(7)  FlushLog
+(8)  StartCommit
+(9)  OUTPUT(A)     6   16     6    16     5
+(10) OUTPUT(B)     6   16     6    16     6
+(11) EndCommit                                <COMMIT T>
+(12) FlushLog
+
+
+Before (5), UNDO log looks like ...
+	<START T> <T,A,8>
+After UNDO operation, log looks like
+	<START T> <T,A,8> ... <ABORT T>
+
+Before (10), UNDO log looks like ...
+	<START T> <T,A,8> <T,B,5>
+After UNDO operation, log looks like
+	<START T> <T,A,8> <T,B,5> ... <ABORT T>
+
+After (12), UNDO log looks like ...
+	<START T> ... <T,A,8> ... <T,B,5> ... <COMMIT T>

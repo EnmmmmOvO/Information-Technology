@@ -1,0 +1,33 @@
+-- Schema:
+-- Students(sid, name, degree, ...)
+-- Courses(cid, code, term, title, ...)
+-- Enrolments(sid, cid, mark, grade)
+
+-- SQL:
+
+select s.sid, s.name, e.mark
+from   Students s join Enrolments e on s.sid = e.sid
+       join Courses c on c.cid = e.cid
+where  c.code = 'COMP9315' and c.term = '18s2' and e.mark >= 50;
+
+
+-- Relational Algebra versions
+-- Using implicit projection ...
+
+-- One possibility:
+
+Tmp1(cid) = sel[code=9315 and term=18s2]Courses
+Tmp2(sid,mark) = Tmp1 join[cid] Enrolments
+Tmp3(sid,mark) = sel[mark >= 50]Tmp2
+Res(sid,name,mark) = Tmp3 join[sid] Students
+
+
+-- Another possibility:
+
+Tmp1(sid,cid,mark,name) = Students join[sid] Enrolments
+Tmp2(sid,cid,mark,name,code,term) = Tmp1 join[cid] Courses
+Res(sid,name,mark) = sel[code=9315 and term=18s2 and mark >=50]Tmp2
+
+
+-- The second version has less steps but is likely to
+-- be way more costly

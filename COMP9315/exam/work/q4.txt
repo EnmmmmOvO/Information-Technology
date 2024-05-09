@@ -1,0 +1,22 @@
+# COMP9315 21T1 Final Exam Q4
+
+Type your answer(s) to replace the xxx's
+Submit this file as your answer for Q4
+
+
+a.
+
+xxx
+R = xxx
+
+
+b.
+
+xxx
+c = xxx
+
+
+c.
+
+xxx
+b = xxx

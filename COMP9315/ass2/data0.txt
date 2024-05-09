@@ -1,0 +1,10 @@
+1,kaleidoscope,hieroglyph,navy,hieroglyph
+2,floodlight,fork,drill,sunglasses
+3,bridge,torch,yellow,festival
+4,chief,carrot,gasp,rainbow
+5,rope,air,crystal,treadmill
+6,solid,sandpaper,sandpaper,sword
+7,surveyor,apple,leg,vampire
+8,sword,carpet,television,post
+9,surveyor,bank,spotlight,maze
+10,woman,eraser,planet,planet

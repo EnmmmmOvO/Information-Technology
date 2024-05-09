@@ -1,0 +1,1026 @@
+
+<!-- saved from url=(0080)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 09 Thursday Lecture</title>
+<link href="./lec15_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec15_files/latest.js" async=""></script>
+<script src="./lec15_files/jquery.min.js"></script><script type="text/javascript" async="" src="./lec15_files/MathJax.js"></script>
+<link href="./lec15_files/css" rel="stylesheet">
+<link href="./lec15_files/prism.css" rel="stylesheet">
+<script src="./lec15_files/sg.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 09 Thursday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s2">Transactions: the story so far</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s3">Lock-based Concurrency control</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s4">Deadlock</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s8">Exercise: Deadlock Handling</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s9">Optimistic Concurrency Control</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s17">Optimistic Concurrency Control</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s25">Multi-version Concurrency Control</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s30">Concurrency Control in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s35">Exercise: Locking in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s36">Implementing Atomicity/Durability</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s37">Atomicity/Durability</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s38">Durability</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s41">Dealing with Transactions</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s42">Architecture for Atomicity/Durability</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s43">Execution of Transactions</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s47">Transactions and Buffer Pool</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [0/49]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><ul>
+<li> Assignment 1
+<ul>
+<li> still marking people who did not get full marks
+</li><li> put raw testing output for viewing ... final mark TBD
+</li><li> will try to finalise all Ass1 marks by Sunday
+</li></ul>
+</li><li> Assignment 2
+<ul>
+<li> due at start week 10 (11:59pm Monday 15 April)
+</li><li> learn to use GDB (for the exam)
+</li></ul>
+</li><li> Help Sessions
+<ul>
+<li> Friday 12 April 11-1, &nbsp; Monday 15 April 10-12
+</li></ul>
+</li><li> MyExperience
+<ul>
+<li> open now ... please give feedback ... closes April 25
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [1/49]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Transactions: the story so far</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Transactions should obey ACID properties
+</p><p>
+<font color="#CC0000">I</font>solation can be compromised by uncontrolled concurrency
+</p><p>
+Serializable schedules avoid potential update anomalies
+<small>
+</small></p><ul><small>
+<li> less safe (more concurrent) isolation levels exist
+</li><li> read uncommitted, read committed, repeatable read
+</li></small></ul><small>
+</small>
+<p>
+Styles of concurrency control
+</p><ul>
+<li> lock-based concurrency control &nbsp; <small>(two-phase, deadlock)</small>
+</li><li> optimistic concurrency control &nbsp; <small>(try, then fix problems)</small>
+</li><li> multi-version concurrency control &nbsp; <small>(less locking needed)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [2/49]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Lock-based Concurrency control</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Synchronise access to shared data items via following rules:
+</p><ul>
+<li> before reading <i>X</i>, get read (shared) lock on <i>X</i>
+</li><li> before writing <i>X</i>, get write (exclusive) lock on <i>X</i>
+</li><li> a tx attempting to get a read lock on <i>X</i> is blocked
+	if another tx already has write lock on <i>X</i>
+</li><li> a tx attempting to get an write lock on <i>X</i> is blocked
+	if another tx has any kind of lock on <i>X</i>
+</li></ul>
+These rules alone do not guarantee serializability.
+<p>
+Need two-phase locking protocol for serializability.
+</p><p>
+Other issues with locking: starvation, deadlock
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [3/49]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deadlock</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+Deadlock occurs when two transactions are waiting
+for a lock on an item held by the other.
+</p><p>
+Example:
+</p><p></p><pre>T1: <i>L<sub>w</sub></i>(A) R(A)            <i>L<sub>w</sub></i>(B) ......
+T2:            <i>L<sub>w</sub></i>(B) R(B)       <i>L<sub>w</sub></i>(A) .....
+</pre><p>
+How to deal with deadlock?
+</p><ul>
+<li> prevent it happening in the first place
+</li><li> let it happen, detect it, recover from it
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [4/49]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deadlock <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Handling deadlock involves forcing a transaction to "back off"
+</p><ul>
+<li> select process to roll back
+<small>
+<ul>
+<li> choose on basis of how far tx has progressed, # locks held, ...
+</li></ul>
+</small>
+</li><li> roll back the selected process
+<small>
+<ul>
+<li> how far does this it need to be rolled back?
+</li><li> worst-case scenario: abort one transaction, then retry
+</li></ul>
+</small>
+</li><li> prevent starvation
+<small>
+<ul>
+<li> need methods to ensure that same tx isn't always chosen
+</li></ul>
+</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [5/49]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deadlock <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Methods for managing deadlock
+</p><ul>
+<li> <font color="#0000BB">timeout</font> : set max time limit for each tx
+</li><li> <font color="#0000BB">waits-for graph</font> : records <i>T<sub>j</sub></i> &nbsp;waiting on lock held by <i>T<sub>k</sub></i>
+<ul>
+<li> <i>prevent</i> deadlock by checking for new cycle <i>⇒</i> abort <i>T<sub>i</sub></i>
+</li><li> <i>detect</i> deadlock by periodic check for cycles <i>⇒</i> abort <i>T<sub>i</sub></i>
+</li></ul>
+</li><li> <font color="#0000BB">timestamps</font> : use tx start times as basis for priority
+<ul>
+<li> scenario: <i>T<sub>j</sub></i> &nbsp;tries to get lock held by <i>T<sub>k</sub></i> ...
+</li><li> <font color="#0000BB">wait-die</font>:
+if <i>T<sub>j</sub> &lt; T<sub>k</sub></i>, then <i>T<sub>j</sub></i> &nbsp;waits;
+&nbsp; if <i>T<sub>j</sub> &gt; T<sub>k</sub></i>, then <i>T<sub>j</sub></i> &nbsp;rolls back
+</li><li> <font color="#0000BB">wound-wait</font>:
+if <i>T<sub>j</sub> &lt; T<sub>k</sub></i>, then <i>T<sub>k</sub></i> rolls back;
+&nbsp; if <i>T<sub>j</sub> &gt; T<sub>k</sub></i> <i>T<sub>j</sub></i> waits
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [6/49]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deadlock <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Properties of deadlock handling methods:
+</p><ul>
+<li> both wait-die and wound-wait are fair
+</li><li> wait-die tends to
+<small>
+<ul>
+<li> roll back tx's that have done little work
+</li><li> but rolls back tx's more often
+</li></ul>
+</small>
+</li><li> wound-wait tends to
+<small>
+<ul>
+<li> roll back tx's that may have done significant work
+</li><li> but rolls back tx's less often
+</li></ul>
+</small>
+</li><li> timestamps easier to implement than waits-for graph
+</li><li> waits-for minimises roll backs because of deadlock
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [7/49]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Deadlock Handling</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following schedule on four transactions:
+</p><p></p><pre>T1:  R(A)      W(C)                          W(D)
+T2:       R(B)                     W(C)
+T3:                 R(D)      W(B)
+T4:                      R(E)           W(A)
+</pre><p>
+Assume that:
+</p><ul>
+<li><large><code>R</code></large> ⇒ shared lock; &nbsp;
+<large><code>W</code></large> ⇒ exclusive lock; &nbsp;
+two-phase locking is used.
+</li></ul>
+<p>
+Show how the wait-for graph for the locks evolves.
+</p><p>
+Show how any deadlocks might be resolved via this graph.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [8/49]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Locking is a pessimistic approach to concurrency control:
+</p><ul>
+<li> limit concurrency to ensure that conflicts don't occur
+</li></ul>
+Costs: lock management, deadlock handling, contention.
+<p>
+In scenarios where there are far more reads than writes ...
+</p><ul>
+<li> don't lock (allow arbitrary interleaving of operations)
+</li><li> check just before commit that no conflicts occurred
+</li><li> if problems, roll back conflicting transactions
+</li></ul>
+Optimistic concurrency control (OCC) is a strategy to realise this.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [9/49]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Under OCC, transactions have three distinct phases:
+</p><ul>
+<li> <font color="#0000BB">Reading</font>: read from database, modify local copies of data
+</li><li> <font color="#0000BB">Validation</font>: check for conflicts in updates
+</li><li> <font color="#0000BB">Writing</font>: commit local copies of data to database
+</li></ul>
+Timestamps are recorded at points <i>S, V, F</i> :
+<p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/occ-phases.png]" src="./lec15_files/occ-phases.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [10/49]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data structures needed for validation:
+</p><ul>
+<li> <i>S</i> ... set of txs that are reading data and computing results
+</li><li> <i>V</i> ... set of txs that have reached validation <small>(not yet committed)</small>
+</li><li> <i>F</i> ... set of txs that have finished <small>(committed data to storage)</small>
+</li><li> for each <i>T<sub>i</sub></i>, &nbsp;timestamps for when it reached <i>S</i>, <i>V</i>, <i>F</i>
+</li><li> <i>RS(T<sub>i</sub>)</i> set of all data items read by <i>T<sub>i</sub></i>
+</li><li> <i>WS(T<sub>i</sub>)</i> set of all data items to be written by <i>T<sub>i</sub></i>
+</li></ul>
+Use the <i>V</i> &nbsp;timestamps as ordering for transactions
+<ul>
+<li> assume serial tx order based on ordering of <i>V(T<sub>i</sub>)</i>'s
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [11/49]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Two-transaction example:
+</p><ul>
+<li> allow transactions <i>T<sub>1</sub></i> &nbsp;and <i>T<sub>2</sub></i> &nbsp;to run without any locking
+</li><li> check that objects used by <i>T<sub>2</sub></i> &nbsp;are not being changed by <i>T<sub>1</sub></i>
+</li><li> if they are, we need to roll back <i>T<sub>2</sub></i> &nbsp;and retry
+</li></ul>
+Case 0: serial execution ... no problem
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/occ0.png]" src="./lec15_files/occ0.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [12/49]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Case 1: reading overlaps validation/writing
+</p><ul>
+<li> <i>T<sub>2</sub></i> &nbsp;starts while <i>T<sub>1</sub></i> &nbsp;is validating/writing
+</li><li> if some <i>X</i> &nbsp;being read by <i>T<sub>2</sub></i> &nbsp;is in <i>WS(T<sub>1</sub>)</i>
+</li><li> then <i>T<sub>2</sub></i> &nbsp;may not have read the updated version of <i>X</i>
+</li><li> so, <i>T<sub>2</sub></i> &nbsp;must start again
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/occ1.png]" src="./lec15_files/occ1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [13/49]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Case 2: reading/validation overlaps validation/writing
+</p><ul>
+<li> <i>T<sub>2</sub></i> &nbsp;starts validating while <i>T<sub>1</sub></i> &nbsp;is validating/writing
+</li><li> if some <i>X</i> &nbsp;being written by <i>T<sub>2</sub></i> &nbsp;is in <i>WS(T<sub>1</sub>)</i>
+</li><li> then <i>T<sub>2</sub></i> &nbsp;may end up overwriting <i>T<sub>1</sub></i>'s update
+</li><li> so, <i>T<sub>2</sub></i> &nbsp;must start again
+</li></ul>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/occ2.png]" src="./lec15_files/occ2.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [14/49]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Validation check for transaction <i>T</i>
+</p><ul>
+<li> for all transactions <i>T<sub>i</sub> &nbsp;≠&nbsp; T</i>
+<ul>
+<li> if <i>T∈S &amp; T<sub>i</sub>∈F</i>, then ok
+</li><li> if <i>T∉V &amp; V(T<sub>i</sub>) &lt; S(T) &lt; F(T<sub>i</sub>)</i>, <br>
+	then check <i>WS(T<sub>i</sub>) ∩ RS(T)</i> &nbsp;is empty
+</li><li> if <i>T∈V &amp; V(T<sub>i</sub>) &lt; V(T) &lt; F(T<sub>i</sub>)</i>, <br>
+	then check <i>WS(T<sub>i</sub>) ∩ WS(T)</i> &nbsp;is empty
+</li></ul>
+</li></ul>
+If this check fails for any <i>T<sub>i</sub></i>, then <i>T</i> &nbsp;is rolled back.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [15/49]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+OCC prevents: &nbsp;
+<i>T</i> &nbsp;reading dirty data, &nbsp;
+<i>T</i> &nbsp;overwriting <i>T<sub>i</sub></i>'s &nbsp;changes
+</p><p>
+Problems with OCC:
+</p><ul>
+<li> increased roll backs**
+</li><li> tendency to roll back "complete" tx's
+</li><li> cost to maintain <i>S,V,F</i> &nbsp;sets
+</li></ul>
+** "Roll back" is relatively cheap
+<ul>
+<li> changes to data are purely local before Writing phase
+</li><li> no requirement for logging info or undo/redo <small>(see later)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [16/49]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Locking is a pessimistic approach to concurrency control:
+</p><ul>
+<li> limit concurrency to ensure that conflicts don't occur
+</li></ul>
+Costs: lock management, deadlock handling, contention.
+<p>
+In scenarios where there are far more reads than writes ...
+</p><ul>
+<li> don't lock (allow arbitrary interleaving of operations)
+</li><li> check just before commit that no conflicts occurred
+</li><li> if problems, roll back conflicting transactions
+</li></ul>
+Optimistic concurrency control (OCC) is a strategy to realise this.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [17/49]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Under OCC, transactions have three distinct phases:
+</p><ul>
+<li> <font color="#0000BB">Reading</font>: read from database, modify local copies of data
+</li><li> <font color="#0000BB">Validation</font>: check for conflicts in updates
+</li><li> <font color="#0000BB">Writing</font>: commit local copies of data to database
+</li></ul>
+Timestamps are recorded at points <i>S, V, F</i> :
+<p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/occ-phases.png]" src="./lec15_files/occ-phases.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [18/49]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Data structures needed for validation:
+</p><ul>
+<li> <i>S</i> ... set of txs that are reading data and computing results
+</li><li> <i>V</i> ... set of txs that have reached validation <small>(not yet committed)</small>
+</li><li> <i>F</i> ... set of txs that have finished <small>(committing data to storage)</small>
+</li><li> for each <i>T<sub>i</sub></i>, &nbsp;timestamps for when it reached <i>S</i>, <i>V</i>, <i>F</i>
+</li><li> <i>RS(T<sub>i</sub>)</i> set of all data items read by <i>T<sub>i</sub></i>
+</li><li> <i>WS(T<sub>i</sub>)</i> set of all data items to be written by <i>T<sub>i</sub></i>
+</li></ul>
+Use the <i>V</i> &nbsp;timestamps as ordering for transactions
+<ul>
+<li> assume serial tx order based on ordering of <i>V(T<sub>i</sub>)</i>'s
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [19/49]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Two-transaction example:
+</p><ul>
+<li> allow transactions <i>T<sub>1</sub></i> and <i>T<sub>2</sub></i> to run without any locking
+</li><li> check that objects used by <i>T<sub>2</sub></i> are not being changed by <i>T<sub>1</sub></i>
+</li><li> if they are, we need to roll back <i>T<sub>2</sub></i> and retry
+</li></ul>
+Case 0: serial execution ... no problem
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/occ0.png]" src="./lec15_files/occ0.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [20/49]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Case 1: reading overlaps validation/writing
+</p><ul>
+<li> <i>T<sub>2</sub></i> starts while <i>T<sub>1</sub></i> is validating/writing
+</li><li> if some <i>X</i> being read by <i>T<sub>2</sub></i> is in <i>WS(T<sub>1</sub>)</i>
+</li><li> then <i>T<sub>2</sub></i> may not have read the updated version of <i>X</i>
+</li><li> so, <i>T<sub>2</sub></i> must start again
+</li></ul>
+<p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/occ1.png]" src="./lec15_files/occ1.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [21/49]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Case 2: reading/validation overlaps validation/writing
+</p><ul>
+<li> <i>T<sub>2</sub></i> starts validating while <i>T<sub>1</sub></i> is validating/writing
+</li><li> if some <i>X</i> being written by <i>T<sub>2</sub></i> is in <i>WS(T<sub>1</sub>)</i>
+</li><li> then <i>T<sub>2</sub></i> may end up overwriting <i>T<sub>1</sub></i>'s update
+</li><li> so, <i>T<sub>2</sub></i> must start again
+</li></ul>
+<p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/occ2.png]" src="./lec15_files/occ2.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [22/49]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Validation check for transaction <i>T</i>
+</p><ul>
+<li> for all transactions <i>T<sub>i</sub> &nbsp;≠&nbsp; T</i>
+<ul>
+<li> if <i>T∈S &amp; T<sub>i</sub>∈F</i>, then ok
+</li><li> if <i>T∉V &amp; V(T<sub>i</sub>) &lt; S(T) &lt; F(T<sub>i</sub>)</i>, <br>
+	then check <i>WS(T<sub>i</sub>) ∩ RS(T)</i> is empty
+</li><li> if <i>T∈V &amp; V(T<sub>i</sub>) &lt; V(T) &lt; F(T<sub>i</sub>)</i>, <br>
+	then check <i>WS(T<sub>i</sub>) ∩ WS(T)</i> is empty
+</li></ul>
+</li></ul>
+If this check fails for any <i>T<sub>i</sub></i>, then <i>T</i> is rolled back.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [23/49]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Optimistic Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+OCC prevents:
+<i>T</i> reading dirty data, <i>T</i> overwriting <i>T<sub>i</sub></i>'s changes
+</p><p>
+Problems with OCC:
+</p><ul>
+<li> increased roll backs**
+</li><li> tendency to roll back "complete" tx's
+</li><li> cost to maintain <i>S,V,F</i> sets
+</li></ul>
+** "Roll back" is relatively cheap
+<ul>
+<li> changes to data are purely local before Writing phase
+</li><li> no requirement for logging info or undo/redo <small>(see later)</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [24/49]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-version Concurrency Control</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Multi-version concurrency control</font> <small>(MVCC)</small> aims to
+</p><ul>
+<li> retain benefits of locking, while getting more concurrency
+</li><li> by providing multiple (consistent) versions of data items
+</li></ul>
+Achieves this by
+<ul>
+<li> readers access an "appropriate" version of each data item
+</li><li> writers make new versions of the data items they modify
+</li></ul>
+Main difference between MVCC and standard locking:
+<ul>
+<li> read locks do not conflict with write locks <i>⇒</i>
+</li><li> reading never blocks writing, writing never blocks reading
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [25/49]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-version Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+WTS = timestamp of tx that wrote this data item 
+</p><p>
+Chained tuple versions: &nbsp; <i>tup<sub>oldest</sub> → tup<sub>older</sub> → tup<sub>newest</sub></i>
+</p><p>
+When a reader <i>T<sub>i</sub></i> &nbsp;is accessing the database
+</p><ul>
+<li> ignore any data item D created after <i>T<sub>i</sub></i> started
+<ul>
+<li> checked by: min(WTS(D)) <i>&gt;</i> TS(<i>T<sub>i</sub></i>)
+</li></ul>
+</li><li> use only newest version V accessible to <i>T<sub>i</sub></i>
+<ul>
+<li> determined by: max(WTS(V)) <i>&lt;</i> TS(<i>T<sub>i</sub></i>)
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [26/49]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-version Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+When a writer <i>T<sub>i</sub></i> &nbsp;attempts to change a data item
+</p><ul>
+<li> find newest version V satisfying WTS(V) <i>&lt;</i> TS(<i>T<sub>i</sub></i>)
+</li><li> if no later versions exist, create new version of data item
+</li><li> if there are later versions, then abort <i>T<sub>i</sub></i>
+</li></ul>
+<br>
+Some MVCC versions also maintain RTS <small>(TS of last reader)</small>
+<ul>
+<li> don't allow <i>T<sub>i</sub></i> &nbsp;to write D if RTS(D) &gt; TS(<i>T<sub>i</sub></i>)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [27/49]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-version Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Advantage of MVCC
+</p><ul>
+<li> locking needed for serializability considerably reduced 
+</li></ul>
+Disadvantages of MVCC
+<ul>
+<li> visibility-check overhead (on every tuple read/write)
+</li><li> reading an item <i>V</i> &nbsp;causes an update of <i>RTS(V)</i> &nbsp;<span class="smaller">(if used)</span>
+</li><li> storage overhead for extra versions of data items
+</li><li> overhead in removing out-of-date versions of data items
+</li></ul>
+Despite apparent disadvantages, MVCC is very effective.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [28/49]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Multi-version Concurrency Control <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Removing old versions:
+</p><ul>
+<li> <i>V<sub>j</sub></i> &nbsp;and <i>V<sub>k</sub></i> &nbsp;are versions of same item
+</li><li> <i>WTS(V<sub>j</sub>)</i> &nbsp;and <i>WTS(V<sub>k</sub>)</i> &nbsp;precede <i>TS(T<sub>i</sub>)</i> &nbsp;for all <i>T<sub>i</sub></i>
+</li><li> remove version with smaller <i>WTS(V<sub>x</sub>)</i> &nbsp;value
+</li></ul>
+When to make this check?
+<ul>
+<li> every time a new version of a data item is added?
+</li><li> periodically, with fast access to blocks of data
+</li></ul>
+PostgreSQL uses the latter (<font color="#0000BB">vacuum</font>).
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [29/49]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Concurrency Control in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL uses two styles of concurrency control:
+</p><ul>
+<li> multi-version concurrency control (MVCC) <br>
+	<small>(used in implementing SQL DML statements (e.g. <large><code>select</code></large>))</small>
+</li><li> two-phase locking (2PL) <br>
+	<small>(used in implementing SQL DDL statements (e.g. <large><code>create table</code></large>))</small>
+</li></ul>
+From the SQL (PLpgSQL) level:
+<ul>
+<li> can let the lock/MVCC system handle concurrency
+</li><li> can handle it explicitly via <large><code>LOCK</code></large> statements
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [30/49]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Concurrency Control in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL provides <font color="#0000BB">read committed</font> and <font color="#0000BB">serializable</font> isolation levels.
+</p><p>
+Using the serializable isolation level, a <large><code>select</code></large>:
+</p><ul>
+<li> sees only data committed before the transaction began
+</li><li> never sees changes made by concurrent transactions 
+</li></ul>
+Using the serializable isolation level, an update fails:
+<ul>
+<li> if it tries to modify an "active" data item <br>
+<small>(active = affected by some other tx, either committed or uncommitted)</small>
+</li></ul>
+The transaction containing the update must then rollback and re-start.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [31/49]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Concurrency Control in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Implementing MVCC in PostgreSQL requires:
+</p><ul>
+<li> a log file to maintain current status of each <i>T<sub>i</sub></i>
+</li><li> in every tuple:
+<ul>
+<li> <large><code>xmin</code></large> ID of the tx that created the tuple
+</li><li> <large><code>xmax</code></large> ID of the tx that replaced/deleted the tuple (if any)
+</li><li> <large><code>xnew</code></large> link to newer versions of tuple (if any)
+</li></ul>
+</li><li> for each transaction <i>T<sub>i</sub></i> :
+<ul>
+<li> a transaction ID (timestamp) 
+</li><li> SnapshotData: list of active tx's when <i>T<sub>i</sub></i> started
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [32/49]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Concurrency Control in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Rules for a tuple to be visible to <i>T<sub>i</sub></i> :
+</p><ul>
+<li> the <large><code>xmin</code></large> (creation transaction) value must
+<ul>
+<li> be committed in the log file
+</li><li> have started before <i>T<sub>i</sub></i>'s start time
+</li><li> not be active at <i>T<sub>i</sub></i>'s start time
+</li></ul>
+</li><li> the <large><code>xmax</code></large> (delete/replace transaction) value must
+<ul>
+<li> be blank or refer to an aborted tx, or
+</li><li> have started after <i>T<sub>i</sub></i>'s start time, or
+</li><li> have been active at SnapshotData time
+</li></ul>
+</li></ul>
+For details, see: <large><font color="#008800"><b><code>utils/time/tqual.c</code></b></font></large>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [33/49]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Concurrency Control in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Tx's always see a consistent version of the database.
+</p><p>
+But may not see the "current" version of the database.
+</p><p>
+<small>
+E.g. <i>T<sub>1</sub></i> does select, then concurrent <i>T<sub>2</sub></i> deletes some of <i>T<sub>1</sub></i>'s selected tuples
+</small>
+</p><p>
+This is OK unless tx's communicate outside the database system.
+</p><p>
+<small>
+E.g. <i>T<sub>1</sub></i> counts tuples; <i>T<sub>2</sub></i> deletes then counts; then counts are compared
+</small>
+</p><p>
+Use locks if application needs every tx to see same current version
+</p><ul>
+<li> <large><code>LOCK TABLE</code></large> locks an entire table
+</li><li> <large><code>SELECT FOR UPDATE</code></large> locks only the selected rows
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [34/49]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Locking in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How could we solve this problem via locking?
+</p><p></p><pre><small>
+create or replace function
+    allocSeat(paxID int, fltID int, seat text)
+    returns boolean
+as $$
+declare
+    pid int;
+begin
+    <font color="#0000EE">select paxID into pid from SeatingAlloc
+    where  flightID = fltID and seatNum = seat;</font>
+    if (pid is not null) then
+        return false;  <span class="comment">-- someone else already has seat</span>
+    else
+        <font color="#0000EE">update SeatingAlloc set pax = paxID
+        where  flightID = fltID and seatNum = seat;</font>
+        <font color="#CC0000">commit;</font>
+        return true;
+    end if;
+end;
+$$ langauge plpgsql;
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [35/49]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Implementing Atomicity/Durability</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [36/49]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Atomicity/Durability</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Reminder:
+</p><p>
+Transactions are <font color="#0000BB">atomic</font>
+</p><ul>
+<li> if a tx commits, all of its changes persist in DB
+</li><li> if a tx aborts, none of its changes occur in DB
+</li></ul>
+Transaction effects are <font color="#0000BB">durable</font>
+<ul>
+<li> if a tx commits, its effects persist <br>
+	<small>(even in the event of subsequent (catastrophic) <font color="#996600">system failures</font>)</small>
+</li></ul>
+<br>
+Implementation of atomicity/durability is intertwined.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [37/49]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Durability</div></td><td align="right"></td></tr></tbody></table>
+<p>
+What kinds of "system failures" do we need to deal with?
+</p><ul>
+<li> single-bit inversion during transfer mem-to-disk
+</li><li> decay of storage medium on disk (some data changed)
+</li><li> failure of entire disk device (data no longer accessible)
+</li><li> failure of DBMS processes (e.g. <large><code>postgres</code></large> crashes)
+</li><li> operating system crash; power failure to computer room
+</li><li> complete destruction of computer system running DBMS
+</li></ul>
+<p>
+<small>
+The last requires off-site <font color="#0000BB">backup</font>; all others should be locally recoverable.
+</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [38/49]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Durability <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider following scenario:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/crash.png]" src="./lec15_files/crash.png">
+</div><p>
+Desired behaviour after system restart:
+</p><ul>
+<li> all effects of T1, T2 persist
+</li><li> as if T3, T4 were aborted (no effects remain)
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [39/49]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Durability <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Durabilty begins with a <font color="#0000BB">stable disk storage subsystem</font>
+</p><ul>
+<li>i.e. <large><code>putPage()</code></large> and <large><code>getPage()</code></large> always work as expected
+</li></ul>
+<br>
+We can prevent/minimise loss/corruption of data due to:
+<ul>
+<li> mem/disk transfer corruption ⇒ parity checking
+</li><li> sector failure ⇒ mark "bad" blocks
+</li><li> disk failure ⇒ RAID (levels 4,5,6)
+</li><li> destruction of computer system ⇒ off-site backups
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [40/49]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Dealing with Transactions</div></td><td align="right"></td></tr></tbody></table>
+<p>
+The remaining "failure modes" that we need to consider:
+</p><ul>
+<li> failure of DBMS processes or operating system
+</li><li> failure of transactions (<large><code>ABORT</code></large>)
+</li></ul>
+<br>
+Standard technique for managing these:
+<ul>
+<li> keep a <font color="#0000BB">log</font> of changes made to database
+</li><li> use this log to restore state in case of failures
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [41/49]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Architecture for Atomicity/Durability</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How does a DBMS provide for atomicity/durability?
+</p><p><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/txproc/arch.png]" src="./lec15_files/arch.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [42/49]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Execution of Transactions</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Transactions deal with three address spaces:
+</p><ul>
+<li> stored data on the disk
+	&nbsp; <small>(representing global DB state)</small>
+</li><li> data in memory buffers
+	&nbsp; <small>(where held for sharing by tx's)</small>
+</li><li> data in their own local variables
+	&nbsp; <small>(where manipulated)</small>
+</li></ul>
+Each of these may hold a different "version" of a DB object.
+<p><br>
+PostgreSQL processes make heavy use of shared buffer pool
+</p><p>
+⇒ transactions do not deal with much local data.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [43/49]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Execution of Transactions <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Operations available for data transfer:
+</p><ul>
+<li> <large><code>INPUT(X)</code></large> ... read page containing <large><code>X</code></large> into a buffer
+</li><li> <large><code>READ(X,v)</code></large> ... copy value of <large><code>X</code></large> from buffer to local var <large><code>v</code></large>
+</li><li> <large><code>WRITE(X,v)</code></large> ... copy value of local var <large><code>v</code></large> to <large><code>X</code></large> in buffer
+</li><li> <large><code>OUTPUT(X)</code></large> ... write buffer containing <large><code>X</code></large> to disk
+</li></ul>
+<large><code>READ/WRITE</code></large> are issued by transaction.
+<p>
+<large><code>INPUT/OUTPUT</code></large> are issued by buffer manager <small>(and log manager).</small>
+</p><p>
+<small><large><code>INPUT/OUTPUT</code></large> correspond to <large><code>getPage()</code></large>/<large><code>putPage()</code></large> mentioned above</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [44/49]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Execution of Transactions <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example of transaction execution:
+</p><p></p><pre><span class="comment">-- implements A = A*2; B = B+1;</span>
+BEGIN
+READ(A,v); v = v*2; WRITE(A,v);
+READ(B,v); v = v+1; WRITE(B,v);
+COMMIT
+</pre><p>
+<large><code>READ</code></large> accesses the buffer manager and may cause <large><code>INPUT</code></large>.
+</p><p>
+<large><code>COMMIT</code></large> needs to ensure that buffer contents go to disk.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [45/49]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Execution of Transactions <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+States as the transaction executes:
+</p><p></p><pre><small>
+t   Action        v  Buf(A)  Buf(B)  Disk(A)  Disk(B)
+-----------------------------------------------------
+(0) BEGIN         .      .       .        8        5
+(1) READ(A,v)     8      8       .        8        5
+(2) v = v*2      16      8       .        8        5
+(3) WRITE(A,v)   16     16       .        8        5
+(4) READ(B,v)     5     16       5        8        5
+(5) v = v+1       6     16       5        8        5
+(6) WRITE(B,v)    6     16       6        8        5
+(7) OUTPUT(A)     6     16       6       16        5
+(8) OUTPUT(B)     6     16       6       16        6
+</small></pre><p>
+After tx completes, we must have either <br>
+Disk(A)=8, Disk(B)=5 &nbsp; or &nbsp; Disk(A)=16, Disk(B)=6
+</p><p>
+If system crashes before (8), may need to undo disk changes.<br>
+If system crashes after (8), may need to redo disk changes.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [46/49]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Transactions and Buffer Pool</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Two issues arise w.r.t. buffers:
+</p><ul>
+<li> <font color="#0000BB">forcing</font> ... <large><code>OUTPUT</code></large> buffer on each <large><code>WRITE</code></large>
+<ul>
+<li> ensures durability; disk always consistent with buffer pool
+</li><li> poor performance; defeats purpose of having buffer pool
+</li></ul>
+</li><li> <font color="#0000BB">stealing</font> ... replace buffers of uncommitted tx's
+<ul>
+<li> if we don't, poor throughput (tx's blocked on buffers)
+</li><li> if we do, seems to cause atomicity problems?
+</li></ul>
+</li></ul>
+Ideally, we want stealing and not forcing.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [47/49]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Transactions and Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Handling <font color="#0000BB">stealing</font>:
+</p><ul>
+<li> transaction T loads page P and makes changes
+</li><li> T<sub>2</sub> needs a buffer, and P is the "victim"
+</li><li> P is output to disk (it's dirty) and replaced
+</li><li> if T aborts, some of its changes are already "committed"
+</li><li> must log values changed by T in P at "steal-time"
+</li><li> use these to UNDO changes in case of failure of T
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [48/49]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week09-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Transactions and Buffer Pool <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Handling <font color="#0000BB">no forcing</font>:
+</p><ul>
+<li> transaction T makes changes &amp; commits, then system crashes
+</li><li> but what if modified page P has not yet been output?
+</li><li> must log values changed by T in P as soon as they change
+</li><li> use these to support REDO to restore changes
+</li></ul>
+<br>
+Above scenario may be a problem, even if we are forcing
+<ul>
+<li> e.g. system crashes immediately after requesting a <large><code>WRITE()</code></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 9 Thursday Lecture ♢ [49/49]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 11 Apr 2024</span>
+ <script src="./lec15_files/prism.js"></script>   
+ <script src="./lec15_files/sg.js"></script>   
+
+
+</p></body></html>

@@ -1,0 +1,126 @@
+---------------------------------------------------------------------------
+--
+-- pname.sql-
+--    This file contains the SQL commands to create the PersonName type
+--
+--
+-- Portions Copyright (c) 1996-2022, PostgreSQL Global Development Group
+-- Portions Copyright (c) 1994, Regents of the University of California
+--
+--
+-- src/tutorial/pname.source
+--
+--    Writen By: 	Jinghan Wang
+--        Date:	    02/03/2024
+--         ZID:	    z5286124
+--     Subject:     COMP9315, Database Systems Implementation
+--     Project:     Assignment 1
+--
+---------------------------------------------------------------------------
+
+-----------------------------
+-- Creating a new type
+-----------------------------
+
+CREATE FUNCTION pname_in(cstring) RETURNS PersonName
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+
+CREATE FUNCTION pname_out(PersonName) RETURNS cstring
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+
+CREATE TYPE PersonName (
+    internallength = variable,
+    input = pname_in,
+    output = pname_out
+);
+
+-----------------------------
+-- Interfacing New Types with Indexes:
+-----------------------------
+
+-- Define the required operators
+CREATE FUNCTION pname_cmp(PersonName, PersonName) RETURNS int4
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION pname_eq(PersonName, PersonName) RETURNS bool
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION pname_ne(PersonName, PersonName) RETURNS bool
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION pname_lt(PersonName, PersonName) RETURNS bool
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION pname_le(PersonName, PersonName) RETURNS bool
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION pname_ge(PersonName, PersonName) RETURNS bool
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION pname_gt(PersonName, PersonName) RETURNS bool
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+
+CREATE OPERATOR = (
+    leftarg = PersonName, rightarg = PersonName, procedure = pname_eq,
+    commutator = =, negator = <>,
+    restrict = eqsel, join = eqjoinsel
+);
+
+CREATE OPERATOR <> (
+    leftarg = PersonName, rightarg = PersonName, procedure = pname_ne,
+    commutator = <>, negator = =,
+    restrict = neqsel, join = neqjoinsel
+);
+
+CREATE OPERATOR < (
+    leftarg = PersonName, rightarg = PersonName, procedure = pname_lt,
+    commutator = >, negator = >=,
+    restrict = scalarltsel, join = scalarltjoinsel
+);
+
+CREATE OPERATOR <= (
+    leftarg = PersonName, rightarg = PersonName, procedure = pname_le,
+    commutator = >=, negator = >,
+    restrict = scalarltsel, join = scalarltjoinsel
+);
+
+CREATE OPERATOR >= (
+    leftarg = PersonName, rightarg = PersonName, procedure = pname_ge,
+    commutator = <=, negator = <,
+    restrict = scalargtsel, join = scalargtjoinsel
+);
+
+CREATE OPERATOR > (
+    leftarg = PersonName, rightarg = PersonName, procedure = pname_gt,
+    commutator = <, negator = <=,
+    restrict = scalargtsel, join = scalargtjoinsel
+);
+
+CREATE OPERATOR CLASS pname_ops
+    DEFAULT FOR TYPE PersonName USING btree AS
+        OPERATOR        1       <  (PersonName, PersonName),
+        OPERATOR        2       <= (PersonName, PersonName),
+        OPERATOR        3       =  (PersonName, PersonName),
+        OPERATOR        4       >= (PersonName, PersonName),
+        OPERATOR        5       >  (PersonName, PersonName),
+        FUNCTION        1       pname_cmp(PersonName, PersonName);
+
+-----------------------------
+-- Define the Support Functions to Get the Family and Given Names
+-----------------------------
+
+CREATE FUNCTION family(PersonName) RETURNS text
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+
+CREATE FUNCTION given(PersonName) RETURNS text
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+
+CREATE FUNCTION show(PersonName) RETURNS text
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+
+-----------------------------
+-- Interfacing New Types with Hash Indexes:
+-----------------------------
+
+CREATE FUNCTION pname_hash(PersonName) RETURNS int4
+    AS '_OBJWD_/pname' LANGUAGE C IMMUTABLE STRICT;
+
+CREATE OPERATOR CLASS pname_hash_ops
+    DEFAULT FOR TYPE PersonName USING hash AS
+        OPERATOR        1       =  (PersonName, PersonName),
+        FUNCTION        1       pname_hash(PersonName);
+

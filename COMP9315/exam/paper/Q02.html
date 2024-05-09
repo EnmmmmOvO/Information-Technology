@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>COMP9315 22T1 Final Exam </title>
+<link rel='stylesheet' type='text/css' href='exam.css'></head>
+<body>
+<div align='center'>
+<table width='100%' border='0'>
+<tr valign='top'>
+<td align='left' width='20%'>
+  <span class='tiny'>COMP9315 22T1 Final Exam</span>
+</td>
+<td align='center' width='60%'>
+  The University of New South Wales <br>
+  <span class='heading'>COMP9315 DBMS Implementation <br>  22T1 Final Exam</span>
+</td>
+<td align='right' width='20%'>
+  <span class='tiny'>DBMS Implementation</span>
+</td>
+</table>
+</div>
+<center><a href='index.html'>[Instructions]</a> <a target='PostgreSQL' href='https://www.postgresql.org/docs/12/index.html'>[PostgreSQL]</a> <a target='C' href='c-lang/index.html'>[C]</a> <a target='Q1-3 Info' href='q1-3/index.html'>[Q1-3 Info]</a> 
+<br>
+<a href='Q01.html'>[Q1]</a> <b>[Q2]</b> <a href='Q03.html'>[Q3]</a> <a href='Q04.html'>[Q4]</a> <a href='Q05.html'>[Q5]</a> <a href='Q06.html'>[Q6]</a> <a href='Q07.html'>[Q7]</a> <a href='Q08.html'>[Q8]</a> 
+</center>
+<hr>
+<div style='margin-left:40px;margin-right:40px'>
+<h3>Question 2 <span class='tiny'>(20 marks)</span></h3>
+<p>
+The <tt>q2</tt> directory contains an incomplete program <tt>q2.c</tt>.
+You must complete this program so that it finds and prints the longest
+tuple in a "no-frills" data file
+(see <a target='Q1-3 Info' href="q1-3/index.html">[Q1-3 Info]</a>
+for details on what a "no-frills" data file is).
+The name of the data file is supplied as a command-line argument, e.g.
+</p>
+<pre>
+$ <b>./q2 data/Data1</b>
+rtmeplzf,yjbjivazjj,txaqfxbctg,kbbq,mqanq
+$
+</pre>
+<p>
+If the file is an empty "no-frills" file (one page containing zero tuples)
+or is a completely empty file (zero bytes), you should print <tt>"&lt;none&gt;"</tt>.
+If the last page is longer than zero bytes but less than <tt>PAGESIZE</tt>,
+the file is not a valid "no-frills" data file, and so you should also
+print <tt>"&lt;none&gt;"</tt>.
+</p>
+<p>
+Note that <tt>q2.c</tt> already does all of the command-line argument handling,
+and opens the data file for you. By the time your code runs, <tt>fd</tt>
+should contain a valid file descriptor for reading the data file.
+Note also that while the supplied <tt>q2.c</tt> does compile, it outputs
+junk.
+</p>
+<p>
+To help you check whether your program is working correctly,
+there is a script called <tt>run_tests.sh</tt> which will run
+the program against all of the tests in the <tt>tests</tt>
+directory and report the results.
+It will also add the output from your program into the 
+<tt>tests</tt> directory; comparing your output against the
+expected output might help you to debug your code.
+You can run the testing script as:
+</p>
+<pre>
+$ <b>sh run_tests.sh</b>
+</pre>
+<p>
+Once your program is working (passes all tests), follow
+the submission instructions below.
+If your program passes some tests, then you will receive
+some marks.
+If your program does not compile, or if you simply submit
+the supplied code (even with trivial changes),
+then your "answer" is worth zero marks.
+</p>
+<p><b>Submission Instructions:</b></p>
+<ul>
+<li> Type your answer to this question into the file called <tt>q2.c</tt>
+<li> Submit via: &nbsp; <b><tt>give cs9315 exam_q2 q2.c</tt></b> <br>
+	or via: Webcms3 &gt; exams &gt; Final Exam &gt; Q<nobr>2</nobr> submission &gt; Make Submission
+</ul>
+
+</div>
+<center><i>End of Question</i></center>
+</body>
+</html>

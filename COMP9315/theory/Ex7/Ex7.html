@@ -1,0 +1,862 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 07</title>
+<link href="./Ex7_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex7_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 07</span><br>
+  <span class="subheading">Implementing Join: Nested-loop, Sort-merge, Hash</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php?view=all">[Show with all answers]</a></p></div>
+
+<ol>
+
+<br><li>
+<p>
+Does the buffer replacement policy matter for sort-merge join?
+Explain your answer.
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<p>
+The sort phase requires multiple scans of progressively more sorted versions
+of the input files.
+On each scan, we are reading a new version of the file, and so buffering
+provides no real benefit.
+This will be the same regardless of the contents of the files.
+So, for the sorting phase, no buffer replacement strategy performs better
+than any other.
+</p>
+<p>
+For the merge phase, however, the performance is affected by the contents
+of the join attributes. We assume in the comments below that we are
+joining on a single attribute from each table, but the discussion applies
+equally if the join involves multiple attributes.
+</p>
+If the "inner" table (the one whose file is scanned in the inner loop
+of the merge) contains no duplicate values in the join attribute, then
+the merge will be performed using a single scan through both files.
+In this case, the buffer replacement strategy does not matter (same
+rationale as for the sorting phase).
+<p></p>
+<p>
+On the other hand, if we merge two tables containing duplicated
+values in the join columns, then the buffer replacement strategy can
+affect the performance.  In this case, we may need to visit pages
+of the inner relation several times if there are multiple occurrences
+of a given join value in the outer relation and if the matching tuples
+in the inner relation are held on separate pages. Under this scenario,
+we would not want to replace recently used pages, since they may need
+to be used again soon, and so an LRU replacement strategy would most
+likely perform better than an MRU replacement strategy.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Suppose that the relation <i>R</i> (with 150 pages) consists of one
+attribute <i>a</i> and <i>S</i> (with 90 pages) also consists of one
+attribute <i>a</i>. Determine the optimal join method for processing
+the following query:
+</p>
+<pre>select * from R, S where R.a &gt; S.a
+</pre>
+<p>
+Assume there are 10 buffer pages available to process the query and
+there are no indexes available. Assume also that the DBMS only has
+available the following join methods: nested-loop, block nested loop
+and sort-merge. Determine the number of page I/Os required by each
+method to work out which is the cheapest.
+</p>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<dl>
+<p></p><dt>Simple Nested Loops:
+</dt><dd>
+We use relation <i>S</i> as the outer loop. Total Cost = 90 + (90×150) = 13590
+</dd>
+<p></p><dt>Block Nested Loops:</dt>
+<dd>
+If <i>R</i> is outer: Total Cost = 150 + (90×ceil(150/(10-2))) = 1860<br>
+If <i>S</i> is outer: Total Cost = 90 + (150×ceil(90/(10-2))) = 1890
+</dd>
+<p></p><dt>Sort-Merge:</dt>
+<dd>
+Denote B as the number of buffer pages, where B = 10;
+denote M as the number of pages in the larger relation, where M = 150.
+Since B &lt; M , the cost on sort-merge is:
+<p></p>
+<ul>
+<li> Sorting R: 2×150×(ceil(log<sub>10-1</sub>(150/10))+1) = 900
+</li><li> Sorting S: 2×90×(ceil(log<sub>10-1</sub>(90/10))+1) = 360
+</li><li> Merge: 150 + 90 = 240 <br>
+	<small>(This is the best case when only the maximum value in R.a
+	is greater than the minimum value in S.a, otherwise, the worst case
+	incurs 90+90*150 page I/Os)</small>
+</li></ul>
+<p>
+Total Cost (best case) = 900 + 360 + 240 = 1500  &nbsp; <small>(very unlikely)</small><br>
+Total Cost (worst case)  = 900 + 360 + 13590 = 14850
+</p>
+</dd></dl>
+<p>
+Therefore, the optimal way to process the query is Block Nested Loop join.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<small>[Ramakrishnan, exercise 12.4]</small>
+Consider the join <i>Join<small>[R.a=S.b]</small>(R,S)</i>
+and the following information about the relations to be joined:
+<p></p><ul>
+<li> Relation <i>R</i> contains 10,000 tuples and has 10 tuples per page
+</li><li> Relation <i>S</i> contains 2,000 tuples and also has 10 tuples per page
+</li><li> Attribute <i>b</i> of relation <i>S</i> is the primary key for <i>S</i>
+</li><li> Both of the relations are stored as simple heap files
+</li><li> Neither relation has any indexes built on it
+</li><li> There are 52 buffer pages available
+</li></ul><p>
+Unless otherwise noted, compute all costs as number of page I/Os,
+except that the cost of writing out the result should be uniformly
+ignored (it's the same for all methods).
+</p><p>
+</p><ol type="a">
+<li>
+<p>
+What is the cost of joining <i>R</i> and <i>S</i> using page-oriented
+simple nested loops join?
+What is the minimum number of buffer pages required for this cost to
+remain unchanged?
+</p>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<p>
+The basic idea of nested-loop join is to do a page-by-page scan of the outer
+relation, and, for each outer page, do a page-by-page scan of the inner relation.
+</p>
+<p>
+The cost for joining <i>R</i> and <i>S</i> is minimised when
+the smaller relation <i>S</i> is used as the outer relation.
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + b<sub>S</sub> * b<sub>R</sub></i>
+&nbsp; = &nbsp;
+200 + 200 * 1000
+&nbsp; = &nbsp;
+200,200.
+</p>
+<p>
+In this algorithm, no use is made of multiple per-relation buffers,
+so the minimum requirement is one input buffer page for each relation
+and one output buffer page i.e. 3 buffer pages.
+</p>
+</div><p></p>
+</li><li>
+<p>
+What is the cost of joining <i>R</i> and <i>S</i> using block nested
+loops join?
+What is the minimum number of buffer pages required for this cost to
+remain unchanged?
+</p>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<p>
+The basic idea for block nested-loop join is to read the outer relation
+in <em>blocks</em> (groups of pages that will fit into whatever buffer pages
+are available),
+and, for each block, do a page-by-page scan of the inner relation.
+</p>
+<p>
+The outer relation is still scanned once, but the inner relation is
+scanned only once for each outer <em>block</em>.
+If we have <i>B</i> buffers, then the number of blocks is
+<i>ceil(b<sub>outer</sub> / (B-2))</i>.
+As above, the total cost will be minimised when the smaller relation
+is used as the outer relation.
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + ceil(b<sub>S</sub>/B-2) * b<sub>R</sub></i>
+&nbsp; = &nbsp;
+200 + ceil(200/50) * 1000
+&nbsp; = &nbsp;
+200 + 4 * 1000
+&nbsp; = &nbsp;
+4,200.
+</p>
+<p>
+If <i>B</i> is less than 52, then <i>B-2 &lt; 50</i> and the
+cost will increase (e.g. <i>ceil(200/49)=5</i>), so 52 is
+the minimum number of pages for this cost.
+</p>
+</div><p></p>
+</li><li>
+<p>
+What is the cost of joining <i>R</i> and <i>S</i> using sort-merge
+join?
+What is the minimum number of buffer pages required for this cost to
+remain unchanged?
+</p>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+The idea with sort-merge join is to sort both relations and then perform
+a single scan across each, merging into a single joined relation.
+<p></p>
+<p>
+Each relation has to first be sorted (assuming that it's not already sorted
+on the join attributes). This requires an initial pass, where chunks of the
+file of size <i>B</i> are read into memory and sorted. After this, a
+number of passes are done, where each pass does a <i>(B-1)</i>-way merge
+of the file. Each pass reads and writes the file, which requires <i>2b</i>
+block reads/writes. The total number of passes is <i>1+ceil(log<sub>B-1</sub>ceil(b/B)))</i>.
+</p>
+<p>
+Once the relations are sorted, the merge phase requires one pass
+over each relation, assuming that there are enough buffers to hold
+the longest run in either relation
+</p>
+<p> 
+Cost
+&nbsp; = &nbsp;
+<i>2b<sub>S</sub>(1+ceil(log<sub>B-1</sub>ceil(b<sub>S</sub>/B))) +
+    2b<sub>R</sub>(1+ceil(log<sub>B-1</sub>ceil(b<sub>R</sub>/B))) +
+    b<sub>S</sub> + b<sub>R</sub></i>
+<br>
+&nbsp; = &nbsp;
+2×200×(1+ceil(log<sub>51</sub>ceil(200/52))) +
+    2×1000×(1+ceil(log<sub>51</sub>ceil(1000/52))) +
+    200 + 1000
+<br>
+&nbsp; = &nbsp;
+2.200.(1+ceil(log<sub>51</sub>4)) + 2.1000.(1+ceil(log<sub>51</sub>20)) + 200 + 1000
+<br>
+&nbsp; = &nbsp;
+2.200.2 + 2.1000.2 + 200 + 1000
+&nbsp; = &nbsp;
+800 + 4000 + 200 + 1000
+&nbsp; = &nbsp;
+6,000.
+</p>
+<p>
+The critical point comes when the value of
+<i>log<sub>B-1</sub>ceil(b<sub>R</sub>/B)</i>
+exceeds 1.
+This occurs when <i>B</i> drops from 33 to 32.
+</p>
+</div><p></p>
+</li><li>
+<p>
+What is the cost of joining <i>R</i> and <i>S</i> using grace hash join?
+What is the minimum number of buffer pages required for this cost to
+remain unchanged?
+</p>
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<p>
+The basic idea with grace hash join is that we partition each relation
+and then perform the join by "matching" elements from the partitions.
+We need to assume that we have at least <i>sqrt(b<sub>R</sub>)</i>
+buffers or <i>sqrt(b<sub>S</sub>)</i> buffers and that the hash
+function gives a uniform distribution.
+Given that both <i>sqrt(200)</i> and <i>sqrt(1000)</i> are less
+than the number of buffers, the first condition is definitely
+satisfied.
+</p>
+<p> 
+Cost
+&nbsp; = &nbsp;
+<i>3.(b<sub>S</sub> + b<sub>R</sub>)</i>
+&nbsp; = &nbsp;
+3.(200 + 1000)
+&nbsp; = &nbsp;
+3,600.
+</p>
+</div><p></p>
+</li><li>
+<p>
+What would be the lowest possible I/O cost for joining <i>R</i> and
+<i>S</i> using <em>any</em> join algorithm?
+How much buffer space would be needed to achieve this cost?
+</p>
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<p>
+The minimal cost would be when each relation is read exactly once.
+We can perform such a join by storing the entire smaller relation
+in memory, reading in the larger relation page-by-page, and searching
+in the memory buffers for matching tuples for each tuple in the larger
+relation.
+The buffer pool would need to hold at least the same number of pages
+as the pages in the smaller relation, plus one input and one output
+buffer for the larger relation, giving
+</p>
+<p>
+Pages
+&nbsp; = &nbsp;
+200 + 1 + 1
+&nbsp; = &nbsp;
+202.
+</p>
+</div><p></p>
+</li><li>
+<p>
+What is the maximum number of tuples that the join of <i>R</i> and
+<i>S</i> could produce, and how many pages would be required to store
+this result?
+</p>
+<p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+<p>
+Any tuple in <i>R</i> can match at most one tuple in <i>S</i> because
+<i>S.b</i> is a primary key.
+So the maximum number of tuples in the result is equal to the number of
+tuples in <i>R</i>, which is 10,000.
+</p>
+<p> 
+The size of a tuple in the result could be as large as the size of an
+<i>R</i> tuple plus the size of an <i>S</i> tuple (minus the size of
+one copy of the join attribute).
+This size allows only 5 tuples to be stored per page, which means that
+10,000/5 &nbsp; = &nbsp; 2,000 pages are required.
+</p>
+</div><p></p>
+</li><li>
+<p>
+How would your answers to the above questions change if you are told
+that <i>R.a</i> is a foreign key that refers to <i>S.b</i>?
+</p>
+<p><small>[<a id="q9a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q9&#39;)">show answer</a>]</small></p>
+<div id="q9" style="color:#000099;display:none">
+<p>
+The foreign key constraint tells us that for every <i>R</i> tuple
+there is exactly one matching <i>S</i> tuple.
+The sort-merge and hash joins would not be affected.
+</p>
+<p>
+At first glance, it might seem that we can improve the cost of the
+nested-loop joins.
+If we make <i>R</i> the outer relation, then for each tuple of <i>R</i>
+we know that we only have to scan <i>S</i> until the single matching
+record is found, which would require scanning only 50% of <i>S</i>
+on average.
+However, this is only true on a tuple-by-tuple basis. When we read
+in an entire block of <i>R</i> records and then look for matches
+for each of them, it's quite likely that we'll scan the entire <i>S</i>
+relation for every block of <i>R</i>, and thus would find no saving.
+</p>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<small>[Ramakrishnan, exercise 12.5]</small>
+Consider the join of <i>R</i> and <i>S</i> described in the previous
+question:
+<ol type="a">
+<p></p><li>
+With 52 buffer pages, if <em>unclustered</em> B+ tree indexes existed on
+<i>R.a</i> and <i>S.b</i>,
+would either provide a cheaper alternative for performing
+the join (e.g. using index nested loop join) than a block nested loops join?
+Explain.
+<p></p>
+<p></p><ol type="i">
+<li> Would your answer change if only 5 buffer pages were available?
+</li><li> Would your answer change if <i>S</i> contained only 10 tuples
+	instead of 2,000 tuples?
+</li></ol>
+<p><small>[<a id="q10a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q10&#39;)">show answer</a>]</small></p>
+<div id="q10" style="color:#000099;display:none">
+<p>
+The idea is that we probe an index on the inner relation for each tuple
+from the outer relation.
+The cost of each probe is the cost of traversing the B-tree to a leaf
+node, plus the cost of retrieving any matching records.
+In the worst case for an unclustered index, the cost of reading data
+records could be one page read for each record.
+Assume that traversing the B-tree for the relation <i>R</i>
+takes 3 node accesses, while the cost for B-tree traversal for
+<i>S</i> is 2 node access.
+Since <i>S.b</i> is a primary key, assume that every tuple in <i>S</i>
+matches 5 tuples in <i>R</i>.
+</p><p>
+</p><p>
+If <i>R</i> is the outer relation, the cost will be the cost of
+reading <i>R</i> plus, for each tuple in <i>R</i>, the cost of
+retrieving the data
+</p><p>
+</p><p>
+Cost
+&nbsp; = &nbsp;
+b<sub>R</sub> + r<sub>R</sub> * (2 + 1)
+&nbsp; = &nbsp;
+1,000 + 10,000*3
+&nbsp; = &nbsp;
+31,000.
+</p>
+<p>
+If <i>S</i> is the outer relation, the cost will be the cost of
+reading <i>S</i> plus, for each tuple in <i>S</i>, the cost of
+retrieving the data
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+b<sub>S</sub> + r<sub>S</sub> * (3 + 5)
+&nbsp; = &nbsp;
+200 + 2,000*8
+&nbsp; = &nbsp;
+16,200
+</p>
+<p>
+Neither of these is cheaper than the block nested-loops join
+which required 4,200 page I/Os.
+</p>
+<p>
+With 5 buffer pages, the cost of index nested-loops join remains
+the same, but the cost of the block nested-loops join increases.
+The new cost for block nested-loops join now becomes
+</p><p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + b<sub>R</sub> * ceil(b<sub>S</sub>/B-2)</i>
+&nbsp; = &nbsp;
+200 + 1000 * ceil(200/3)
+&nbsp; = &nbsp;
+200 + 1000 * 67
+&nbsp; = &nbsp;
+67,200.
+</p><p>
+Now the cheapest solution is index nested-loops join.
+</p>
+If <i>S</i> contains only 10 tuples, then we need to change some of
+our initial assumptions.
+All of the tuples of <i>S</i> now fit on a single page, and it requires
+only a single I/O to access the leaf node in the index.
+Also, each tuple in <i>S</i> matches 1,000 tuples in <i>R</i>.
+<p>
+For block nested-loops join
+</p><p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + b<sub>R</sub> * ceil(b<sub>S</sub>/B-2)</i>
+&nbsp; = &nbsp;
+1 + 1000 * ceil(1/50)
+&nbsp; = &nbsp;
+1 + 1000 * 1
+&nbsp; = &nbsp;
+1,001.
+</p><p>
+For index nested-loops join, with <i>R</i> as the outer relation
+</p><p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>R</sub> + r<sub>R</sub> * (1 + 1)</i>
+&nbsp; = &nbsp;
+1000 + 10000 * 2
+&nbsp; = &nbsp;
+21,000.
+</p><p>
+For index nested-loops join, with <i>S</i> as the outer relation
+</p><p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + r<sub>S</sub> * (3 + 100)</i>
+&nbsp; = &nbsp;
+1 + 10 * (3 + 1000)
+&nbsp; = &nbsp;
+10,031.
+</p><p>
+Block nested-loops is still the best solution.
+</p>
+</div><p></p>
+<p></p></li><li>
+With 52 buffer pages, if <em>clustered</em> B+ tree indexes existed on
+<i>R.a</i> and <i>S.b</i>,
+would either provide a cheaper alternative for performing
+the join (e.g. using index nested loop join) than a block nested loops join?
+Explain.
+<p></p>
+<p></p><ol type="i">
+<li> Would your answer change if only 5 buffer pages were available?
+</li><li> Would your answer change if <i>S</i> contained only 10 tuples
+	instead of 2,000 tuples?
+</li></ol>
+<p><small>[<a id="q11a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q11&#39;)">show answer</a>]</small></p>
+<div id="q11" style="color:#000099;display:none">
+<p>
+With a clustered index, the cost of accessing data records becomes
+one page I/O for every 10 records.
+Based on this, we assume that for each type of index nested-loop join,
+that the data retrieval cost for each index probe is 1 page read.
+</p>
+<p>
+Thus, with <i>R</i> as the outer relation
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>R</sub> + r<sub>R</sub> * (2 + 1)</i>
+&nbsp; = &nbsp;
+1000 + 10000 * 3
+&nbsp; = &nbsp;
+31,000.
+</p>
+<p>
+With <i>S</i> as the outer relation
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + r<sub>S</sub> * (3 + 1)</i>
+&nbsp; = &nbsp;
+200 + 2000 * 4
+&nbsp; = &nbsp;
+8,200.
+</p>
+<p>
+Neither of these solutions is cheaper than block nested-loop join.
+</p>
+<p>
+With 5 buffer pages, the cost of index nested-loops join remains
+the same, but the cost of the block nested-loops join increases.
+The new cost for block nested-loops join now becomes
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + b<sub>R</sub> * ceil(b<sub>S</sub>/B-2)</i>
+&nbsp; = &nbsp;
+200 + 1000 * ceil(200/3)
+&nbsp; = &nbsp;
+200 + 1000 * 67
+&nbsp; = &nbsp;
+67,200.
+</p>
+<p>
+Now the cheapest solution is index nested-loops join.
+</p>
+<p>
+If <i>S</i> contains only 10 tuples, then we need to change some of
+our initial assumptions.
+All of the tuples of <i>S</i> now fit on a single page, and it requires
+only a single I/O to access the leaf node in the index.
+Also, each tuple in <i>S</i> matches 1,000 tuples in <i>R</i>.
+</p>
+<p>
+For block nested-loops join
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + b<sub>R</sub> * ceil(b<sub>S</sub>/B-2)</i>
+&nbsp; = &nbsp;
+1 + 1000 * ceil(1/50)
+&nbsp; = &nbsp;
+1 + 1000 * 1
+&nbsp; = &nbsp;
+1,001.
+</p>
+<p>
+For index nested-loops join, with <i>R</i> as the outer relation
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>R</sub> + r<sub>R</sub> * (1 + 1)</i>
+&nbsp; = &nbsp;
+1000 + 10000 * 2
+&nbsp; = &nbsp;
+21,000.
+</p>
+<p>
+For index nested-loops join, with <i>S</i> as the outer relation
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+<i>b<sub>S</sub> + r<sub>S</sub> * (3 + 100)</i>
+&nbsp; = &nbsp;
+1 + 10 * (3 + 100)
+&nbsp; = &nbsp;
+1,031.
+</p>
+<p>
+Block nested-loops is still the best solution.
+</p>
+</div><p></p>
+<p></p></li><li>
+If only 15 buffers were available, what would be the cost of sort-merge join?
+What would be the cost of hash join?
+<p></p>
+<p><small>[<a id="q12a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q12&#39;)">show answer</a>]</small></p>
+<div id="q12" style="color:#000099;display:none">
+<p>
+Sort-merge join:
+</p>
+<p>
+With 15 buffers, we can sort <i>R</i> in 3 passes and <i>S</i> in 2 passes.
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+2.b<sub>R</sub>.3 + 2.b<sub>S</sub>.2 + b<sub>R</sub> + b<sub>S</sub>
+&nbsp; = &nbsp;
+2.1000.3 + 2.200.2 + 1000 + 200
+&nbsp; = &nbsp;
+8,000.
+</p>
+<p>
+Hash join:
+</p>
+<p>
+With 15 buffer pages the first scan of <i>S</i> (the smaller relation)
+splits it into 14 partitions, each containing (on average) 15 pages.
+Unfortunately, these partitions are too large to fit into the memory
+buffers for the second pass, and so we must apply hash join again to
+all of the partitions produced in the first partitioning phase.
+Then we can fit an entire partition of <i>S</i> in memory. The total
+cost is the cost of two partitioning phases plus the cost of one matching
+phase.
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+2.(2.(b<sub>R</sub> + b<sub>S</sub>)) + (b<sub>R</sub> + b<sub>S</sub>)
+&nbsp; = &nbsp;
+2.(2.(200+1000)) + (200+1000)
+&nbsp; = &nbsp;
+6,000.
+</p>
+<p></p>
+</div><p></p>
+<p></p></li><li>
+If the size of <i>S</i> were increased to also be 10,000 tuples,
+but only 15 buffer pages were available,
+what would be the cost for sort-merge join?
+What would be the cost of hash join?
+<p></p>
+<p><small>[<a id="q13a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q13&#39;)">show answer</a>]</small></p>
+<div id="q13" style="color:#000099;display:none">
+<p>
+Sort-merge join:
+</p>
+<p>
+With 15 buffers, we can sort <i>R</i> in 3 passes and <i>S</i> in 3 passes.
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+2.b<sub>R</sub>.3 + 2.b<sub>S</sub>.2 + b<sub>R</sub> + b<sub>S</sub>
+&nbsp; = &nbsp;
+2.1000.3 + 2.1000.3 + 1000 + 1000
+&nbsp; = &nbsp;
+14,000.
+</p>
+<p>
+Hash join:
+</p>
+<p>
+Now that both relations are the same size, we can treat either of them
+as the smaller relation. Let us choose <i>S</i> as before.
+With 15 buffer pages the first scan of <i>S</i>
+splits it into 14 partitions, each containing (on average) 72 pages.
+As above, these partitions are too large to fit into the memory
+buffers for the second pass, and so we must apply hash join again to
+all of the partitions produced in the first partitioning phase.
+Then we can fit an entire partition of <i>S</i> in memory. The total
+cost is the cost of two partitioning phases plus the cost of one matching
+phase.
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+2.(2.(b<sub>R</sub> + b<sub>S</sub>)) + (b<sub>R</sub> + b<sub>S</sub>)
+&nbsp; = &nbsp;
+2.(2.(1000+1000)) + (1000+1000)
+&nbsp; = &nbsp;
+10,000.
+</p>
+</div><p></p>
+<p></p></li><li>
+If the size of <i>S</i> were increased to also be 10,000 tuples,
+and 52 buffer pages were available,
+what would be the cost for sort-merge join?
+What would be the cost of hash join?
+<p></p>
+<p><small>[<a id="q14a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q14&#39;)">show answer</a>]</small></p>
+<div id="q14" style="color:#000099;display:none">
+<p>
+Sort-merge join:
+</p>
+<p>
+With 52 buffers, we can sort both <i>R</i> and <i>S</i> in 2 passes.
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+2.b<sub>R</sub>.3 + 2.b<sub>S</sub>.2 + b<sub>R</sub> + b<sub>S</sub>
+&nbsp; = &nbsp;
+2.1000.2 + 2.1000.2 + 1000 + 1000
+&nbsp; = &nbsp;
+10,000.
+</p>
+<p>
+Hash join:
+</p>
+<p>
+Both relations are the same size, so we arbitrarily
+choose <i>S</i> as the "smaller" relation.
+With 52 buffer pages the first scan of <i>S</i>
+splits it into 51 partitions, each containing (on average) 14 pages.
+This time we do not have to deal with partition overflow, and so
+only one partitioning phase is required before the matching phase.
+</p>
+<p>
+Cost
+&nbsp; = &nbsp;
+2.(b<sub>R</sub> + b<sub>S</sub>) + (b<sub>R</sub> + b<sub>S</sub>)
+&nbsp; = &nbsp;
+2.(1000+1000) + (1000+1000)
+&nbsp; = &nbsp;
+6,000.
+</p>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>Consider performing the join:</p>
+<pre>select * from R, S where R.x = S.y</pre>
+<p>
+where we have <i>b<sub>R</sub> = 1000</i>, <i>b<sub>S</sub> = 5000</i>
+and where <i>R</i> is used as the outer relation.
+</p>
+<p>
+Compute the page I/O cost of performing this join using <em>hybrid hash join</em>:
+</p>
+<ol type="a">
+<li> <p>if we have <i>N=100</i> memory buffers available</p>
+<p><small>[<a id="q15a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q15&#39;)">show answer</a>]</small></p>
+<div id="q15" style="color:#000099;display:none">
+The first step with hybrid hash join is to determine how many partitions
+we are going to use. Recall that one partition of the outer relation
+will be memory-resident, while all other partitions will be written/read
+to/from disk. The aim is to minimise the number of partitions, so that
+we have as large a partition as possible resident in memory.
+<p></p>
+<p>
+To compute the number of partitions, choose the smallest number larger
+than <i>b<sub>R</sub>/N</i> which ensures that both the memory-resident
+partition and enough buffers for the other partitions can fit into
+memory. This means choosing a value for the number of partitions <i>k</i>
+that satisfies the following: <i>k ≈ ceil(b<sub>R</sub>/N)</i>
+and <i>ceil(b<sub>R</sub>/k)+k ≤ N</i>.
+</p>
+<p>
+For <i>N=100</i> buffers, <i>k≈ceil(b<sub>R</sub>/N)=10</i>, but
+<i>ceil(b<sub>R</sub>/k)+k=110</i>, which is more than the number
+of available buffers. If we choose <i>k=11</i>, we then have
+<i>ceil(b<sub>R</sub>/k)+k=91+11=102</i>, which is still more than
+the number of available buffers. If we choose <i>k=12</i>, we then have
+<i>ceil(b<sub>R</sub>/k)+k=84+12=96</i>, which is satisfactory. (If we
+didn't want to waste any buffers, then we could allocate the extra 4
+to the in-memory partition, but we'll ignore that for this exercise)
+</p>
+<p>
+Once <i>k</i> is determined, the cost is easy to compute
+</p>
+<p>
+Cost
+ &nbsp;=&nbsp; <i>(3-2/k) × (b<sub>R</sub>+b<sub>S</sub>)</i>
+ &nbsp;=&nbsp; <i>(3-2/12) × (1000+5000)</i>
+ &nbsp;=&nbsp; <i>17,000</i>
+</p>
+</div><p></p>
+</li><li> <p>if we have <i>N=512</i> memory buffers available</p>
+<p><small>[<a id="q16a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q16&#39;)">show answer</a>]</small></p>
+<div id="q16" style="color:#000099;display:none">
+For <i>N=512</i> buffers, <i>k≈ceil(b<sub>R</sub>/N)=2</i>, and
+<i>ceil(b<sub>R</sub>/k)+k=502</i>, which fits in the avaialable
+buffer space.
+<p></p>
+<p>
+Cost 
+ &nbsp;=&nbsp; <i>(3-2/k) × (b<sub>R</sub>+b<sub>S</sub>)</i>
+ &nbsp;=&nbsp; <i>(3-2/2) × (1000+5000)</i>
+ &nbsp;=&nbsp; <i>12,000</i>
+</p>
+</div><p></p>
+</li><li> <p>if we have <i>N=1024</i> memory buffers available</p>
+<p><small>[<a id="q17a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex07/index.php##" onclick="toggleVisible(&#39;q17&#39;)">show answer</a>]</small></p>
+<div id="q17" style="color:#000099;display:none">
+<p>
+With 1024 buffers, we can hold the whole of <i>R</i> in memory,
+so we can compute the minimum cost join using the simpler nested
+loop join method.
+In this case, the gain from using hybrid hash join is unclear.
+Nevertheless, we'll do the calculation anyway ...
+</p>
+<p>
+For <i>N=1024</i> buffers, <i>k≈ceil(b<sub>R</sub>/N)=1</i>, and
+<i>ceil(b<sub>R</sub>/k)+k=1001</i>, which fits in the avaialable
+buffer space.
+</p>
+<p>
+Cost
+ &nbsp;=&nbsp; <i>(3-2/k) × (b<sub>R</sub>+b<sub>S</sub>)</i>
+ &nbsp;=&nbsp; <i>(3-2/1) × (1000+5000)</i>
+ &nbsp;=&nbsp; <i>6,000</i>
+</p>
+<p>
+Happily, the computation confirms that hybrid hash join gives the
+minimum possible cost for this scenario.
+</p>
+</div><p></p>
+</li></ol>
+</li>
+
+</ol>
+
+
+</body></html>

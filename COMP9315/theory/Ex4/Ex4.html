@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 04</title>
+<link href="./Ex4_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex4_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 04</span><br>
+  <span class="subheading">Implementing Sorting and Projection</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php?view=all">[Show with all answers]</a></p></div>
+
+<ol>
+
+<br><li>
+<p>
+You have an unsorted heap file containing 4500 records and
+a select query is asked that requires the file to be sorted.
+The DBMS uses an external merge-sort that makes efficient
+use of the available buffer space.
+</p>
+<p>
+Assume that: records are 48-bytes long (including a 4-byte sort
+key); the page size is 512-bytes; each page has 12 bytes of
+control information in it; 4 buffer pages are available.
+</p>
+<ol type="a">
+<li>
+<p>
+How many sorted subfiles will there be after the initial pass
+of the sort algorithm? How long will each subfile be?
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<p>
+We need to first of all work out the blocking factor and then the
+number of data blocks. The available space for storing records in each
+page is 512-12=500 bytes, so each page can store up to 10 48-byte records.
+This means that 450 pages are needed to store the 4500 records.
+</p>
+<p>
+In the first pass, we read as many pages as we can into the available
+buffers, sort these page in memory, and then write them out.
+Given that 4 buffer pages are available, there will be ceil(450/4)=113
+sorted runs (sub-files) of 4 pages each, except the last run which is only
+2 pages long.
+</p>
+</div><p></p>
+</li><li>
+<p>
+How many passes (including the initial pass considered above)
+will be required to sort this file?
+</p>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<p>
+After pass 0, we have N=ceil(b/B) sorted runs, each of length B.
+Subsequent merging passes will increase the length of the sorted runs
+by B-1 times on each pass.
+The number of merging passes until the whole file is sorted is
+ceil(log<sub>B-1</sub>N).
+</p><p>
+</p><p>
+For this scenario, b=450, B=4, N=113 so #passes = 1 + ceil(log<sub>4-1</sub>113) = 6.
+</p>
+</div><p></p>
+</li><li>
+<p>
+What will be the total I/O cost for sorting this file?
+</p>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<p>
+Each pass requires us to read and write every page in the file.
+The total number of I/O operations is thus 2*b*#passes.
+The total cost for sorting this file is 2 * 450 * 6 = 5,400 I/Os.
+</p>
+</div><p></p>
+</li><li>
+<p>
+What is the largest file, in terms of the number of records,
+that you can sort with just 4 buffer pages in 2 passes?
+How would your answer change if you had 257 buffer pages?
+</p>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<p>
+We first need to work out the answer in terms of number of pages
+(b), and then convert to number of records.
+</p>
+<p>
+In pass 0, ceil(b/B) runs are produced. In pass 1, we must have enough
+buffers to enable us to merge this many runs, so B-1 must be larger or
+equal to ceil(b/B). Given B, we can determine b by "solving"
+(B-1) ≥ ceil(b/B). Re-arranging the formula (with a few simplifying
+assumptions) gives b = B*(B-1).
+</p>
+<p>
+When B is given to be 4, b = 4*(4-1) = 12. The maximum number
+of records on 12 pages is 12*10=120.
+</p>
+<p>
+When B is given as 257, b= 257*256 = 65792, with 65792*10=657920 records.
+</p>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+For each of these scenarios:
+</p>
+<ol type="i">
+<li> a file with 10,000 pages and 3 available buffer pages.
+</li><li> a file with 20,000 pages and 5 available buffer pages.
+</li><li> a file with 2,000,000 pages and 17 available buffer pages.
+</li></ol>
+<p>
+answer the following questions assuming that external merge-sort is used
+to sort each of the files:
+</p>
+<ol type="a">
+<li> <p>How many runs will you produce on the first pass?</p>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<p>
+In the first pass (Pass 0), N=ceil(b/B) sorted runs,
+each B pages long, are produced
+(b is the number of file pages and
+B is the number of available buffer pages).
+</p>
+<ol type="i">
+<li> ceil(10,000/3) = 3334 sorted runs</li>
+<li> ceil(20,000/5) = 4000 sorted runs</li>
+<li> ceil(2,000,000/17) = 117648 sorted runs</li>
+</ol>
+</div><p></p>
+</li><li> <p>How many passes will it take to sort the file completely?</p>
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<p>
+The number of passes required to sort the file completely, including
+the initial sorting pass, is 1+ceil(log<sub>B-1</sub>N), where N=ceil(b/B)
+is the number of runs produced from pass 0:
+</p>
+<ol type="i">
+<li> 1+ceil(log<sub>3-1</sub>(3334))&nbsp; = 13 passes</li>
+<li> 1+ceil(log<sub>5-1</sub>(4000)) = 7 passes</li>
+<li> 1+ceil(log<sub>17-1</sub>(117648)) = 6 passes</li>
+</ol>
+</div><p></p>
+</li><li> <p>What is the total I/O cost for sorting the file? (measured in #pages read/written)</p>
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<p>
+Since each page is read and written once per pass, the total number
+of pages I/Os for sorting the file is 2 * b * #passes:
+</p>
+<ol type="i">
+<li> 2 * 10,000 * 13 = 26 * 10<sup>4</sup></li>
+<li> 2 * 20,000 * 7 = 28 * 10<sup>4</sup></li>
+<li> 2 * 2,000,000 * 6 = 24 * 10<sup>6</sup></li>
+</ol>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+Consider processing the following SQL projection query:
+</p>
+<pre>	select distinct course from Students;
+</pre>
+<p>
+where there are only 10 distinct values (0..9) for <tt>Student.course</tt>,
+and student enrolments are distributed over the courses as follows:
+</p>
+<center>
+<table border="1" cellpadding="5">
+<tbody><tr><th>cid</th> <th>course</th> <th>#students</th>
+<th>cid</th> <th>course</th> <th>#students</th>
+</tr><tr>
+<td>0</td> <td>BSc</td> <td>5,000</td>
+<td>1</td> <td>BA</td> <td>4,000</td>
+</tr>
+<tr>
+<td>2</td> <td>BE</td> <td>5,000</td>
+<td>3</td> <td>BCom</td> <td>3,000</td>
+</tr>
+<tr>
+<td>4</td> <td>BAppSc</td> <td>2,000</td>
+<td>5</td> <td>LLB</td> <td>1,000</td>
+</tr>
+<tr>
+<td>6</td> <td>MA</td> <td>1,000</td>
+<td>7</td> <td>MSc</td> <td>1,000</td>
+</tr>
+<tr>
+<td>8</td> <td>MEng</td> <td>2,000</td>
+<td>9</td> <td>PhD</td> <td>1,000</td>
+</tr>
+</tbody></table>
+</center>
+<p>
+Show the flow of records among the pages (buffers and files)
+when a hash-based implementation of projection is used
+to eliminate duplicates in this relation.
+</p><p>
+Assume that:
+</p><ul>
+<li> each page (data file page or in-memory buffer) can hold 1000 records
+</li><li> the partitioning phase uses 1 input buffer, 3 output buffers and
+	the hash function <code>(x mod 3)</code>
+</li><li> the duplicate elimination phase uses 1 input buffer, 4 output buffers
+	and the hash function <code>(x mod 4)</code>
+</li></ul>
+<p></p>
+<p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+<p>
+In the partition phase, there are 3 partitions produced (because of
+the mod 3 hash function). The first contains records with <tt>course</tt>
+from the set 0,3,6,9; the second contains records with <tt>course</tt>
+from 1,4,7; the third partition contains records with <tt>course</tt> 2,5,8.
+</p><p>The following diagram shows the partitioning phase:
+</p>
+<center>
+<img src="./Ex4_files/phase1.png">
+</center>
+<p>
+From the record counts, we can compute that the first partition contains
+5,000+3,000+1,000+1,000 = 10,000 records. Given that that there are 1000
+records per page, this makes 10 pages. The second partition contains
+4,000+2,000+1,000 records, giving 7 pages. The third partition contains
+5,000+1,000+2,000 records, giving 8 pages.
+</p>
+<p>
+In the elimination phase, there are three stages, one to deal with each
+of the partitions.
+</p>
+<p>
+In the first stage, we read back all of the 0,3,6,9 records and apply
+the mod 4 hash function. The first record with key=0 goes into buffer 0,
+and all other key=0 records are eliminated when they see the first one.
+The first record with key=3 goes into buffer 3, and all other key=3 records
+are eliminated when they see the first one. The first record with key=6
+goes into buffer 2, and all other key=6 records are eliminated when they
+see the first one. The first record with key=9 goes into buffer 1, and
+all other key=9 records are eliminated when they see the first one. At
+the end of this stage, we can scan through the buffers and extract four
+distinct output records.
+</p>
+<p>
+The following diagram shows the elimination phase for this first partition:
+</p>
+<center>
+<img src="./Ex4_files/phase2.png">
+</center>
+<p>
+The second stage proceeds similarly, with key=1 records hashing to buffer
+1, key=4 records hashing to buffer 0 and key=7 records hashing to buffer
+3. Buffer 2 is unused.
+</p>
+<p>
+The third stage proceeds similarly, with key=2 records hashing to buffer
+2, key=5 records hashing to buffer 1 and key=8 records hashing to buffer
+0. Buffer 3 is unused.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider processing the following SQL projection query:
+</p>
+<pre>select distinct title,name from Staff;
+</pre>
+<p>
+You are given the following information:
+</p>
+<ul>
+<li>
+the relation <tt>Staff</tt> has attributes
+<tt>id</tt>, <tt>name</tt>, <tt>title</tt>, <tt>dept</tt>, <tt>address</tt>
+</li><li>
+except for <tt>id</tt>, all are string fields of the same length
+</li><li>
+the <tt>id</tt> attribute is the primary key
+</li><li>
+the relation contains 10,000 pages
+</li><li>
+there are 10 records per page
+</li><li>
+there are 10 memory buffer pages available for sorting
+</li></ul>
+<p>
+Consider an optimised version of the sorting-based projection algorithm:
+The initial sorting pass reads the input and creates sorted runs of tuples
+containing only the attributes <tt>name</tt> and <tt>title</tt>.
+Subsequent merging passes eliminate duplicates while merging the initial
+runs to obtain a single sorted result (as opposed to doing a separate
+pass to eliminate duplicates from a sorted result).
+</p>
+<ol type="a">
+<li>
+<p>
+How many sorted runs are produced on the first pass?  What is the average
+length of these runs?
+</p>
+<p><small>[<a id="q9a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q9&#39;)">show answer</a>]</small></p>
+<div id="q9" style="color:#000099;display:none">
+<p>
+In the first pass, two things happen: the two relevant fields are
+projected out of each record, and the resulting records are sorted in groups
+and written to an output file. Since all fields are the same size, extracting
+two fields gives records that are half as big as the original records.
+This means that the result file will have half as many pages as the original
+file (i.e. 5,000 pages). Since there are B=10 memory buffers, these 5,000
+pages can be sorted into groups of 10-pages each. The first pass thus produces
+N=ceil(b/B)=500 runs of 10 pages each.
+</p>
+</div><p></p>
+</li><li>
+<p>
+How many additional passes will be required to compute the final result
+of the projection query? What is the I/O cost of these additional passes?
+</p>
+<p><small>[<a id="q10a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q10&#39;)">show answer</a>]</small></p>
+<div id="q10" style="color:#000099;display:none">
+<p>
+After the first pass produces sorted groups of 10-pages in length,
+the remaining passes sort the file and then do a scan to remove duplicates.
+The number of passes for the sorting is ceil(log<sub>B-1</sub>N)=3, and
+on each of these passes the complete file (5,000 pages) is read and written
+(i.e. 2*5000=10,000 page I/Os). Since duplicates can be easily eliminated
+in the final merging phase of the sort, we do not require an additional
+duplicate-elimination pass (as described in the lecture notes).
+Thus, the process requires a total of 3*2*5000=30,000 I/Os.
+</p>
+</div><p></p>
+</li><li>
+<p>
+Suppose that a clustered B+ tree index on <tt>title</tt> is available.
+Is this index likely to offer a cheaper alternative to sorting?
+Would your answer change if the index were unclustered?
+</p>
+<p><small>[<a id="q11a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q11&#39;)">show answer</a>]</small></p>
+<div id="q11" style="color:#000099;display:none">
+<p>
+With a clustered B+ tree index, on <tt>title</tt>, we know that
+the file is (almost) sorted on <tt>title</tt> already. However, this won't
+help us much since there will be many occurrences of a given title value
+(e.g. Dr. Mr. Ms.) and the names associated with that title may be spread
+over many pages and completely unsorted. If the index were unclustered,
+we would get absolutely no help at all from it.
+</p>
+</div><p></p>
+</li><li>
+<p>
+Suppose that a clustered B+ tree index on <tt>name</tt> is available.
+Is this index likely to offer a cheaper alternative to sorting?
+Would your answer change if the index were unclustered?
+</p>
+<p><small>[<a id="q12a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q12&#39;)">show answer</a>]</small></p>
+<div id="q12" style="color:#000099;display:none">
+<p>
+Having a clustered index on <tt>name</tt> means that the file is sorted
+by name, and thus multiple occurrences of a name are likely to occur in
+the same data block (or, at worst, adjacent data blocks). A scan of the
+B+ tree would allow us to establish this and complete the projection with
+just one pass over the data file. If the index were unclustered, we would
+get no help from it.
+</p>
+</div><p></p>
+</li><li>
+<p>
+Suppose that a clustered B+ tree index on <tt>(name,title)</tt> is available.
+Is this index likely to offer a cheaper alternative to sorting?
+Would your answer change if the index were unclustered?
+</p>
+<p><small>[<a id="q13a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex04/index.php##" onclick="toggleVisible(&#39;q13&#39;)">show answer</a>]</small></p>
+<div id="q13" style="color:#000099;display:none">
+<p>
+Using a clustered B+ tree index on <tt>(name,title)</tt> would also
+be more cost-effective than sorting. In this case, even an unclustered
+B+ tree would be helpful, because we could use an index-only scan to extract
+the required information from the (already sorted how we want) index file.
+</p>
+</div><p></p>
+</li></ol>
+</li>
+
+</ol>
+
+
+</body></html>

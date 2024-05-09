@@ -1,0 +1,29 @@
+select *
+from   R left outer join S on (R.i = S.j)
+
+for each tuple r in R
+   nmatches = 0
+   for each page P in S {
+      for each pair of tuples r,s in P {
+         if (R.i == S.j) {
+             add (r,s) to result
+             nmatches++;
+         }
+       }
+    }
+    if (nmatches == 0)
+        add (r,null) to result
+}
+
+
+Nested Loop:
+
+works ok, with minor mods
+
+Sort Merge:
+
+works ok, with minor mods
+
+Hash Join:
+
+works ok, with minor mods

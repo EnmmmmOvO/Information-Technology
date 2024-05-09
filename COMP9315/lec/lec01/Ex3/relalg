@@ -1,0 +1,30 @@
+R(a,b,c), S(x,y)
+
+select * from R
+
+R
+a,b,c
+|R|
+
+select a,b from R
+
+Proj[a,b]R
+a,b
+<|R|
+|R|
+
+select * from R where a > 5
+
+Sel[a>5]R
+a,b,c
+?|R|
+
+
+
+select * from R join S on R.a = S.y
+
+R Join[a=y] S
+a,b,c,x,y
+?|R*S|
+
+

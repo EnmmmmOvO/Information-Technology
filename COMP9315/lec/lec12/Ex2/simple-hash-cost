@@ -1,0 +1,47 @@
+Consider executing Join[i=j](R,S) with the following parameters:
+* rR = 1000,  bR = 50,  rS = 3000,  bS = 150, c = 30
+* R.i is primary key, each R tuple joins with 2 S tuples
+* DBMS has N = 43 buffers available for the join
+* data + hash have reasonably uniform distribution
+
+Method:
+// use 1 buffer as R input
+// use 1 buffer as S input
+// use 1 buffer as output
+// use 40 buffers as hash table for R
+
+for each tuple r in relation R {
+   if (buffer[h(R.i)] is full) {
+      for each tuple s in relation S {
+         for each tuple rr in buffer[h(S.j)] {
+            if ((rr,s) satisfies join condition) {
+               add (rr,s) to result
+      }  }  }
+      clear all hash table buffers
+   }
+   insert r into buffer[h(R.i)]
+}
+
+Assumptions:
+
+uniform spread of hash values
+
+Cost:
+
+N = 43 buffers, N-3 = 40 buffers for hash table
+
+Number of hash tables built (m)
+determined by hash function => load factor,
+if L=0.75 ... e.g. hash table is 3/4 full when one bucket fills
+
+m = ceil(bR/L(N-3)) = ceil(50/30) = 2
+
+#pages
+= bR + bS * m
+= 50 + 150 * 2
+= 350
+
+
+#checks
+= rS * m*cR = 3000 * 2*20 = 120000  (cf. rS*rR = 3000*1000)
+

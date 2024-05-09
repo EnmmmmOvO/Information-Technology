@@ -1,0 +1,709 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0051)https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p06/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Prac Exercise 06</title>
+<link href="./P06_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./P06_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Prac Exercise 06</span><br>
+  <span class="subheading">PostgreSQL Buffer Pool and Query Evaluation</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p06/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p06/index.php?view=all">[Show with all answers]</a></p></div>
+
+<h3>Aims</h3>
+
+This exercise aims to get you to:
+<ul>
+<li> use the PostgreSQL query monitoring facilities
+</li><li> start thinking about how queries are executed
+</li><li> do some coarse-grained monitoring of the usage of the buffer pool
+</li><li> start thinking about analysing the behaviour of the buffer pool
+</li></ul>
+
+<h3>Background</h3>
+<p>
+PostgreSQL has a very useful mechanism for monitoring query execution.
+The <a href="https://www.postgresql.org/docs/16/sql-explain.html"><code>EXPLAIN</code></a>
+statement is an extended SQL statement that is typically run from the
+SQL prompt in <code>psql</code>.
+<code>EXPLAIN</code> can be used to provide information about any SQL query
+that you run.
+Its simplest usage is:
+</p>
+<pre><kbd is="psql" db="db">explain <var>SQL_query</var></kbd>
+</pre>
+<p>
+which prints the query execution plan that the PostgreSQL query optimiser
+has developed for the <code><var>SQL_query</var></code>.
+This plan contains estimates of the cost of query execution, including
+estimates of how many result tuples there will be, but does not actually
+run the query.
+To get <code>EXPLAIN</code> to run the query and produce execution statistics,
+you include the <code>ANALYZE</code> option:
+</p>
+<pre><kbd is="psql" db="db">explain (analyze) <var>SQL_query</var></kbd>
+</pre>
+<p>
+This prints the same information about the query execution plan as above,
+but also runs the query and displays extra statistics, such as the count
+of actual result tuples and the total execution time.
+</p>
+<p>
+The output of <code>EXPLAIN</code> can be produced in a number of different
+formats. The default format is plain <code>TEXT</code>, which is quite compact,
+but also somewhat difficult to read. An alternative format (<code>YAML</code>)
+produces output which is longer (needs scrolling) but is somewhat clearer.
+You change <code>EXPLAIN</code>'s output format using (surprise!) the
+<code>FORMAT</code> option:
+</p>
+<pre><kbd is="psql" db="db">explain (analyze, format yaml) <var>SQL_query</var></kbd>
+</pre>
+<p>
+For this lab, we are not so much interested in the query plan as we are
+in the effectiveness of the buffer pool. By default, <code>EXPLAIN</code>
+does not produce buffer pool usage statistics,
+but you can turn them on with the <code>BUFFERS</code> option:
+</p>
+<pre><kbd is="psql" db="db">explain (analyze, buffers, format yaml) <var>SQL_query</var></kbd>
+</pre>
+<p>
+This produces output with the same information as <code>ANALYZE</code>,
+but with additional output describing the usage of the buffer pool, e.g.
+</p>
+<pre>Shared Hit Blocks: 8      +
+Shared Read Blocks: 19    +
+Shared Written Blocks: 0  +
+Local Hit Blocks: 0       +
+Local Read Blocks: 0      +
+Local Written Blocks: 0   +
+Temp Read Blocks: 0       +
+Temp Written Blocks: 0    +
+</pre>
+<p>
+For this exercise, we are not going to be concerned about writing, and
+will focus on analysing buffer usage by queries.
+Also, we will not be concerned about each the local buffer pool managed
+by each query process.
+Neither will we be concerned about the amount of reading and writing
+that queries do to temporary files.
+In reality, of course, all of the above make a contribution to overall
+query cost and so are important.
+However, in assessing the effectiveness of buffering (our task in this
+lab), only the following measures are important:
+</p>
+<ul>
+<li> <code>Shared Hit Blocks</code>:
+a count of the number of requests that were answered by a page already
+in the buffer pool
+</li><li> <code>Shared Read Blocks</code>
+a count of the number of requests that were answered by reading a
+page from disk into the buffer pool
+</li></ul>
+<p>
+In a query-only environment, the sum of these two is the total number
+of page requests, since every request is answered either by returning
+a reference to a page in the pool, or by reading it into the pool and
+returning a reference to the newly loaded page.
+</p>
+
+<h3>Exercises</h3>
+<p>
+For this exercise, we'll use the university database from
+<a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/index.php">Prac P03</a>.
+If you haven't loaded it into your PostgreSQL server, do it now:
+</p>
+<pre><kbd is="shell">createdb uni</kbd>
+<kbd is="shell">psql uni -f /web/cs9315/24T1/pracs/p03/db.dump</kbd>
+</pre>
+<p>
+Now, stop and restart your server:
+</p>
+<pre><kbd is="shell">pgs stop</kbd>
+Using PostgreSQL with data directory /srvr/<var>YOU</var>/pgsql/data
+waiting for server to shut down.... done
+server stopped
+<kbd is="shell">pgs start</kbd>
+Using PostgreSQL with data directory /srvr/<var>YOU</var>/pgsql/data
+waiting for server to start..... done
+server started
+...
+<kbd is="shell">psql uni</kbd>
+psql (15.6)
+Type "help" for help.
+
+<kbd is="psql" db="uni"></kbd>
+</pre>
+<p>
+Whenever you start the server, the buffer pool is initialised
+and will be completely empty. Consider the following query, but
+do not run it yet:
+</p>
+<pre>select min(birthday) from people;
+</pre>
+<p>
+If you ran the query by mistake, stop your server and restart it,
+to ensure that the buffer pool is empty.
+</p>
+<p>
+Think about what's going to happen when this query is executed,
+recalling that every data page examined in a query must first be
+loaded into the buffer pool.
+Which pages of the <code>people</code> table will it fetch? How many
+of these will need to be read into the buffer pool?
+</p>
+<!--?showAnswer(<<<xxAAxx
+<p-->
+In order to find the minimum birthday, all of the tuples of the
+<code>people</code> relation must be examined. This means that every
+page of data for the <code>people</code> relation must be examined.
+Since none of these pages are in the buffer pool (the buffer pool
+is initially empty), every page needs to be read.
+<p></p>
+xxAAxx
+);?&gt;
+<p>
+Now, run the query using <code>EXPLAIN</code> and see whether the
+results agree with your answer above.
+</p>
+<pre><kbd is="psql" db="uni">explain (analyze, buffers, format yaml) select min(birthday) from people;</kbd>
+           QUERY PLAN
+--------------------------------
+ - Plan:                       +
+...
+     Actual Rows: 1980         +
+     Actual Loops: 1           +
+     Shared Hit Blocks: 0      +
+     Shared Read Blocks: 27    +
+     Shared Written Blocks: 0  +
+...
+(1 row)
+</pre>
+<p>
+Think about these numbers. "Actual rows" tells us that 1980 tuples
+from <code>People</code> were examined in answering this query. We
+said that this should be all of the <code>People</code> tuples. Think
+of an SQL query to check this.
+</p>
+<p>
+Note: if your hit count was 27 and your read count was zero, you
+must have asked some queries on the database already.
+Alternatively, you loaded the database and then didn't shut the
+server down and restart before asking the query.
+
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p06/##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+E.g. <code>select count(*) from people;</code>
+</div><p></p>
+<p>
+"Shared Read Blocks" tells us that 27 pages from the <code>People</code>
+table were read in answering the query, and this should be all of
+the pages in the table. Think of an SQL query to check this.
+</p>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p06/##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+E.g. <code>select relpages from pg_class where relname='people';</code>
+</div><p></p>
+<p>
+"Shared Hit Blocks" tells us that there were no buffer hits during
+our sequential scan of the table. This should make sense based on
+the fact that the buffer pool was initially empty.
+</p>
+<p>
+Now run the same query again. This time you should observe something
+like:
+</p>
+<pre><kbd is="psql" db="uni">explain (analyze,buffers,format yaml) select min(birthday) from people;</kbd>
+           QUERY PLAN
+--------------------------------
+ - Plan:                       +
+...
+     Actual Rows: 1980         +
+     Actual Loops: 1           +
+     Shared Hit Blocks: 27     +
+     Shared Read Blocks: 0     +
+     Shared Written Blocks: 0  +
+...
+(1 row)
+</pre>
+<p>
+Because the buffer pool is so large (more than 3500 pages, as we determined
+in the warm-up exercise for
+<a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/index.php">Prac P03</a>), we can
+fit the entire <code>People</code> table into the buffer pool.
+Thus any subsequent queries on <code>People</code> will find all of its
+pages already in the buffer pool.
+</p>
+<p>
+In fact, the buffer pool is large enough to hold the entire <code>uni</code>
+database.
+Think of an SQL query to compute the total number of pages in all
+of the tables in the <code>uni</code> database and compare this against the
+number of buffers (3584).
+</p>
+<!--?showAnswer(<<<xxAAxx
+<pre-->
+<span class="comment">-- this will give us each table and its #pages</span>
+select c.relname, c.relpages
+from   pg_class c join pg_namespace n on (c.relnamespace=n.oid)
+where  c.relkind = 'r' and n.nspname = 'public';
+<span class="comment">-- this will give us the total #pages</span>
+select sum(c.relpages) as totalpages
+from   pg_class c join pg_namespace n on (c.relnamespace=n.oid)
+where  c.relkind = 'r' and n.nspname = 'public';
+
+xxAAxx
+);?&gt;
+<p>
+Since there are no other processes competing for use of the shared
+buffer pool (unless you're running several <code>psql</code> sessions)
+you should observe, if you run a query repeatedly, that the second
+and later runs typically require 0 reads and have a 100% hit rate.
+</p>
+<p>
+Repeat the above process for queries on the other tables and
+check that (a) the number of pages read is consistent with the
+size of each table, (b) the buffer pool is indeed holding pages
+in memory for use with subsequent runs of the same query in the
+same invocation of the server.
+</p>
+<p>
+Now try the following query:
+</p>
+<pre><kbd is="psql" db="uni">explain (analyze,buffers,format yaml) select min(id) from people;</kbd>
+</pre>
+<p>
+The output is much longer than for the previous example, but you only
+need to worry about the first "Shared Hit Blocks" and "Shared Read Blocks".
+Try to explain the results (way less than 27 page accesses).
+Hints: look at the rest of the plan,
+and maybe also do <code>\d people</code> in <code>psql</code>.
+</p>
+<!--?showAnswer(<<<xxAAxx
+<p-->
+We asked to find the minimum value of the <code>People.id</code> attribute.
+Looking at the <code>\d</code> description of <code>People</code>, we can see
+that there is a B-tree index on this attribute. The index will contain
+all of the <code>id</code> values from the table, and the index is much more
+compact than the table. The query planner thus decides that it can more
+efficiently find the minimum value by traversing the index (to the
+leftmost index node) and so it reads in 3 pages from the index file
+(root node, first level node, leaf node containing min value).
+Since the index had not been previously accessed, the pages will not
+be in the buffer and thus need to be read in.
+<p></p>
+<p>
+Of course, a smarter solution would be for the query planner to know
+that all of the pages of the <code>People</code> table were already in
+the buffer pool (i.e. in memory) and count the tuples there. This would
+require no disk reads at all. Unfortunately(?), the query planner is
+completely separate from the buffer pool and so doesn't know this.
+</p>
+xxAAxx
+);?&gt;
+<p>
+Now consider the query:
+</p>
+<pre>select count(*) from people;
+</pre>
+<p>
+This returns a simple count of the number of tuples in the <code>People</code>
+table. Now, we know that table sizes are stored in the <code>pg_class</code>
+catalog table, so this query <var>could</var> be answered by the following
+simple query on the <code>pg_class</code> table:
+</p>
+<pre>select reltuples from pg_class where relname='people';
+</pre>
+<p>
+Use <code>EXPLAIN</code> to work out how the above <code>select count(*)</code>
+query is actually executed.
+</p>
+<!--?showAnswer(<<<xxAAxx
+<p-->
+The trace of page requests shows that it reads all of the data pages
+in the table. It does not use the <code>reltuples</code> value from the
+<code>pg_class</code> table.
+Why not? Because the <code>reltuples</code> value is only an approximation
+to the number of tuples. It is maintained for use by the query optimizer,
+which does not need an exact count of tuples. For query optimization,
+a "ball-park" figure is good enough (e.g. is it 100 or 100,000?).
+<p></p>
+<p>
+Now, why does it need to read the whole table? ...
+Because of MVCC, a PostgreSQL data page contains a mixture of current
+and deleted tuples. Deleted tuples are removed sometime after the last
+transaction that had access to them has completed (by the periodic
+vacuum process). Even while deleted tuples are still in the page, new
+transactions cannot see them because the <code>xmax</code> system attribute
+which tells them that the tuple was deleted before they started.
+</p>
+<p>
+Now, a <code>select count(*)</code> statement is a transaction and needs
+to know precisely which tuples existed when it started. The only way
+it can do this is to scan the table and check the visiblity of each
+tuple, counting only the ones with an <code>xmax</code> which is either
+null or which refers to a more recent transaction (i.e. the tuple
+was deleted by a transaction which happened after the count started).
+</p>
+xxAAxx
+);?&gt;
+<p>
+All of the above queries involved just one table. Now let's look at
+some queries involving multiple tables. Consider first the following
+query which generates a list of student ids and the marks/grades
+they scored in each course:
+</p>
+<pre><kbd is="psql" db="uni">select e.student,c.code,e.mark,e.grade</kbd>
+<kbd is="psql," db="uni">from   Courses c join Enrolments e on (c.id=e.course);</kbd>
+ student |   code   | mark | grade
+---------+----------+------+-------
+    3470 | MINE1010 |   60 | PS
+    3470 | PHYS1111 |   60 | PS
+    3470 | ARTS1090 |   63 | PS
+    3470 | SOMA1651 |   60 | PS
+    3472 | FINS2624 |   85 | HD
+    3472 | CRIM2020 |   78 | DN
+    3472 | SAHT2214 |   82 | DN
+    3472 | CVEN2301 |   88 | HD
+    3474 | SOCW3001 |   45 | FL
+    3474 | WOMS3005 |   54 | PS
+    3474 | AVEN3430 |   43 | FL
+<span class="comment">etc. etc. etc. (3506 rows)</span>
+</pre>
+<p>
+If you run this query, you may see the tuples in a different order
+to the above, but you will (if you can be bothered scrolling through
+them) see 3506 tuples, which would include the ones above.
+</p>
+<p>
+Note that if you don't run the above query, then you'll get differerent
+results from the <tt>EXPLAIN</tt> example just below. Why?
+</p>
+<!--?showAnswer(<<<xxAAxx
+<p-->
+When you run the above query, it loads the pages from <tt>Courses</tt>
+and <tt>Enrolments</tt> into the buffer pool.
+When the subsequent <tt>EXPLAIN</tt> query runs, the pages are loaded.
+If you don't run the above query, the <tt>EXPLAIN</tt>ed query will
+need to load all of the pages while it's doing the join.
+<p></p>
+xxAAxx
+);
+?&gt;
+<p>
+If you use <code>EXPLAIN</code> to examine the execution costs of this
+query, you will see out that includes the following (where I have
+used <code>TEXT</code> format and greatly simplied the output for clarity):
+</p>
+<pre><kbd is="psql" db="uni">explain (analyze,buffers)</kbd>
+<kbd is="psql," db="uni">select e.student,c.code,e.mark,e.grade</kbd>
+<kbd is="psql," db="uni">from   Courses c join Enrolments e on (c.id=e.course);</kbd>
+
+                               QUERY PLAN
+---------------------------------------------------------------------
+ Hash Join (e.course = c.id)
+   Buffers: shared hit=29
+   -&gt;  Seq Scan on enrolments e
+         Buffers: shared hit=19
+   -&gt;  Hash
+         Buckets: 1024  Batches: 1  Memory Usage: 39kB
+         Buffers: shared hit=9
+         -&gt;  Seq Scan on courses c
+               Buffers: shared hit=9
+...
+</pre>
+<p>
+What this effectively shows us is the relational algebra expression
+that the PostgreSQL engine uses to solve the query, which is simply:
+</p>
+<pre><var>Proj[student,code,mark,grade](Enrolments Join[course=id] Courses)</var>
+</pre>
+<p>
+However, since it is a query execution <i>plan</i>, it includes additional
+information on how the operations such as <var>join</var> should be carried out.
+Also, it does not include details of the final <var>projection</var> operation.
+This could be displayed as a "query expression tree" as follows:
+</p>
+<center> <img src="./P06_files/qtree1.png"> </center>
+<p>
+Hash join is a join algorithm that 
+requires at least one of the relations being joined to be in a hash
+table. The first step in the above query plan is to make a hashed copy
+of the <code>Courses</code> table, which requires a complete scan of this
+table. The hash join then performs a scan of the <code>Enrolment</code>
+table and uses the hashed version of <code>Courses</code> in order to
+carry out the join operation efficiently.
+</p>
+<p>
+More importantly for our purposes in this Prac Exercise are the
+requests on the buffer pool.
+You can see that the sequential scan on <code>Courses</code> visits
+all 9 pages from that table, and finds all of them already in the
+buffer pool. (Note that in <code>TEXT</code> format, <code>EXPLAIN</code>
+only reports the non-zero counts for the buffer pool).
+Similarly, the sequential scan on <code>Enrolments</code> visits all
+19 pages of that table.
+The 28 pages reported for the hash join is simply a sum of the
+counts for the sequential scans.
+Since there is no mention of buffer activity for the hash table,
+it appears as if this is being built in memory (which is clear
+from the full output for the above command if you run it in your
+own <code>psql</code> session).
+So, once again, all of the required pages are already in the buffer
+pool and no disk reads are required.
+</p>
+<p>
+Let's try a more complex query, which includes the person's name
+as well as their id in the course/mark/grade information:
+</p>
+<pre><kbd is="psql" db="uni">select p.id,p.family,c.code,e.mark,e.grade</kbd>
+<kbd is="psql," db="uni">from   People p</kbd>
+<kbd is="psql," db="uni">  join Enrolments e on (p.id=e.student)</kbd>
+<kbd is="psql," db="uni">  join Courses c on (c.id=e.course);</kbd>
+  id  |         family          |   code   | mark | grade
+------+-------------------------+----------+------+-------
+ 3470 | Ang                     | MINE1010 |   60 | PS
+ 3470 | Ang                     | PHYS1111 |   60 | PS
+ 3470 | Ang                     | ARTS1090 |   63 | PS
+ 3470 | Ang                     | SOMA1651 |   60 | PS
+ 3472 | Bickmore                | FINS2624 |   85 | HD
+ 3472 | Bickmore                | CRIM2020 |   78 | DN
+ 3472 | Bickmore                | SAHT2214 |   82 | DN
+ 3472 | Bickmore                | CVEN2301 |   88 | HD
+<span class="comment">etc. etc. etc. (3506 rows)</span>
+</pre>
+<p>
+If run this query uing <code>EXPLAIN</code> we observe (once again,
+the output is greatly simplified):
+</p>
+<pre><kbd is="psql" db="uni">explain (analyze,buffers)</kbd>
+<kbd is="psql," db="uni">select p.id,p.family,c.code,e.mark,e.grade</kbd>
+<kbd is="psql," db="uni">from   People p</kbd>
+<kbd is="psql," db="uni">  join Enrolments e on (p.id=e.student)</kbd>
+<kbd is="psql," db="uni">  join Courses c on (c.id=e.course);</kbd>
+
+                               QUERY PLAN
+---------------------------------------------------------------------
+ Hash Join  (e.course = c.id)
+   Buffers: shared hit=56
+   -&gt;  Hash Join  (e.student = p.id)
+         Buffers: shared hit=46
+         -&gt;  Seq Scan on enrolments e
+               Buffers: shared hit=19
+         -&gt;  Hash
+               Buffers: shared hit=27
+               -&gt;  Seq Scan on people p
+                     Buffers: shared hit=27
+   -&gt;  Hash
+         Buffers: shared hit=9
+         -&gt;  Seq Scan on courses c
+               Buffers: shared hit=9
+...
+</pre>
+<p>
+The query plan involves two hash joins and can be represented by the
+following query tree:
+</p>
+<center> <img src="./P06_files/qtree2.png"> </center>
+<p>
+From the <code>EXPLAIN</code> output, we can see each table is scanned once
+in executing this query: scan 9 pages from the <code>Courses</code> table to
+build an in-memory hash-table, scan 27 pages of the <code>People</code> table
+to build another in-memory hash table, scan 19 pages from the
+<code>Enrolments</code> table to join with <code>People</code> and then join
+the result of that with the <code>Courses</code> hash table.
+This gives a total of 55 disk page requests, all of which can be
+resolved from the buffer pool, because all tables are stored in the
+buffer pool (assuming that you asked queries on all tables earlier).
+</p>
+
+<h4>Smaller Buffer Pool</h4>
+<p>
+The above results show that DBMSs tend to use a very large buffer pool to
+keep as much data as possible in memory. With a small database such as ours,
+the whole DB eventually ends up in the buffer pool. Of course, we know that
+for a realistic sized database, the buffer pool will eventually fill up and
+further page requests will require pages already in the pool to be removed.
+In order to observe such effects, we need a much smaller buffer pool.
+</p>
+<p>
+The <code>pg_ctl</code> command allows us to send configuration options to the
+PostgreSQL server, as we saw in
+<a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/index.php">Prac P03</a>.
+This involves the use of the <code>-o</code> option to <code>pg_ctl</code> and an
+argument containing the options to be sent to the backend, e.g.
+</p>
+<pre><kbd is="shell">pg_ctl start -o '-B 100' -l /srvr/<var>YOU</var>/pgsql/log</kbd>
+server starting
+</pre>
+<p>
+The above command starts the PostgreSQL server with a much smaller buffer
+pool than usual (100 pages, rather than 3584).
+The complete set of options for configuring the server is described in
+<a href="https://www.postgresql.org/docs/16/runtime-config.html">Chapter 18</a>
+of the PostgreSQL documentation.
+</p>
+<p>
+Stop your PostgreSQL server and restart it with a very small buffer pool:
+</p>
+<pre><kbd is="shell">pg_ctl stop</kbd>
+waiting for server to shut down.... done
+server stopped
+<kbd is="shell">pg_ctl start -o '-B 32' -l /srvr/<var>YOU</var>/pgsql/log</kbd>
+server starting
+<kbd is="shell">psql uni</kbd>
+...
+</pre>
+<p>
+Run the following query, with <code>EXPLAIN</code> output:
+</p>
+<pre><kbd is="psql" db="uni">explain (analyze,buffers,format yaml) select * from courses;</kbd>
+           QUERY PLAN
+--------------------------------
+ - Plan:                       +
+...
+     Actual Rows: 980          +
+     Actual Loops: 1           +
+     Shared Hit Blocks: 0      +
+     Shared Read Blocks: 9     +
+     Shared Written Blocks: 0  +
+...
+(1 row)
+</pre>
+<p>
+As we'd expect, the buffer pool starts empty (we just restarted the server)
+and we need to read every page from the <code>Courses</code> table into the buffer
+pool in order to answer the query.
+Now try the same query again. What would expect to happen? As above, we might
+expect "Shared Hit Blocks" to be 9 and "Shared Read Blocks" to be 0, since all
+of the pages from <code>Courses</code> are already in the pool.
+In fact, what you might observe is the following:
+</p>
+<pre><kbd is="psql" db="uni">explain (analyze,buffers,format yaml) select * from courses;</kbd>
+           QUERY PLAN
+--------------------------------
+ - Plan:                       +
+...
+     Actual Rows: 980          +
+     Actual Loops: 1           +
+     Shared Hit Blocks: 4      +
+     Shared Read Blocks: 5     +
+     Shared Written Blocks: 0  +
+...
+(1 row)
+</pre>
+<p>
+Or, you might see the same as the original query (9 reads, zero hits).
+What's going on here? The <code>Courses</code> pages were read into the pool,
+but now at least some of them seem to have been removed. Try to think of
+an explanation for this.
+</p>
+<!--?showAnswer(<<<xxAAxx
+<p-->
+The pages for the tables in the query are not the only thing in the buffer
+pool. The server also needs to also examine data from the system catalogs
+(e.g. to work out how to format the output tuples, or to find the file
+names of the query tables). The system catalogs are themselves tables
+and so their pages also need to be loaded. When the buffer pool is so
+small, loading the catalog pages may cause some of the query table
+pages to be replaced. So, even though they are all loaded into the
+buffer pool during the query, subsequent activity on the buffer pool
+due to catalog and other system tables might replace them before the
+query is asked again.
+<p></p>
+xxAAxx
+);?&gt;
+<p>
+Now ask the same query again several more times in quick succession
+to see what the results are.
+You may see something like:
+</p>
+<pre><kbd is="psql" db="uni">explain (analyze,buffers,format yaml) select * from courses;</kbd>
+...
+     Shared Hit Blocks: 4      +
+     Shared Read Blocks: 5     +
+...
+<kbd is="psql" db="uni">explain (analyze,buffers,format yaml) select * from courses;</kbd>
+...
+     Shared Hit Blocks: 8      +
+     Shared Read Blocks: 1     +
+...
+<kbd is="psql" db="uni">explain (analyze,buffers,format yaml) select * from courses;</kbd>
+...
+     Shared Hit Blocks: 9      +
+     Shared Read Blocks: 0     +
+...
+</pre>
+<p>
+Can you explain this behaviour? If you know the details of the PostgreSQL
+buffer pool management code, you should be able explain it. But given that
+you probably don't at this stage, it would help if we had access to more
+detailed information about buffer pool usage than a simple summary at the
+end of each query. Prac Exercise P05 looked at detailed buffer usage, but
+not, of course, in the PostgreSQL context.
+</p>
+<p>
+In the meantime, you should try running each of the queries from the
+first part of this Exercise on your new server instance. Compare the
+results from earlier with the results you get with the much smaller
+buffer pool.
+</p>
+
+<h4>Postscript</h4>
+<p>
+Throughout this exercise, we have considered only the <em>shared</em>
+buffer pool. This pool is used by all processes running on the PostgreSQL
+server to hold any data read in from the database.
+However, the shared buffer pool is not the only place where data
+is manipulated. Each server has its own private buffer pool for
+holding intermediate results during query execution. These would
+need to be considered to build a up a complete picture of the
+disk access patterns for one query execution.
+</p>
+
+<h4>End of Prac</h4>
+
+<p>
+Let me know via the forums,
+or come to a consultation
+if you have any problems with this exercise
+... <em>jas</em>
+</p>
+
+
+
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>COMP9315 22T1 Final Exam </title>
+<link rel='stylesheet' type='text/css' href='exam.css'></head>
+<body>
+<div align='center'>
+<table width='100%' border='0'>
+<tr valign='top'>
+<td align='left' width='20%'>
+  <span class='tiny'>COMP9315 22T1 Final Exam</span>
+</td>
+<td align='center' width='60%'>
+  The University of New South Wales <br>
+  <span class='heading'>COMP9315 DBMS Implementation <br>  22T1 Final Exam</span>
+</td>
+<td align='right' width='20%'>
+  <span class='tiny'>DBMS Implementation</span>
+</td>
+</table>
+</div>
+<center><a href='index.html'>[Instructions]</a> <a target='PostgreSQL' href='https://www.postgresql.org/docs/12/index.html'>[PostgreSQL]</a> <a target='C' href='c-lang/index.html'>[C]</a> <a target='Q1-3 Info' href='q1-3/index.html'>[Q1-3 Info]</a> 
+<br>
+<a href='Q01.html'>[Q1]</a> <a href='Q02.html'>[Q2]</a> <a href='Q03.html'>[Q3]</a> <a href='Q04.html'>[Q4]</a> <a href='Q05.html'>[Q5]</a> <b>[Q6]</b> <a href='Q07.html'>[Q7]</a> <a href='Q08.html'>[Q8]</a> 
+</center>
+<hr>
+<div style='margin-left:40px;margin-right:40px'>
+<h3>Question 6 <span class='tiny'>(10 marks)</span></h3>
+<p>
+Consider a <em>linear hashed</em> file with the following properties
+</p>
+<ul>
+<li> initially with 2 (empty) pages in the file, <i>d</i> = 1, <i>sp</i> = 0
+<li> able to hold up to 2 tuples per page
+<li> an associated overflow file (initially empty, no pages)
+<li> each page in the overflow file can also hold up to 2 tuples
+</ul>
+<p>
+A set of numeric keys (the numbers 1 to 32) are inserted into the file,
+in numeric order.
+Splits occur just <em>before</em> the insertion of the keys 6, 12, 18, 24, 30
+The hash value of each key is simply the binary value of the number
+(e.g. hash(1) = <tt>00000001</tt>, hash(15) = <tt>00001111</tt>, and
+hash(21) = <tt>00010101</tt>).
+</p>
+<p>
+Show the state of the file(s) at the following points:
+<ol type="a">
+<li><p>
+immediately before each split operation (before inserting the new value)
+</p></li>
+<li>
+<p>
+immediately after each split operation and after inserting the new value
+</p></li>
+</ol>
+<p>
+The state should include:
+</p>
+<ul>
+<li> the pages of the data file, with tuples indicated by key values
+<li> the depth of the file (<i>d</i>), the position of the split pointer (<i>sp</i>)
+<li> any overflow pages, linked to their corresponding data pages by arrows
+</ul>
+<p>
+An abstract example (<b>not using the above hash values</b>) of what a state
+might look like:
+</p>
+<pre>
+[0] 1,2 -> 11,12
+[1] 3,4
+[2] 5,6 -> 13
+[3] 7,8 -> 14,15 -> 16
+[4] 9,10
+
+d = 2 sp = 1
+</pre>
+<p>
+This is a sample just to show the format of states.
+It bears no relation to the hash values in this question.
+</p>
+<p><b>Instructions:</b></p>
+<ul>
+<li> Type your answer to this question into the file called <tt>q6.txt</tt>
+<li> Submit via: &nbsp; <b><tt>give cs9315 exam_q6 q6.txt</tt></b> <br>
+	or via: Webcms3 &gt; exams &gt; Final Exam &gt; Q<nobr>6</nobr> submission &gt; Make Submission
+</ul>
+
+</div>
+<center><i>End of Question</i></center>
+</body>
+</html>

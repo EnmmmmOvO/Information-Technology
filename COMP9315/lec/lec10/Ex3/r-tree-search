@@ -1,0 +1,24 @@
+Describe path(s) through the tree in solving
+each of the following:
+
+
+Q1: select * from Rel where X='a' and Y=4
+
+fits in a0,f7 -> fits in no subregions
+
+
+Q2: select * from Rel where X='i' and Y=6
+
+fits in f4,p9 -> fits in g4,j8 and h5,p9
+
+
+Q3: select * from Rel where 'c'≤X≤'j' and Y=5
+
+fits in a0,f7 and f4,p9 -> g4,j8 and h5,p9
+                        -> b4,e7
+
+
+Q4: select * from Rel where X='c'
+
+fits in a0,f7 -> b1,f3 and b4,e7
+

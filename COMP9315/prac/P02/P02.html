@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0051)https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p02/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Prac Exercise 02</title>
+<link href="./P02_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./P02_files/course.css">
+</head>
+<body>
+<div class="container">
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Prac Exercise 02</span><br>
+  <span class="subheading">The PostgreSQL Catalog</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div>
+<a href="./p02.sql">My Solution</a>
+<h3>Aims</h3>
+
+<p>
+This simple exercise aims to get you to:
+</p>
+<ul>
+<li> become familiar with the PostgreSQL catalog </li>
+<li> understand what data is available to the query evaluator and storage manager </li>
+</ul>
+<p>
+Pre-requisite: you have installed your PostgreSQL server following P01.
+</p>
+
+<h3>Background</h3>
+
+<p>
+PostgreSQL uses its catalog tables to maintain a large amount of information
+that is used by the various components of the DB engine.
+As well as defining the user-level meta-data (names, types, constraints),
+the catalog tables also include
+information to assist the storage manager (e.g., size of attribute values),
+information to assist the query optimiser (e.g. size of table in pages),
+and so on.
+Some tables are global — shared by all databases on a PostgreSQL server —
+while others contain values local to a particular database.
+</p>
+<p>
+Some of the more important tables (and some of their parameters are given below).
+Details on the other tables, and complete details of the given tables, are
+available in the <a href="https://www.postgresql.org/docs/16/catalogs.html">PostgreSQL documentation</a>
+</p>
+<pre><strong>pg_authid</strong>(rolname, rolsuper, rolinherit, rolcreaterole, rolcreatedb, rolcatupdate,
+        rolcanlogin, rolreplication, rolconnlimit, rolpassword, rolvaliduntil)
+
+<strong>pg_database</strong>(datname, datdba, encoding, datcollate, datctype, datistemplate,
+        datallowconn, datconnlimit, datlastsysoid, datfrozenxid, datminmxid,
+        dattablespace, datacl)
+
+<strong>pg_namespace</strong>(nspname, nspowner, nspacl)
+
+<strong>pg_class</strong>(relname, relnamespace, reltype, reloftype, relowner, relam,
+        relfilenode, reltablespace, relpages, reltuples, relallvisible,
+        reltoastrelid, reltoastidxid, relhasindex, relisshared, relpersistence,
+        relkind, relnatts, relchecks, relhasoids, relhaspkey, relhasrules,
+        relhastriggers, relhassubclass, relfrozenxid, relminmxid, relacl, reloptions)
+
+<strong>pg_attribute</strong>(attrelid, attname, atttypid, attstattarget, attlen, attnum, attndims,
+        attcacheoff, atttypmod, attbyval, attstorage, attalign, attnotnull,
+        atthasdef, attisdropped, attislocal, attinhcount, attcollation, attacl,
+        attoptions, attfdwoptions)
+
+<strong>pg_type</strong>(typname, typnamespace, typowner, typlen, typbyval, typtype, typcategory,
+        typispreferred, typisdefined, typdelim, typrelid, typelem, typarray,
+        typinput, typoutput, typreceive, typsend, typmodin, typmodout, typanalyze,
+        typalign, typstorage, typnotnull, typbasetype, typtypmod, typndims,
+        typcollation, typdefaultbin, typdefault, typacl)
+</pre>
+
+<h3>Exercise</h3>
+
+<p>
+In the online sessions, I mentioned a PL/pgSQL function <code>schema()</code>
+that could use the PostgreSQL catalog tables to produce a list of
+tables/attributes for the <code>public</code> schema, in a format similar
+to that shown above.
+In fact, the above format was actually produced by an extension to the
+<code>schema()</code> function, which wraps lines before they become too
+long and hard to read.
+</p>
+<p>
+The first thing to do is to make a copy of the <code>schema()</code> function:
+</p>
+<pre><kbd is="shell">mkdir <var>some/directory/for/prac/p02</var></kbd>
+<kbd is="shell">cd <var>some/directory/for/prac/p02</var></kbd>
+<kbd is="shell">cp <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p02/schema.sql">/web/cs9315/24T1/pracs/p02/schema.sql</a> <big>.</big></kbd>
+<span class="comment"># don't forget the dot, which means "current directory"</span>
+</pre>
+<p>
+Create the beer database from Prac P01 (if it's not still there), and then
+do the following:
+</p>
+<pre><kbd is="shell">psql beer</kbd>
+psql (16.1)
+Type "help" for help.
+
+<kbd is="psql" db="beer">\i schema.sql</kbd> <span class="comment">... loads contents of the file schema.sql ...</span>
+CREATE FUNCTION
+<kbd is="psql" db="beer">select * from schema();</kbd> <span class="comment">... invokes the schema() function ...</span>
+           schema
+-----------------------------
+ bars(name, addr, license)
+ beers(name, manf)
+ drinkers(name, addr, phone)
+ frequents(drinker, bar)
+ likes(drinker, beer)
+ sells(bar, beer, price)
+(6 rows)
+
+<kbd is="psql" db="beer"></kbd>
+</pre>
+<p>
+Read the code for the function and make sure you understand how it works.
+You will most likely need to look at the documentation on
+<a href="https://www.postgresql.org/docs/16/plpgsql.html">PL/pgSQL</a> for this.
+Once you understand how it works, make the following changes:
+</p>
+<ul>
+<li> <p>change the name of the function to <code>schema1</code></p>
+</li><li> <p>make it return a set of tuples, rather than a set of text values</p>
+<pre>create type SchemaTuple as ("table" text, "attributes" text)
+</pre>
+<p>
+the value of the <code>attributes</code> field should still be a comma-separated string
+</p>
+</li><li> <p>for each attribute in the list of attributes, add a description of its data type</p>
+</li><li> <p>where required (e.g. <code>varchar</code> types), indicate the size of the value</p>
+</li><li> <p>change the internal type names (e.g. <code>int4</code>) into more user-friendly names (e.g. <code>integer</code>)
+</p></li></ul>
+<p>
+Your new <code>schema1</code> function should produce output something like the following:
+</p>
+<pre><kbd is="psql" db="beer">select * from schema1();</kbd>
+   table   |                     attributes
+-----------+----------------------------------------------------
+ bars      | name:barname, addr:varchar(20), license:integer
+ beers     | name:barname, manf:varchar(20)
+ drinkers  | name:drinkername, addr:varchar(30), phone:char(10)
+ frequents | drinker:drinkername, bar:barname
+ likes     | drinker:drinkername, beer:beername
+ sells     | bar:barname, beer:beername, price:float
+</pre>
+<p>
+if tested on the <code>beer</code> database from Prac P01.
+</p>
+<p>
+Hint: you'll need to look at the PostgreSQL manual, especially the chapters on
+<a href="https://www.postgresql.org/docs/16/plpgsql.html">PL/pgSQL</a> and
+<a href="https://www.postgresql.org/docs/16/catalogs.html">System Catalog</a>.
+</p>
+
+<p>
+<a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p02/schema1.sql">[Example Solution]</a>
+</p>
+
+<h4>End of Prac</h4>
+
+<p>
+Let me know via the forums,
+or come to a consultation
+if you have any problems with this exercise
+... <var>jas</var>
+</p>
+
+</div>
+
+</body></html>

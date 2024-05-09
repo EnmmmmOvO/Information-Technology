@@ -1,0 +1,13 @@
+FieldDesc = (offset,length,type)
+
+Page = 8KB
+
+offset = index into data page
+length = # bytes in field
+type   = data type of field
+
+offset = 13 bits
+length = 11 bits
+type   = 8 bits (subset of types, 11111111 + 32 bits to pg_data)
+
+#type  = 32 bits (OID of pg_type table)

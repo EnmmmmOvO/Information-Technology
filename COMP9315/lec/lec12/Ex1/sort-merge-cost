@@ -1,0 +1,46 @@
+Consider executing Join[i=j](S,T) with the following parameters:
+* rS = 1000,  bS = 50,  rT = 3000,  bT = 150
+* S.i is primary key, and T has index on T.j
+* T is sorted on T.j, each S tuple joins with 2 T tuples
+* DBMS has N = 42 buffers available for the join
+
+Method:
+
+S' = sorted version of S
+T' = sorted version of T = T
+result = merge(S', T')
+
+Since S.i is pk, never need rescan of T runs
+
+Cost:
+
+#pages
+= sort(S) + merge(S',T')
+= 2bS(1+log_41(bS/42)) + (bS+bT)
+= 2bS(1+1) + bS + bT
+= 4bS + bS + bT
+= 4*50 + 50 + 150
+= 400
+
+#checks
+... hidden in merge phase
+= comparisons to find start of each pair of runs
+  + comparisons while scanning pairs of runs
+= rS + rT
+  + comparisons while scanning pairs of runs
+
+The latter varies depending on how many matches,
+length of runs, ...
+Best case: no join results = 0
+
+
+
+If neither table sorted ...
+
+#pages
+= sort(S) + sort(T) + merge(S',T')
+= 2bS(1+log_41(bS/42)) + 2bT(1+log_41(bT/42)) + (bS+bT)
+= 4bS + 4bT + bS + bT
+= 4*50 + 4*150 + 50 + 150
+= 1000
+

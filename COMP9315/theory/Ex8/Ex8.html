@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 08</title>
+<link href="./Ex8_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex8_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 08</span><br>
+  <span class="subheading">Query Optimisation and Execution</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php?view=all">[Show with all answers]</a></p></div>
+
+<ol>
+
+<br><li>
+<p>
+Consider the following tables relating to trips on a suburban bus network
+</p>
+<pre>Trip(fromPlace:integer, toPlace:integer, tripDate:date)
+Place(placeId:integer, address:string, suburb:string)
+</pre>
+<ol type="a">
+<li>
+<p>
+Write an SQL query that returns all of the addresses in Randwick
+that are the destination of a trip on March 4, 2005.
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<pre>select address
+from   Trip, Place
+where  tripDate='04-03-2005' and suburb='Randwick' and toPlace=placeId;
+</pre>
+</div><p></p>
+</li><li>
+<p>
+Give a naive translation of the SQL query into a
+relational algebra expression.
+</p>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<pre>Temp1  = Trip Join[toPlace=placeId] Place
+Temp2  = Sel[tripDate='04-03-2005' and suburb='Randwick'](Temp1)
+Result = Proj[address](Temp2)
+</pre>
+</div><p></p>
+</li><li>
+<p>
+Translate the naive relational algebra expression into an equivalent
+expression using  pushing of selections and projections.
+</p>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<pre>TT     = Proj[toPlace](Sel[tripDate='04-03-2005'](Trip))
+PP     = Proj[placeId,address](Sel[suburb='Randwick'](Place))
+Result = Proj[address](TT Join[toPlace=placeId] PP)
+</pre>
+</div><p></p>
+</li><li>
+<p>
+Translate the optimized relational algebra expression into the
+most directly corresponding SQL query.
+</p>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<pre>select address
+from   (select toPlace from Trip where [tripDate='04-03-2005') TT,
+       (select placeId,address from Place where suburb='Randwick') PP
+where  toPlace = placeId;
+</pre>
+</div><p></p>
+</li></ol>
+<p></p>
+</li>
+
+<br><li>
+<p>
+What are the possible join trees (without cross-products)
+for each of the following queries:
+</p><ol type="a">
+<li><p><tt>select * from R,S,T where R.a=S.b and S.c=T.d</tt></p>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<p>
+((R join S) join T) &nbsp; or &nbsp; (R join (S join T))
+</p>
+</div><p></p>
+</li><li><p><tt>select * from R,S,T where R.a=S.b and T.c=R.d</tt></p>
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<p>
+((R join S) join T) &nbsp; or &nbsp; ((R join T) join S)
+</p>
+</div><p></p>
+</li><li><p><tt>select * from R,S,T where R.a=S.b and S.c=T.d and T.e=R.f</tt></p>
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<p>
+any of the above
+</p>
+</div><p></p>
+</li><li><p><tt>select * from R,S,T,U<br>
+ where R.a=S.b and S.c=T.d and T.e=R.f and T.g=U.h and S.i=U.j</tt></p>
+<p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+<p>
+((R join S) join (T join U)) &nbsp; or &nbsp; (((R join S) join T) join U)
+&nbsp; or &nbsp; (R join (S join (T join U))
+&nbsp; or &nbsp; ...
+</p>
+<p>
+(pretty much any order that does not involve a direct join of R and U)
+</p>
+</div><p></p>
+</li></ol>
+<p></p>
+<p>
+Do not include trees/sub-trees that are reflections of other
+tree/subtrees.
+</p>
+</li>
+
+<br><li>
+<p>
+Consider a table <i>R(a,b,c)</i> and assume that
+</p><ul>
+<li> all attributes have uniform distribution of data values
+</li><li> attributes are independent of each other
+</li><li> all attributes are <tt>NOT NULL</tt>
+</li><li> <i>r = 1000</i>, &nbsp; <i>V(a,R) = 10</i>, &nbsp; <i>V(b,R) = 100</i>
+</li></ul>
+<p>
+Calculate the expected number of tuples in the result of each of the following
+queries:
+</p>
+<ol type="a">
+<li> <tt>select * from R where not a=<i>k</i></tt>
+</li><li> <tt>select * from R where a=<i>k</i> and b=<i>j</i></tt>
+</li><li> <tt>select * from R where a in (<i>k,l,m,n</i>)</tt>
+</li></ol>
+<p>
+where <i>j</i>, <i>k</i>, <i>l</i>, <i>m</i>, <i>n</i> are constants.
+</p>
+<p><small>[<a id="q9a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q9&#39;)">show answer</a>]</small></p>
+<div id="q9" style="color:#000099;display:none">
+<ol type="a"> 
+<li>
+<p><tt>select * from R where not a=<i>k</i></tt></p>
+<p>
+Since the set of values for each attribute is uniformly distributed,
+and since there are 10 possible values for the <tt>a</tt> attribute,
+we would expect that 1/10 of the tuples would satisfy <tt>a=<i>k</i></tt>.
+This means that 90% of the tuples would <em>not</em> satisfy the
+condition. Since there are 1000 tuples, we would expect 900 of them to
+be in the result of the query.
+</p>
+<p>
+An alternative formulation of the above
+</p>
+<ul>
+<li> <i>Prob(a=k)</i> = 0.1
+</li><li> <i>Prob(a!=k)</i> = 1 - <i>Prob(a=k)</i> = 0.9
+</li><li> #result tuples = <i>r × Prob(a!=k)</i>  = 1000 × 0.9 = 900
+</li></ul>
+</li><li>
+<p><tt>select * from R where a=<i>k</i> and b=<i>j</i></tt></p>
+<p>
+If attributes are independent, then we'd expect that the chance
+of attribute <tt>R.a</tt> having a specific value was 1/10 and
+the chance of attribute <tt>R.b</tt> then have a particular value
+was 1/100 of that (i.e. the likelihoods multiply).
+</p>
+<p>
+Using the probability-based formulation:
+</p>
+<ul>
+<li> <i>Prob(a=k)</i> = 0.1, &nbsp; Prob(b=j) = 0.01
+</li><li> <i>Prob(A=k and B=j)</i> = <i>Prob(A=k) × Prob(B=j)</i> = 0.001
+</li><li> #result tuples = <i>r × Prob(A=k and B=j)</i> = 1000 × 0.001 = 1
+</li></ul>
+</li><li>
+<p><tt>select * from R where a in (<i>k,l,m,n</i>)</tt></p>
+<p></p>
+<p>
+If we have alternatives for possible values for attribute <tt>R.a</tt>
+then we simply sum up the chances for any one of the values to occur.
+</p>
+<p>
+Using the probability-based formulation:
+</p>
+<ul>
+<li> <i>Prob(a=x)</i> = 0.1, where <i>x</i> is any value in <i>domain(a)</i>
+</li><li> <i>Prob(a∈{x,y,...})</i> = <i>Prob(a=x)</i> + <i>Prob(a=y)</i> + ...
+</li><li> <i>Prob(a in (k,l,m,n))</i> = 4 × <i>Prob(a=k)</i> <small>(assuming uniform distribution)</small>
+</li><li> #result tuples = <i>r × Prob(a in (k,l,m,n))</i> = 1000 × 0.4 = 400
+</li></ul>
+</li></ol>
+</div><p></p>
+</li>
+
+
+<br><li>
+<p>
+Consider the following tables relating to retail sales:
+</p>
+<pre>create table Item (
+    iname       text,
+    category    text,
+    primary key (name)
+);
+create table Store (
+    sname       text,
+    city        text,
+    street      text,
+    primary key (city,street)
+);
+create table Transaction (
+    item        text references Item(iname),
+    store       text references Store(sname),
+    tdate       date,
+    primary key (item,store,tdate)
+);
+</pre>
+<p>
+Consider the following query (expressed as SQL and relational algebra):
+</p>
+<pre>select category,city
+from   Item, Store, Transaction
+where  iname=item and store=sname and
+       tdate='20-12-2004' and city='Sydney';
+
+JoinResult   = Item Join[iname=item] Transaction Join[store=sname] Store
+SelectResult = Sel[tdate='20-12-2004' and city='Sydney'](JoinResult)
+FinalResult  = Proj[category,city](SelectResult)
+</pre>
+<p>
+Show the three <q>most promising</q> relational algebra expressions
+that the query optimizer is likely to consider; then find the most
+efficient query plan and estimate its cost.
+</p>
+<p>
+Assume 50 buffer pages and the following statistics and indices:
+</p>
+<ul>
+<li>
+<tt>Item</tt>: 50,000 tuples, 10 tuples/page. <br>
+Indexing: hashed on <tt>iname</tt> (assume no overflows).
+</li><li>
+<tt>Store</tt>: 1,000 tuples, 5 tuples/page; 100 cities. <br>
+Index1: Unclustered hash index on <tt>sname</tt>.
+Index2: Clustered 2-level B+tree on <tt>city</tt>.
+</li><li>
+<tt>Transaction</tt>: 500,000 tuples, 25 tuples/page; 10 items bought per store per day. <br>
+The relation stores transactions committed over a 50 day period. <br>
+Index: 2-level clustered B+tree on the pair of attributes <tt>store,ttime</tt>.
+</li></ul>
+<p></p>
+<p><small>[<a id="q10a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex08/index.php##" onclick="toggleVisible(&#39;q10&#39;)">show answer</a>]</small></p>
+<div id="q10" style="color:#000099;display:none">
+<p>
+The three most promising relation algebra expressions:
+</p>
+<pre>Exp1:
+    Temp1   = Sel[tdate='20-12-2004'](Transaction)
+    Temp2   = Sel[city='Sydney'](Store)
+    Temp3   = Temp1 Join[store=sname] Temp2
+    Temp4   = Item Join[iname=item] Temp3
+    Result  = Proj[category,city](Temp4)
+
+Exp2:
+    Temp1   = Sel[city='Sydney'](Store)
+    Temp2   = Transaction Join[store=sname] Temp1
+    Temp3   = Sel[tdate='20-12-2004'](Temp2)
+    Temp4   = Item Join[iname=item] Temp3
+    Result  = Proj[category,city](Temp4)
+
+Exp2:
+    Temp1   = Sel[tdate='20-12-2004'](Transaction)
+    Temp2   = Temp1 Join[store=sname] Store
+    Temp3   = Sel[city='Sydney'](Temp2)
+    Temp4   = Item Join[iname=item] Temp3
+    Result  = Proj[category,city](Temp4)
+</pre>
+<p>
+The most efficient relational algebra expression is a  variation on <tt>Exp2</tt>:
+</p>
+<pre>Best:
+    Temp1   = Sel[city='Sydney'](Store)
+    Temp2   = Temp1 Join[sname=store] Transaction
+    Temp3   = Sel[tdate='20-12-2004'](Temp2)
+    Temp4   = Temp3 Join[item=iname] Item
+    Result  = Proj[category,city](Temp4)
+</pre>
+<p>
+Costs for the various operations (assuming pipelining, so no writes):
+</p>
+<ol type="a">
+<li>
+<p>
+Cost of <tt>Temp1</tt>: 2 + 2 = 4<br>
+Assume 10 tuples/city (uniform distribution).
+Since there are 5 tuples/page and the file is sorted on <tt>city</tt>,
+these 10 Sydney tuples should appear in 2 pages (worst-case 3 pages).
+Cost of traversing B+tree to find the first matching tuple is 2
+(since tree has depth 2), plus cost of reading 2 data pages, gives
+a total of 4 page reads.
+</p>
+</li><li>
+<p>
+Cost of <tt>Temp2+Temp3</tt>: 10 * 3 = 30<br>
+Use indexed nested loop join and combine it with the selection on
+<tt>tdate</tt> as follows: the index on <tt>Transaction</tt> is on
+the pair of attributes (<tt>store,tdate</tt>); the join condition
+involves just <tt>store</tt>; however, the selection also gives
+us the <tt>tdate</tt> value; so, for each <tt>store</tt>, we can
+form an index key (<tt>store,tdate</tt>) and do an index lookup.
+Since there are 10 tuples in the result of <tt>Temp1</tt>, we will
+perform 10 index lookups on <tt>Transaction</tt>.
+Each index lookup will yield 10 results (we are given that 10 items
+are sold in each store on each day).
+Since the <tt>Transaction</tt> data file is sorted (clustered)
+by <tt>store</tt> (then <tt>tdate</tt>), and there are 25 tuples per page,
+all 10 tuples will likely be on a single page (worst case 2 pages).
+The B+tree index is depth 2, so there are 2 index page reads and 1
+data page read for each index lookup (i.e. 3 page reads).
+Since we perform 10 index lookups, this gives a total of 30 reads,
+which produces 100 tuples.
+</p>
+</li><li>
+<p>
+Cost of <tt>Temp4</tt>: 100 * 1 = 100<br>
+The join between <tt>Temp3</tt> and <tt>Item</tt> can also use
+an index nested loop join, based on the fact that <tt>Item</tt>
+is hashed on the <tt>iname</tt> value, and each tuple from
+<tt>Temp3</tt> gives us an <tt>item</tt> value to use as a hash key.
+For each of the 100 tuples from <tt>Temp3</tt>, we do a hash
+access to the page containing the matching tuple (there will be
+only 1 matching tuple, since <tt>iname</tt> is a key).
+This requires exactly 100 page reads.
+</p>
+</li></ol>
+<p>
+Total cost is the sum of these: 4 + 30 + 100 = 134 page reads.
+</p>
+<p>
+Note that we ignore the cost of the projection in the above calculation.
+We can do this because we generally ignore the cost of writing results
+(especially in the context of comparing relational algebra expressions
+for a given query, since all expressions produce the same result).
+Also, we don't need to worry about filtering duplicates in this case,
+since the query didn't ask for it (i.e. not <tt>select distinct</tt>).
+</p>
+</div><p></p>
+</li>
+
+<!--
+<br><li>
+<p>
+QQQ
+</p>
+<p><small>[<a id="q11a" href="##" onclick="toggleVisible('q11')">show answer</a>]</small></p>
+<div id="q11" style="color:#000099;display:none">
+AAA
+</div></p>
+</li>
+-->
+
+</ol>
+
+
+</body></html>

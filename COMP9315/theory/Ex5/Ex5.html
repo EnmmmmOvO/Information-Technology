@@ -1,0 +1,599 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 05</title>
+<link href="./Ex5_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex5_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 05</span><br>
+  <span class="subheading">Implementing Selection on One Attribute (1-d)</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php?view=all">[Show with all answers]</a></p></div>
+
+<ol>
+
+<br><li>
+<p>
+Consider the relations:
+</p>
+<pre>Student(<b>id#</b>, name, age, course)
+Subject(<b>code</b>, title, description)
+</pre>
+<p>
+Make the following assumptions:
+</p>
+<ul>
+<li> <i>r<sub>Student</sub> = 50,000</i>, &nbsp; <i>r<sub>Subject</sub> = 5,000</i>
+</li><li> the data file for <code>Student</code> is sorted on <code>id#</code>,
+	the data file for <code>Subject</code> is sorted on <code>code</code>
+</li><li> simple one-level indexes are used
+	(e.g. because the files are reasonably static)
+</li><li> record IDs (RIDs) are 4-bytes long
+</li><li> all data pages and index pages are 4KB long
+</li></ul>
+<p>
+Based on these assumptions, answer the following:
+</p>
+<ol type="a">
+<li> <p>You can build a dense index on any field. Why?</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+A dense index has one index entry for each data record.
+It is required that the entries in the index are sorted (to make
+searching the index efficient). However, there are no specific
+requirements on where the records are located within the data file.
+Thus, you can build a dense index on any or all fields.
+</div><p></p>
+</li><li> <p>On which field(s) could you build a non-dense index?</p>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<p>
+A non-dense index has one entry per block, and assumes that all
+records in that block have key values less than
+all key values in the next block.
+Thus, you can only build non-dense indexes on a field (key) on
+which the relation is sorted.
+</p>
+</div><p></p>
+</li><li><p>
+If the student id# is a 4-byte quantity, how large would a dense
+index on <code>Student.id#</code> be?
+</p>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<p>
+A dense index has one entry per data record, so we have 50,000 entries.
+Each index entry contains a copy of the key value and the address of
+the page where the record containing that key is stored.
+Index entries will thus have 4-bytes for the id# and 4-bytes for the
+page address, so we can fit <i>floor(4096/8) = 512</i> index entries
+per page. The number of index pages required is then
+<i>ceil(50000/512) = 98</i>.
+</p>
+</div><p></p>
+</li><li><p>
+If the subject code is an 8-byte quantity, how large
+would a dense index on <code>Subject.code</code> be?
+</p>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<p>
+Same reasoning as for previous question. 5,000 index entries. Each
+index entry contains 8-bytes (for subject code) + 4 bytes for page
+address. Each index page contains <i>floor(4096/12) = 341</i> index
+entries. And so the number of index pages is
+<i>ceil(5000/341) = 15</i>.
+</p>
+</div><p></p>
+</li><li><p>
+If the <i>c<sub>Student</sub> = 100</i> and 
+<i>c<sub>Subject</sub> = 20</i>, and other values are
+as above, how large would non-dense indexes on
+<code>Student.id#</code> and <code>Subject.code</code> be?
+</p>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<p>
+For a non-dense index, we need only one index entry per block of
+the data file. Assuming that the files are fully compacted, the <tt>Student</tt>
+file has <i>ceil(50000/100) = 500</i> blocks, and the <tt>Subject</tt>
+file has <i>ceil(5000/20) = 250</i> blocks. The analysis then proceeds
+as for the previous question, except with one index entry per block.
+</p>
+<p>
+Thus #index blocks for <tt>Student</tt> = <i>ceil(500/512) = 1</i>,
+and #index blocks for <tt>Subject</tt> = <i>ceil(250/341) = 1</i>
+</p>
+</div><p></p>
+</li><li><p>
+If you had just dense indexes on <code>Student.id#</code>
+and <code>Subject.code</code>, briefly describe efficient
+processing strategies for the following queries:
+</p>
+<ol type="i">
+<li> <code>select name from Student where id=2233445</code>
+</li><li> <code>select title from Subject
+		where code &gt;= 'COMP1000' and code &lt; 'COMP2000'</code>
+</li><li> <code>select id#,name from Student where age=18</code>
+</li><li> <code>select code,title from Subject where title like '%Comput%'</code>
+</li></ol>
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<ol type="i">
+<li>
+<p><tt>select name from Student where id=2233445</tt></p>
+<p>
+Do a binary search through the index (max <i>log<sub>2</sub>98=7</i>
+page reads) to find the entry for 2233445 and then fetch the data block
+containing that record (if it exists).
+</p>
+</li><li>
+<p><tt>select title from Subject where code &gt;= 'COMP1000' and code &lt; 'COMP2000'</tt></p>
+<p>
+Do a binary search through the index (max <i>log<sub>2</sub>15=4</i>
+page reads) to find the page for COMP1000 (or nearest similar subject),
+and then do a scan through the data file to grab all the COMP1xxx records,
+which will appear consecutively.
+</p>
+</li><li>
+<p><tt>select id#,name from Student where age=18</tt></p>
+<p>
+Since the index provides no assistance, the simplest solution is
+probably just to scan the entire file and select the 18-year-olds as you
+go. Sorting the file doesn't help here.
+</p>
+</li><li>
+<p><tt>select code,title from Subject where title like '%Comput%'</tt></p>
+<p>
+Once again, the index doesn't help, so a linear scan is the only
+option.
+</p>
+</li></ol>
+</div><p></p>
+</li><li><p>
+What techniques could you use to improve the performance of
+each of the above queries? And how would it impact the other
+queries?
+</p>
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<ol type="i">
+<li>
+<p>
+You could do better than the above by using either hashing (which would
+require only one page access) or a balanced tree index (e.g. B-tree), which
+would require at most three. Hashing would not be an option if there was
+some reason why the file had to be maintained in order on the student id.
+</p>
+</li><li>
+<p>
+A balanced tree index like a B-tree on the <tt>code</tt> field would also
+help here.
+</p>
+</li><li>
+<p>
+If this was a common kind of query (lookup by specific age), and if there
+was no requirement to keep the file in any particular order, you could
+hash the file on <tt>age</tt> to improve performance. A more likely scenario
+would be to add a dense index on the <tt>age</tt> field.
+</p>
+</li><li>
+<p>
+You can't use an index to assist with this query, because it doesn't use
+a notion of "matching" that involves the natural ordering on the field
+values. The query could match "Intro to Computing" or "Computing 1A" or
+"Mathematical Computation" etc.
+</p>
+</li></ol>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+Consider a relation R(a,b,c,d,e) containing 5,000,000 records,
+where each data page of the relation holds 10 records.
+R is organized as a sorted file with the search key R.a.
+Assume that R.a is a candidate key of R, with values lying
+in the range 0 to 4,999,999.
+</p>
+<p>
+Determine which of the following approaches to evaluating
+the relational algebra expression
+π<sub>a,b</sub>(σ<sub>a&gt;50000</sub>(R))
+is likely to be the cheapest (minimum disk I/O):
+</p>
+<ol type="a">
+<li> Use a clustered B+ tree index on attribute R.a.
+</li><li> Use a linear hashed index on attribute R.a.
+</li><li> Use a clustered B+ tree index on attributes (R.a,R.b).
+</li><li> Use a linear hashed index on attributes (R.a,R.b).
+</li><li> Use an unclustered B+ tree index on attribute R.b.
+</li><li> Access the sorted file for R directly.
+</li></ol>
+<p></p>
+<p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+The clustered B+ tree on (R.a, R.b) gives the cheapest cost because
+it is an index-only plan, and therefore answers the query without
+accessing the data records.
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider the following example file organisation using extendible hashing.
+Records are inserted into the file based on single letter keys (only the keys
+are shown in the diagram).
+</p>
+<p></p><center><img src="./Ex5_files/ehex.png"></center><p></p>
+<p>
+The dictionary contains a "global depth" value (<i>gd</i>), which
+indicates how
+many hash bits are being considered in locating data pages via the
+dictionary. In this example, the depth <i>gd=3</i> and so the dictionary
+is size <i>2<sup>gd</sup>=2<sup>d</sup>=8</i>.
+</p>
+<p>
+Each data page is marked with a "local depth" value (<i>ld</i>), which
+indicates the effective number of bits that have been used to place
+records in that page. The first data page, for example, has <i>ld=2</i>,
+which tells us that only the first two bits of the hash value were used
+to place records there (and these two bits were <code>00</code>).
+The third data page, on the other hand, has <i>ld=3</i>, so we know that
+all records in that page have their first three hash bits as <code>100</code>.
+</p>
+<p>
+Using the above example to clarify, answer the following questions
+about extendible hashing:
+</p>
+<ol type="a">
+<li>
+<p>
+Under what circumstances must we double the size of the
+directory, when we add a new data page?
+</p>
+<p><small>[<a id="q9a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q9&#39;)">show answer</a>]</small></p>
+<div id="q9" style="color:#000099;display:none">
+<p>
+</p>
+The directory has to be doubled whenever we split a page that has only
+one dictionary entry pointing to it. We can detect this condition via
+the test <i>gd</i> = <i>ld</i>.
+</div><p></p>
+</li><li>
+<p>
+Under what circumstances can we add a new data page without
+doubling the size of the directory?
+</p>
+<p><small>[<a id="q10a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q10&#39;)">show answer</a>]</small></p>
+<div id="q10" style="color:#000099;display:none">
+<p>
+We don't need to double the directory if the page to be split has
+multiple pointers leading to it. We simply make half of those pointers
+point to the old page, while the other half point to the new page.
+We can detect this condition via the test <i>ld</i> &lt; <i>gd</i>.
+</p>
+</div><p></p>
+</li><li>
+After an insertion that causes the directory size to double,
+how many data pages have exactly one directory entry pointing to them?
+<p></p>
+<p><small>[<a id="q11a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q11&#39;)">show answer</a>]</small></p>
+<div id="q11" style="color:#000099;display:none">
+<p>
+Two. The old page that filled up and the new page that was just
+created.
+Since we just doubled the number of pointers in the dictionary
+and added only one new page, all other data pages now have two
+pointers leading to them.
+</p>
+</div><p></p>
+</li><li>
+Under what circumstances would we need overflow pages in an
+extendible hashing file?
+<p></p>
+<p><small>[<a id="q12a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q12&#39;)">show answer</a>]</small></p>
+<div id="q12" style="color:#000099;display:none">
+<p>
+If we had more than <i>C<sub>r</sub></i> records with the same key
+value. These keys would all have exactly the same hash value, no
+matter how many bits we take into account, so if we kept doubling
+the dictionary in the hope of eventually distinguishing them by using
+more and more bits, then the dictionary would grow without bound.
+</p>
+</div><p></p>
+</li><li>
+What are the best-case and worst-case scenarios for space
+utilisation in the dictionary and the data pages (assuming that
+there are no overflow pages)? Under what circumstances do these 
+scenarios occur?
+<p></p>
+<p><small>[<a id="q13a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q13&#39;)">show answer</a>]</small></p>
+<div id="q13" style="color:#000099;display:none">
+<p>
+The best case scenario is when the hash function spreads the
+records uniformly among the pages and all pages are full.
+We then have 100% space utilisation in the data pages.
+Under the best-case scenario, each data page would have
+exactly one dictionary entry referring to it
+(i.e. <i>gd</i> == <i>ld</i> for every page).
+</p>
+<p>
+The worst case scenario is when we have an extremely skew
+hash function (e.g. the hash function maps every
+key value to the same page address ... at least in the
+first few hash bits).
+Let's assume that we fill up the first page and then add one
+more record.
+If we needed to consider all 32 bits of the hash before we
+could find one record that mapped to a different page (e.g.
+all records have hash value <code>0000...0000</code> except
+for one record that has hash value <code>0000...0001</code>,
+then we would have a dictionary with <i>2<sup>32</sup></i>
+entries (which is <em>extremely</em> large).
+At this point, the data page space utilisation would be just
+over 50% (we have two pages, one of which is full and the
+other of which contains one record).
+It is unlikely that an extendible hashing scheme would
+allow the dictionary to grow this large before giving up
+on the idea of splitting and resorting to overflow pages
+instead.
+</p>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+Consider the following example file organisation using linear hashing.
+Records are inserted into the file based on single letter keys (only the keys
+are shown in the diagram).
+</p>
+<p></p><center><img src="./Ex5_files/lhex.png"></center><p>
+</p><p>
+Using the above example to clarify, answer the following questions
+about linear hashing:
+</p>
+<ol type="a">
+<li>
+<p>
+How is it that linear hashing provides an average case search cost
+of only slightly more than one page read, given that overflow pages
+are part of its data structure?
+</p>
+<p><small>[<a id="q14a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q14&#39;)">show answer</a>]</small></p>
+<div id="q14" style="color:#000099;display:none">
+<p>
+If we start from an file with <i>2<sup>d</sup></i> pages, by the time
+the file size has doubled to <i>2<sup>d+1</sup></i> pages, we will
+have split every page in the first half of the file.
+Splitting a page generally has the effect of reducing the length of
+the overflow chain attached to that page.
+Thus, as the file size doubles, we will most likely have reduced the
+length of every overflow chain. In general, and assuming a reasonable
+hash function, this will keep the overflow chain lengths close to zero,
+which means that the average search cost will be determined by the fact
+that we normally read just a single data page from the main data file.
+</p>
+</div><p></p>
+</li><li>
+<p>
+Under what circumstances will the average overflow chain length
+(<i>Ov</i>) not be reduced during page splitting?
+</p>
+<p><small>[<a id="q15a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q15&#39;)">show answer</a>]</small></p>
+<div id="q15" style="color:#000099;display:none">
+<p>
+If all of the records in a particular page have the same hash values
+in their lower-order  <i>d</i> bits and lower-order <i>d+1</i> bits,
+then splitting the page will leave them all where they were. It will
+also result in the newly-added page being empty.
+</p>
+</div><p></p>
+</li><li>
+If a linear hashing file holds <i>r</i> records, with <i>C</i>
+records per page and with splitting after every <i>k</i> inserts, 
+what is the worst-case cost for an equality search, 
+and under what conditions does this occur?
+<p></p>
+<p><small>[<a id="q16a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q16&#39;)">show answer</a>]</small></p>
+<div id="q16" style="color:#000099;display:none">
+<p>
+The worst-case occurs when all of the keys map to the same page address.
+If this occurs, and the file contains <i>r</i> records, then they will
+all have been attached to e.g. the first page. This will mean that
+there's a primary data page plus overflow chain containing
+<i>ceil(r/C)</i> pages. This will be the cost of a search.
+If the file starts out with a single data page, then there will have
+been <i>floor(r/k)</i> new data pages added due to splitting after
+every <i>k</i> insertions.
+This means that the file contains <i>floor(r/k)+1</i> data pages, and
+all but one of them is empty.
+</p>
+</div><p></p>
+</li></ol>
+</li>
+
+<br><li>
+<p>
+Consider the following employee relation:
+</p>
+<pre>Employee(<b>id#</b>:integer, name:string, dept:string, pay:real)
+</pre>
+<p>
+and some records from this relation for a small company:
+</p>
+<pre>(11, 'I. M. Rich', 'Admin',    99000.00)
+(12, 'John Smith', 'Sales',    55000.00)
+(15, 'John Brown', 'Accounts', 35000.00)
+(17, 'Jane Dawes', 'Sales',    50000.00)
+(22, 'James Gray', 'Sales',    65000.00)
+(23, 'Bill Gates', 'Sales',    35000.00)
+(25, 'Jim Morris', 'Admin',    35000.00)
+(33, 'A. D. Mine', 'Admin',    90000.00)
+(36, 'Peter Pipe', 'R+D',      30000.00)
+(44, 'Jane Brown', 'R+D',      30000.00)
+(48, 'Alex Brown', 'Plant',    40000.00)
+(55, 'Mario Reid', 'Accounts', 27000.00)
+(57, 'Jack Smith', 'Plant',    35000.00)
+(60, 'Jack Brown', 'Plant',    35000.00)
+(72, 'Mario Buzo', 'Accounts', 30000.00)
+(77, 'Bill Young', 'Accounts', 31000.00)
+(81, 'Jane Gates', 'R+D',      25000.00)
+(88, 'Tim Menzie', 'R+D',      45000.00)
+(97, 'Jane Brown', 'R+D',      30000.00)
+(98, 'Fred Brown', 'Admin',    60000.00)
+(99, 'Jane Smith', 'Accounts', 30000.00)
+</pre>
+<p>
+Assume that we are using the following hash function:
+</p>
+<pre>hash(11) = 01001010
+hash(12) = 10110101
+hash(15) = 11010111
+hash(17) = 00101000
+hash(22) = 10000001
+hash(23) = 01110111
+hash(25) = 10101001
+hash(33) = 11001100
+hash(36) = 01111000
+hash(44) = 10010001
+hash(48) = 00001111
+hash(55) = 10010001
+hash(57) = 11100011
+hash(60) = 11000101
+hash(72) = 10010010
+hash(77) = 01010000
+hash(81) = 00010111
+hash(88) = 10101011
+hash(97) = 00011100
+hash(98) = 01010111
+hash(99) = 11101011
+</pre>
+<p>
+Assume also that we are dealing with a file organisation where we can insert
+four records on each page (data page or overflow page) and still have
+room for overflow pointers, intra-page directories, and so on.
+</p>
+<p>
+Show the insertion of these records in the order given above
+into an initially empty extendible hashing file.
+How many pages does the relation occupy (including the pages to
+hold the directory)?
+</p>
+<p></p>
+<p><small>[<a id="q17a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q17&#39;)">show answer</a>]</small></p>
+<div id="q17" style="color:#000099;display:none">
+Initial state:
+<p><img src="./Ex5_files/ehm0.png"></p><p>
+After inserting 11,12,15,17:
+</p><p><img src="./Ex5_files/ehm1.png"></p><p>
+After inserting 22:
+</p><p><img src="./Ex5_files/ehm2.png"></p><p>
+After inserting 23,25:<br>
+<scan class="red">Note: 23 went into the wrong page
+</scan></p><p><img src="./Ex5_files/ehm3.png"></p><p>
+After inserting 33:
+</p><p><img src="./Ex5_files/ehm4.png"></p><p>
+After inserting 36,44:
+</p><p><img src="./Ex5_files/ehm5.png"></p><p>
+After inserting 48:
+</p><p><img src="./Ex5_files/ehm6.png"></p><p>
+After inserting 55:
+</p><p><img src="./Ex5_files/ehm7.png"></p><p>
+After inserting 57,60,72,77,81,88,97:
+</p><p><img src="./Ex5_files/ehm8.png"></p><p>
+After inserting 98:
+</p><p><img src="./Ex5_files/ehm9.png"></p><p>
+After inserting 99:
+</p><p><img src="./Ex5_files/ehm10.png"></p><p>
+After inserting all records, there are 7 data pages plus one page for
+the directory.
+</p></div><p></p>
+</li>
+
+<br><li>
+<p>
+Using the same data as for the previous question,
+show the insertion of these records in the order given above
+into an initially empty linear hashed file.
+How many pages does the relation occupy (including any overflow
+pages)?
+</p>
+<p><small>[<a id="q18a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex05/index.php##" onclick="toggleVisible(&#39;q18&#39;)">show answer</a>]</small></p>
+<div id="q18" style="color:#000099;display:none">
+Initial state:
+<p><img src="./Ex5_files/lh0.png"></p><p>
+After inserting 11,12,15,17:
+</p><p><img src="./Ex5_files/lh1.png"></p><p>
+Inserting 22 causes a split:
+</p><p><img src="./Ex5_files/lh2.png"></p><p>
+After inserting 23:
+</p><p><img src="./Ex5_files/lh3.png"></p><p>
+Inserting 25 causes page <tt>0</tt> to split:
+</p><p><img src="./Ex5_files/lh4.png"></p><p>
+After inserting 33,36:
+</p><p><img src="./Ex5_files/lh4a.png"></p><p>
+Inserting 44 causes page <tt>1</tt> to split:
+</p><p><img src="./Ex5_files/lh5.png"></p><p>
+After inserting 48:
+</p><p><img src="./Ex5_files/lh6.png"></p><p>
+Inserting 55 causes page <tt>00</tt> to split:
+</p><p><img src="./Ex5_files/lh7.png"></p><p>
+After inserting 57,60:
+</p><p><img src="./Ex5_files/lh8a.png"></p><p>
+After inserting 72,77:
+</p><p><img src="./Ex5_files/lh9.png"></p><p>
+After inserting 81:
+</p><p><img src="./Ex5_files/lh10.png"></p><p>
+After inserting 88:
+</p><p><img src="./Ex5_files/lh11.png"></p><p>
+After inserting 97:
+</p><p><img src="./Ex5_files/lh12.png"></p><p>
+Inserting 98 causes page <tt>000</tt> to split:
+</p><p><img src="./Ex5_files/lh13.png"></p><p>
+After inserting 99:
+</p><p><img src="./Ex5_files/lh14.png"></p><p>
+After inserting all records, there are 9 data pages plus one overflow page.
+</p></div><p></p>
+</li>
+
+</ol>
+
+
+</body></html>

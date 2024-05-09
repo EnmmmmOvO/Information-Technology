@@ -1,0 +1,562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0051)https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Prac Exercise 03</title>
+<link href="./P03_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./P03_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Prac Exercise 03</span><br>
+  <span class="subheading">PostgreSQL Server Config and File Structures</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div>
+<a href="./p03.sql">My Solution</a>
+<h3>Aims</h3>
+
+<p>This simple exercise aims to get you to:</p>
+<ul>
+<li> examine the configuration of your PostgreSQL servers </li>
+<li> start to understand the filesystem layout of PostgreSQL files </li>
+<li> start to understand the internal structure of PostgreSQL data files </li>
+</ul>
+<p>You ought to do it before the end of week 3.</p>
+
+<h3>Exercise</h3>
+<p>
+PostgreSQL has a wide range of configuration parameters which
+are described in
+<a href="https://www.postgresql.org/docs/16/runtime-config.html">Chapter 19</a>
+of the PostgreSQL documentation.
+For the purposes of this lab, we are most interested in the
+configuration parameters related to resource usage
+(described in
+<a href="https://www.postgresql.org/docs/16/runtime-config-resource.html">Section 19.4</a>).
+</p>
+<p>
+Most configuration parameters can be set by modifying the
+<code><var>$PGDATA</var>/postgresql.conf</code> file and restarting the server.
+Many configuration parameters can also be set via command-line
+arguments to the <code>postgres</code> server when it is initially
+invoked.
+Note that you <em>cannot</em> set parameters if you invoke the server
+via the <code>pgs</code> script; <code>pgs</code> aims to simplify
+things by allowing few options and starting the server with the
+configuration specified in <code>postgresql.conf</code>.
+The standard PostgreSQL mechanism for starting the server is yet
+another script, called <code>pg_ctl</code> (see the
+<a href="https://www.postgresql.org/docs/16/app-pg-ctl.html"><code>pg_ctl</code></a>
+section of the PostgreSQL documentation).
+The simplest way to invoke <code>pg_ctl</code> is one of:
+</p>
+<pre><kbd is="shell">pg_ctl start</kbd>
+server starting
+<kbd is="shell">pg_ctl stop</kbd>
+waiting for server to shut down.... done
+server stopped
+<kbd is="shell">pg_ctl status</kbd>
+pg_ctl: server is running (PID: <var>nnnnnn</var>)
+/localstorage/<var>z5555555</var>/pgsql/bin/postgres
+</pre>
+<p>
+The <code>pgs</code> script simply invokes <code>pg_ctl</code> to
+start a server, with some extra options:
+</p>
+<pre><kbd is="shell">pg_ctl -w start -l /localstorage/$USER/pgsql/data/log</kbd>
+waiting for server to start...... done
+server started
+</pre>
+<p>
+The <code>-l</code> option tells the PostgreSQL server which file to use
+to write its log messages.
+The log file is important, not only because it is where PostgreSQL
+writes error messages so that you can work out e.g. why your server
+wouldn't start, but also because it is where PostgreSQL writes
+statistical information about its performance (if requested).
+</p>
+<p>
+The <code>-w</code> option tells <code>pg_ctl</code> to wait until the server
+has actually started properly before returning. If the server does not
+start properly, you will eventually receive a message like:
+</p>
+<pre>pg_ctl: could not start server
+Examine the log output.
+</pre>
+<p>
+If the server fails to start, you should check your environment
+and the server setup (e.g. <code>$PGDATA/postgresql.conf</code>).
+Note that there are two aspects to consider for the environment:
+the contents of <code>/localstorage/$USER/env</code> <em>and</em>
+the settings of the shell variables in your current window;
+the two should be consistent.
+A trouble-shooting guide for setting up your server appears at the bottom of
+<a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p01/index.php#debugging">Prac Exercise P01</a>.
+</p>
+<p>
+The primary function of the <code>pg_ctl</code> command is to invoke
+the <code>postgres</code> server.
+It can perform additional functions such as specifying the location
+of the log file (as we saw above)
+or passing configuration parameters to the server.
+To pass configuration parameters, you use the <code>-o</code> option
+and a single string containing all the server parameters.
+For example, the <code>-B</code> parameter to <code>postgres</code>
+lets you say how many shared memory buffers the server should use,
+and you could start <code>postgres</code> and get it to use just 16
+buffers as follows:
+</p>
+<pre><kbd is="shell">pg_ctl start -o '-B 16' -l /localstorage/$USER/pgsql/log</kbd>
+server starting
+</pre>
+<p>
+As a warm-up exercise, work out how many shared buffers the PostgreSQL
+server uses by default. (Hint: this is given in the
+<code>postgresql.conf</code> file in units of MB (not number of
+buffers); each buffer is 8KB long).
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<p>
+The value in the <code>postgresql.conf</code> file produced by
+<code>pgs</code> is the default 128MB.
+If the value of <code>shared_buffers</code> in <var>N</var>MB,
+and the size of each buffer is 8KB,
+then the total number of buffers is given by
+the formula (<var>N</var>*1024*1024)/8192.
+For 128MB, this gives 16384 buffers.
+</p>
+</div><p></p>
+
+<h3>Exercises</h3>
+<p>
+Start your PostgreSQL server as normal (i.e. don't change any
+configuration parameters) before getting started with the exercises.
+</p>
+
+<h4>Ex0: Load a new Test Database</h4>
+<p>
+Under the COMP9315 Pracs directory you'll find a new testing
+database. Create a new database to hold it, and load it up.
+There are two representations of the database available:
+</p>
+<ul>
+<li> as a PostgreSQL dump file
+</li><li> as a pair of SQL files, one containing the schema and the other the data
+</li></ul>
+<p>
+The dump file is quicker to load, but not as "user-friendly" (i.e. not
+as readable) as the SQL files.
+</p>
+<p>You create the database in the usual way:</p>
+<pre><kbd is="shell">createdb uni</kbd>
+</pre>
+<p>
+I called the database <code>uni</code> because it contains (fake)
+data about a University. You can find out the database schema from
+the
+<a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/schema.sql"><code>schema.sql</code></a>
+file.
+</p>
+<p>
+To load the database, use the following commands:
+</p>
+<pre><kbd is="shell">psql uni -f /web/cs9315/24T1/pracs/p03/db.dump &gt; load.out 2&gt;&amp;1</kbd>
+<kbd is="shell">grep ERR load.out</kbd>
+</pre>
+<p>
+The first command loads the dump file and ensures that all output is
+written to a file called <code>load.out</code>.
+The second command checks for any error messages produced during the
+load.
+If there are any errors, you should <em>not</em> ignore them,
+but instead try to work out what the problem is and fix it.
+</p>
+
+<h4>Ex1: Devise some Queries on the Test DB</h4>
+<p>
+The first thing to do with any database is to ensure that you understand
+what data is in it. Use <code>psql</code> (or some GUI tool, if you're
+using one) to explore the database. I've added a function that will give
+you counts of the number of tuples in each table:
+</p>
+<pre><kbd is="psql" db="uni">select * from pop();</kbd>
+    table    | ntuples
+-------------+---------
+ assessments |   14098
+ courses     |     980
+ enrolments  |    3506
+ items       |    3931
+ people      |    1980
+(5 rows)
+</pre>
+<p>
+You can look at the definition of the <code>pop()</code> (short for
+"population") either in the
+<a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/pop.sql"><code>pop.sql</code></a>
+file, or via <code>psql</code>'s <code>\df+</code> command.
+</p>
+<p>
+If you're using <code>\df+</code>, you'll find it useful to change how
+<code>psql</code> displays its results, otherwise the output from
+<code>\df+</code> is a mess. You can switch the output format in
+<code>psql</code> using the <code>\x</code> command. This causes
+<code>psql</code> to show the value of each attribute on a seperate
+line; useful if attributes values are large.
+Don't forget to use <code>\x</code> to change the output format
+back before continuing.
+</p>
+<p>
+Once you think you're familiar enough with the database, devise SQL
+queries to answer the following:
+</p>
+<ol type="a">
+<li> what is the largest staff/student id? (<code>People.id</code>)
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<pre><kbd is="psql" db="uni">select max(id) from People;</kbd>
+ max
+------
+ 5936
+</pre>
+</div><p></p>
+</li><li> what is the earliest birthday of any person in the database? (<code>People.birthday</code>)
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<pre><kbd is="psql" db="uni">select min(birthday) from People;</kbd>
+    min
+------------
+ 1970-01-17
+</pre>
+</div><p></p>
+</li><li> what is the maximum mark available for any assessment item? (<code>Items.maxmark</code>)
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<pre><kbd is="psql" db="uni">select max(maxmark) from items;</kbd>
+ max
+-----
+  90
+</pre>
+</div><p></p>
+</li><li> what assessment items are in each course and how many marks does each have?
+ <br> (<code>Courses.code,Items.name,Items.maxmarks</code>)
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<pre><kbd is="psql" db="uni">select c.code, i.name, i.maxmark</kbd>
+<kbd is="psql," db="uni">from   Courses c, Items i</kbd>
+<kbd is="psql," db="uni">where  c.id = i.course;</kbd>
+   code   |     name     | maxmark
+----------+--------------+---------
+ ACCT1501 | Assignment 1 |      10
+ ACCT1501 | Assignment 2 |      10
+ ACCT1501 | Project      |      25
+ ACCT1501 | Exam         |      55
+ ACCT1511 | Assignment 1 |      15
+ ACCT1511 | Assignment 2 |       5
+ ACCT1511 | Assignment 3 |      15
+ ACCT1511 | Exam         |      65
+<span class="comment">etc. etc., for 3931 items</span>
+</pre>
+</div><p></p>
+</li><li> how many students are enrolled in each course? (<code>Courses.code,count(Enrolments.student)</code>)
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<pre><kbd is="psql" db="uni">select c.code, count(e.student)</kbd>
+<kbd is="psql," db="uni">from   Courses c, Enrolments e</kbd>
+<kbd is="psql," db="uni">where  c.id = e.course</kbd>
+<kbd is="psql," db="uni">group  by c.code</kbd>
+<kbd is="psql," db="uni">order  by c.code;</kbd>
+   code   | count
+----------+-------
+ ACCT1501 |     7
+ ACCT1511 |     2
+ ACCT2522 |     2
+ ACCT3563 |     3
+<span class="comment">etc. etc., for 913 courses</span>
+</pre>
+<p>
+If you leave out the <code>order by</code> you should get the same
+<em>set</em> of results, but not necessarily in the same order.
+</p>
+</div><p></p>
+</li><li> check that each student's assessment marks add up to the final mark for each course
+ <br>(<code>Course.code,People.name,Enrolments.mark,sum(Assessment.marks)</code>)
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<pre><kbd is="psql" db="uni">select c.code, p.family||', '||p.given as name, e.mark, sum(a.mark)</kbd>
+<kbd is="psql," db="uni">from   People p, Courses c, Enrolments e, Items i, Assessments a</kbd>
+<kbd is="psql," db="uni">where  p.id = e.student and e.course = c.id and i.course = c.id</kbd>
+<kbd is="psql," db="uni">       and a.student = p.id and a.item = i.id</kbd>
+<kbd is="psql," db="uni">group  by c.code, p.family, p.given, e.mark</kbd>
+<kbd is="psql," db="uni">order  by c.code, p.family;</kbd>
+   code   |                    name                     | mark | sum
+----------+---------------------------------------------+------+-----
+ ACCT1501 | Agster, Yvan Marie                          |   68 |  68
+ ACCT1501 | Bland, Daryl Robert                         |   56 |  56
+ ACCT1501 | Fadaghi, Mundeep Singh                      |   47 |  47
+ ACCT1501 | Gafen, Andrei                               |   56 |  56
+ ACCT1501 | Mcnulty, Abu Rifat                          |   77 |  77
+ ACCT1501 | Nugent, Daina                               |   55 |  55
+<span class="comment">etc. etc., for 3506 tuples</span>
+</pre>
+</div><p></p>
+</li></ol>
+<p>
+For the first four queries above, think about and describe the patterns of access
+to the data in the tables that would be required to answer them.
+</p><p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+<ol type="a">
+<li> <p>Requires all <code>People.id</code> values to be accessed; potentially
+	this would need a scan over all tuples in the relation, hence all pages
+	would need to be read. However, there's an index on the <code>People.id</code>
+	attribute (PostgreSQL makes a B-tree index on all primary keys) which
+	contains all of the <code>People.id</code> values. In theory, the system
+	could determine the largest value simply by looking at the index.
+    How could we work out whether it was doing a full table scan or simply
+    reading the index?</p>
+</li><li> <p>Requires all <code>People.birthday</code> values to be accessed. Since
+	there is no index on birthdays, this will definitely require PostgreSQL
+	to read all of the tuples/pages in the <code>People</code> table.</p>
+</li><li> <p>Requires all <code>Items.maxmark</code> values to be accessed;
+	since this is not a key attribute and there are no indexes on it,
+	all tuples/pages from the <code>Items</code> table will need to be read.</p>
+</li><li> <p>Requires a join on the <code>Courses</code> and <code>Items</code>
+	table; each tuple in each table will need to be accessed, possibly
+	multiple times; in the worst-case scenario, we would read the
+	<code>Courses</code> table once and read the entire <code>Items</code>
+	table for each page in the <code>Courses</code> table.</p>
+</li></ol>
+<p>
+You can compare the time taken for the first two queries by turning on
+<code>psql</code>'s timing mechanism, using the command <code>\timing&nbsp;on</code>.
+If you run the first two queries a few times you will observe that (a) the time
+value is different each time (thanks to the way times are computed),
+(b) that the first query generally takes less time thatn the second.
+</p>
+</div><p></p>
+<h4>Ex2: Explore the Files of the Test DB</h4>
+<p>
+Now that you've used the database, let's take a look at how the data
+is stored in the file system.
+All data is for a given database is stored under the directory (folder):
+</p>
+<pre>$PGDATA/base/<var>OID</var>
+</pre>
+<p>
+where <code>$PGDATA</code> is the location of the PostgreSQL data directory
+as set in your <code>env</code> file, and the <code><var>OID</var></code> is the unique
+internal id of the database from the <code>pg_database</code> table.
+Work out, using the PostgreSQL catalog, which directory corresponds to
+your newly-created database.
+(Hint: the <code>pg_database</code> table will help here. Also,
+<code>psql</code>'s <code>\dS</code> command will tell you the
+names of all catalog tables).
+</p><p><small>[<a id="q9a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q9&#39;)">show answer</a>]</small></p>
+<div id="q9" style="color:#000099;display:none">
+<p>
+The following SQL query will help you work out what is the
+<code><var>OID</var></code> for your database:
+</p>
+<pre>select oid, datname from pg_database
+</pre>
+<p>
+This will give you a list of databases, including <code>template1</code>,
+<code>template0</code> and <code>postgres</code>, each with an associated
+OID.
+There should also be a tuple for your <code>uni</code> database; the OID
+value should also appear as the name of a directory in <code>pgsql/data/base/</code>.
+</p>
+</div><p></p>
+<p>
+Change into the relevant directory and run the <code>ls</code> command.
+This will show dozens of files. Most of these files contain local
+data from system catalog tables, while others contain your <code>uni</code>
+data.
+Recall from lectures that data files associated with a table are
+named after the <code><var>OID</var></code> of that table.
+Use the PostgreSQL catalog to work out which files
+correspond to your tables.
+</p><p><small>[<a id="q10a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q10&#39;)">show answer</a>]</small></p>
+<div id="q10" style="color:#000099;display:none">
+<p>
+The following SQL query will do it:
+</p>
+<pre>select c.oid,c.relname
+from   pg_class c, pg_namespace n
+where  c.relkind='r' and c.relnamespace=n.oid and n.nspname='public';
+</pre>
+<p>
+If you omit the last condition in the query, you'll get all of the
+system tables as well, which will help you work out what all of the
+other files in the directory are.
+</p>
+</div><p></p>
+<p>
+All of the data files in this directory are in binary format, so you can't
+read them with a text editor or the standard Unix file pagers (like <code>more</code>
+and <code>less</code>). Sometimes, however, you can get <var>some</var> information from a
+binary file via the <code>strings</code> command, which prints any text-strings
+that it finds in the file. Try this on the file corresponding to the <code>Courses</code>
+table and you should get a list of course codes and course titles, with a few
+"junk" characters. Since this generates a lot of output, you might want to
+use something like the following command:
+</p>
+<pre><kbd is="shell">strings <var>OID_of_Courses_data_file</var> | less</kbd>
+BENV2254;Theories of Colour and Light
+BENV2228?C20 Arch:Modernity-Deconstruc.
+BENV22241Architectural Studies 3
+<span class="comment">etc. etc. etc.</span>
+</pre>
+<p>
+Note that you won't necessarily see <em>exactly</em> the output shown above.
+The order that tuples are inserted into a page depends on many factors that
+vary from system to system.
+What you are guaranteed to see are some strings containing data relevant to
+courses.
+</p>
+<p>
+An alternative way to examine binary data files is via the Unix <code>od</code>
+command (read the <code>man</code> entry if you don't know what it does).
+Examine the files corresponding to the <code>People</code> table
+and the <code>Assessments</code> table
+to see if you can observe the data they contain
+and also to see if you can work out
+how the data is laid out within the pages of the file.
+You can can get assistance with
+understanding the intra-page data layout
+from the source code files:
+</p>
+<pre>/localstorage/$USER/postgresql-16.1/src/include/storage/bufpage.h
+/localstorage/$USER/postgresql-16.1/src/backend/storage/page/bufpage.c
+</pre>
+<p>
+You'll probably notice some other files with similar <code><var>OID</var></code>s
+to the data files, and other files with the same <code><var>OID</var></code>s
+but with added suffixes. Suggest what might be contained in these
+files. (Searching for suffixes in the source code might help for those
+files with suffixes).
+</p>
+<p><small>[<a id="q11a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q11&#39;)">show answer</a>]</small></p>
+<div id="q11" style="color:#000099;display:none">
+<p>
+The files with <code>_fsm</code> suffixes contain free space maps which
+indicate where space is available in the data file (see
+<a href="https://www.postgresql.org/docs/16/storage-fsm.html">Section 68.3</a>
+of the PostgreSQL documentation).
+</p>
+<p>
+The files with <code>_vm</code> suffixes contain visibility maps which
+indicate pages that contain tuples visible to all active transactions;
+this allows vacuuming to be optimised (see <a href="https://www.postgresql.org/docs/16/storage-vm.html">Section 68.4</a>
+of the PostgreSQL documentation).
+</p>
+<p>
+The files with OIDs close to those of the table data files, but without
+any free space maps are index files (each table has an index on its
+defined primary key).
+</p>
+</div><p></p>
+<p>
+While you're examining the data files, return to <code>psql</code> and
+write a query to print the number of data pages in each relation.
+This is a simple modification of the query above to get the table OIDs.
+</p>
+<p><small>[<a id="q12a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q12&#39;)">show answer</a>]</small></p>
+<div id="q12" style="color:#000099;display:none">
+<pre><kbd is="psql" db="uni">select c.relname,c.relpages</kbd>
+<kbd is="psql," db="uni">from   pg_class c, pg_namespace n</kbd>
+<kbd is="psql," db="uni">where  c.relkind='r' and c.relnamespace=n.oid and n.nspname='public';</kbd>
+   relname   | relpages
+-------------+----------
+ assessments |       70
+ people      |       27
+ courses     |        9
+ enrolments  |       19
+ items       |       26
+</pre>
+</div><p></p>
+<p>
+Once you've got the page counts in the catalog, check that they're consistent
+with the file sizes in the directory for the <code>uni</code> database
+(assuming an 8KB page size).
+</p>
+<p><small>[<a id="q13a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p03/##" onclick="toggleVisible(&#39;q13&#39;)">show answer</a>]</small></p>
+<div id="q13" style="color:#000099;display:none">
+<p>A quick example of how to do this:</p>
+<pre><kbd is="shell">psql uni</kbd>
+psql (16.1)
+Type "help" for help.
+
+<kbd is="psql" db="uni">select oid,relpages from pg_class where relname='Courses';</kbd>
+ oid | relpages
+-----+----------        <span class="comment"># Ooops ... PostgreSQL uses all-lower-case table names internally</span>
+(0 rows)
+
+<kbd is="psql" db="uni">select oid,relpages from pg_class where relname='courses';</kbd>
+  oid  | relpages
+-------+----------
+ <var>NNNNN</var> |        <span class="red">9</span>       <span class="comment"># <var>NNNNN</var> is the oid of the Courses table</span>
+(1 row)                 <span class="comment"># and is also the name of its data file</span>
+                        <span class="comment"># This also tells us that the table has 9 * 8KB pages</span>
+<kbd is="psql" db="uni">\q</kbd>
+<kbd is="shell">ls -l <var>NNNNN</var></kbd>
+-rw------- 1 <var>YOU</var> <var>YOU</var> <span class="red">73728</span> 2011-08-03 14:04 <var>NNNN</var>
+<span class="comment"># 73728 is the number of bytes in the file <var>NNNNN</var></span>
+<kbd is="shell">bc -l</kbd>
+bc 1.06.94
+Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+<b>9 * 8192</b>
+<span class="red">73728</span>
+<span class="comment"># type control-d to exit the bc command</span>
+</pre>
+<p>
+Try this on some other tables. Try to explain any anomalies you find.
+</p>
+</div><p></p>
+
+<h4>End of Prac</h4>
+
+<p>
+Let me know via the forums,
+or come to a consultation
+if you have any problems with this exercise
+... <em>jas</em>
+</p>
+
+</div>
+
+</body></html>

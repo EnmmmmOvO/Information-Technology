@@ -1,0 +1,803 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0067)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php## -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 01</title>
+<link href="./Ex1_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex1_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 01</span><br>
+  <span class="subheading">DBMSs, PostgreSQL, Catalogs</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php?view=all">[Show with all answers]</a></p></div>
+
+<p style="font-size:90%;margin-left:100px;margin-right:100px;">
+Some of these questions require you to look beyond the Week 01 lecture
+material for answers. Some of the questions preempt material that we'll
+be looking at over the next few weeks. To answer some questions, you may
+need to look at the PostgreSQL documentation or at the texts for the
+course ... or, of course, you could simply reveal the answers, but
+where's the fun in that?
+</p>
+
+<ol>
+<a href="./Ex1.sql">My Code Solution</a>
+
+<br><li>
+<p>
+List some of the major issues that a relational database management system
+needs to concern itself with.
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<ul>
+<li> persistent storage of data and meta-data
+</li><li> executing SQL queries on stored data
+</li><li> maintenance of constraints on stored data
+</li><li> extensibility via views, triggers, procedures
+</li><li> query processing (optimisation and efficient execution)
+</li><li> transaction processing semantics
+</li><li> control of concurrent access by multiple users
+</li><li> recovery from failures (rollback, system failure)
+</li></ul>
+</div><p></p>
+
+<br></li><li>
+<p>
+Give an overview of the major stages in answering an SQL query in a relational
+database management system. For each step, describe its inputs and outputs
+and give a brief description of what it does.
+</p>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<ol start="0">
+<li> start with the text string of an SQL query
+<ul>
+<li> e.g. &nbsp; <code>select e.name,d.name from Employee e, Dept d where e.id=d.manager;</code>
+</li></ul>
+</li><li> <b>parsing and translation</b>
+<ul>
+<li> converts an SQL query into a relational algebra expression
+</li><li> input: text string of an SQL query
+</li><li> output: expression tree for a relational algebra expression
+</li></ul>
+</li><li> <b>optimisation</b>
+<ul>
+<li> converts RA expression into query plan
+</li><li> input: relational algebra expression tree
+</li><li> output: sequence of DBMS-specific relational operations
+</li></ul>
+</li><li> <b>execution</b>
+<ul>
+<li> performs relational operations, via chained intermediate results
+</li><li> input: query plan (sequence of DBMS-specific relational operations)
+</li><li> output: set of result tuples, stored either in memory or on disk
+</li></ul>
+</li><li> <b>output</b>
+<ul>
+<li> convert the result tuples into a format useful for the client
+</li><li> input: tuple data in memory buffers (and possibly on disk as well)
+</li><li> output: stream of formatted tuples (format defined by library e.g. PostgreSQL's <code>libpq</code>)
+</li></ul>
+</li></ol>
+</div><p></p>
+
+<br></li><li>
+<p>
+PostgreSQL is an <q>object-relational database management system</q>.
+What are the differences between PostgreSQL and a <q>conventional</q>
+relational database management system (such as Oracle)?
+</p>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<ul>
+<li> every database tuple has an associated object identifier
+</li><li> tables can be defined as specialisations of other tables (inheritance)
+</li><li> can define new data types and operations on those types
+</li></ul>
+</div><p></p>
+
+<br></li><li>
+<p>
+A PostgreSQL installation includes a number of different <q>scopes</q>:
+<em>databases</em> (or catalogs), <em>schemas</em> (or namespaces),
+and <em>tablespaces</em>.
+The scopes correspond to notions from the SQL standard.
+Explain the difference between these and give examples of each.
+</p>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<ul>
+<li><p>
+<b>database</b> (or <b>catalog</b>) ... a logical scope that collects
+together a number of schemas; an example is <tt>template1</tt>, a special
+database that is cloned whenever a user creates a new database; details of
+databases are held in the <tt>pg_database</tt> catalog table
+</p>
+</li><li><p>
+<b>schema</b> (or namespace) ... a logical scope used as a namespace;
+contains a collection of database objects (tables, views, functions, indexes,
+triggers, ...); an example is the <tt>public</tt> schema available as a
+default in all databases; details of schemas are held in the
+<tt>pg_namespace</tt> catalog table
+</p>
+</li><li><p>
+<b>tablespace</b> ... a physical scope identifying a region of the
+host filesystem where PostgreSQL data files are stored; an example is the
+<tt>pg_default</tt> tablespace, which corresponds to the <tt>PG_DATA</tt>
+directory where most PostgreSQL data files are typically stored;
+details of tablespaces are held in the <tt>pg_tablespace</tt> catalog table
+</p>
+</li></ul>
+</div><p></p>
+
+<br></li><li>
+<p>
+For each of the following command-line arguments to the <code>psql</code>
+command, explain what it does, when it might be useful, and how you might
+achieve the same effect from within <code>psql</code>:
+</p>
+<ol type="a">
+<li> <code>-l</code>
+</li><li> <code>-f</code>
+</li><li> <code>-a</code>
+</li><li> <code>-E</code>
+</li></ol>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<ol type="a">
+<li> <code>psql -l</code> <br>
+	<p>
+	Generates a list of all databases in your cluster; would be
+	useful if you couldn't remember the exact  name of one of your
+	databases.
+	</p>
+	<p>
+	You can achieve the same effect from within <code>psql</code>
+        via the command <code>\list</code> or simply <code>\l</code>
+	</p>
+</li><li> <code>psql <i>db</i> -f <i>file</i></code> <br>
+	<p>
+	Connects to the database <code><i>db</i></code> and reads
+	commands from the file called <code><i>file</i></code> to
+	act on that database; useful for invoking scripts that
+	build databases or that run specific queries on them; only
+	displays the output from the commands in <code><i>file</i></code>.
+	</p>
+	<p>
+	You can achieve the same effect from within <code>psql</code>
+        via the command <code>\i <i>file</i></code>
+	</p>
+</li><li> <code>psql -a <i>db</i> -f <i>file</i></code> <br>
+	<p>
+	Causes all input to <code>psql</code> to be echoed to the
+	standard output; useful for running a script on the database
+	and being able to see error messages in the context of the
+	command that caused the error.
+	</p>
+	<p>
+	You can achieve the same effect from within <code>psql</code>
+	via the command <code>\set ECHO all</code>
+	</p>
+</li><li> <code>psql -E <i>db</i></code>
+	<p>
+	Connect to the database <code><i>db</i></code> as usual;
+	for all of the <code>psql</code> catalog commands (such as
+	<code>\d</code>, <code>\df</code>, etc.), show the
+	SQL query that's being executed to produce it; useful if you
+	want to learn how to use the catalog tables.
+	</p>
+	<p>
+	You can achieve the same effect from within <code>psql</code>
+	via the command <code>\set ECHO_HIDDEN on</code>
+	</p>
+</li></ol>
+</div><p></p>
+
+<br></li><li>
+<p>
+PostgreSQL has two main mechanisms for adding data into a database:
+the SQL standard <code>INSERT</code> statement and the PostgreSQL-specific
+<code>COPY</code> statement.
+Describe the differences in how these two statement operate.
+Use the following examples, which insert the same set of tuples,
+to motivate your explanation:`
+</p>
+<pre>insert into Enrolment(course,student,mark,grade)
+	values ('COMP9315', 3312345, 75, 'DN');
+insert into Enrolment(course,student,mark,grade)
+	values ('COMP9322', 3312345, 80, 'DN');
+insert into Enrolment(course,student,mark,grade)
+	values ('COMP9315', 3354321, 55, 'PS');
+
+copy Enrolment(course,student,mark,grade) from stdin;
+COMP9315	3312345	75	DN
+COMP9322	3312345	80	DN
+COMP9315	3354321	55	PS
+\.
+</pre>
+<p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<p>
+Each <code>insert</code> statement is a transaction in its own right.
+It attempts to add a single tuple to the database, checking all of the
+relevant constraints. If any of the constraints fails, that particular
+ insertion operation is aborted and the tuple is not inserted. However,
+any or all of the other <code>insert</code> statements may still succeed.
+</p>
+<p>
+A <code>copy</code> statement attempts to insert all of the tuples
+into the database, checking constraints as it goes. If any constraint
+fails, the <code>copy</code> operation is halted, and none of the
+tuples are added to the table†.
+</p>
+<p>
+For the above example, the <code>insert</code> statements may result
+in either zero or 1 or 2 or 3 tuples being inserted, depending on
+whether how many values are valid.
+For the <code>copy</code> statement, either zero or 3 tuples will
+be added to the table, depending on whether any tuple is invalid
+or not.
+</p>
+<p>
+† A fine detail: under the <code>copy</code> statement,
+tuples are "temporarily" added to the table as the statement
+progresses. In the event of an error, the tuples are all marked
+as invalid and are not visible to any query (i.e. they are
+effectively <em>not</em> added to the table). However, they still
+occupy space in the table. If a very large <code>copy</code> loads
+e.g. 9999 or 10000 tuples and the last tuple is incorrect, space
+has still been allocated for the most of the tuples. The
+<code>vacuum</code> function can be used to clean out the invalid
+tuples.
+</p>
+</div><p></p>
+
+
+<br></li><li>
+<p>
+In <code>psql</code>, the <code>\timing</code> command turns on a timer
+that indicates how long each SQL command takes to execute. Consider the
+following trace of a session asking the several different queries
+multiple times:
+</p>
+<pre><kbd is="psql" db="unsw">\timing</kbd>
+Timing is on.
+<kbd is="psql" db="unsw">select max(id) from students;</kbd>
+   max   
+---------
+ 9904944
+<span class="red">Time: 112.173 ms</span>
+<kbd is="psql" db="unsw">select max(id) from students;</kbd>
+   max   
+---------
+ 9904944
+<span class="red">Time: 0.533 ms</span>
+<kbd is="psql" db="unsw">select max(id) from students;</kbd>
+   max   
+---------
+ 9904944
+<span class="red">Time: 0.484 ms</span>
+<kbd is="psql" db="unsw">select count(*) from courses;</kbd>
+ count 
+-------
+ 80319
+<span class="red">Time: 132.416 ms</span>
+<kbd is="psql" db="unsw">select count(*) from courses;</kbd>
+ count 
+-------
+ 80319
+<span class="red">Time: 30.438 ms</span>
+<kbd is="psql" db="unsw">select count(*) from courses;</kbd>
+ count 
+-------
+ 80319
+<span class="red">Time: 34.034 ms</span>
+<kbd is="psql" db="unsw">select max(id) from students;</kbd>
+   max   
+---------
+ 9904944
+<span class="red">Time: 0.765 ms</span>
+<kbd is="psql" db="unsw">select count(*) from enrolments;</kbd>
+  count  
+---------
+ 2816649
+<span class="red">Time: 2006.707 ms</span>
+<kbd is="psql" db="unsw">select count(*) from enrolments;</kbd>
+  count  
+---------
+ 2816649
+<span class="red">Time: 1099.993 ms</span>
+<kbd is="psql" db="unsw">select count(*) from enrolments;</kbd>
+  count  
+---------
+ 2816649
+<span class="red">Time: 1109.552 ms</span>
+</pre>
+<p>
+Based on the above, suggest answers to the following:
+</p>
+<ol type="a">
+<li> Why is there such variation in timing between different executions
+	of the same command?
+</li><li> What timing value should we ascribe to each of the above commands?
+</li><li> How could we generate reliable timing values?
+</li><li> What is the accuracy of timing results that we can extract like this?
+</li></ol>
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<ol type="a">
+<li> Variation:
+<p>
+There's a clear pattern in the variations: the first time a query is
+executed it takes <em>significantly</em> longer than the second time
+its executed (e.g. the first query drops from over 100ms to less than
+1ms). This is due to caching effects. PostgreSQL has a large
+in-memory buffer-pool. The first time a query is executed, the relevant
+pages will need to be read into memory buffers from disk. The second
+and subsequent times, the pages are already in the memory buffers.
+</p>
+</li><li> Times:
+<p>
+Given the significantly different contexts, it's not really plausible
+to assign a specific time to a query. Assigning a range of values,
+from "cold" execution (when none of the data for the query is
+buffered) to "hot" execution (when as much as possible of the needed
+data is buffered), might be more reasonable. Even then, you would
+need to measure the hot and cold execution several times and take an
+average.
+</p>
+<p>
+How to achieve "cold" execution multiple times? It's difficult.
+Even if you stop the PostgreSQL server, then restart it, effectively
+flushing the buffer pool, there is still some residual buffering in
+the Unix file buffers. You would need to read lots of other files to
+flush the Unix buffers.
+</p>
+</li><li> Reliability:
+<p>
+This is partially answered in the previous question. If you can
+ensure that the context (hot or cold) is the same at the start of
+each timing, the results will be plausibly close. Obviously, you
+should run each test on the same lightly-loaded machine (to
+minimise differences caused by Unix buffering). You should also
+ensure that you are the only user of the database server. If
+multiple users are competing for the buffer pool, the times
+could variably substantially and randomly up or down between
+subsequent runs, depending on how much of your buffered data
+had been swapped out to service queries from other users.
+</p>
+</li><li> Accuracy:
+<p>
+For comparable executions of the query (either buffers empty or
+buffers fully-loaded), it looks like it's no more accurate than
++/- 10ms. It might even be better to forget about precise time
+measures, and simply fit queries into "ball-park" categories, e.g.
+</p>
+<ul>
+<li> Very fast ... 0 ≤ <i>t</i> &lt; 100ms
+</li><li> Fast ... 100 ≤ <i>t</i> &lt; 500ms
+</li><li> Acceptable ... 500 ≤ <i>t</i> &lt; 2000ms
+</li><li> Slow ... 2000 ≤ <i>t</i> &lt; 10000ms
+</li><li> Too Slow ... <i>t</i> &gt; 10000ms
+<ul>
+</ul></li></ul></li></ol>
+<p>
+Note that the above queries were run on a PostgreSQL 8.3.5 server.
+More recent servers seem to be somewhat more consistent in the value
+returned for "hot" executions, although there is may still be a
+substantial difference between the first "cold" execution of a query
+and subsequent "hot" executions of the same query.
+</p>
+</div><p></p>
+
+<br></li><li>
+<p>
+Both the <tt>pg_catalog</tt> schema and the <tt>information_schema</tt> schema
+contain meta-data describing the content of a database.
+Why do we need two schemas to do essentially the same task, and how are they
+related?
+</p>
+<p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+<p>
+We don't actually need two schemas; we have two schemas
+as a result of history. The <tt>information_schema</tt> schema is an SQL
+standard that was developed as part of the SQL-92 standard. Most DBMSs
+existed before that standard and had already developed their own catalog
+tables, which they retained as they were often integral to the functioning
+of the DBMS engine. In most DBMSs the <tt>information_schema</tt> is
+implemented as a collection of views on the native catalog schema.
+</p>
+<p>
+If you want to take a look at the definitions of the <tt>information_schema</tt>
+views in PostgreSQL, log in to any database and try the following:
+</p>
+<pre><kbd is="psql" db="db">set schema 'information_schema';</kbd>
+SET
+<kbd is="psql" db="db">\dS</kbd>
+... list of views and tables ...
+<kbd is="psql" db="db">\d+ views</kbd>
+... schema and definition for "information_schema.views" ...
+... which contains meta-data about views in the database ...
+</pre>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Cross-table references (foreign keys) in the <tt>pg_catalog</tt> tables
+are defined in terms of <tt>oid</tt> attributes. However, examination of
+the the catalog table definitions (either via <tt>\d</tt> in <tt>psql</tt>
+or via the PostgreSQL documentation) doesn't show an <tt>oid</tt> in any
+of the lists of table attributes. To see this, try the following commands:
+</p>
+<pre><kbd is="shell">psql mydb</kbd>
+...
+<kbd is="psql" db="mydb">\d pg_database</kbd>
+...
+<kbd is="psql" db="mydb">\d pg_authid</kbd>
+</pre>
+<p>
+Where does the <tt>oid</tt> attribute come from?
+</p>
+<!--?
+$page = pgURL('storage-page-layout.html');
+showAnswer(<<<xxAAxx
+<p-->
+Every tuple in PostgreSQL contains some "hidden" attributes, as well as the
+data attributes that were defined in the table's schema (i.e. its <tt>CREATE
+TABLE</tt> statement). The tuple header containing these attributes is
+described in section
+<a style="color:#990000" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/$page">54.5 Database Page Layout</a>
+of the PostgreSQL documentation.
+All tuples have attributes called <tt>xmin</tt> and <tt>xmax</tt>, used in
+the implementation of multi-version concurrency control. In fact the <tt>oid</tt>
+attribute is optional, but all of the <tt>pg_catalog</tt> tables have it.
+You can see the values of the hidden attributes by explicitly naming the
+attributes in a query on the table, e.g.
+<p></p>
+<pre>select oid,xmin,xmax,* from pg_namespace;
+</pre>
+<p>
+In other words, the "hidden" attributes are not part of the SQL <tt>*</tt>
+which matches <i>all</i> attributes in the table.
+</p>
+xxAAxx
+);?&gt;
+</li>
+
+<br><li>
+<p>
+Write an SQL view to give a list of table names and table oid's
+from the public namespace in a PostgreSQL database.
+</p>
+<p><small>[<a id="q9a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q9&#39;)">show answer</a>]</small></p>
+<div id="q9" style="color:#000099;display:none">
+<pre>create or replace view Tables
+as
+select r.oid, r.relname as tablename
+from   pg_class r join pg_namespace n on (r.relnamespace = n.oid)
+where  n.nspname = 'public' and r.relkind = 'r'
+;
+</pre>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Using the tables in the <tt>pg_catalog</tt> schema,
+write a function to determine the location of a table in the filesystem.
+In other words, provide your own implementation of the built-in function:
+<tt>pg_relation_filepath(<i>TableName</i>)</tt>.
+The function should be defined and behave as follows:
+</p>
+<pre>create function tablePath(tableName text) returns text
+as $$ ... $$ language plpgsql;
+
+<kbd is="psql" db="mydb">select tablePath('myTable');</kbd>
+          tablepath
+-----------------------------
+ PGDATA/base/2895497/2895518
+<kbd is="psql" db="mydb">select tablePath('ImaginaryTable');</kbd>
+            tablepath
+-------------------------------
+ No such table: imaginarytable
+</pre>
+<p>
+Start the path string with <tt>PGDATA/base</tt> if the <tt>pg_class.reltablespace</tt>
+value is <tt>0</tt>, otherwise use the value of  <tt>pg_tablespace.spclocation</tt> in
+the corresponding <tt>pg_tablespace</tt> tuple.
+</p>
+<p><small>[<a id="q10a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q10&#39;)">show answer</a>]</small></p>
+<div id="q10" style="color:#000099;display:none">
+<pre>create or replace function tablePath(tableName text) returns text
+as $$
+declare
+	_nloc text;
+	_dbid integer;
+	_tbid integer;
+	_tsid integer;
+begin
+	select r.oid, r.reltablespace into _tbid, _tsid
+	from   pg_class r
+		join pg_namespace n on (r.relnamespace = n.oid)
+	where  r.relname = tableName and r.relkind = 'r'
+		and n.nspname = 'public';
+	if (_tbid is null) then
+		return 'No such table: '||tableName;
+	else
+		select d.oid into _dbid
+		from   pg_database d
+		where  d.datname = current_database();
+		if (_tsid = 0) then
+			_nloc := 'PGDATA/data';
+		else
+			select spcname into _nloc
+			from   pg_tablespace
+			where  oid = _tsid;
+			if (_nloc is null) then
+				_nloc := '???';
+			end if;
+		end if;
+		return _nloc||'/'||_dbid::text||'/'||_tbid::text;
+	end if;
+end;
+$$ language plpgsql;
+</pre>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Write a PL/pgSQL function to give a list of table schemas for all of
+the tables in the public namespace of a PostgreSQL database.
+Each table schema is a text string giving the table name and the name
+of all attributes, in their definition order (given by <code>pg_attribute.attnum</code>).
+You can ignore system attributes (those with <code>attnum &lt; 0</code>).
+Tables should appear in alphabetical order.
+</p>
+<p>
+The function should have following header:
+</p>
+<pre>create or replace function tableSchemas() returns setof text ...
+</pre>
+<p>
+and is used as follows:
+</p>
+<pre><kbd is="psql" db="uni"><b>select * from tableschemas();</b></kbd>
+                                 tableschemas                                  
+---------------------------------------------------------------------------------
+ assessments(item, student, mark)
+ courses(id, code, title, uoc, convenor)
+ enrolments(course, student, mark, grade)
+ items(id, course, name, maxmark)
+ people(id, ptype, title, family, given, street, suburb, pcode, gender, birthday, country)
+(5 rows)
+</pre>
+<p><small>[<a id="q11a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q11&#39;)">show answer</a>]</small></p>
+<div id="q11" style="color:#000099;display:none">
+<p>
+This function makes use of the <tt>tables</tt> view defined in Q6.
+</p>
+<pre>create or replace function tableSchemas() returns setof text
+as $$
+declare
+	tab record; att record; ts text;
+begin
+	for tab in
+		select * from tables order by tablename
+	loop
+		ts := '';
+		for att in
+			select * from pg_attribute
+			where  attrelid = tab.oid and attnum &gt; 0
+			order  by attnum
+		loop
+			if (ts &lt;&gt; '') then ts := ts||', '; end if;
+			ts := ts||att.attname;
+		end loop;
+		ts := tab.tablename||'('||ts||')';
+		return next ts;
+	end loop;
+	return;
+end;
+$$ language plpgsql;
+</pre>
+<p>
+And, just for fun, a version that uses the <tt>information_schema</tt> views,
+and, in theory, should be portable to other DBMSs that implement these views.
+</p>
+<pre>create or replace function tableSchemas2() returns setof text
+as $$
+declare
+	tab record; att record; ts text;
+begin
+	for tab in
+		select table_catalog,table_schema,table_name
+		from   information_schema.tables
+		where  table_schema='public' and table_type='BASE TABLE'
+		order  by table_name
+	loop
+		ts := '';
+		for att in
+			select c.column_name
+			from   information_schema.columns c
+			where  c.table_catalog = tab.table_catalog
+				and c.table_schema = tab.table_schema
+				and c.table_name = tab.table_name
+			order  by c.ordinal_position
+		loop
+			if (ts &lt;&gt; '') then ts := ts||', '; end if;
+			ts := ts||att.column_name;
+		end loop;
+		ts := tab.table_name||'('||ts||')';
+		return next ts;
+	end loop;
+	return;
+end;
+$$ language plpgsql;
+</pre>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Extend the function from the previous question so that attaches a type name
+to each attribute name. Use the following function to produce the string for
+each attribute's type:
+</p>
+<pre>create or replace function typeString(typid oid, typmod integer) returns text
+as $$
+declare
+	typ text;
+begin
+	typ := pg_catalog.format_type(typid,typmod);
+	if (substr(typ,1,17) = 'character varying')
+	then
+		typ := replace(typ, 'character varying', 'varchar');
+	elsif (substr(typ,1,9) = 'character')
+	then
+		typ := replace(typ, 'character', 'char');
+	end if;
+	return typ;
+end;
+$$ language plpgsql;
+</pre>
+<p>
+The first argument to this function is a <code>pg_attribute.atttypid</code>
+value; the second argument is a <code>pg_attribute.atttypmod</code> value.
+(Look up what these actually represent in the PostgreSQL documentation).
+</p>
+<p>
+Use the same function header as above, but this time the output should
+look like (for the first three tables at least):
+</p>
+<pre> assessments(item:integer, student:integer, mark:integer)
+ courses(id:integer, code:char(8), title:varchar(50), uoc:integer, convenor:integer)
+ enrolments(course:integer, student:integer, mark:integer, grade:char(2))
+</pre>
+<p><small>[<a id="q12a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q12&#39;)">show answer</a>]</small></p>
+<div id="q12" style="color:#000099;display:none">
+<pre>create or replace function tableSchemas() returns setof text
+as $$
+declare
+	t record; a record; ts text;
+begin
+	for t in
+		select * from tables order by tablename
+	loop
+		ts := '';
+		for a in
+			select * from pg_attribute
+			where  attrelid = t.oid and attnum &gt; 0
+			order  by attnum
+		loop
+			if (ts &lt;&gt; '') then ts := ts||', '; end if;
+			ts := ts||a.attname||':'||typeString(a.atttypid,a.atttypmod);
+		end loop;
+		ts := t.tablename||'('||ts||')';
+		return next ts;
+	end loop;
+	return;
+end;
+$$ language plpgsql;
+
+create or replace function typeString(typid oid, typmod integer) returns text
+as $$
+declare
+	tname text;
+begin
+	tname := format_type(typid,typmod);
+	tname := replace(tname, 'character varying', 'varchar');
+	tname := replace(tname, 'character', 'char');
+	return tname;
+end;
+$$ language plpgsql;
+</pre>
+<p>
+Note that <tt>format_type()</tt> is a built-in function defined
+in the PostgreSQL documentation in section
+<a href="https://www.postgresql.org/docs/16/functions-info.html">9.23. System Information Functions</a>
+</p>
+</div><p></p>
+
+<br></li><li>
+<p>
+The following SQL syntax can be used to modify the length of a
+<tt>varchar</tt> attribute.
+</p><p>
+</p><pre>alter table <i>TableName</i> alter column <i>ColumnName</i> set data type varchar(<i>N</i>);
+</pre>
+<p>
+where <tt><i>N</i></tt> is the new length.
+</p>
+<p>
+If PostgreSQL did not support the above syntax, suggest how you
+might be able to achieve the same effect by manipulating the
+catalog data.
+</p>
+<p><small>[<a id="q13a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex01/index.php##" onclick="toggleVisible(&#39;q13&#39;)">show answer</a>]</small></p>
+<div id="q13" style="color:#000099;display:none">
+<p>
+One possible approach would be:
+</p>
+<pre>update pg_attribute set atttypmod = <i>N</i>
+where  attrelid = (select oid from pg_class where relname = '<i>TableName</i>')
+       and attname = '<i>ColumnName</i>';
+</pre>
+<p>
+This is somewhat like what PostgreSQL does when you use the above
+<tt>ALTER TABLE</tt> statement.
+</p>
+<p>
+Making the length longer causes no problems. What do you suppose
+might happen if you try to make the length shorter than the longest
+string value already stored in that column?
+</p>
+<p>
+The <tt>ALTER TABLE</tt> statement rejects the update because some
+tuples have values that are too long for the new length.
+However, if you use the <tt>UPDATE</tt> statement, it changes the
+length, but the over-length tuples remain.
+</p>
+</div><p></p>
+
+</li></ol>
+
+
+
+</body></html>

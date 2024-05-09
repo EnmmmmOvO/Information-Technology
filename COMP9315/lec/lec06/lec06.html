@@ -1,0 +1,1078 @@
+
+<!-- saved from url=(0080)https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 Week 03 Thursday Lecture</title>
+<link href="./lec06_files/slides.css" rel="stylesheet" type="text/css">
+<script src="./lec06_files/latest.js" async=""></script>
+<script src="./lec06_files/jquery.min.js"></script>
+<link href="./lec06_files/css" rel="stylesheet">
+<link href="./lec06_files/prism.css" rel="stylesheet">
+<script src="./lec06_files/sg.js"></script><script type="text/javascript" async="" src="./lec06_files/MathJax.js"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+ <div class="slideCl1" id="s0">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s1"><span class="nextArrowCl">&gt;&gt;</span></a> </div> <div class="heading">COMP9315 Week 03 Thursday Lecture</div><p></p><ul class="indexUl" style="font-size: 0.7em;"><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s1">Things To Note</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s2">Debugging Assignment 1</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s3">Scanning Relations</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s6">Scanning in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s8">Scanning in other File Structures</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s9">Sorting</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s10">The Sort Operation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s11">Two-way Merge Sort</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s13">Comparison for Sorting</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s15">Cost of Two-way Merge Sort</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s16">n-Way Merge Sort</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s19">Cost of n-Way Merge Sort</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s21">Exercise: Cost of n-Way Merge Sort</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s22">Sorting in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s25">Implementing Projection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s26">The Projection Operation</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s28">Sort-based Projection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s29">Exercise: Cost of Sort-based Projection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s30">Cost of Sort-based Projection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s31">Hash-based Projection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s34">Exercise: Cost of Hash-based Projection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s35">Cost of Hash-based Projection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s36">Projection on Primary Key</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s37">Index-only Projection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s38">Comparison of Projection Methods</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s39">Projection in PostgreSQL</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s40">Implementing Selection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s41">Varieties of Selection</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s43">Exercise: Query Types</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s44">Implementing Select Efficiently</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s45">Heap Files</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s46">Selection in Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s48">Insertion in Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s51">Deletion in Heaps</a>
+</li><li class="i"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s52">Exercise: Cost of Deletion in Heaps</a>
+</li></ul></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [0/52]</div> <div class="slideCl1    " id="s1">
+<div class="navCl1"> <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s2"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Things To Note</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><ul>
+<li> Quiz 2 ... next week ... out Monday, due Friday 11:59pm
+</li><li> Assignment 1: Valid Names = BNF grammar &nbsp; <small>(see below)</small>
+</li><li> Assignment 1: Titles: don't waste time checking <br>
+<small>e.g. Mr, Ms, Dr, Prof, Sir, Reverend, Colonel, President, Bishop, Major, .....</small>
+</li></ul>
+<p></p><pre style="font-size:80%">PersonName ::= Family','Given | Family', 'Given
+
+Family     ::= NameList
+Given      ::= NameList
+
+NameList   ::= Name | Name' 'NameList
+
+Name       ::= Upper Letters
+
+Letter     ::= Upper | Lower | Punc
+
+Letters    ::= Letter | Letter Letters
+
+Upper      ::= 'A' | 'B' | ... | 'Z'
+Lower      ::= 'a' | 'b' | ... | 'z'
+Punc       ::= '-' | "'"
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [1/52]</div> <div class="slideCl1    " id="s2">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s1"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s3"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Debugging Assignment 1</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Symptoms: a message <i>like</i> &nbsp; <large><code>FATAL: the database system ...</code></large>
+</p><p>
+Solution: write debugging output to the <large><code>log</code></large> file
+</p><p>
+See <large><code>elog()</code></large>, section 56.2 in the PostgreSQL documentation
+</p><p>
+Still can't work it out?
+</p><p>
+<large><code>give</code></large> it and send me email ... as a last resort
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [2/52]</div> <div class="slideCl1    " id="s3">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s2"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s4"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning Relations</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example: simple scan of a table ...
+</p><p></p><pre>select name from Employee
+</pre><p>
+implemented as:
+</p><p></p><pre>DB db = openDatabase("myDB");
+Relation r = openRel(db,"Employee");
+Scan s = start_scan(r);
+Tuple t;  <span class="comment">// current tuple</span>
+while ((t = next_tuple(s)) != NULL)
+{
+   char *name = <font color="#008800">getStrField</font>(t,2);
+   printf("%s\n", name);
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [3/52]</div> <div class="slideCl1    " id="s4">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s3"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s5"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning Relations <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following simple <large><font color="#008800"><b><code>Scan</code></b></font></large> data structure
+</p><p></p><pre style="font-size:80%">typedef struct {
+   Relation rel;
+   Page     *curPage;  <span class="comment">// Page buffer</span>
+   int      curPID;    <span class="comment">// current pid</span>
+   int      curTID;    <span class="comment">// current tid</span>
+} ScanData;
+typedef ScanData *Scan;
+
+Scan start_scan(Relation rel)
+{
+	Scan new = malloc(ScanData);
+	new-&gt;rel = rel;
+	new-&gt;curPage = get_page(rel,0);
+	new-&gt;curPID = 0;
+	new-&gt;curTID = 0;
+	return new;
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [4/52]</div> <div class="slideCl1    " id="s5">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s4"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s6"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning Relations <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Implementation of <large><code>next_tuple()</code></large> function:
+</p><p></p><pre style="font-size:90%">Tuple next_tuple(Scan s)
+{
+	if (s-&gt;curTID == nTuples(s-&gt;curPage)) {
+		// finished cur page, get next
+		if (s-&gt;curPID == nPages(s-&gt;rel))
+			return NULL;
+		s-&gt;curPID++;
+		s-&gt;curPage = get_page(s-&gt;rel, s-&gt;curPID);
+		s-&gt;curTID =0;
+	}
+	Record r = get_record(s-&gt;curPage, s-&gt;curTID);
+	s-&gt;curTID++;
+	return makeTuple(s-&gt;rel, r);
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [5/52]</div> <div class="slideCl1    " id="s6">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s5"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s7"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Scanning defined in: <font color="#000099">backend/access/heap/heapam.c</font>
+</p><p>
+Implements iterator data/operations:
+</p><ul>
+<li> <large><font color="#008800"><b><code>HeapScanDesc</code></b></font></large> ... struct containing iteration state
+</li><li> <large><font color="#008800"><b><code>scan = heap_beginscan(rel,...,nkeys,keys)</code></b></font></large>
+</li><li> <large><font color="#008800"><b><code>tup = heap_getnext(scan, direction)</code></b></font></large>
+</li><li> <large><font color="#008800"><b><code>heap_endscan(scan)</code></b></font></large> ... frees up <large><code>scan</code></large> struct
+</li><li> <large><font color="#008800"><b><code>res = HeapKeyTest(tuple,...,nkeys,keys)</code></b></font></large> <br>
+	<small>... performs <large><code>ScanKeys</code></large> tests on tuple ... checks is it a result tuple?</small>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [6/52]</div> <div class="slideCl1    " id="s7">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s6"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s8"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p></p><pre><small>
+typedef HeapScanDescData *<large><font color="#008800"><b><code>HeapScanDesc</code></b></font></large>;
+
+typedef struct HeapScanDescData
+{
+  <span class="comment">// scan parameters </span>
+  Relation      rs_rd;        <span class="comment">// heap relation descriptor </span>
+  Snapshot      rs_snapshot;  <span class="comment">// snapshot ... tuple visibility </span>
+  int           rs_nkeys;     <span class="comment">// number of scan keys </span>
+  ScanKey       rs_key;       <span class="comment">// array of scan key descriptors </span>
+  ...
+  <span class="comment">// state set up at initscan time </span>
+  PageNumber    rs_npages;    <span class="comment">// number of pages to scan </span>
+  PageNumber    rs_startpage; <span class="comment">// page # to start at </span>
+  ...
+  <span class="comment">// scan current state, initally set to invalid </span>
+  HeapTupleData rs_ctup;      <span class="comment">// current tuple in scan</span>
+  PageNumber    rs_cpage;     <span class="comment">// current page # in scan</span>
+  Buffer        rs_cbuf;      <span class="comment">// current buffer in scan</span>
+   ...
+} <font color="#008800">HeapScanDescData</font>;
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [7/52]</div> <div class="slideCl1    " id="s8">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s7"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s9"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Scanning in other File Structures</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<br>
+Above examples are for <font color="#0000BB">heap</font> files
+</p><ul>
+<li> simple, unordered, maybe indexed, no hashing
+</li></ul>
+Other access file structures in PostgreSQL:
+<ul>
+<li> <large><font color="#008800"><b><code>btree</code></b></font></large>, <large><font color="#008800"><b><code>hash</code></b></font></large>, <large><font color="#008800"><b><code>gist</code></b></font></large>, <large><font color="#008800"><b><code>gin</code></b></font></large>
+</li><li> each implements:
+<ul>
+<li> startscan, getnext, endscan
+</li><li> insert, delete &nbsp;<tiny>(update=delete+insert)</tiny>
+</li><li> other file-specific operators
+</li></ul>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [8/52]</div> <div class="slideCl1    " id="s9">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s8"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s10"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sorting</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [9/52]</div> <div class="slideCl1    " id="s10">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s9"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s11"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ The Sort Operation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Sorting is explicit in queries only in the <large><code>order by</code></large> clause
+</p><p></p><pre>select * from Students order by name;
+</pre><p>
+Sorting is used internally in other operations:
+</p><ul>
+<li> eliminating duplicate tuples for projection
+</li><li> ordering files to enhance select efficiency
+</li><li> implementing various styles of join
+</li><li> forming tuple groups in <large><code>group by</code></large>
+</li></ul>
+Sort methods such as quicksort are designed for in-memory data.
+<p>
+For large data on disks, need external sorts such as <font color="#0000BB">merge sort</font>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [10/52]</div> <div class="slideCl1    " id="s11">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s10"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s12"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Two-way Merge Sort</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Example:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/two-way-ex2.png]" src="./lec06_files/two-way-ex2.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [11/52]</div> <div class="slideCl1    " id="s12">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s11"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s13"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Two-way Merge Sort <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Requires three in-memory buffers:
+<br><br>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/two-way-buf.png]" src="./lec06_files/two-way-buf.png">
+</div><p>
+<br>
+Assumption: cost of <font color="#0000EE">Merge</font> operation on two in-memory buffers <i>≅ 0</i>.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [12/52]</div> <div class="slideCl1    " id="s13">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s12"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s14"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Comparison for Sorting</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Above assumes that we have a function to compare tuples.
+</p><p>
+Needs to understand ordering on different data types.
+</p><p>
+Need a function <large><code>tupCompare(r1,r2,f)</code></large> <small>(cf. C's <large><code>strcmp</code></large>)</small>
+</p><p></p><pre>int tupCompare(r1,r2,f)
+{
+   if (r1.f &lt; r2.f) return -1;
+   if (r1.f &gt; r2.f) return 1;
+   return 0;
+}
+</pre><p>
+Assume =, &lt;, &gt; are available for all attribute types.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [13/52]</div> <div class="slideCl1    " id="s14">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s13"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s15"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Comparison for Sorting <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+In reality, need to sort on multiple attributes and ASC/DESC, e.g.
+</p><p></p><pre><span class="comment">-- example multi-attribute sort</span>
+select * from Students
+order by <font color="#0000EE">age</font> <font color="#008800">desc</font>, <font color="#0000EE">year_enrolled</font>
+</pre><p>
+Sketch of multi-attribute sorting function
+</p><p></p><pre>int tupCompare(r1,r2,criteria)
+{
+   foreach (f,ord) in criteria {
+      if (ord == ASC) {
+         if (r1.f &lt; r2.f) return -1;
+         if (r1.f &gt; r2.f) return 1;
+      }
+      else {
+         if (r1.f &gt; r2.f) return -1;
+         if (r1.f &lt; r2.f) return 1;
+      }
+   }
+   return 0;
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [14/52]</div> <div class="slideCl1    " id="s15">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s14"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s16"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost of Two-way Merge Sort</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For a file containing <i>b</i> data pages:
+</p><ul>
+<li> require <i>ceil(log<sub>2</sub>b)</i> passes to sort,
+</li><li> each pass requires <i>b</i> page reads, <i>b</i> page writes
+</li></ul>
+Gives total cost: &nbsp; <i>2.b.ceil(log<sub>2</sub>b)</i>
+<p>
+Example: Relation with <i>r=10<sup>5</sup></i> and <i>c=50</i>
+        &nbsp; <i>⇒</i> &nbsp; <i>b=2000</i> pages.
+</p><p>
+Number of passes for sort: &nbsp; <i>ceil(log<sub>2</sub>2000) &nbsp;=&nbsp; 11</i>
+</p><p>
+Reads/writes entire file 11 times! &nbsp;&nbsp; Can we do better?
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [15/52]</div> <div class="slideCl1    " id="s16">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s15"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s17"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ n-Way Merge Sort</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Initial pass uses: <i>B</i> total buffers
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/n-way-buf-pass0.png]" src="./lec06_files/n-way-buf-pass0.png">
+</div><p>
+<small>Reads <i>B</i> pages at a time, sorts in memory, writes out in order</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [16/52]</div> <div class="slideCl1    " id="s17">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s16"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s18"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ n-Way Merge Sort <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Merge passes use:
+	&nbsp; <i>B-1 = n</i> &nbsp;input buffers,
+	&nbsp; <i>1</i> &nbsp;output buffer
+</p><p>
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/n-way-buf.png]" src="./lec06_files/n-way-buf.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [17/52]</div> <div class="slideCl1    " id="s18">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s17"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s19"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ n-Way Merge Sort <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Method:
+</p><p></p><pre><small>
+<span class="comment">// Produce B-page-long runs</span>
+for each group of B pages in Rel {
+    read B pages into memory buffers
+    sort group in memory
+    write B pages out to Temp
+}
+<span class="comment">// Merge runs until everything sorted</span>
+numberOfRuns = ⌈b/B⌉
+while (numberOfRuns &gt; 1) {
+    <span class="comment">// n-way merge, where n=B-1</span>
+    for each group of n runs in Temp {
+        merge into a single run via input buffers
+        write run to newTemp via output buffer
+    }
+    numberOfRuns = ⌈numberOfRuns/n⌉
+    Temp = newTemp <span class="comment">// swap input/output files</span>
+}
+</small></pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [18/52]</div> <div class="slideCl1    " id="s19">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s18"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s20"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost of n-Way Merge Sort</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider file where <i>b = 4096</i>, <i>B = 16</i> total buffers:
+</p><ul>
+<li> pass 0 produces 256 <i>×</i> 16-page sorted runs
+</li><li> pass 1
+<ul>
+<li> performs 15-way merge of groups of 16-page sorted runs
+</li><li> produces 18 <i>×</i> 240-page sorted runs &nbsp; <small>(17 full runs, 1 short run)</small>
+</li></ul>
+</li><li> pass 2
+<ul>
+<li> performs 15-way merge of groups of 240-page sorted runs
+</li><li> produces 2 <i>×</i> 3600-page sorted runs &nbsp; <small>(1 full run, 1 short run)</small>
+</li></ul>
+</li><li> pass 3
+<ul>
+<li> performs 15-way merge of groups of 3600-page sorted runs
+</li><li> produces 1 <i>×</i> 4096-page sorted runs
+</li></ul>
+</li></ul>
+(cf. two-way merge sort which needs 11 passes)
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [19/52]</div> <div class="slideCl1    " id="s20">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s19"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s21"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost of n-Way Merge Sort <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Generalising from previous example ...
+</p><p>
+For <i>b</i> data pages and <i>B</i> buffers
+</p><ul>
+<li> first pass: read/writes <i>b</i> pages, gives <i>b<sub>0</sub> = ⌈b/B⌉</i> runs
+</li><li> then need <i>⌈log<sub>n</sub>b<sub>0</sub>⌉</i> passes until sorted, where <i>n = B-1</i>
+</li><li> each pass reads and writes <i>b</i> pages &nbsp; <small>(i.e. <i>2.b</i> page accesses)</small>
+</li></ul>
+<br>
+<i>Cost = 2.b.(1 + ⌈log<sub>n</sub>b<sub>0</sub>⌉)</i>, &nbsp; where <i>b<sub>0</sub> = ⌈b/B⌉ and n = B-1</i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [20/52]</div> <div class="slideCl1    " id="s21">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s20"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s22"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Cost of n-Way Merge Sort</div></td><td align="right"></td></tr></tbody></table>
+<p>
+How many reads+writes to sort the following:
+</p><ul>
+<li> <i>r</i> = 1048576 tuples (<i>2<sup>20</sup></i>)
+</li><li> <i>R</i> = 62 bytes per tuple (fixed-size)
+</li><li> <i>B</i> = 4096 bytes per page
+</li><li> <i>H</i> = 96 bytes of header data per page
+</li><li> <i>D</i> = 1 presence bit per tuple in page directory
+</li><li> all pages are full
+</li></ul>
+Consider for the cases:
+<ul>
+<li> 9 total buffers, &nbsp;for merging: 8 input buffers, 1 output buffer
+</li><li> 33 total buffers, &nbsp;for merging: 32 input buffers, 1 output buffer
+</li><li> 257 total buffers, &nbsp;for merging: 256 input buffers, 1 output buffer
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [21/52]</div> <div class="slideCl1    " id="s22">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s21"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s23"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sorting in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Sort uses a merge-sort (from Knuth) similar to above:
+</p><ul>
+<li> <font color="#000099">backend/utils/sort/tuplesort.c</font>
+</li><li> <font color="#000099">include/utils/sortsupport.h</font>
+</li></ul>
+Tuples are mapped to <large><font color="#008800"><b><code>SortTuple</code></b></font></large> structs for sorting:
+<ul>
+<li> each SortTuple contains pointer to tuple and sort key
+</li><li> no need to deal with actual Tuples during sort
+</li><li> unless multiple attributes used in sort
+</li></ul>
+If all data fits into memory, sort using <large><font color="#008800"><b><code>qsort()</code></b></font></large>.
+<p>
+If memory fills while reading, form "runs" and do disk-based sort.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [22/52]</div> <div class="slideCl1    " id="s23">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s22"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s24"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sorting in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Disk-based sort has phases:
+</p><ul>
+<li> divide input into sorted runs using HeapSort
+</li><li> merge using <i>N</i> buffers, one output buffer
+</li><li> <i>N</i> = as many buffers as <large><code>workMem</code></large> allows
+</li></ul>
+Described in terms of "tapes" ("tape" <i>≅</i> sorted run)
+<p>
+Implementation of "tapes": <font color="#000099">backend/utils/sort/logtape.c</font>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [23/52]</div> <div class="slideCl1    " id="s24">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s23"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s25"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sorting in PostgreSQL <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Sorting comparison operators are obtained via catalog (in <large><code><i>Type</i>.o</code></large>):
+</p><p></p><pre><span class="comment">// gets pointer to function via pg_operator</span>
+struct Tuplesortstate { ... SortTupleComparator ... };
+
+<span class="comment">// returns negative, zero, positive</span>
+ApplySortComparator(Datum datum1, bool isnull1,
+                    Datum datum2, bool isnull2,
+                    SortSupport sort_helper);
+</pre><p>
+Flags indicate: ascending/descending, nulls-first/last.
+</p><p>
+<large><code>ApplySortComparator()</code></large> is PostgreSQL's version of <large><code>tupCompare()</code></large>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [24/52]</div> <div class="slideCl1    " id="s25">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s24"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s26"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Implementing Projection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [25/52]</div> <div class="slideCl1    " id="s26">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s25"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s27"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ The Projection Operation</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the query:
+</p><p></p><pre>select distinct name,age from Employee;
+</pre><p>
+If the <large><code>Employee</code></large> relation has four tuples such as:
+</p><p></p><pre>(94002, John, Sales, Manager,   32)
+(95212, Jane, Admin, Manager,   39)
+(96341, John, Admin, Secretary, 32)
+(91234, Jane, Admin, Secretary, 21)
+</pre><p>
+then the result of the projection is:
+</p><p></p><pre>(Jane, 21)   (Jane, 39)   (John, 32)
+</pre><p>
+Note that duplicate tuples (e.g. <large><code>(John,32)</code></large>) are eliminated.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [26/52]</div> <div class="slideCl1    " id="s27">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s26"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s28"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ The Projection Operation <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The projection operation needs to:
+</p><ol>
+<li> scan the entire relation as input
+<ul>
+<li> already seen how to do scanning
+</li></ul>
+<br>
+</li><li> remove unwanted attributes in output tuples 
+<ul>
+<li> implementation depends on tuple internal structure
+</li><li> essentially, make a new tuple with fewer attributes <br>
+	<small>and where the values may be computed from existing attributes</small>
+</li></ul>
+<br>
+</li><li> eliminate any duplicates produced &nbsp; (if <large><code>distinct</code></large>)
+<ul>
+<li> two approaches: sorting or hashing
+</li></ul>
+</li></ol>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [27/52]</div> <div class="slideCl1    " id="s28">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s27"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s29"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Sort-based Projection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Requires a temporary file/relation (<large><code>Temp</code></large>)
+</p><p></p><pre>for each tuple T in Rel {
+    T' = mkTuple([attrs],T)
+    write T' to Temp
+}
+
+sort Temp on [attrs]
+
+for each tuple T in Temp {
+    if (T == Prev) continue
+    write T to Result
+    Prev = T
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [28/52]</div> <div class="slideCl1    " id="s29">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s28"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s30"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Cost of Sort-based Projection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a table <i>R(x,y,z)</i> with tuples:
+</p><p></p><pre>Page 0:  (1,1,'a')   (11,2,'a')  (3,3,'c')
+Page 1:  (13,5,'c')  (2,6,'b')   (9,4,'a')
+Page 2:  (6,2,'a')   (17,7,'a')  (7,3,'b')
+Page 3:  (14,6,'a')  (8,4,'c')   (5,2,'b')
+Page 4:  (10,1,'b')  (15,5,'b')  (12,6,'b')
+Page 5:  (4,2,'a')   (16,9,'c')  (18,8,'c')
+</pre><p>
+SQL: &nbsp; <large><code>create T as (select distinct y from R)</code></large>
+</p><p>
+Assuming:
+</p><ul>
+<li> 3 memory buffers, 2 for input, one for output
+</li><li> pages/buffers hold 3 <large><code>R</code></large> tuples <small>(i.e. <i>c<sub>R</sub>=3</i>)</small>, 6 <large><code>T</code></large> tuples <small>(i.e. <i>c<sub>T</sub>=6</i>)</small>
+</li></ul>
+Show how sort-based projection would execute this statement.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [29/52]</div> <div class="slideCl1    " id="s30">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s29"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s31"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost of Sort-based Projection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+The costs involved are <small>(assuming <i>B=n+1</i> buffers for sort)</small>:
+</p><ul>
+<li> scanning original relation <large><code>Rel</code></large>: &nbsp; <i>b<sub>R</sub></i> &nbsp; <small>(with <i>c<sub>R</sub></i>)</small>
+</li><li> writing <large><code>Temp</code></large> relation: &nbsp; <i>b<sub>T</sub></i> &nbsp;&nbsp;&nbsp; <small>(smaller tuples, <i>c<sub>T</sub> &gt; c<sub>R</sub></i>, <font color="#0000BB">sorted</font>)</small>
+</li><li> sorting <large><code>Temp</code></large> relation: <br> &nbsp; <i>2.b<sub>T</sub>.(1+ceil(log<sub>n</sub>b<sub>0</sub>)) </i> where <i>b<sub>0</sub> = ceil(b<sub>T</sub>/B)</i>
+</li><li> scanning <large><code>Temp</code></large>, removing duplicates: &nbsp; <i>b<sub>T</sub></i>
+</li><li> writing the result relation: &nbsp; <i>b<sub>Out</sub></i> &nbsp;&nbsp;&nbsp; <small>(maybe less tuples)</small>
+</li></ul>
+Cost = sum of above = <i>b<sub>R</sub> + b<sub>T</sub> + 2.b<sub>T</sub>.(1+ceil(log<sub>n</sub>b<sub>0</sub>)) + b<sub>T</sub> + b<sub>Out</sub></i>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [30/52]</div> <div class="slideCl1    " id="s31">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s30"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s32"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hash-based Projection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Partitioning phase:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj/hash-project.png]" src="./lec06_files/hash-project.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [31/52]</div> <div class="slideCl1    " id="s32">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s31"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s33"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hash-based Projection <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Duplicate elimination phase:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/scansortproj//hash-project2.png]" src="./lec06_files/hash-project2.png">
+</div><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [32/52]</div> <div class="slideCl1    " id="s33">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s32"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s34"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Hash-based Projection <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Algorithm for both phases:
+</p><p></p><pre>for each tuple T in relation Rel {
+    T' = mkTuple([attrs],T)
+    H = h1(T', n)
+    B = buffer for partition[H]
+    if (B full) write and clear B
+    insert T' into B
+}
+for each partition P in 0..n-1 {
+    for each tuple T in partition P {
+        H = h2(T, n)
+        B = buffer for hash value H
+        if (T not in B) insert T into B
+        <span class="comment">// assumes B never gets full</span>
+    }
+    write and clear all buffers
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [33/52]</div> <div class="slideCl1    " id="s34">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s33"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s35"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Cost of Hash-based Projection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider a table <i>R(x,y,z)</i> with tuples:
+</p><p></p><pre>Page 0:  (1,1,'a')   (11,2,'a')  (3,3,'c')
+Page 1:  (13,5,'c')  (2,6,'b')   (9,4,'a')
+Page 2:  (6,2,'a')   (17,7,'a')  (7,3,'b')
+Page 3:  (14,6,'a')  (8,4,'c')   (5,2,'b')
+Page 4:  (10,1,'b')  (15,5,'b')  (12,6,'b')
+Page 5:  (4,2,'a')   (16,9,'c')  (18,8,'c')
+<span class="comment">-- and then the same tuples repeated for pages 6-11</span>
+</pre><p>
+SQL: &nbsp; <large><code>create T as (select distinct y from R)</code></large>
+</p><p>
+Assuming:
+</p><ul>
+<li> 4 memory buffers, one for input, 3 for partitioning
+</li><li> pages/buffers hold 3 <large><code>R</code></large> tuples <small>(i.e. <i>c<sub>R</sub>=3</i>)</small>, 4 <large><code>T</code></large> tuples <small>(i.e. <i>c<sub>T</sub>=4</i>)</small>
+</li><li> hash functions: &nbsp; h1(x) = x%3, &nbsp; h2(x) = (x%4)%3
+</li></ul>
+Show how hash-based projection would execute this statement.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [34/52]</div> <div class="slideCl1    " id="s35">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s34"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s36"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Cost of Hash-based Projection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+The total cost is the sum of the following:
+</p><ul>
+<li> scanning original relation <large><code>R</code></large>: &nbsp; <i>b<sub>R</sub></i>
+</li><li> writing partitions: &nbsp; <i>b<sub>P</sub></i> &nbsp; <small>(<i>b<sub>R</sub></i> vs <i>b<sub>P</sub></i> ?)</small>
+</li><li> re-reading partitions: &nbsp; <i>b<sub>P</sub></i>
+</li><li> writing the result relation: &nbsp; <i>b<sub>Out</sub></i>
+</li></ul>
+Cost = <i>b<sub>R</sub> + 2b<sub>P</sub> + b<sub>Out</sub></i>
+<p>
+To ensure that <i>n</i> is larger than the largest partition ...
+</p><ul>
+<li> use hash functions (h1,h2) with uniform spread
+</li><li> allocate at least <i>sqrt(b<sub>R</sub>)+1</i> buffers
+</li><li> if insufficient buffers, significant re-reading overhead
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [35/52]</div> <div class="slideCl1    " id="s36">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s35"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s37"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Projection on Primary Key</div></td><td align="right"></td></tr></tbody></table>
+<p>
+No duplicates, so the above approaches are not required.
+</p><p>
+Method:
+</p><p></p><pre>bR = nPages(Rel)
+for i in 0 .. bR-1 {
+   P = read page i
+   for j in 0 .. nTuples(P) {
+      T = getTuple(P,j)
+      <font color="#008800">T' = mkTuple(pk, T)</font>
+      if (outBuf is full) write and clear
+      append T' to outBuf
+   }
+}
+if (nTuples(outBuf) &gt; 0) write
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [36/52]</div> <div class="slideCl1    " id="s37">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s36"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s38"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Index-only Projection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Can do projection without accessing data file iff ...
+</p><ul>
+<li> relation is indexed on <i>(A<sub>1</sub>,A<sub>2</sub>,...A<sub>n</sub>)</i>
+	&nbsp;&nbsp; <small>(indexes described later)</small>
+</li><li> projected attributes are a prefix of <i>(A<sub>1</sub>,A<sub>2</sub>,...A<sub>n</sub>)</i>
+</li></ul>
+<p>
+Basic idea:
+</p><ul>
+<li> scan through index file <small>(which is already sorted on attributes)</small>
+</li><li> duplicates are already adjacent in index, so easy to skip
+</li></ul>
+Cost analysis ...
+<ul>
+<li> index has <i>b<sub>i</sub></i> pages &nbsp; (where <i>b<sub>i</sub> ≪ b<sub>R</sub></i>)
+</li><li> Cost = <i>b<sub>i</sub></i> reads + <i>b<sub>Out</sub></i> writes
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [37/52]</div> <div class="slideCl1    " id="s38">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s37"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s39"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Comparison of Projection Methods</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Difficult to compare, since they make different assumptions:
+</p><ul>
+<li> index-only: needs an appropriate index
+</li><li> hash-based: needs buffers and good hash functions
+</li><li> sort-based: needs only buffers <i>⇒</i> use as default
+</li></ul>
+<p>
+Best case scenario for each <small>(assuming <i>n+1</i> in-memory buffers)</small>:
+</p><ul>
+<li> index-only: &nbsp; <i>b<sub>i</sub> + b<sub>Out</sub> &nbsp; ≪ &nbsp; b<sub>R</sub> + <font color="#0000EE">b<sub>Out</sub></font></i>
+</li><li> hash-based: &nbsp; <i>b<sub>R</sub> + 2.b<sub>P</sub> + <font color="#0000EE">b<sub>Out</sub></font></i>
+</li><li> sort-based: &nbsp; <i>b<sub>R</sub> + b<sub>T</sub> + 2.b<sub>T</sub>.ceil(log<sub>n</sub>b<sub>0</sub>) + b<sub>T</sub> + <font color="#0000EE">b<sub>Out</sub></font></i>
+</li></ul>
+<small>We normally omit <i>b<sub>Out</sub></i>, since each method produces the same result</small>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [38/52]</div> <div class="slideCl1    " id="s39">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s38"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s40"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Projection in PostgreSQL</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Code for projection forms part of execution iterators:
+</p><ul>
+<li> <font color="#000099">backend/executor/execQual.c</font>
+</li></ul>
+Functions involved with projection:
+<ul>
+<li> <large><font color="#008800"><b><code>ExecProject(projInfo,...)</code></b></font></large> <small>... extracts projected data</small>
+</li><li> <large><font color="#008800"><b><code>check_sql_fn_retval(...)</code></b></font></large> <small>... makes new tuple via TargetList</small>
+</li><li> <large><font color="#008800"><b><code>ExecStoreTuple(newTuple,...)</code></b></font></large> <small>... save tuple in buffer</small>
+</li></ul>
+plus many many others ...
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [39/52]</div> <div class="slideCl1    " id="s40">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s39"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s41"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Implementing Selection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [40/52]</div> <div class="slideCl1    " id="s41">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s40"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s42"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Varieties of Selection</div></td><td align="right"></td></tr></tbody></table>
+<p>
+<font color="#0000BB">Selection</font>: &nbsp; <large><code>select * from R where C</code></large>
+</p><ul>
+<li> filters a subset of tuples from one relation <large><code>R</code></large>
+</li><li> based on a condition <large><code>C</code></large> on the attribute values
+</li></ul>
+We consider three distinct styles of selection:
+<ul>
+<li> 1-d (one dimensional) &nbsp; <small>(condition uses only <i>1</i> attribute)</small>
+</li><li> <i>n</i>-d (multi-dimensional) &nbsp; <small>(condition uses <i>&gt;1</i> attribute)</small>
+</li><li> similarity &nbsp; <small>(approximate matching, with ranking)</small>
+</li></ul>
+Each style has several possible file-structures/techniques.
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [41/52]</div> <div class="slideCl1    " id="s42">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s41"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s43"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Varieties of Selection <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Examples of different selection types:
+</p><ul>
+<li> <p><font color="#0000BB">one</font>: &nbsp;<large><code>select * from</code></large> &nbsp;<i>R</i>&nbsp; <large><code>where id = 1234</code></large>
+
+</p></li><li> <p><font color="#0000BB">pmr</font>:
+&nbsp;<large><code>select * from</code></large> &nbsp;<i>R</i>&nbsp; <large><code>where age=65</code></large> &nbsp;(1-d)<br><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;<large><code>select * from</code></large> &nbsp;<i>R</i>&nbsp; <large><code>where age=65 and gender='m'</code></large> &nbsp;(n-d)
+</p></li><li> <p><font color="#0000BB">rng</font>: &nbsp;
+   <large><code>select * from</code></large> &nbsp;<i>R</i>&nbsp; <large><code>where age≥18 and age≤21</code></large> &nbsp;(1-d)<br><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;<large><code>select * from</code></large> &nbsp;<i>R</i>&nbsp; <large><code>where age between 18 and 21</code></large> &nbsp;(n-d)<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;<large><code>and height between 160 and 190</code></large> <br>
+note: <font color="#0000BB">rng</font> = <font color="#0000BB">range</font>
+</p></li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [42/52]</div> <div class="slideCl1    " id="s43">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s42"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s44"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Query Types</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Using the relation:
+</p><p></p><pre>create table Courses (
+   id       integer primary key,
+   code     char(8),  <span class="comment">-- e.g. 'COMP9315'</span>
+   title    text,     <span class="comment">-- e.g. 'Computing 1'</span>
+   year     integer,  <span class="comment">-- e.g. 2000..2016</span>
+   convenor integer references Staff(id),
+   constraint once_per_year unique (code,year)
+);
+</pre><p>
+give examples of each of the following query types:
+</p><ol>
+<li> a 1-d <i>one</i> query, &nbsp;&nbsp; an n-d <i>one</i> query
+</li><li> a 1-d <i>pmr</i> query, &nbsp;&nbsp; an n-d <i>pmr</i> query
+</li><li> a 1-d <i>range</i> query, &nbsp;&nbsp; an n-d <i>range</i> query
+</li></ol>
+Suggest how many solutions each might produce ...
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [43/52]</div> <div class="slideCl1    " id="s44">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s43"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s45"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Implementing Select Efficiently</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Two basic approaches:
+</p><ul>
+<li> physical arrangement of tuples
+<ul>
+<li> sorting
+	&nbsp; <small>(search strategy)</small>
+</li><li> hashing
+	&nbsp; <small>(static, dynamic, <i>n</i>-dimensional)</small>
+</li></ul>
+</li><li> additional indexing information
+<ul>
+<li> index files
+	&nbsp; <small>(primary, secondary, trees)</small>
+</li><li> signatures 
+	&nbsp; <small>(superimposed, disjoint)</small>
+</li></ul>
+</li></ul>
+<p>
+Our analyses assume: 1 input buffer available for each relation.
+</p><p>
+If more buffers are available, most methods benefit.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [44/52]</div> <div class="slideCl1    " id="s45">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s44"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s46"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Heap Files</div></td><td align="right"></td></tr></tbody></table>
+<p>
+</p><p>
+</p><div class="center">
+<small>
+Note: this is <b>not</b> "heap" as in the top-to-bottom ordered tree.
+<br>
+It means simply an unordered collection of tuples in a file.
+</small>
+</div>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [45/52]</div> <div class="slideCl1    " id="s46">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s45"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s47"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+For all selection queries, the only possible strategy is:
+</p><p></p><pre><span class="comment">// select * from R where C</span>
+for each page P in file of relation R {
+    for each tuple t in page P {
+        if (t satisfies C)
+            add tuple t to result set
+    }
+}
+</pre><p>
+i.e. linear scan through file searching for matching tuples
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [46/52]</div> <div class="slideCl1    " id="s47">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s46"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s48"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Selection in Heaps <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+The heap is scanned from the first to the last page:
+</p><p></p><div align="center">
+<img alt="[Diagram:Pics/file-struct/heapscan.png]" src="./lec06_files/heapscan.png">
+</div><p>
+<i>Cost<sub>range</sub> &nbsp;=&nbsp; Cost<sub>pmr</sub> &nbsp;=&nbsp; b</i>
+</p><p>
+If we know that only one tuple matches the query (<i>one</i> query), <br>
+a simple optimisation is to stop the scan once that tuple is found.
+</p><p>
+<i>Cost<sub>one</sub></i> :  &nbsp;&nbsp;&nbsp;&nbsp;
+Best = <i>1</i> &nbsp;&nbsp;&nbsp;&nbsp;
+Average = <i>b/2</i> &nbsp;&nbsp;&nbsp;&nbsp;
+Worst = <i>b</i>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [47/52]</div> <div class="slideCl1    " id="s48">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s47"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s49"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Insertion: new tuple is appended to file (in last page).
+</p><p></p><pre>rel = openRelation("R", READ|WRITE);
+pid = nPages(rel)-1;
+get_page(rel, pid, buf);
+if (size(newTup) &gt; size(buf))
+   { deal with oversize tuple }
+else {
+   if (!hasSpace(buf,newTup))
+      { pid++; nPages(rel)++; clear(buf); }
+   insert_record(buf,newTup);
+   put_page(rel, pid, buf);
+}
+</pre><p>
+<i>Cost<sub>insert</sub> &nbsp;=&nbsp; 1<sub>r</sub> + 1<sub>w</sub></i>
+</p><p>
+<small>Plus possible extra writes for oversize tuples, e.g. PostgreSQL's TOAST</small>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [48/52]</div> <div class="slideCl1    " id="s49">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s48"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s50"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion in Heaps <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+Alternative strategy:
+</p><ul>
+<li> find any page from <large><code>R</code></large> with enough space
+</li><li> preferably a page already loaded into memory buffer
+</li></ul>
+PostgreSQL's strategy:
+<ul>
+<li> use last updated page of <large><code>R</code></large> in buffer pool
+</li><li> otherwise, search buffer pool for page with enough space
+</li><li> assisted by free space map (FSM) associated with each table
+</li><li> for details: <large><font color="#008800"><b><code>backend/access/heap/{heapam.c,hio.c}</code></b></font></large>
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [49/52]</div> <div class="slideCl1    " id="s50">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s49"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s51"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Insertion in Heaps <span style="font-size:67%">(cont)</span></div></td><td align="right"></td></tr></tbody></table>
+<p>
+PostgreSQL's tuple insertion:
+</p><p></p><pre><large><font color="#008800"><b><code>heap_insert</code></b></font></large>(Relation relation,    <span class="comment">// relation desc</span>
+            HeapTuple newtup,     <span class="comment">// new tuple data</span>
+            CommandId cid, ...)   <span class="comment">// SQL statement</span>
+</pre><p>
+</p><ul>
+<li> finds page which has enough free space for <large><code>newtup</code></large>
+</li><li> ensures page loaded into buffer pool and locked
+</li><li> copies tuple data into page buffer, sets <large><code>xmin</code></large>, etc.
+</li><li> marks buffer as dirty
+</li><li> writes details of insertion into transaction log
+</li><li> returns OID of new tuple if relation has OIDs
+</li></ul>
+</div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [50/52]</div> <div class="slideCl1    " id="s51">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s50"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s52"><span class="nextArrowCl"> &gt;&gt; </span></a> </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Deletion in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+SQL: &nbsp;<large><code>delete from</code></large> <i>R</i> &nbsp;<large><code>where</code></large> <i>Condition</i>
+</p><p>
+Implementation of deletion:
+</p><p></p><pre>rel = openRelation("R",READ|WRITE);
+for (p = 0; p &lt; nPages(rel); p++) {
+    get_page(rel, p, buf);
+    ndels = 0;
+    for (i = 0; i &lt; nTuples(buf); i++) {
+        tup = get_record(buf,i);
+        if (tup satisfies <i>Condition</i>)
+            { ndels++; delete_record(buf,i); }
+    }
+    if (ndels &gt; 0) put_page(rel, p, buf);
+    if (ndels &gt; 0 &amp;&amp; unique) break;
+}
+</pre><p>
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [51/52]</div> <div class="slideCl1    " id="s52">
+<div class="navCl1"><a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s51"><span class="prevArrowCl"> &lt;&lt; </span></a>  <a href="https://www.cse.unsw.edu.au/~cs9315/24T1/lectures/week03-thursday/slides.html#s0"><span class="upArrowCl">∧</span></a>   </div> <table width="100%" cellpadding="0">
+<tbody><tr valign="top"><td align="left"><div class="heading">❖ Exercise: Cost of Deletion in Heaps</div></td><td align="right"></td></tr></tbody></table>
+<p>
+Consider the following queries ...
+</p><p></p><pre>delete from Employees where id = 12345  <span class="comment">-- one</span>
+delete from Employees where dept = 'Marketing'  <span class="comment">-- pmr</span>
+delete from Employees where 40 &lt;= age and age &lt; 50  <span class="comment">-- range</span>
+</pre><p>
+Show how each will be executed and estimate the cost, assuming:
+</p><ul>
+<li> <i>b</i> = 100, &nbsp;<i>b<sub>q2</sub></i> = 3, &nbsp;<i>b<sub>q3</sub></i> = 20
+</li></ul>
+State any other assumptions.
+<p>
+Generalise the cost models for each query type.
+</p></div>
+<div class="slideNumCl2">COMP9315 24T1 ♢ Week 3 Thursday Lecture ♢ [52/52]</div><p></p><hr><p>
+<span style="font-size:11px;color: grey;">Produced: 29 Feb 2024</span>
+ <script src="./lec06_files/prism.js"></script>   
+ <script src="./lec06_files/sg.js"></script>   
+
+
+</p></body></html>

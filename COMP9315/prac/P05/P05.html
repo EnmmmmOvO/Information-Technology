@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0051)https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p05/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Prac Exercise 05</title>
+<link href="./P05_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./P05_files/course.css">
+</head>
+<body>
+<div class="container">
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Prac Exercise 05</span><br>
+  <span class="subheading">Buffer Pool Join Simulation</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div>
+<h3>Aims</h3>
+
+This exercise aims to get you to:
+<ul>
+<li> implement a C program to simulate a range of buffer replacement policies
+</li><li> evaluate experimentally how replacement policies and buffer pool size interact
+</li></ul>
+
+<h3>Background</h3>
+<p>
+Database management systems rely heavily on
+the presence of numerous in-memory buffers
+to avoid excessive disk reads and writes.
+A point noted by Michael Stonebraker and others is
+that DBMSs know better than (e.g.) the underlying operating systems,
+the patterns of access to data on disk,
+and should be able to manage the use of in-memory buffers very effectively.
+Despite this, DBMSs still tend to rely on generic buffer replacement
+strategies such as "least recently used" (LRU)
+and "most recently used" (MRU).
+</p>
+<p>
+In this exercise, we'll implement a simulator that allows us to look
+at a range of buffer pool settings and policies, to determine the
+best setting for dealing with one particular database operation:
+nested-loop join.
+</p>
+<p>
+The nested-loop join is a particular method for executing the
+following SQL query:
+</p>
+<pre>select * from R join S
+</pre>
+<p>
+It can be described algorithmically as
+</p>
+<pre>for each page P in R {
+   for each page Q in S {
+      for each tuple A in page P {
+         for each tuple B in page Q {
+            if (A,B) satisfies the join condition {
+               append (A,B) to the Result
+            }
+         }
+      }
+   }
+}
+</pre>
+<p>
+When using a buffer pool, each page is obtained via a call to the
+<code>request_page()</code> function. If the page is already in the
+pool, it can be used from there. If the page is not in the pool,
+it will need to be read from disk, most likely replacing some
+page that is currently in the pool if there are no free slots.
+</p>
+<p>
+If no buffer pool is used (i.e. one input buffer per table),
+the number of pages that will need
+to be read from disk is <var>b<sub>R</sub> + b<sub>R</sub>b<sub>S</sub></var>,
+where <var>b<sub>R</sub></var> and <var>b<sub>S</sub></var> are the
+number of pages in tables <var>R</var> and <var>S</var> respectively.
+Hopefully, accessing pages via a buffer pool will result in
+considerably less page reads.
+</p>
+
+<h3>Setup</h3>
+<p>
+For this exercise, you won't need PostgreSQL at all.
+However, there is a partly-completed version of the simulator
+available in the archive
+</p>
+<pre><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p05/p05.tar">/web/cs9315/24T1/pracs/p05/p05.tar</a>
+</pre>
+<p>
+Un-<code>tar</code> this archive into a directory (folder) for this lab,
+and examine the files:
+</p>
+<pre><kbd is="shell">mkdir <var>/my/directory/for/p05</var></kbd>
+<kbd is="shell">cd <var>/my/directory/for/p05</var></kbd>
+<kbd is="shell">tar xf /web/cs9315/24T1/pracs/p05/p05.tar</kbd>
+<kbd is="shell">ls</kbd>
+Makefile	bufpool.c	bufpool.h	joinsim.c
+</pre>
+<p>
+The file <code>joinsim.c</code> contains the main program which
+collects the simulation parameters, sets up the buffer pool,
+"runs" the nested-loop query and then displays statistics on
+the performance of the system.
+The <code>bufpool.*</code> files implement an ADT for the buffer pool.
+The <code>Makefile</code> produces an executable called <code>jsim</code>
+which works as follows:
+</p>
+<pre><kbd is="shell">./jsim <var>OuterPages InnerPages Slots Strategy</var></kbd>
+</pre>
+<p>
+where
+</p>
+<ul>
+<li> <code><var>OuterPages</var></code> is the number of pages in the
+"outer" relation (<code>R</code> in the example above) </li>
+<li> <code><var>InnerPages</var></code> is the number of pages in the
+"inner" relation (<code>S</code> in the example above) </li>
+<li> <code><var>Slots</var></code> is the number of page slots in the
+buffer pool</li>
+<li> <code><var>Strategy</var></code> is the buffer replacement strategy,
+and can be one of
+<ul>
+<li> <code>L</code> ... least-recently used (page which was released earliest)
+</li><li> <code>M</code> ... most-recently used (page which was last released)
+</li><li> <code>C</code> ... cycling (cycles through the slots and picks the next available)
+</li></ul>
+</li></ul>
+<p>
+You can compile the program as supplied, but since part of the code
+is missing, you won't get sensible results. In some cases, you will
+even trigger one of the <code>assert()</code> tests.
+</p>
+<p>
+To assist with testing, there is a compiled version of my
+solution available as:
+</p>
+<pre>/web/cs9315/24T1/pracs/p05/jsim0
+</pre>
+<p>
+This binary was compiled on Grieg, and so that might be the
+only machine where you can run it.
+Doing your prac work on Grieg is probably a good idea anyway.
+</p>
+<p>
+What you should do now is read the code in <code>bufpool.c</code>.
+Start with the data structures, then look at the
+<code>initBufPool()</code> function to see how the data structures
+are set up.
+The following diagram may help with this:
+</p>
+<center><img src="./P05_files/bufpool.png"></center>
+<p>
+The <code>nbufs</code> counter holds the total number of buffers in
+the system. This is set at initialisation time and determines the
+length of the three arrays.
+The <code>strategy</code> field contains one character represeting
+the replacement strategy (either <code>'L'</code>, <code>'M'</code> or
+<code>'C'</code>).
+The next four fields (<code>nrequests</code>, <code>nreleases</code>,
+<code>nreads</code> and <code>nwrites</code>) are statistics counters
+to monitor the buffer pool performance; they are manipulated
+correctly by the supplied code.
+The <code>freeList</code> is initially set to hold all of the slot
+numbers, since all pages are free.
+As pages are allocated, the free list becomes smaller and is
+eventually empty and stays empty; at this point, all of the
+slots are either in use or are in the <code>usedList</code>.
+The <code>usedList</code> holds slot numbers for buffers which
+have been used in the past, but which currently have a pin
+count of zero.
+These are the slots to be considered for removal if a new page,
+Finally, <code>nfree</code> and <code>nused</code> count the number
+of elements in the <code>freeList</code> and <code>usedList</code>
+respectively.
+</p><p>
+Next, look at the <code>request_page()</code> and <code>release_page()</code>
+functions
+(which capture the methods pretty much as described in lectures).
+Finally, look at the other functions used by <code>request_page()</code>
+and <code>release_page()</code>.
+</p>
+
+
+<h3>Exercise</h3>
+<p>
+Your task for this exercise is to complete the following functions
+in <code>bufpool.c</code>
+</p>
+<dl>
+<dt> <b><code>getNextSlot(pool)</code></b> </dt>
+<dd>
+<p>
+This function aims to find the "best" unused buffer pool slot
+for a <code>request_page()</code> call.
+It is called once it has been determined that (a) the requested
+page is not in the buffer pool, and (b) there are no free pages
+available. Thus, it needs to choose a slot from the used list;
+the "best" slot is determined by the replacement strategy for the
+buffer pool. If the used list is empty or if all slots have a pin
+count greater than zero, then <code>getNextSlot()</code>
+should return -1 (which will trigger errors higher up in the system).
+If a suitable slot is found, and if the page currently occupying that
+slot has been modified, the the page should be written out (note
+that we don't actually write anything, simply increment the
+<code>nwrites</code> counter for the buffer pool).
+Finally, <code>getNextSlot()</code> should clean out the chosen buffer,
+and return the index of the buffer slot to the caller.
+For the <code>'C'</code> strategy, set the "next available buffer" to
+the one immediately following the chosen buffer.
+</p>
+</dd>
+<dt> <b><code>makeAvailable(pool,slot)</code></b> </dt>
+<dd>
+<p>
+This function is called whenever the pin count on a slot reaches
+zero (meaning that this slot is now available for reuse).
+The function adds the slot number to the used list; where in the
+list it should be added is determined by the replacement strategy.
+</p>
+</dd>
+<dt> <b><code>removeFromUsedList(pool,slot)</code></b> </dt>
+<dd>
+<p>
+This function will be called when a previously occupied page has
+been chosen for use.
+It should search for the specified slot number in the used list
+and remove it from this list.
+Since the method depends on how the used list is managed, it is
+dependent on the replacement strategy.
+</p>
+</dd>
+</dl>
+<p>
+Modify the above functions to achieve the specified behaviour.
+If you want to change other parts of the <code>BufPool</code> ADT (e.g.
+because you think my implementation is no good), feel free.
+If you come up with a much better solution than mine, let me know.
+</p>
+<p>
+Once you've implemented the functions, test that they are
+behaving correctly, either by comparing the output to the
+output from <code>jsim0</code> or by thinking about the expected
+behaviour of the buffer pool.
+</p>
+<p>
+Once you're satisfied that the functions are correct,
+investigate the behaviour of the buffer pool under
+various conditions.
+Consider variations on each of the following scenarios,
+where <var>N</var> is the number of buffers:
+</p>
+<ul>
+<li> <var>N = 2</var>
+</li><li> <var>b<sub>R</sub> + b<sub>S</sub> &lt; N</var>
+</li><li> <var>b<sub>R</sub> + b<sub>S</sub> = N</var>
+</li><li> <var>b<sub>R</sub> + b<sub>S</sub> &gt; N</var>
+</li></ul>
+<p>
+Consider each case using each of the buffer replacement strategies.
+For each scenario, try to determine what will happen and then check
+your prediction by running <code>jsim</code>.
+</p>
+
+<h4>Challenge: PostgreSQL Clock-sweep Strategy</h4>
+<p>
+Modify the data structures to support the PostgreSQL clock-sweep buffer
+replacement strategy.
+Note that clock-sweep is not quite the same as the Cycle strategy used
+above.
+Once you've got it working, run the same set of tests that you ran for
+the other strategies and compare its performance.
+</p>
+
+<h4>End of Prac</h4>
+
+<p>
+Let me know via the forums,
+or come to a consultation
+if you have any problems with this exercise
+... <em>jas</em>
+</p>
+
+</div>
+
+</body></html>

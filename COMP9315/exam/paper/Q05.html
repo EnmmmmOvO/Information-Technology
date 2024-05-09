@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>COMP9315 22T1 Final Exam </title>
+<link rel='stylesheet' type='text/css' href='exam.css'></head>
+<body>
+<div align='center'>
+<table width='100%' border='0'>
+<tr valign='top'>
+<td align='left' width='20%'>
+  <span class='tiny'>COMP9315 22T1 Final Exam</span>
+</td>
+<td align='center' width='60%'>
+  The University of New South Wales <br>
+  <span class='heading'>COMP9315 DBMS Implementation <br>  22T1 Final Exam</span>
+</td>
+<td align='right' width='20%'>
+  <span class='tiny'>DBMS Implementation</span>
+</td>
+</table>
+</div>
+<center><a href='index.html'>[Instructions]</a> <a target='PostgreSQL' href='https://www.postgresql.org/docs/12/index.html'>[PostgreSQL]</a> <a target='C' href='c-lang/index.html'>[C]</a> <a target='Q1-3 Info' href='q1-3/index.html'>[Q1-3 Info]</a> 
+<br>
+<a href='Q01.html'>[Q1]</a> <a href='Q02.html'>[Q2]</a> <a href='Q03.html'>[Q3]</a> <a href='Q04.html'>[Q4]</a> <b>[Q5]</b> <a href='Q06.html'>[Q6]</a> <a href='Q07.html'>[Q7]</a> <a href='Q08.html'>[Q8]</a> 
+</center>
+<hr>
+<div style='margin-left:40px;margin-right:40px'>
+<h3>Question 5 <span class='tiny'>(8 marks)</span></h3>
+<p>
+Duplicate removal in projection can be implemented using either sorting or hashing.
+</p>
+<p>
+Consider a projection scenario where 
+<ul>
+<li> the original tuples are <i>R<sub>o</sub></i> = 40 bytes long </li>
+<li> the projected tuples are <i>R<sub>p</sub></i> = 20 bytes long </li>
+<li> the original file has <i>b<sub>o</sub></i> = 200 pages </li>
+<li> the projected file (with duplicates) has <i>b<sub>p</sub></i> = 100 pages </li>
+<li> the result file (no duplicates) has <i>b<sub>r</sub></i> = 80 pages </li>
+</ul>
+<p>
+Assume that we have a buffer pool with <i>B</i> = 31 buffers
+available for exclusive use of the projection operation.
+Assume also that the hash function distributes tuples evenly,
+and that the total number of pages in the hash partitions is
+the same as <i>b<sub>p</sub></i>.
+</p>
+<ol type='a'>
+<li><p> &nbsp; calculate the total cost of projection using sorting for duplicate removal</p></li>
+<li><p> &nbsp; calculate the total cost of projection using hashing for duplicate removal </p></li>
+</ol>
+<p>
+Costs are in terms of total page read/writes.
+Include the cost of reading the original file
+and the cost of writing the result file.
+</p>
+<p>
+State all assumptions. Show all working.
+</p>
+<p><b>Instructions:</b></p>
+<ul>
+<li> Type your answer to this question into the file called <tt>q5.txt</tt>
+<li> Submit via: &nbsp; <b><tt>give cs9315 exam_q5 q5.txt</tt></b> <br>
+	or via: Webcms3 &gt; exams &gt; Final Exam &gt; Q<nobr>5</nobr> submission &gt; Make Submission
+</ul>
+
+</div>
+<center><i>End of Question</i></center>
+</body>
+</html>

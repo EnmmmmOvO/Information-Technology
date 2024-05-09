@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>COMP9315 22T1 Final Exam </title>
+<link rel='stylesheet' type='text/css' href='exam.css'></head>
+<body>
+<div align='center'>
+<table width='100%' border='0'>
+<tr valign='top'>
+<td align='left' width='20%'>
+  <span class='tiny'>COMP9315 22T1 Final Exam</span>
+</td>
+<td align='center' width='60%'>
+  The University of New South Wales <br>
+  <span class='heading'>COMP9315 DBMS Implementation <br>  22T1 Final Exam</span>
+</td>
+<td align='right' width='20%'>
+  <span class='tiny'>DBMS Implementation</span>
+</td>
+</table>
+</div>
+<center><a href='index.html'>[Instructions]</a> <a target='PostgreSQL' href='https://www.postgresql.org/docs/12/index.html'>[PostgreSQL]</a> <a target='C' href='c-lang/index.html'>[C]</a> <a target='Q1-3 Info' href='q1-3/index.html'>[Q1-3 Info]</a> 
+<br>
+<b>[Q1]</b> <a href='Q02.html'>[Q2]</a> <a href='Q03.html'>[Q3]</a> <a href='Q04.html'>[Q4]</a> <a href='Q05.html'>[Q5]</a> <a href='Q06.html'>[Q6]</a> <a href='Q07.html'>[Q7]</a> <a href='Q08.html'>[Q8]</a> 
+</center>
+<hr>
+<div style='margin-left:40px;margin-right:40px'>
+<h3>Question 1 <span class='tiny'>(15 marks)</span></h3>
+<p>
+The <tt>q1</tt> directory contains an incomplete program <tt>q1.c</tt>.
+You must complete this program so that it counts the number of tuples in
+a "no-frills" data file
+(see <a target='Q1-3 Info' href="q1-3/index.html">[Q1-3 Info]</a>
+for details on what a "no-frills" data file is).
+The name of the data file is supplied as a command-line argument, e.g.
+</p>
+<pre>
+$ <b>./q1 data/Data1</b>
+20
+$
+</pre>
+<p>
+"No-frills" files have at least one page of data, and all pages
+must contain <tt>PAGESIZE</tt> bytes.
+If the supplied file does not meet these criteria, then return the
+tuple count as -1.
+Otherwise, return the number of tuples that your program computed.
+Note that a "no-frills" file can consist of a single page of
+<tt>PAGESIZE</tt> bytes, all of which are <tt>'\0'</tt>; such a file
+should return a tuple count of 0.
+</p>
+<p>
+Note that <tt>q1.c</tt> already does all of the command-line argument
+handling, and opens the data file for you.
+By the time your code runs, <tt>fd</tt> should contain a valid
+file descriptor for reading the data file.
+Note also that the supplied <tt>q1.c</tt> does not compile;
+you will need to make changes before you can compile and execute it.
+</p>
+<p>
+To help you check whether your program is working correctly,
+there is a script called <tt>run_tests.sh</tt> which will run
+the program against all of the tests in the <tt>tests</tt>
+directory and report the results.
+It will also add the output from your program into the 
+<tt>tests</tt> directory; comparing your output against the
+expected output might help you to debug your code.
+You can run the testing script as:
+</p>
+<pre>
+$ <b>sh run_tests.sh</b>
+</pre>
+<p>
+Once your program is working (passes all tests), follow
+the submission instructions below.
+If your program passes some tests, then you will receive
+some marks.
+If your program does not compile, or if you simply submit
+the supplied code (even with trivial changes),
+then your "answer" is worth zero marks.
+</p>
+<p><b>Submission Instructions:</b></p>
+<ul>
+<li> Type your answer to this question into the file called <tt>q1.c</tt>
+<li> Submit via: &nbsp; <b><tt>give cs9315 exam_q1 q1.c</tt></b> <br>
+	or via: Webcms3 &gt; exams &gt; Final Exam &gt; Q<nobr>1</nobr> submission &gt; Make Submission
+</ul>
+
+</div>
+<center><i>End of Question</i></center>
+</body>
+</html>

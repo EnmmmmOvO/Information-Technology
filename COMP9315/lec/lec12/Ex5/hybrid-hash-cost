@@ -1,0 +1,103 @@
+Consider executing Join[i=j](R,S) with the following parameters:
+* rR = 1000,  cR = 20,  bR = 50
+* rS = 3000,  cS = 20,  bS = 150
+* R.i is primary key, and S has index on S.j
+* S is sorted on S.j, each R tuple joins with 2 S tuples
+* DBMS has N = 42 buffers available for the join
+* data + hash have reasonably uniform distribution
+* 1 in-memory partition
+
+Method:
+similar to grace hash join,
+except that one partition of R is held in memory
+
+Need to allocate buffers to tasks:
+
+For phase 1 and 2:
+* 1 input buffer + 1 output buffer
+* k total partitions
+* p buffers for in-memory partition
+* partition size = bR/k
+
+For phase 3:
+* 1 input buffer + 1 output buffer
+* 40 buffers for hash table for each partition
+
+
+Phase 1 possibilities ...
+
+For k=10 partitions:
+* part-size = ceil(50/10) = 5 pages/part
+* 5 for part[0], 1 for input, 1 unused, 35 for other 9 partitions
+
+For k=8 partitions:
+* part-size = ceil(50/8) = 7 pages/part
+* 7 for part[0], 1 unused, 34 for other 7 partitions
+
+For k=6 partitions:
+* part-size = ceil(50/6) = 9 pages/part
+* 9 for part[0], 1 unused, 32 for other 5 partitions
+
+For k=3 partitions:
+* part-size = ceil(50/3) = 17 pages/part
+* 17 for part[0], 1 unused, 24 for other 2 partitions
+
+Want more/smaller partitions, but not too many more ...
+
+
+So, choose 8 partitions
+* 1 input buffer, 1 output buffer
+* 7 output buffers for partitions 1..7
+* use remaining 33 for partition 0
+
+Assuming uniform distribution,
+* tuples/R-partition = ceil(rR/8) = 125
+* pages/R-partition = ceil(125/cR) = 7   (important)
+* tuples/S-partition = ceil(rS/8) = 375
+* pages/S-partition = ceil(375/cR) = 19
+
+Cost:
+
+Factors in cost:
+(a) read whole R table
+(b) using:
+    - 1 buffer for input,
+    - 7 output buffers to make other partitions [1]..[7]
+(c) assuming uniform distribution:
+    - each partition of R has 125 tuples
+    - each disk partition needs 7 pages  (ceil(125/20))
+(d) read whole S table
+    - for tuples with hash [0],
+      join with tuples in memory partition [0]
+    - for tuples with hash [1]..[7], write to disk partitions
+    - each S-partition has 375 tuples => 19 pages
+(e) ~ 1/8 of S tuples are joined, rest are written to disk
+(f) using:
+    - 1 buffer for input, 1 buffer for output
+    - 40 buffers for in-memory hash table
+(f) for i in [1]..[7]
+       read in R-partition [i], hash into memory buffers
+          (partition has 125 tuples => approx 3 per buffer!)
+       scan S-partition [i], use hash and examine one buffer
+
+Costs: (a) bR=50 reads, (b) 7*7 writes, (d) bS=150 reads,
+       (e) 7*19 writes, (f) 7*7 reads (g) 7*19 reads
+
+#pages
+= 50 + 49 + 150 + 133 + 49 + 133
+= 564
+(a little better than 600 for grace hash join)
+
+
+Exercise:
+
+Try different k values to see how much it can be improved
+
+
+From comments above ...
+each S tuple is compared against ~3 R tuples
+
+#checks
+= rS * 3 = 3000 * 3 = 9000
+
+(worse than 6000 for grace hash join)

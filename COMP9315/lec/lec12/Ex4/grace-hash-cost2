@@ -1,0 +1,94 @@
+Consider executing Join[i=j](R,S) with the following parameters:
+* rR = 1000,  bR = 50,  rS = 3000,  bS = 150
+* R.i is primary key, and S has index on S.j
+* S is sorted on S.j, each R tuple joins with 2 S tuples
+* DBMS has N = 42 buffers available for the join
+* data + hash have reasonably uniform distribution
+* but one R partition has 50 pages
+
+This time, one partition does not fit in memory
+
+Method:
+
+for each tuple s in relation R 
+    add s to partition h(s.i) in output file R'
+for each tuple t in relation S
+    add t to partition h(t.j) in output file S'
+for each partition p = 0 .. N-1 {
+    while partition p not exhausted {
+        // Build in-memory hash table for partition p of R'
+        fetch tuples from R' until hash table full
+        // Scan partition p of S', probing for matching tuples
+        for each tuple s in partition p of S' {
+            b = h2(s.j)
+            for all matching tuples r in buffer b
+                add (r,s) to result
+        }
+    }
+}
+
+This algorithm works from previous case as well.
+The while loop only has one iteration for each partition.
+
+Cost:
+
+best case for R ... k partitions, each with k pages
+
+realistically
+* number of partitions <= k (some empty)
+* last page in each partition is not full
+
+assuming reasonably uniform distributions
+#R-partitions = 41, each with ~25 tuples in ~2 pages
+#S-partitions = 41, each with ~73 tuples in ~4 pages
+if *really* uniform distribution
+#R-partitions = 41, each with 25 tuples in 2 pages
+#S-partitions = 41, each with 73 tuples in 4 pages
+
+# pages in R-partitions = 41*2 = 82
+# pages in S-partitions = 41*4 = 164
+
+# page accesses
+= partition(R) + partition(S) + probe/join
+  partition(R) = bR[reads] + (b'R)[writes] = 50 + 82
+  partition(S) = bS[reads] + (b'y)[writes] = 150 + 164
+  probe/join   = Cost to read R partitions
+                 + Cost to read S partitions
+                 + Cost to re-read one S partition
+
+Pages read 
+= 50 + 82 + 150 + 164 + 82 + 164 + 4
+= 696
+
+
+#checks (all in probe/join phase)
+
+* rR = 1000,  bR = 50,  rS = 3000,  bS = 150,  N = 42
+* cR = cS = 25
+
+
+for each partition of R
+    load R tuples into in-memory hash table
+    for each tuple in corresponding partition of S
+        examine one page in hash table
+
+Reading each partition into memory ...
+25 tuples across 40 buffers => 0.6 tuples per buffer
+
+BUT one partition doesn't fit in memory, so we need
+to re-read one of the S partitions
+
+So for each S tuple, we hash to one in-memory hash table page
+and compare against tuples in that page (approx 0.6 tuples)
+
+#checks
+For 40 partitions, read S partition and hash and do ~1 comparison
+since each S partition has ~73 tuples, then 40*73*1 = 2920 comparisons
+For the oversize partition, let's say we need to read it in 2 chunks,
+where each chunk fills the hash table, then we'd read and compare
+The 73 tuples in the corresponding S partition twice 73*2 = 146.
+So, the total comparisions is 2920+146 = 3066, just a bit more than
+the case where all R partitions fit in the hash table.
+
+Compare to nested loop
+= rR * rS = 1000 * 3000 = 3,000,000

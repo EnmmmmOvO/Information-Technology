@@ -1,0 +1,12 @@
+-- Schema:
+-- Students(sid, name, degree, ...)
+-- Courses(cid, code, term, title, ...)
+-- Enrolments(sid, cid, mark, grade)
+
+-- id, name, mark of
+-- all students who passed COMP9315 in 18s2
+
+select s.sid, s.name, e.mark
+from   Students s join Enrolments e on s.sid = e.sid
+       join Courses c on e.cid = c.cid
+where  c.code = 'COMP9315' and c.term ='18s2';

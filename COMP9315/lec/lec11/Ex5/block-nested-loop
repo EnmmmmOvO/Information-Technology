@@ -1,0 +1,46 @@
+Cost of (Student Join Enrolled join Subject)
+via block nested loop join
+
+r_S  # student records         20,000
+r_E  # enrollment records      80,000
+r_J  # subject records         2,000
+c_S  Student records/page      20
+c_E  Enrolled records/page     40
+c_J  Subject records/page      10
+b_S  # data pages in Student   1,000
+b_E  # data pages in Enrolled  2,000
+b_J  # data pages in Subjects  200
+
+N    number of memory buffers  202
+
+(S Join E) Join J
+or
+Tmp = S Join E
+Res = Tmp Join J
+
+Cost (S Join E) = 1000 + 2000 * (1000/200) = 11000
+
+Assume that we project minimum attributes
+needed for future joins ...
+
+size(Tmp) = sizeof(name+code) = 24+8 = 32
+B = 1024
+c_Tmp = 32
+r_Tmp = 80000
+b_Tmp = 2500
+
+Cost (Tmp Join J) = 2500 + 200 * (2500/200)
+                 = 2500 + 2200 = 4700
+
+Cost (J Join Tmp) = 200 + 2500 = 2700
+
+
+Other join orders?
+
+J Join (S Join E)  (see above)
+(E Join S) Join J
+J Join (E Join S)
+(E Join J) Join S
+S Join (E Join J)
+(J Join E) Join S
+S Join (J Join E)

@@ -1,0 +1,39 @@
+Cost of (Student Join Enrolled)
+via block nested loop join
+
+rS  # student records         20,000
+rE  # enrollment records      80,000
+cS  Student records/page      20
+cE  Enrolled records/page     40
+bS  # data pages in Student   1,000
+bE  # data pages in Enrolled  2,000
+N   # memory buffers          22, 202, 2002
+
+
+N = 22,  S as outer,  50*20-page chunks of S
+
+1000 + 2000 * 50 = 101,000
+
+N = 22,  E as outer,  100*20-page chunks of E
+
+2000 + 1000 * 100 = 102,000
+
+
+N = 202,  S as outer,  5*200-page chunks of S
+
+1000 + 2000 * 5 = 1000 + 10000 = 11000
+
+N = 202,  E as outer,  10*200-page chunks of E
+
+2000 + 1000 * 10 = 2000 + 10000 = 12000
+
+
+N = 2002,  S as outer,  1*1000-page chunk of S
+Then scan 2000 pages of E and do join checks in memory
+
+1000 + 2000 = 3000
+
+N = 2002,  E as outer,  1*2000-page chunk of E
+Then scan 1000 pages of S and do join checks in memory
+
+2000 + 1000 = 3000

@@ -1,0 +1,795 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0051)https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p01/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Prac Exercise 01</title>
+<link rel="stylesheet" type="text/css" href="./P01_files/course.css"></head>
+<body>
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/index.php">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Prac Exercise 01</span><br><b>Setting up your PostgreSQL Server</b>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/index.php">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div>
+<h2>Aims</h2>
+
+This exercise aims to get you to:
+<ul>
+<li> set up your directories on a file system
+</li><li> install a PostgreSQL database server
+</li></ul>
+<p>
+You ought to get it done by the middle of Week 2.
+</p>
+
+<p>
+<b>Notation</b>:
+In the examples below, we have used the <code>$</code> sign to represent
+the prompt from the Unix/Linux shell. The actual prompt may
+look quite different on your computer (e.g. it may contain the computer's
+hostname, or your username, or the current directory name).
+In the example interactions, all of the things that the computer
+displays are in <code>this font</code>.
+The commands that <b>you</b> are supposed to type are in
+<code><b>this bold font</b></code>.
+Comments in the examples are introduced by '...' and are written in
+<code><span class="comment">this grey font</span></code>;
+comments do not appear on the computer screen, they simply aim to explain what
+is happening.
+Whenever we use the word <code><var>edit</var></code>, this means that you should
+use your favourite text editor (e.g. <code>vi</code>, <code>emacs</code>, <code>gedit</code>,
+etc.)
+Finally, some commands use <code><var>YOU</var></code> as a placeholder for your CSE username (which is usually your zid). This is the same as the <code>$USER</code> environment variable in Linux.
+</p>
+
+
+<h2>Background</h2>
+
+<p>
+PostgreSQL has three major components:
+</p>
+<ul>
+<li> the source code (and the compiled <code>*.o</code> files) (approx 200MB)
+</li><li> the installed executables (like <code>pg_ctl</code> and <code>psql</code>) (approx 20MB)
+</li><li> the data (including configuration files and databases) (at least 35MB)
+</li></ul>
+<p>
+You will <i>not</i> be able to fit the above components under your CSE <em>home</em>
+directory (insufficient disk quota)
+</p>
+<p>
+The practical work for the assignments can be carried out on a special CSE server called <code>vxdb</code>. You run your own PostgreSQL server on this machine and are effectively the database administrator of this server. This machine has been configured to run large numbers** of PostgreSQL servers.
+</p>
+<div class="note">
+<p>
+** Note: "large numbers" is around 300. If you leave your work to the last minute, and find 400 other students all trying to run PostgreSQL on <code>vxdb</code>, performance will be sub-optimal. Of course, you can avoid this potential bottleneck by installing and running PostgreSQL on your home machine.
+</p>
+</div>
+<p>
+You <i>must</i> put your PostgreSQL source code, installed
+executables and data under the <code>/localstorage/$USER</code> directory on <code>vxdb</code>.
+You must run the server process on <code>vxdb</code>; do <i>not</i>
+run your PostgreSQL server process on any other CSE machines; if you do, your PostgreSQL server will most likely be terminated automatically not long after it starts.
+</p>
+<p>
+If you're doing all of this work on a laptop
+or desktop at home, then you can configure things however you like.
+You will still need folders for the same three components
+(source code, executables, and data),
+but you can place them wherever you like.
+PostgreSQL doesn't require any special privileges to run
+(at least on Unix-based systems like Linux and Mac OS X),
+so you do <em>not</em> need to create a special privileged
+PostgreSQL user; you can run the server as yourself.
+</p>
+<div class="note">
+Reminder: You should always test your work on <code>vxdb</code> before you submit assignments, since that's where we'll be running our tests to award your marks.
+</div>
+
+<a name="makedir"></a>
+<h3>Getting started on vxdb</h3>
+
+<div class="note">
+You may have a <code>/localstorage/$USER</code> directory on <code>vxdb</code> already
+(e.g. from a previous database course).
+If so, you can skip this section; but you might want to clean out any <code>pgsql</code> directory before you continue.
+</div>
+<p>
+You can log into <code>vxdb</code> from a command-line (shell) window on any CSE machine (including vlab) via the command
+</p>
+<pre><kbd is="shell">ssh nw-syd-vxdb.cse.unsw.edu.au</kbd>
+</pre>
+<p>
+If you're doing this exercise from home, you can use any ssh client, but you'll need to refer to <code>nw-syd-vxdb.cse</code> as <code>d.cse</code>:
+</p>
+<pre><kbd is="shell">ssh YourZID@d.cse.unsw.edu.au</kbd>
+</pre>
+<p>
+You can check whether you're actually logged in to <code>vxdb</code>
+by using the command:
+</p>
+<pre><kbd is="shell">hostname</kbd>
+nw-syd-vxdb
+</pre>
+<p>
+Your home directory at CSE is directly accessible from
+<code>vxdb</code>.
+</p>
+<p>
+The first time you log in to <code>vxdb</code>, it automatically
+creates a directory under <code>/localstorage</code> to hold your databases:
+</p>
+<pre><kbd is="shell">ls -al /localstorage/$USER</kbd>
+</pre>
+<p>
+This directory is initially empty, but we're about to put the
+files for a PostgreSQL server into it.
+</p>
+
+<h2>Setting up your PostgreSQL Server</h2>
+
+<p>
+<b>Reminder:</b>
+If you are working from CSE make sure you are <code>ssh</code>'d on into <code>vxdb</code>.
+The times below are approximate; they could double or triple depending
+on your environment.
+</p>
+
+<h3>Quick summary (for experts only):</h3>
+<p>
+Non-experts should go straight to the detailed instructions
+<a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p01/#instructions">below</a>.
+</p>
+<pre><kbd is="shell">cd /localstorage/$USER</kbd>
+<kbd is="shell">tar xfj /web/cs9315/24T1/postgresql/postgresql-15.6.tar.bz2</kbd>
+<span class="comment">... creates and populates a directory called postgresql-15.6 ...</span>
+<kbd is="shell">cd postgresql-15.6</kbd>
+<kbd is="shell">./configure --prefix=/localstorage/$USER/pgsql</kbd>
+<span class="comment">... produces lots of output ...</span>
+<kbd is="shell">make</kbd>
+<span class="comment">... produces lots of output; takes approx 4-5 minutes ...</span>
+<kbd is="shell">make install</kbd>
+<span class="comment">... produces lots of output ...</span>
+<kbd is="shell">cp  /web/cs9315/24T1/postgresql/env  /localstorage/$USER/env</kbd>
+<kbd is="shell">source /localstorage/$USER/env</kbd>
+<kbd is="shell">which initdb</kbd>
+/localstorage/<var>YOU</var>/pgsql/bin/initdb
+<kbd is="shell">initdb</kbd>
+<span class="comment">... produces some output ...</span>
+<kbd is="shell">ls $PGDATA</kbd>
+<span class="comment">... gives a listing of newly-created PostgreSQL data directory ...</span>
+<span class="comment">... including PG_VERSION, base, global ..., postgresql.conf ...</span>
+<kbd is="shell"><var>edit</var> $PGDATA/postgresql.conf</kbd>
+<span class="comment">... set listen_addresses = '' ...</span>
+<span class="comment">... set max_connections = 10 ...</span>
+<span class="comment">... set max_wal_senders = 4 ...</span>
+<span class="comment">... set unix_socket_directories = '<var>name of PGDATA directory</var>' ...</span>
+<span class="comment">... if any of the above lines begins with '#', remove the '#'</span>
+<kbd is="shell">which pg_ctl</kbd>
+/localstorage/<var>YOU</var>/pgsql/bin/pg_ctl
+<kbd is="shell">pg_ctl start -l $PGDATA/log</kbd>
+waiting for server to start.... done
+server started
+<kbd is="shell">psql -l</kbd><span style="font-size:90%">
+                           List of databases
+   Name    | Owner | Encoding  | Collation | Ctype | Access privileges
+-----------+-------+-----------+-----------+-------+-------------------
+ postgres  | <var>YOU</var>   | LATIN1    | C         | C     |
+ template0 | <var>YOU</var>   | LATIN1    | C         | C     | =c/<var>YOU</var>
+                                                   : <var>YOU</var>=CTc/<var>YOU</var>
+ template1 | <var>YOU</var>   | LATIN1    | C         | C     | =c/<var>YOU</var>
+                                                   : <var>YOU</var>=CTc/<var>YOU</var>
+(3 rows)</span>
+<kbd is="shell">pg_ctl stop</kbd>
+waiting for server to shut down.... done
+server stopped
+</pre>
+
+<a name="instructions"></a>
+<h3>Installation Details (for non-experts):</h3>
+
+<h4>Setting up directories</h4>
+<p>
+The first step is to make sure that the directory <code>/localstorage/$USER</code>
+exists. You can check this via the command:
+</p>
+<pre><kbd is="shell">ls -l /localstorage/$USER</kbd>
+</pre>
+<p>
+If the above command says something like "No such file or directory", then
+you should create it using the instructions <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p01/#makedir">above</a>.
+</p><p>
+Once you have a directory on the <code>/localstorage</code> filesystem, the next step
+is to place a copy of the PostgreSQL source code under this directory.
+The following commands will do this:
+</p>
+<pre><kbd is="shell">cd /localstorage/$USER</kbd>
+<kbd is="shell">tar xfj /web/cs9315/24T1/postgresql/postgresql-15.6.tar.bz2</kbd>
+</pre>
+<p>
+This creates a subdirectory called <code>postgresql-15.6</code> under your
+<code>/localstorage/$USER</code> directory and unpacks all of the source code there.
+This produces no output and will take a few moments to complete.
+If you want to watch as <code>tar</code> unpacks the files, use
+<code>xvfj</code> instead of <code>xfj</code> as the first argument to
+<code>tar</code>.
+</p>
+
+<h4>Initial compilation</h4>
+<p>
+Once you've unpacked the source code, you should change into the
+newly created <code>postgresql-15.6</code> directory and configure
+the system so that it uses the directory <code>/localstorage/$USER/pgsql</code>
+to hold the executables for your PostgreSQL server.
+(Note that <code>/localstorage/$USER/pgsql</code> does not exist yet;
+it will be created in the <code>make install</code> step).
+The following commands will do the source code configuration:
+</p>
+<pre><kbd is="shell">cd /localstorage/$USER/postgresql-15.6</kbd>
+<kbd is="shell">./configure --prefix=/localstorage/$USER/pgsql</kbd>
+</pre>
+<p>
+The <code>configure</code> command will print lots of messages about
+<code>checking</code> for various libraries/modules/etc.
+This process will take a minute, and should produce no errors.
+</p>
+<p>
+After configuring the source code,
+the next step is to build all of the programs.
+Stay in the <code>postgresql-15.6</code> directory
+and then run the command:
+</p>
+<pre><kbd is="shell">make</kbd>
+</pre>
+<p>
+This compiles <em>all</em> of the PostgreSQL source code,
+and takes around 4-5 minutes (depending on the load on vxdb).
+It will produce <em>lots</em> of output,
+but should compile everything OK.
+If anything goes wrong, the <tt>make</tt> process will stop
+partway through with an obvious error message.
+</p>
+
+<h4>Installing executables</h4>
+<p>
+Once the PostgreSQL programs are compiled, you need to install them.
+The following command does this:
+</p>
+<pre><kbd is="shell">make install</kbd>
+</pre>
+<p>
+This creates the directory <code>/localstorage/$USER/pgsql</code>,
+and copies all of the executables
+(such as <code>pg_ctl</code> and <code>psql</code>) under that directory.
+It will take a minute to do this,
+and will produce quite a bit of output while it's doing it.
+
+</p><h4>Data directories</h4>
+<p>
+You're not finished yet, however, since PostgreSQL has no directory
+in which to store all of its data. You will install the data directories under <code>/localstorage/$USER/pgsql</code>
+</p><p>
+Before doing anything with the database, however,
+you need to ensure that your Unix environment is set up correctly.
+We have written a small script called <code>env</code> that will do this.
+In this set up stage, you should copy this script to your <code>/localstorage</code>
+directory:
+</p>
+<pre><kbd is="shell">cp  /web/cs9315/24T1/postgresql/env  /localstorage/$USER/env</kbd>
+</pre>
+<p>
+The <code>env</code> script contains the following:
+</p>
+<pre>export PGDATA=/localstorage/$USER/pgsql/data
+export PGHOST=$PGDATA
+export LD_LIBRARY_PATH=/localstorage/$USER/pgsql/lib
+
+export PATH=/localstorage/$USER/pgsql/bin:$PATH
+
+alias p0="pg_ctl stop"
+alias p1="pg_ctl -l $PGDATA/log start"
+</pre>
+<p>
+This script sets up a number of environment variables.
+The critical ones are:
+</p>
+<dl class="dl-horizontal">
+<dt><code>PGDATA</code></dt>
+<dd>which tells the PostgreSQL server where it's data directories are located</dd>
+<dt><code>PGHOST</code></dt>
+<dd>which tells PostgreSQL clients where are the socket files to connect to the server</dd>
+</dl>
+<p>
+Note that in the discussion below, we will use the string <code><var>YOUR_PGDATA</var></code>
+to refer to that value that you assigned to <code>PGDATA</code> in your <code>env</code>
+file and which has been set by <code>source</code>'ing the <code>env</code> file  in your shell.
+</p>
+
+<h4>Initialising data directories and running server</h4>
+<p>
+Once you have a copy of the <code>env</code> script and have set the values
+appropriately,
+you need to invoke it in every shell window where you plan to interact
+with the database.
+You can do this by explicitly running the following command in each
+window:
+</p>
+<pre><kbd is="shell">source /localstorage/$USER/env</kbd>
+</pre>
+<p>
+If that gets tedious, you might consider adding the above command
+to your shell's startup script (e.g., <code>~/.bash_profile</code>).
+</p>
+<p>
+Once you've set up the environment, check that it's ok via the following
+commands:
+</p>
+<pre><kbd is="shell">echo $PGDATA</kbd>
+<var>YOUR_PGDATA</var> <span class="comment">... i.e. whatever value you set it to ...</span>
+<kbd is="shell">which initdb</kbd>
+/localstorage/<var>YOU</var>/pgsql/bin/initdb
+<kbd is="shell">which pg_ctl</kbd>
+/localstorage/<var>YOU</var>/pgsql/bin/pg_ctl
+</pre>
+<p>
+If the system gives you different path names to the above,
+then your environment is not yet set up properly.
+Are you sure that you <code>source</code>'d your <code>env</code> file?
+</p>
+<p>
+If all of the above went as expected,
+you are now ready to create the
+data directories and run the server.
+You can do this via the command:
+</p>
+<pre><kbd is="shell">initdb</kbd>
+<span class="comment">... some output eventually finishing with something like ...</span>
+Success. You can now start the database server using:
+
+    pg_ctl -D <var>YOUR_PGDATA</var> -l logfile start
+</pre>
+<p>
+If you look at your data directory now, you should see something like:
+</p>
+<pre><kbd is="shell">ls $PGDATA</kbd>
+PG_VERSION    pg_hba.conf    pg_replslot   pg_subtrans	postgresql.auto.conf
+base	      pg_ident.conf  pg_serial	   pg_tblspc	postgresql.conf
+global	      pg_logical     pg_snapshots  pg_twophase	postmaster.opts
+pg_commit_ts  pg_multixact   pg_stat	   pg_wal
+pg_dynshmem   pg_notify      pg_stat_tmp   pg_xact
+</pre>
+<p>
+You shouldn't start the server straight away, however, since there's one
+more bit of configuration needed.
+You need to edit the <code>postgresql.conf</code> file in the <code>$PGDATA</code>
+directory and change the values of the following:
+</p>
+<ul>
+<li> change the value of the <code>listen_addresses</code> parameter to <b><code>''</code></b>:
+     this means that only Unix-domain sockets
+     can be used to connect to the server
+     (saving you fighting over TCP ports);
+</li><li> reduce the value of <code>max_connections</code> from 100 to <b>10</b>:
+     this reduces the resources tied up by the server
+     to support those connections potentially occurring; and
+</li><li> set the value of the <code>unix_socket_directories</code> parameter to the full path of your <b><code>$PGDATA</code></b> directory; make sure to input the literal path instead of using <code>$USER</code> (e.g. <code>/localstorage/z5555555/pgsql/data</code>):
+     this specifies where PostgreSQL keeps its connection sockets,
+     and should be the same as your <code>$PGDATA</code>
+     so <code>psql</code> and other clients can connect; and
+</li><li> set the value of <code>max_wal_senders</code> to e.g. 4 (or
+	 any value less than whatever value you use for <code>max_connections</code>)
+</li></ul>
+<p>
+Once you're done, the "connections and authentications"
+part of your modified <code>postgresql.conf</code> file
+should look like (with the changes highlighted in red):
+</p>
+<pre>#------------------------------------------------------------------------------
+# CONNECTIONS AND AUTHENTICATION
+#------------------------------------------------------------------------------
+
+# - Connection Settings -
+
+<span class="red">listen_addresses = ''</span>                   # what IP address(es) to listen on;
+                                        # comma-separated list of addresses;
+                                        # defaults to 'localhost'; use '*' for all
+                                        # (change requires restart)
+#port = 5432                            # (change requires restart)
+<span class="red">max_connections = 10</span>                    # (change requires restart)
+#superuser_reserved_connections = 3     # (change requires restart)
+<span class="red">unix_socket_directories = '<var>YOUR_PGDATA</var>'</span> # comma-separated list of directories
+                                        # (change requires restart)
+#unix_socket_group = ''                 # (change requires restart)
+#unix_socket_permissions = 0777         # begin with 0 to use octal notation
+                                        # (change requires restart)
+....
+<span class="red">max_wal_senders = 4</span>
+</pre>
+<p>
+Note that it doesn't matter
+that the file says <code>port = 5432</code>:
+this value will be overridden
+by whatever you set your
+<code>PGPORT</code> environment variable to.
+</p>
+<p>
+Note also that the 5432 also doesn't matter
+because the <code>#</code> at the start of the line
+means that it's a comment.
+In the case of the lines that you are supposed to change,
+<strong>make sure that you remove the <code>#</code>
+from the start of those lines</strong>.
+</p><p>
+Everything is now ready to start your PostgreSQL server,
+which you can do via the command:
+</p>
+<pre><kbd is="shell">pg_ctl start -l $PGDATA/log</kbd>
+</pre>
+<div class="note">
+<p>
+You may have noticed that we provided you with shorthand to
+start and stop the server in the <code>env</code> file.
+The command <code>p1</code> starts the server and <code>p0</code>
+stops it.
+</p>
+</div>
+<p>
+Note that PostgreSQL says "server starting",
+whereas it should probably say "attempting to start server".
+</p>
+<p>
+A quick way to check whether the server is working is to run the command:
+</p>
+<pre><kbd is="shell">psql -l</kbd><span style="font-size:90%">
+SET
+                            List of databases
+   Name    | Owner | Encoding | Collate |    Ctype    | Access privi
+leges 
+-----------+-------+----------+---------+-------------+-------------
+------
+ postgres  | <var>YOU</var>   | UTF8     | C       | en_AU.UTF-8 | 
+ template0 | <var>YOU</var>   | UTF8     | C       | en_AU.UTF-8 | =c/<var>YOU</var>      
+     +
+           |       |          |         |             | <var>YOU</var>=CTc/<var>YOU</var>
+ template1 | <var>YOU</var>   | UTF8     | C       | en_AU.UTF-8 | =c/<var>YOU</var>      
+     +
+           |       |          |         |             | <var>YOU</var>=CTc/<var>YOU</var>
+(3 rows)
+</span></pre>
+<p>
+It is possible that the server may not start
+correctly. If the server does not appear to have started,
+you can check why by looking at the tail of the server log:
+</p>
+<pre><kbd is="shell">tail -20 $PGDATA/log</kbd>
+<span class="comment">... information about what happened at server start-time ...</span>
+</pre>
+<p>
+Note that you'll get error messages about not being able to run the
+statistics collector, and a warning that autovacuum was not started.
+These are not an issue at this stage.
+</p>
+<p>
+If the server is running correctly,
+the <code>psql -l</code> will give you a list of databases like the above.
+If the server is not running, you'll get a message something like:
+</p>
+<pre>psql: could not connect to server: No such file or directory
+	Is the server running locally and accepting
+	connections on Unix domain socket "<var>YOUR_PGDATA</var>/.s.PGSQL.5432"?
+</pre>
+<p>
+If this happens, you should check the log file to find out what went wrong.
+(Other things to check in case of problems are described <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p01/#debugging">below</a>).
+</p>
+<p>
+Assuming that the server is running ok, you can now use it to create and
+manipulate databases (see the example below).
+Once you've finished your session using PostgreSQL, you need to stop the
+server.
+</p>
+<pre><kbd is="shell">pg_ctl stop</kbd>
+waiting for server to shut down.... done
+</pre>
+<p>
+If you still have a process that's using the database (e.g. a <code>psql</code>
+process in another window), then the server won't be able to shut down.
+You'll need to quit all of the processes that are accessing the database
+before the above command will work.
+</p>
+
+<h4>A Typical session with PostgreSQL</h4>
+<p>
+Once you've got your PostgreSQL server installed, this is what you'd
+normally do to use it.:
+</p>
+<pre><kbd is="shell">source /localstorage/$USER/env</kbd>
+<kbd is="shell">p1</kbd>
+<span class="comment">... hopefully concluding with the message ...</span>
+server started
+<kbd is="shell">psql -l</kbd>
+<span class="comment">... hopefully giving a list of databases ...</span>
+<kbd is="shell">createdb myNewDB</kbd>
+<kbd is="shell">psql myNewDB</kbd>
+<span class="comment">... do stuff with your database ... </span>
+<kbd is="shell">p0</kbd>
+<span class="comment">... hopefully concluding with the message ...</span>
+server stopped
+</pre>
+
+<p>
+Note that the data will persist across sessions.
+If you <i>really</i> want to clean out you whole server, you
+can use the command:
+</p>
+<pre><kbd is="shell">rm -fr /localstorage/$USER/pgsql</kbd>
+</pre>
+<p>
+This is the "nuclear option". Only use it as a last resort.
+You will need to rbuild the server from the <code>initdb</code> step.
+</p>
+
+<h3>Reminder</h3>
+
+<p>
+You <em>must</em> shut down your server at the end of each
+session with PostgreSQL if you're working on the CSE workstations.
+Failure to do this means that the next student who uses that
+workstation may need to adjust their configuration (after first
+working out what the problem is) in order
+to start their server.
+</p>
+
+<h2>A Sample Database</h2>
+
+<p>
+Once your server is up-and-running, you ought to load up the small
+sample database (on beers) and try a few queries on its data.
+This is especially important if you haven't used PostgreSQL before;
+you need to get used to its interactive interface.
+</p>
+<p>
+You can set up the beer database as follows:
+</p>
+<pre><kbd is="shell">createdb beer</kbd>
+<kbd is="shell">psql beer -f <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/pracs/p01/beer.dump">/web/cs9315/24T1/pracs/p01/beer.dump</a></kbd>
+<span class="comment">... around 20 lines include SET, CREATE TABLE, ALTER TABLE...</span>
+<kbd is="shell">psql beer</kbd>
+SET
+psql (15.6)
+Type "help" for help.
+
+<kbd is="psql" db="beer">select count(*) from beers;</kbd>
+ count
+-------
+    24
+(1 row)
+
+<kbd is="psql" db="beer">\d</kbd>
+<span class="comment">... gives a list of tables in the database ...</span>
+<kbd is="psql" db="beer"></kbd>
+<span class="comment">... explore/manipulate the database ...</span>
+<kbd is="psql" db="beer">\q</kbd>
+<kbd is="shell"></kbd>
+</pre>
+<p>
+For exploring the database with <code>psql</code>, there are a
+collection of <code>\d</code> commands. You can find out more about
+these via <code>psql</code>'s <code>\?</code> command or by reading
+the PostgreSQL manual <a href="https://www.postgresql.org/docs/12//app-psql.html">chapter on <code>psql</code></a>.
+</p>
+<p>
+To help with your explorations of the database, here is an
+diagram of the schema.
+Table/relation names are in bold; each box represents one
+attribute; primary keys are underlined.
+Note that all primary keys are symbolic (not numeric) in
+this database.
+You can look at the SQL schema from within <code>psql</code>.
+</p>
+<center><img src="./P01_files/beer-schema.png"></center>
+
+<a name="debugging"></a>
+<h2>Sorting out Problems</h2>
+
+<p>
+It is very difficult to diagnose problems with software over email,
+unless you give sufficient details about the problem.
+An email that's as vague as <q>My PostgreSQL server isn't
+working. What should I do?</q>, is basically useless.
+Any email about problems with software should contain details of
+</p>
+<ul>
+<li> what you were attempting to do
+</li><li> precisely what commands you used
+</li><li> precisely what output you got
+</li></ul>
+<p>
+One way to achieve this is to copy-and-paste the last few commands
+and responses into your email.
+</p>
+<p>
+But even with all of that information, there's a whole host of other
+environment information that's needed to be able to seriously work out
+why your server isn't running, that you can't put in an email.
+That's why it's better to come to a consultation, where we can work
+through the problem on a workstation (which is usually very quick).
+</p>
+
+<h4>Can't start server?</h4>
+<p>
+When you use <code>p1</code> to try to start your PostgreSQL server,
+you observe something like:
+</p>
+<pre><kbd is="shell">p1</kbd>
+waiting for server to start.................................................pg_ctl: could not start server
+Examine the log output.
+Check whether the server started ok via the command 'psql -l'.
+If it's not working, check /localstorage/$USER/pgsql/log for details.
+</pre>
+<p>
+Take the advice given to you by the command and look at the end of the log
+file to see if there are any clues there. You can do this via the command:
+</p>
+<pre><kbd is="shell">tail -20 $PGDATA/log</kbd>
+</pre>
+<p>
+Sometimes you may need to look at more than the last 20 lines of the log
+file to find the relevant error message.
+Most of the error messages are self-explanatory, and you should learn what
+to do if any of them occurs.
+Some examples:
+</p>
+<pre>FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 31265) running in data directory "<var>YOUR_PGDATA</var>"?
+<span class="comment">
+# You may already have another PostgreSQL server running
+# Or, the previous server may have quit without cleaning up the postmaster.pid file
+# Note that the server process may be running on another machine if you run your
+#  server on the local machine rather than vxdb
+# If the server is running on another machine, log in there and run "p0"
+</span>
+LOG:  could not bind IPv4 socket: Address already in use
+HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+WARNING:  could not create listen socket for "localhost"
+FATAL:  could not create any TCP/IP sockets
+<span class="comment">
+# Another user is running a PostgreSQL server on this machine
+# Change the PGPORT value in /localstorage/$USER/env
+#  and then reset your environment and try starting the server again
+</span>
+FATAL:  could not open relation mapping file "global/pg_filenode.map": No such file or directory
+FATAL:  could not open relation mapping file "global/pg_filenode.map": No such file or directory
+FATAL:  could not open relation mapping file "global/pg_filenode.map": No such file or directory
+FATAL:  could not open relation mapping file "global/pg_filenode.map": No such file or directory
+<span class="comment">
+# This means that there is another PostgreSQL server of yours still running
+# You'll need to find it e.g. using the command "ps auxw"
+# Note that the process could be running on any CSE machine where you ever
+#  ran a PostgreSQL server, so you may need to check on multiple machines
+# Once you've found it, stop the server using the Unix kill command
+# and then reset your environment and try starting the server again
+</span>
+</pre>
+<p>
+Sometimes the <code>pg_ctl</code> command will give a message that the server
+has failed to start but you'll get no error messages at the end of the log
+file, which will look something like:
+</p>
+<pre>LOG:  database system was shut down at 2011-08-03 11:38:26 EST
+LOG:  database system is ready to accept connections
+</pre>
+<p>
+One cause of this is having different directories for <code>PGHOST</code> in
+the <code>/localstorage/$USER/env</code> file and for <code>unix_socket_directory</code>
+in the <code><var>YOUR_PGDATA</var>/postgresql.conf</code> file. It is critical that
+these two both refer to the same directory. You can check this by running
+the command:
+</p>
+<pre><kbd is="shell">psql -l</kbd>
+psql: could not connect to server: No such file or directory
+	Is the server running locally and accepting
+	connections on Unix domain socket "/localstorage/$USER/pgsql/.s.PGSQL.5432"?
+</pre>
+<p>
+You should then check the <code><var>YOUR_PGDATA</var>/postgresql.conf</code> file to
+see whether <code>unix_socket_directories</code> has been set to
+<code>/localstorage/$USER/pgsql</code>.
+Note that the directory name may not be exactly the same as this; the critical
+thing is that the directory be the same in both places.
+</p>
+
+<h4>Can't shut server down?</h4>
+<p>
+When you use <code>p0</code> to try to shut down your PostgreSQL server,
+you observe something like:
+</p>
+<pre><kbd is="shell">p0</kbd>
+waiting for server to shut down........................
+</pre>
+<p>
+and no <code>done</code> ever appears.
+</p>
+<p>
+This is typically because you have an <code>psql</code>
+session running in some other window (the PostgreSQL server won't shut
+down until all clients have disconnected from the server).
+The way to fix this is to find the <code>psql</code> session and end it.
+If you can find the window where it's running, simply use <code>\q</code>
+to quit from <code>psql</code>.
+If you can't find the window, or it's running from a different machine
+(e.g. you're in the lab and find that you left a <code>psql</code> running
+at home), then use <code>ps</code> to find the process id of the
+<code>psql</code> session and stop it using the Linux <code>kill</code>
+command.
+</p>
+
+<h4>Can't restart server?</h4>
+<p>
+Occasionally, you'll find that
+your PostgreSQL server was not shut down cleanly the last time you
+used it and you cannot re-start it next time you try to use it.
+The symptoms are:
+</p>
+<pre>Using PostgreSQL with data directory <var>YOUR_PGDATA</var>
+pg_ctl: another server might be running; trying to start server anyway
+pg_ctl: could not start server
+Examine the log output.
+Check whether the server started ok via the command 'psql -l'.
+If it's not working, check /localstorage/$USER/pgsql/log for details.
+</pre>
+<p>
+If you actually go and check the log file, you'll probably find,
+right at the end, something like:
+</p>
+<pre><kbd is="shell">tail -2 /localstorage/$USER/pgsql/log</kbd>
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID <var>NNNN</var>) running in data directory "<var>YOUR_PGDATA</var>"?
+</pre>
+<p>
+where <code><var>NNNN</var></code> is a process number.
+</p>
+<p>
+There are two possible causes for this: the server is already running
+or the server did not terminate properly after the last time you used it.
+You can check whether the server is currently running by the command
+<code>psql -l</code>. If that gives you a list of your databases, then
+you simply forgot to shut the server down last time you used it and it's
+ready for you to use again. If <code>psql -l</code> tells you that
+there's no server running, then you'll need to do some cleaning up
+before you can restart the server ...
+</p>
+<p>
+When the PostgreSQL server is run, it keeps a record of the Unix process
+that it's running as in a file called:
+</p>
+<pre><var>YOUR_PGDATA</var>/postmaster.pid
+</pre>
+<p>
+Normally when your PostgreSQL server process terminates (e.g. via
+<code>p0</code>), this file will be removed. If your PostgreSQL
+server stops, and this file persists, then <code>p1</code> becomes
+confused and thinks that there is still a PostgreSQL server running
+even though there isn't.
+</p>
+The first step in cleaning up is to remove this file:
+<pre><kbd is="shell">rm <var>YOUR_PGDATA</var>/postmaster.pid</kbd>
+</pre>
+<p>
+You should also clean up the socket files used by the PostgreSQL
+server. You can do this via the command:
+</p>
+<pre><kbd is="shell">rm <var>YOUR_PGDATA</var>/.s.PGSQL.*</kbd>
+</pre>
+<p>
+Once you've cleaned all of this up, then the <code>p1</code>
+command ought to allow you to start your PostgreSQL server ok.
+</p>
+</body></html>

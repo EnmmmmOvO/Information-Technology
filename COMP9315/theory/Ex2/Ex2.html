@@ -1,0 +1,677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMP9315 24T1 - Exercises 02</title>
+<link href="./Ex2_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./Ex2_files/course.css">
+</head>
+<body>
+<div class="container"><script language="JavaScript">
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+function toggleVisible(elid) {
+  el1 = document.getElementById(elid);
+  el2 = document.getElementById(elid+"a");
+  if (el1.style.display == "") {
+     el1.style.display = "none";
+     changeText(el2,"show answer");
+  }
+  else {
+     el1.style.display = "";
+     changeText(el2,"hide answer");
+  }
+}
+</script>
+
+<div align="center">
+<table width="100%" border="0">
+<tbody><tr valign="top">
+<td align="left" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">COMP9315 24T1</a></span>
+</td>
+<td align="center" width="50%">
+  <span class="heading">Exercises 02</span><br>
+  <span class="subheading">Storage: Disks, Files, Buffers</span>
+</td>
+<td align="right" width="25%">
+  <span class="tiny"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1">DBMS Implementation</a></span>
+</td>
+</tr></tbody></table>
+</div><p style="text-align:center;font-size:75%"><a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php?view=qo">[Show with no answers]</a> &nbsp; <a href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php?view=all">[Show with all answers]</a></p></div>
+
+<ol>
+
+<br><li>
+<p>
+What is the purpose of the storage management subsystem of a DBMS?
+</p>
+<p><small>[<a id="q1a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php##" onclick="toggleVisible(&#39;q1&#39;)">show answer</a>]</small></p>
+<div id="q1" style="color:#000099;display:none">
+<p>
+The primary purpose of the storage manager is to organise the
+persistent storage of the DBMS's data and meta-data, typically
+on a disk device.
+The storage manager contains a mapping from user-level database objects
+(such as tables and tuples) to files and disk blocks.
+Its primary functions are performing the mapping from objects to files
+and transferring data between memory and disk.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Describe some of the typical functions provided by the storage management subsystem.
+</p>
+<p><small>[<a id="q2a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php##" onclick="toggleVisible(&#39;q2&#39;)">show answer</a>]</small></p>
+<div id="q2" style="color:#000099;display:none">
+<p>
+Note that these functions are merely suggestive of the kinds of functions that
+might appear in a storage manager. They bear no relation to any real DBMS (and
+they are not drawn from the PostgreSQL storage manager, although similar kinds
+of functions will be found there).
+The function descriptions could have been less detailed, but I thought it was
+worth mentioning some typical data types as well.
+</p>
+<p>
+Some typical storage management functions ...
+</p>
+<ul>
+<li> <tt>RelnDescriptor *<b>openRelation</b>(char *relnName)</tt>
+ <ul>
+ <li> initiates access to a named table/relation
+ </li><li> determines which files correspond to the named table
+ </li><li> sets up a data structure (<tt>RelnDescriptor</tt>) to manage access to those files
+ </li><li> the data structure would typically contain file descriptors and a buffer
+ </li></ul>
+</li>
+<br><li> <tt>DataBlock <b>getPage</b>(TableDescriptor *table, PageId pid)</tt>
+ <ul>
+ <li> fetch the content of the <tt>pid</tt><sup>th</sup> data page from the open <tt>table</tt>
+ </li><li> <tt>DataBlock</tt> is a reference to a memory buffer containing the data
+ </li></ul>
+</li>
+<br><li> <tt>Tuple <b>getTuple</b>(TableDescriptor *table, TupleID tid)</tt>
+ <ul>
+ <li> fetch the content of the <tt>pid</tt><sup>th</sup> tuple from the open <tt>table</tt>
+ </li><li> <tt>Tuple</tt> is an in-memory data structure containing the values from the tuple
+ </li><li> this function would typically determine which page contained the tuple, then
+	call <tt>getPage()</tt> to retrieve the page, and finally extract the data
+	values from the page buffer; it may also need to open other files and read
+	e.g. large data values from them
+ </li></ul>
+</li>
+</ul>
+<p>
+Other functions might include <tt>putPage</tt>, <tt>putTuple</tt>, <tt>closeTable</tt>,
+etc.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+<small>[Based on Garcia-Molina/Ullman/Widom 13.6.1]</small> <br>
+Consider a disk with the following characteristics:
+</p><p>
+</p><ul>
+<li> 8 platters, 16 read/write surfaces
+</li><li> 16,384 (2<sup>14</sup>) tracks per surface
+</li><li> On average, 128 sectors/blocks per track (min: 96, max: 160)
+</li><li> 4096 (2<sup>12</sup>) bytes per sector/block
+</li></ul>
+<p>
+If we represent record addresses on such a disk by allocating
+a separate byte (or bytes) to address the surface, the track,
+the sector/block, and the byte-offset within the block,
+how many bytes do we need?
+</p><p>
+How would the answer differ if we used bit-fields, used the
+minimum number of bits for each address component, and packed
+the components as tightly as possible?
+</p>
+<p><small>[<a id="q3a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php##" onclick="toggleVisible(&#39;q3&#39;)">show answer</a>]</small></p>
+<div id="q3" style="color:#000099;display:none">
+<p>
+Number of bytes required to address the disk if all address components
+are multiples of whole bytes:
+</p>
+<ul>
+<li> 16 surfaces requires 4 bits or 1 byte
+</li><li> 16,384 tracks requires 14 bits or 2 bytes
+</li><li> need to use max sectors/track, so 160 sectors requires 8 bits or 1 byte
+</li><li> 4,096 bytes per sector/block requires 12 bits or 2 bytes
+</li></ul>
+<p>
+Thus, the total number of bytes required is 1+2+1+2 = 6 bytes.
+</p>
+<p>
+If we use minimum bits, we require 4+14+8+12 = 38 bits = 5 bytes
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+The raw disk addresses in the first question are very low level.
+DBMSs normally deal with higher-level objects than raw disk blocks,
+and thus use different kinds of addresses, such as <tt>PageId</tt>s
+and <tt>TupleId</tt>s.
+</p>
+<p>
+Consider a DBMS where <tt>TupleID</tt>s are defined as 32-bit quantities
+consisting the following:
+</p>
+<center><img src="./Ex2_files/tupleid.png"></center>
+<p>
+Write C functions to extract the various components from a <tt>TupleId</tt>
+value:
+</p>
+<pre>typedef unsigned int BitString;
+typedef BitString TupleId;
+
+BitString relNum(Tuple id) { ... }
+BitString pageNumFrom(Tuple id) { ... }
+BitString recNumFrom(Tuple id) { ... }
+</pre>
+<p><small>[<a id="q4a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php##" onclick="toggleVisible(&#39;q4&#39;)">show answer</a>]</small></p>
+<div id="q4" style="color:#000099;display:none">
+<p>
+Requires the use of C's bit operators, and use a mask to extract just the
+relevant bits and a shift to ensure that the relevant bits are in the
+low-order position:
+</p>
+<pre>#define relNumMask 0x000003ff  /* 10 bits */
+#define pageNumMask 0x00003fff  /* 14 bits */
+#define recNumMask 0x000000ff  /*  8 bits */
+
+BitString relNum(TupleId id) { return ((id &gt;&gt; 22) &amp; relNumMask); }
+
+BitString pageNumFrom(TupleId id) { return ((id &gt;&gt; 8) &amp; pageNumMask); }
+
+BitString recNumFrom(TupleId id) { return (id &amp; recNumMask); }
+</pre>
+<p>
+These are probably better done as <tt>#define</tt> macros.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider executing a nested-loop join on two small tables
+(<i>R</i>, with <i>b<sub>R</sub>=4</i>,
+ and <i>S</i>, with <i>b<sub>S</sub>=3</i>)
+and using a small buffer pool (with 3 initially unused buffers).
+The pattern of access to pages is determined by the following algorithm:
+</p>
+<pre>for (i = 0; i &lt; b<sub>R</sub>; i++) {
+	rpage = request_page(R,i);
+	for (j = 0; j &lt; b<sub>S</sub>; j++) {
+		spage = request_page(S,j);
+		process join using tuples in rpage and spage ...
+		release_page(S,j);
+	}
+	release_page(R,i);
+}
+</pre>
+<p>
+Show the state of the buffer pool and any auxiliary data structures
+after the completion of each call to the <code>request</code> or
+<code>release</code> functions. For each buffer slot, show the page
+that it currently holds and its pin count, using the notation e.g.
+<code>R0(1)</code> to indicate that page 0 from table <code>R</code>
+is held in that buffer slot and has a pin count of 1.
+Assume that free slots are always used in preference to slots that
+already contain data, even if the slot with data has a pin count of
+zero.
+</p>
+<p>
+In the traces below, we have not explicitly showed the initial
+free-list of buffers. We assume that <tt>Buf[0]</tt> is at the
+start of the list, then <tt>Buf[1]</tt>, then <tt>Buf[2]</tt>.
+The allocation method works as follows, for all replacement strategies:
+</p>
+<ul>
+<li> if the free-list has any buffers, use the first one on the list
+</li><li> if the free-list is empty, apply the replacement strategy
+</li></ul>
+<p>
+The trace below shows the first part of the buffer usage for the
+above join, using PostgreSQL's clock-sweep replacement strategy.
+Indicate each read-from-disk operation by a * in the <tt>R</tt>
+column.
+Complete this example, and then repeat this exercise for the LRU
+and MRU buffer replacement strategies.
+</p>
+<pre style="font-size:85%">Operation     Buf[0]   Buf[1]   Buf[2]   R   Strategy data   Notes
+-----------   ------   ------   ------   -   -------------   -----
+initially     free     free     free         NextVictim=0
+request(R0)   R0(1)    free     free     *   NextVictim=0    use first available free buffer
+request(S0)   R0(1)    S0(1)    free     *   NextVictim=0    use first available free buffer
+release(S0)   R0(1)    S0(0)    free         NextVictim=0
+request(S1)   R0(1)    S0(0)    S1(1)    *   NextVictim=0    use first available free buffer
+release(S1)   R0(1)    S0(0)    S1(0)        NextVictim=0
+request(S2)   R0(1)    S2(1)    S1(0)    *   NextVictim=2    skip pinned Buf[0], use NextVictim=1, replace Buf[1]
+release(S2)   R0(1)    S2(0)    S1(0)        NextVictim=2
+release(R0)   R0(0)    S2(0)    S1(0)        NextVictim=2
+request(R1)   R0(0)    S2(0)    R1(1)    *   NextVictim=0    use NextVictim=2, replace Buf[2], wrap NextVictim
+request(S0)   ...
+<span class="comment">etc. etc. etc.</span>
+release(S2)   ...
+release(R3)   ...
+</pre>
+<p><small>[<a id="q5a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php##" onclick="toggleVisible(&#39;q5&#39;)">show answer</a>]</small></p>
+<div id="q5" style="color:#000099;display:none">
+<h3>(i)</h3>
+<p>Buffer usage trace for <i>R join S</i> using Clock-sweep replacement strategy.</p>
+<p>Note that the buffer gives us absolutely no benefit in terms of
+reducing the number of reads required. It would have been the same
+if we'd had just a single input buffer for each table.</p>
+<pre style="font-size:85%">Operation     Buf[0]   Buf[1]   Buf[2]   R   Strategy data   Notes
+-----------   ------   ------   ------   -   -------------   -----
+initially     free     free     free         NextVictim=0
+request(R0)   R0(1)    free     free     *   NextVictim=0    use first available free buffer
+request(S0)   R0(1)    S0(1)    free     *   NextVictim=0    use first available free buffer
+release(S0)   R0(1)    S0(0)    free         NextVictim=0
+request(S1)   R0(1)    S0(0)    S1(1)    *   NextVictim=0    use first available free buffer
+release(S1)   R0(1)    S0(0)    S1(0)        NextVictim=0
+request(S2)   R0(1)    S2(1)    S1(0)    *   NextVictim=2    skip pinned Buf[0], use NextVictim=1, replace Buf[1]
+release(S2)   R0(1)    S2(0)    S1(0)        NextVictim=2
+release(R0)   R0(0)    S2(0)    S1(0)        NextVictim=2
+request(R1)   R0(0)    S2(0)    R1(1)    *   NextVictim=0    use NextVictim=2, replace Buf[2], wrap NextVictim
+request(S0)   S0(1)    S2(0)    R1(1)    *   NextVictim=1    use NextVictim=0, replace Buf[0]
+release(S0)   S0(0)    S2(0)    R1(1)        NextVictim=1
+request(S1)   S0(0)    S1(1)    R1(1)    *   NextVictim=2    use NextVictim=1, replace Buf[1]
+release(S1)   S0(0)    S1(0)    R1(1)        NextVictim=2
+request(S2)   S2(1)    S1(0)    R1(1)    *   NextVictim=1    skip pinned Buf[2], use NextVictim=0, replace Buf[0]
+release(S2)   S2(0)    S1(0)    R1(1)        NextVictim=1
+release(R1)   S2(0)    S1(0)    R1(0)        NextVictim=1
+request(R2)   S2(0)    R2(1)    R1(0)    *   NextVictim=2    use NextVictim=1, replace Buf[1]
+request(S0)   S2(0)    R2(1)    S0(1)    *   NextVictim=0    use NextVictim=2, replace Buf[2], wrap NextVictim
+release(S0)   S2(0)    R2(1)    S0(0)        NextVictim=0
+request(S1)   S1(1)    R2(1)    S0(0)    *   NextVictim=1    use NextVictim=0, replace Buf[0]
+release(S1)   S1(0)    R2(1)    S0(0)        NextVictim=1
+request(S2)   S1(0)    R2(1)    S2(1)    *   NextVictim=0    skip pinned Buf[1], use NextVictim=2, replace Buf[2]
+release(S2)   S1(0)    R2(1)    S2(0)        NextVictim=0
+release(R2)   S1(0)    R2(0)    S2(0)        NextVictim=0
+request(R3)   R3(1)    R2(0)    S2(0)    *   NextVictim=1    use NextVictim=0, replace Buf[0]
+request(S0)   R3(1)    S0(1)    S2(0)    *   NextVictim=2    use NextVictim=1, replace Buf[1]
+release(S0)   R3(1)    S0(0)    S2(0)        NextVictim=2
+request(S1)   R3(1)    S0(0)    S1(1)    *   NextVictim=0    use NextVictim=2, replace Buf[2], wrap NextVictim
+release(S1)   R3(1)    S0(0)    S1(0)        NextVictim=0
+request(S2)   R3(1)    S2(1)    S1(0)    *   NextVictim=2    skip pinned Buf[0], use NextVictim=1, replace Buf[1]
+release(S2)   R3(1)    S2(0)    S1(0)        NextVictim=2
+release(R3)   R3(0)    S2(0)    S1(0)        NextVictim=2
+</pre>
+<h3>(ii)</h3>
+<p>Buffer usage trace for <i>R join S</i> using LRU replacement strategy.</p>
+<p>Note that the least recently used buffer is always at the front of the LRU list.</p>
+<p>As in the clock=sweep case, the replacement strategy gives no re-use of
+loaded pages; the number of reads is the same as if we had one input buffer
+for each relation.</p>
+<pre style="font-size:85%">Operation     Buf[0]   Buf[1]   Buf[2]   R   Strategy data
+-----------   ------   ------   ------   -   -------------
+initially     free     free     free         LRU: empty
+request(R0)   R0(1)    free     free     *   LRU: empty
+request(S0)   R0(1)    S0(1)    free     *   LRU: empty
+release(S0)   R0(1)    S0(0)    free         LRU: Buf[1]
+request(S1)   R0(1)    S0(0)    S1(1)    *   LRU: Buf[1]
+release(S1)   R0(1)    S0(0)    S1(0)        LRU: Buf[1] Buf[2]
+request(S2)   R0(1)    S2(1)    S1(0)    *   LRU: Buf[2]
+release(S2)   R0(1)    S2(0)    S1(0)        LRU: Buf[2] Buf[1]
+release(R0)   R0(0)    S2(0)    S1(0)        LRU: Buf[2] Buf[1] Buf[0]
+request(R1)   R0(0)    S2(0)    R1(1)    *   LRU: Buf[1] Buf[0]
+request(S0)   R0(0)    S0(1)    R1(1)    *   LRU: Buf[0]
+release(S0)   R0(0)    S0(0)    R1(1)        LRU: Buf[0] Buf[1]
+request(S1)   S1(1)    S0(0)    R1(1)    *   LRU: Buf[1]
+release(S1)   S1(0)    S0(0)    R1(1)        LRU: Buf[1] Buf[0]
+request(S2)   S1(0)    S2(1)    R1(1)    *   LRU: Buf[0]
+release(S2)   S1(0)    S2(0)    R1(1)        LRU: Buf[0] Buf[1]
+release(R1)   S1(0)    S2(0)    R1(0)        LRU: Buf[0] Buf[1] Buf[2]
+request(R2)   R2(1)    S2(0)    R1(0)    *   LRU: Buf[1] Buf[2]
+request(S0)   R2(1)    S0(1)    R1(0)    *   LRU: Buf[2]
+release(S0)   R2(1)    S0(0)    R1(0)        LRU: Buf[2] Buf[1]
+request(S1)   R2(1)    S0(0)    S1(1)    *   LRU: Buf[1]
+release(S1)   R2(1)    S0(0)    S1(0)        LRU: Buf[1] Buf[2]
+request(S2)   R2(1)    S2(1)    S1(0)    *   LRU: Buf[2]
+release(S2)   R2(1)    S2(0)    S1(0)        LRU: Buf[2] Buf[1]
+release(R2)   R2(0)    S2(0)    S1(0)        LRU: Buf[2] Buf[1] Buf[0]
+request(R3)   R2(0)    S2(0)    R3(1)    *   LRU: Buf[1] Buf[0]
+request(S0)   R2(0)    S0(1)    R3(1)    *   LRU: Buf[0]
+release(S0)   R2(0)    S0(0)    R3(1)        LRU: Buf[0] Buf[1]
+request(S1)   S1(1)    S0(0)    R3(1)    *   LRU: Buf[1]
+release(S1)   S1(0)    S0(0)    R3(1)        LRU: Buf[1] Buf[0]
+request(S2)   S1(0)    S2(1)    R3(1)    *   LRU: Buf[0]
+release(S2)   S1(0)    S2(0)    R3(1)        LRU: Buf[0] Buf[1]
+release(R3)   S1(0)    S2(0)    R3(0)        LRU: Buf[0] Buf[1] Buf[2]
+</pre>
+<h3>(iii)</h3>
+<p>Buffer usage trace for <i>R join S</i> using MRU replacement strategy.</p>
+<p>Note that the most recently used buffer is always at the front of the MRU list. A buffer is removed from the MRU list when it is use, either because of
+a "hit" or because of it being re-allocated to a different page.</p>
+<p>In this case, the buffering does actually bring some benefits.
+Some reads are avoided by "hits" on the buffer.
+</p>
+<pre style="font-size:85%">Operation     Buf[0]   Buf[1]   Buf[2]   R   Strategy data
+-----------   ------   ------   ------   -   -------------
+initially     free     free     free         MRU: empty
+request(R0)   R0(1)    free     free     *   MRU: empty
+request(S0)   R0(1)    S0(1)    free     *   MRU: empty
+release(S0)   R0(1)    S0(0)    free         MRU: Buf[1]
+request(S1)   R0(1)    S0(0)    S1(1)    *   MRU: Buf[1]
+release(S1)   R0(1)    S0(0)    S1(0)        MRU: Buf[2] Buf[1]
+request(S2)   R0(1)    S0(0)    S2(1)    *   MRU: Buf[1]
+release(S2)   R0(1)    S0(0)    S2(0)        MRU: Buf[2] Buf[1]
+release(R0)   R0(0)    S0(0)    S2(0)        MRU: Buf[0] Buf[2] Buf[1]
+request(R1)   R1(1)    S0(0)    S2(0)    *   MRU: Buf[2] Buf[1]
+request(S0)   R1(1)    S0(1)    S2(0)        MRU: Buf[2]                Hit!
+release(S0)   R1(1)    S0(0)    S2(0)        MRU: Buf[1] Buf[2]
+request(S1)   R1(1)    S1(1)    S2(0)    *   MRU: Buf[2]
+release(S1)   R1(1)    S1(0)    S2(0)        MRU: Buf[1] Buf[2]
+request(S2)   R1(1)    S1(0)    S2(1)        MRU: Buf[1]                Hit!
+release(S2)   R1(1)    S1(0)    S2(0)        MRU: Buf[2] Buf[1]
+release(R1)   R1(0)    S1(0)    S2(0)        MRU: Buf[0] Buf[2] Buf[1]
+request(R2)   R2(1)    S1(0)    S2(0)    *   MRU: Buf[2] Buf[1]
+request(S0)   R2(1)    S1(0)    S0(1)    *   MRU: Buf[1]
+release(S0)   R2(1)    S1(0)    S0(0)        MRU: Buf[2] Buf[1]
+request(S1)   R2(1)    S1(1)    S0(0)        MRU: Buf[2]                Hit!
+release(S1)   R2(1)    S1(0)    S0(0)        MRU: Buf[1] Buf[2]
+request(S2)   R2(1)    S2(1)    S0(0)    *   MRU: Buf[2]
+release(S2)   R2(1)    S2(0)    S0(0)        MRU: Buf[1] Buf[2]
+release(R2)   R2(0)    S2(0)    S0(0)        MRU: Buf[0] Buf[1] Buf[2]
+request(R3)   R3(1)    S2(0)    S0(0)    *   MRU: Buf[1] Buf[2]
+request(S0)   R3(1)    S2(0)    S0(1)        MRU: Buf[1]                Hit!
+release(S0)   R3(1)    S2(0)    S0(0)        MRU: Buf[2] Buf[1]
+request(S1)   R3(1)    S2(0)    S1(1)    *   MRU: Buf[1]
+release(S1)   R3(1)    S2(0)    S1(0)        MRU: Buf[2] Buf[1]
+request(S2)   R3(1)    S2(1)    S1(0)        MRU: Buf[2]                Hit!
+release(S2)   R3(1)    S2(0)    S1(0)        MRU: Buf[1] Buf[2]
+release(R3)   R3(0)    S2(0)    S1(0)        MRU: Buf[0] Buf[1] Buf[2]
+</pre>
+<p>
+It would be interesting to repeat the above exercises with a larger
+buffer pool.
+I would not recommend trying this manually. It would be quicker to
+write a program to show buffer traces for the different strategies,
+and the program could also (a) let you work with larger tables, and
+(b) accumulate statistics on buffer usage.
+</p>
+</div><p></p>
+
+<br></li><li>
+<p>
+<small>[Based on GUW Ex.15.7.1]</small> <br>
+Consider executing a join operation on two tables <i>R</i> and <i>S</i>.
+A pool of <i>N</i> buffers is available to assist with the execution of
+the join.
+In terms of <i>N</i>, <i>b<sub>R</sub></i> and <i>b<sub>S</sub></i>, give
+the conditions under which we can guarantee that the tables can be
+joined in a single pass (i.e. each page of each table is read exactly
+once).
+Assume that the join here results in writing result tuples, unlike the
+previous question, so you need one output buffer as well as input buffers.
+</p><p><small>[<a id="q6a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php##" onclick="toggleVisible(&#39;q6&#39;)">show answer</a>]</small></p>
+<div id="q6" style="color:#000099;display:none">
+<p>
+For a one-pass join, one of the relations must fit entirely in the buffer
+pool.
+We also need room to read one page (at a time) from the other relation
+and another buffer to hold output tuples.
+In other words, we need <i>min(b<sub>R</sub>,b<sub>S</sub>) &lt;= N-2</i>
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+Consider the execution of a binary search on the sort key in a file
+where <i>b=100</i>.
+Assume that the key being sought has a value in the middle of the
+range of values in the data page with index 52.
+Assume also that we have a buffer pool containing only 2 pages
+both of which are initially unused.
+Show the sequence of reads and replacements in the buffer pool
+during the search, for each of the following page replacement
+strategies:
+</p>
+<ol type="a">
+<li><p> first-in-first-out
+</p></li><li><p> most-recently-used
+</p></li></ol>
+<p>
+Use the following notation for describing the sequence of buffer
+pool operations, e.g.
+</p>
+<pre>request for page 3
+placed in buffer 0
+request for page 9
+placed in buffer 1
+request for page 14
+placed in buffer 0 (page 3 replaced)
+request for page 19
+placed in buffer 1 (page 9 replaced)
+<span class="comment">etc. etc. etc.</span>
+</pre>
+<p>
+</p><p>
+Assuming that this is the only process active in the system,
+does the buffering achieve any disk i/o savings in either case?
+</p>
+<p><small>[<a id="q7a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php##" onclick="toggleVisible(&#39;q7&#39;)">show answer</a>]</small></p>
+<div id="q7" style="color:#000099;display:none">
+<p>
+The first thing to determine is the sequence of page accesses
+that will occur. This is simple enough, given what we know about
+binary search and the location of the matching tuple:
+</p>
+<pre>iter     lo       hi        mid
+.        0        99        .
+1        0        99        49
+2        50       99        74
+3        50       73        61
+4        50       60        55
+5        50       54        52
+</pre>
+<p>
+Read the binary search algorithm in the lecture notes if you don't
+understand how the sequence of pages was generated.
+The only pages actually read (and checked for min/max key values)
+are those determined as the <tt>mid</tt> page on each iteration, i.e.
+</p>
+<pre>49   74   61   55   52
+</pre>
+<ol type="a">
+<li> <p>first-in-first-out</p>
+<pre>request for page 49
+placed in buffer 0
+request for page 74
+placed in buffer 1
+request for page 61
+placed in buffer 0 (page 49 replaced)
+request for page 55
+placed in buffer 1 (page 74 replaced)
+request for page 52
+placed in buffer 0 (page 69 replaced)
+</pre>
+</li><li> <p>most-recently-used</p>
+<pre>request for page 49
+placed in buffer 0
+request for page 74
+placed in buffer 1
+request for page 61
+placed in buffer 1 (page 74 replaced)
+request for page 55
+placed in buffer 1 (page 61 replaced)
+request for page 52
+placed in buffer 1 (page 55 replaced)
+</pre>
+</li></ol>
+<p>
+The buffering achieves no savings in disk i/o (since no pages are revisited).
+You could have worked this out without needing to run the traces;
+each page is accessed once,
+and buffering will only be effective if a given page is accessed
+multiple times.
+</p>
+</div><p></p>
+</li>
+
+<br><li>
+<p>
+A commonly used buffer replacement policy in DBMSs is LRU
+(least recently used). However, this strategy is not optimal for
+some kinds of database operations. One proposal to improve the
+performance of LRU was LRU/<i>k</i>, which involved using the
+<i>k<sup>th</sup></i> most recent access time as the basis for
+determining which page to replace. This approach had its own
+problems, in that it was more complex to manage the buffer
+queue (<i>logN</i> time, rather than constant time). The effect
+of the most popular variant of LRU/<i>k</i>, LRU/2, is to
+better estimate how <q>hot</q> is a page (based on more than
+just its most recent, and possibly only, access); pages which
+are accessed only once recently are more likely to be removed
+than pages that have been accessed several times, but perhaps
+not as recently.
+</p>
+<p>
+PostgreSQL 8.0 and 8.1 used a buffer replacement strategy based
+on a different approach, called 2Q.
+The approach uses two queues of buffer pages: A1 and Am.
+When a page is first accessed, it is placed in the A1 queue.
+If it is subsequently accessed, it is moved to the Am queue.
+The A1 queue is organised as a FIFO list, so that pages that
+are accessed only once are eventually removed. The Am queue
+is managed as an LRU list. A simple algorithm for 2Q is given
+below:
+</p>
+<pre>Request for page p:
+
+if (page p is in the Am queue) {
+	move p to the front (LRU) position in the Am queue
+}
+else if (page p is in the A1 queue) {
+	move p to the front (LRU) position in the Am queue
+}
+else {
+	if (there are available free buffers) {
+		B = select a free buffer
+	}
+	else if (size of A1 &gt; 2) {
+		B = buffer at head of A1
+		remove B from A1
+	}
+	else {
+		B = LRU buffer in Am
+		remove B from Am
+	}
+	allocate p to buffer B 
+	move p to the tail of the A1 queue (FIFO)
+}
+</pre>
+<p>
+Using the above algorithm, show the state of the two queues
+after each of the following page references:
+</p>
+<pre>1  2  1  3  1  2  1  4  2  5  6  4  3  5
+</pre>
+<p>
+To get you started, after the first four references above,
+the queues will contain:
+</p>
+<pre>A1:  2  3           Am:  1            2 free buffers
+</pre>
+<p>
+Assume that the buffer pool contains 5 buffers,
+and that it is initially empty.
+Note that the page nearest to A1 is the head of the FIFO queue
+(i.e. the next one to be removed according to FIFO), and the
+page nearest to Am is the least recently used page in that queue.
+</p>
+<p>
+Note that PostgreSQL changed to the clock-sweep replacement
+strategy in later releases.
+</p>
+<p><small>[<a id="q8a" href="https://cgi.cse.unsw.edu.au/~cs9315/24T1/exercises/ex02/index.php##" onclick="toggleVisible(&#39;q8&#39;)">show answer</a>]</small></p>
+<div id="q8" style="color:#000099;display:none">
+<p>
+State of buffer pools and A1/Am queues during sequence of page accesses:
+</p>
+<pre>Request      State after request satisfied         #Free buffers
+
+initial      A1: &lt;empty&gt;        Am: &lt;empty&gt;        5
+
+1            A1: 1              Am: &lt;empty&gt;        4
+
+2            A1: 1 2            Am: &lt;empty&gt;        3
+
+1            A1: 2              Am: 1              3
+
+3            A1: 2 3            Am: 1              2
+
+1            A1: 2 3            Am: 1              2
+
+2            A1: 3              Am: 1 2            2
+
+1            A1: 3              Am: 2 1            2
+
+4            A1: 3 4            Am: 2 1            1
+
+2            A1: 3 4            Am: 1 2            1
+
+5            A1: 3 4 5          Am: 1 2            0
+
+6            A1: 4 5 6          Am: 1 2            0
+
+4            A1: 5 6            Am: 1 2 4          0
+
+3            A1: 5 6 3          Am: 2 4            0
+
+5            A1: 6 3            Am: 2 4 5          0
+</pre>
+</div><p></p>
+</li>
+
+<br><li>
+<p><b>Challenge Problem:</b> (no solution provided)</p>
+<p>
+Write a program that simulates the behaviour of a buffer pool.
+It should take as command-line arguments:
+</p>
+<ul>
+<li> the number of buffers (an integer value, larger than 2)
+</li><li> the replacement strategy (one of <tt>clock</tt>, <tt>lru</tt>, <tt>mru</tt>)
+</li></ul>
+<p>
+It should then read from standard input a sequence of page
+references, one per line, in the form:
+</p>
+<ul>
+<li> <tt>req <i>T</i> <i>n</i></tt>
+</li><li> <tt>rel <i>T</i> <i>n</i></tt>
+</li></ul>
+<p>
+where <tt><i>T</i></tt> is a table name and <tt><i>n</i></tt> is a page number
+</p>
+<p>
+The output of the program should be a trace of buffer states
+in a format similar to that used in Question 8.
+Also, collect statistics on numbers of requests, releases,
+reads and writes and display these at the end of the trace.
+</p>
+<p>
+Since generating long and meaningful sequences of requests and releases
+is tedious, you should also write programs to generate such sequences.
+The pseudo-code in Question 8 gives an idea of what the core of
+such a program would look like for a join on two tables.
+</p>
+
+</li></ol>
+
+
+</body></html>

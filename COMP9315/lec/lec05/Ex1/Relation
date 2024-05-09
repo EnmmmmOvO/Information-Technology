@@ -1,0 +1,12 @@
+typedef struct
+{
+	char *name
+	Attr *attributes
+	char *data_file
+	int   open_file
+	int   npages
+	...
+}
+RelationData;
+
+typedef RelationData *Relation;

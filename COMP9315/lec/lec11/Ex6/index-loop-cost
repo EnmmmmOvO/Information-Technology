@@ -1,0 +1,55 @@
+Consider executing Join[i=j](S,T) with the following parameters:
+* rS = 1000,  bS = 50,  rT = 3000,  bT = 600
+* S.i is primary key, and T has index on T.j
+* T is sorted on T.j, each S tuple joins with 2 T tuples
+* DBMS has N = 12 buffers available for the join
+
+
+Method:
+* iterate over S
+* for each S tuple, select matching T tuples via index
+
+Assumptions:
+* index on T is Btree with two levels (3000 tuples)
+* Btree index entries contain PageIDs
+* x% of the time, matching T tuples are on diff pages
+  (x is small e.g. 10%)
+
+Cost: index nested loop join
+
+cS = 20, cT = 20
+
+read all pages of S = bS
+
+for each S tuple, use index
+
+cost of using index
+= traverse B-tree + scan one page
+                    (sometimes scan 2 pages)
+
+#pages = bS + (rS * Sel_T)
+       = 50 + (1000 * (2+1.10))
+       ~ 50 + 3100
+       ~ 3100
+
+#checks = rS * (cT + 0.10*cT)
+        = 1000 * (22)
+        ~ 22,000
+
+
+Cost of block nested loop join:
+
+read S in 5 * 10-page chunks
+for each S tuple
+    scan pages of T until T_j > S_i
+                    (optimisation)
+
+average scan = bT/2
+
+#pages = bS + (10 * bT/2)
+       = 50 + (10 * 300)
+       ~ 3050
+
+#checks = rS * rT/2
+        = 1000 * 1500
+        = 1,500,000
