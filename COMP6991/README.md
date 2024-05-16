@@ -17,6 +17,8 @@
 ## WorkShop 
 - [01](./workshop/ws01) [02](./workshop/ws02) [03](./workshop/ws03) [04](./workshop/ws04) [05](./workshop/ws05) [07](./workshop/ws07) [08](./workshop/ws08) [09](./workshop/ws09) [10](./workshop/ws10)
 
+## Lecture Material
+- [code](./lec-materials/)
 
 ## Week01
 - Recording [01 (2024-02-12)](https://www.youtube.com/watch?v=9OM-IMEyklc&list=PLt4WIqcTn9kKRvQ7cAvMXmsGyCskku5AD&index=1)  
