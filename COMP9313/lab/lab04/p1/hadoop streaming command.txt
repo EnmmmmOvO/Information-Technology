@@ -1,0 +1,13 @@
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
+  -D stream.map.output.field.separator=\\t \
+  -D stream.num.map.output.key.fields=1 \
+  -D mapreduce.map.output.key.field.separator=, \
+  -D mapreduce.partition.keypartitioner.options=-k1,1 \
+  -D mapreduce.job.reduces=2 \
+  -input input \
+  -output output \
+  -mapper NSRelFmapper.py \
+  -reducer NSRelFreducer.py \
+  -file NSRelFmapper.py \
+  -file NSRelFreducer.py \
+  -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
