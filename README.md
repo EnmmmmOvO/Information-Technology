@@ -8,5 +8,5 @@
 |COMP9315| DBMS Implementation | C |
 |COMP9319| Web Data Compression and Search | C++ |
 |COMP9444| Neural Networks and Deep Learning | Python |
+|COMP9517| Computer Vision | Python |
 |COMP9727| Recommender Systems | Python |
-
