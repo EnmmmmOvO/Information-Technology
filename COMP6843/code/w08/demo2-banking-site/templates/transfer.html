@@ -1,0 +1,18 @@
+<html>
+
+<body>
+    <h1>Bank Website: Transfers</h1>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+        To: <input name="to_user" placeholder="Username">
+        <br>
+        Amount: <input name="amount" placeholder="X.XX" type="number">
+        <br>
+        <input type="submit" value="Confirm Transfer">
+    </form>
+
+    <a href="/">Back to Balance</a>
+</body>
+
+</html>

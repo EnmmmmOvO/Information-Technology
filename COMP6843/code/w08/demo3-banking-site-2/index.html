@@ -1,0 +1,16 @@
+<html>
+
+<body>
+    <h1>Modern (and Worse) Bank Website</h1>
+
+    <p>Your balance is $<span id="balance"></span></p>
+
+    <script>
+        function setBalance(balance) {
+            document.getElementById("balance").innerText = balance.toString()
+        }
+    </script>
+    <script src="http://127.0.0.1:8082/get-balance.js?callback=fetch('https://example.com')"></script>
+</body>
+
+</html>

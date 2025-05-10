@@ -1,0 +1,19 @@
+<ul>
+    {% for error in errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+</ul>
+
+<form method="POST">
+    <label for="username">
+        Username
+    </label>
+    <input name="username">
+    <br><br>
+    <label for="password">
+        Password
+    </label>
+    <input name="password" type="password">
+    <br><br>
+    <input type="submit" value="Login">
+</form>

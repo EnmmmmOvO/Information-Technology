@@ -1,0 +1,5 @@
+<ul>
+    {% for username, user in users.items() %}
+    <li>{{ username }}: {{ user["role"] }}</li>
+    {% endfor %}
+</ul>
