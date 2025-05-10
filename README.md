@@ -2,7 +2,9 @@
 2024-2025 Postgraduate
 |Code|Topic|Language|
 |:-------:|:-------:|:-----:|
+|COMP6713| Natural Language Processing | Python |
 |COMP6841| Security Engineering and Cyber Security | C |
+|COMP6843| Web Application Security | Python |
 |COMP6991| Solving Modern Programming Problems with Rust | Rust |
 |COMP9313| Big Data Management | Python |
 |COMP9315| DBMS Implementation | C |
